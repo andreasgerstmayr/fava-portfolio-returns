@@ -1,0 +1,30 @@
+{
+  "name": "fava-portfolio-returns",
+  "license": "GPL-2.0",
+  "source": [
+    "frontend/PortfolioReturns.html"
+  ],
+  "targets": {
+    "default": {
+      "distDir": "fava_portfolio_returns/templates"
+    }
+  },
+  "parcelIgnore": [
+    "{{.*}}",
+    "does_not_exist"
+  ],
+  "scripts": {
+    "build": "parcel build",
+    "watch": "parcel watch",
+    "format": "prettier -w frontend"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "parcel": "^2.3.1",
+    "parcel-resolver-ignore": "^2.0.0",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "echarts": "^5.3.0"
+  }
+}

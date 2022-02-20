@@ -1,0 +1,106 @@
+{% macro returns_table(tab) %}
+<table>
+  <thead>
+    <tr>
+    {% for header in tab.header %}
+      <th>{{ header }}</th>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in tab.rows %}
+    <tr>
+      {% for val in row %}
+        {% if val is number %}
+          <td class="num">{{ "{:.2%}".format(val) }}</td>
+        {% else %}
+          <td>{{ val }}</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
+
+
+{% set group = request.args.get('group', None) %}
+{% if group %}
+  <!-- https://github.com/beancount/fava/issues/1175 -->
+  <script>document.write("<span id='fava-extension-javascript-loaded' />")</script>
+  <img src="does_not_exist" style="display:none" onerror="if(!document.getElementById('fava-extension-javascript-loaded')){window.location.reload()}">
+
+  {% set report = extension.report(group) %}
+  <script id="report-data" type="application/json">{{ report|tojson }}</script>
+
+  <h2>Portfolio Returns of {{ group }}</h2>
+  <h3>Cash Flows</h3>
+  <div id="cashflow-chart" style="height: 400px; margin-bottom: 40px;"></div>
+  <div id="cashflow-log-chart" style="height: 400px; margin-bottom: 40px;"></div>
+  <div id="cumvalue-chart" style="height: 400px; margin-bottom: 40px;"></div>
+  <script type="module">
+    import { cashflowChart, cumValueChart } from "./charts";
+
+    const report = JSON.parse(document.getElementById("report-data").innerHTML);
+    cashflowChart("cashflow-chart", report["target_currency"], report["plots"]["cashflows"]);
+    cashflowChart("cashflow-log-chart", report["target_currency"], report["plots"]["cashflows"], true);
+    cumValueChart("cumvalue-chart", report["target_currency"], report["plots"]["cumvalue"]);
+  </script>
+
+  <h3>Returns</h3>
+  {{ returns_table(report["total_returns"]) }}
+  {{ returns_table(report["calendar_returns"]) }}
+  {{ returns_table(report["cumulative_returns"]) }}
+
+  <br>
+  <h3>Accounts</h3>
+  <p>Cost Currency: {{ report["target_currency"] }}</p>
+  <table>
+    <thead>
+      <tr>
+      {% for header in report["accounts"].columns.to_list() %}
+        <th>{{ header }}</th>
+      {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in report["accounts"].itertuples() %}
+      <tr>
+        <td>{{ row.Investment }}</td>
+        <td>{{ row.Description }}</td>
+        <td>{{ row.Status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <h3>Cash Flows</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Dividend</th>
+        <th>Source</th>
+        <th>Investment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in report["cashflows"].itertuples() %}
+      <tr>
+        <td>{{ row.date }}</td>
+        <td class="num">{{ row.amount | format_currency(row.currency) }} {{ row.currency }}</td>
+        <td>{% if row.is_dividend %}yes{% else %}no{% endif %}</td>
+        <td>{{ row.source }}</td>
+        <td>{{ row.investment }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <h2>Portfolio Returns</h2>
+  {% for group in extension.list_groups() %}
+    <h3><a href="{{ url_for('extension_report', report_name='PortfolioReturns', group=group.name) }}">{{ group.name }}</a></h3>
+  {% endfor %}
+{% endif %}

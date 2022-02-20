@@ -1,0 +1,8 @@
+# py
+build
+__pycache__
+*.egg-info
+
+# js
+node_modules
+.parcel-cache
