@@ -39,8 +39,8 @@ class PortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
 
     def _read_config(self):
-        if "beangrow_config" not in self.config:
-            raise FavaAPIException("Portfolio Returns: Please specifcy a path to the beangrow configuration file.")
+        if not (isinstance(self.config, dict) and "beangrow_config" in self.config):
+            raise FavaAPIException("Please specify a path to the beangrow configuration file.")
 
         return Config(
             beangrow_config=self.config["beangrow_config"], beangrow_debug_dir=self.config.get("beangrow_debug_dir")
