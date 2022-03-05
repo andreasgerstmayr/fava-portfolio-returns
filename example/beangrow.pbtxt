@@ -1,0 +1,63 @@
+investments {
+  investment {
+    currency: "GLD"
+    asset_account: "Assets:US:ETrade:GLD"
+    dividend_accounts: "Income:US:ETrade:GLD:Dividend"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
+    currency: "ITOT"
+    asset_account: "Assets:US:ETrade:ITOT"
+    dividend_accounts: "Income:US:ETrade:ITOT:Dividend"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
+    currency: "VEA"
+    asset_account: "Assets:US:ETrade:VEA"
+    dividend_accounts: "Income:US:ETrade:VEA:Dividend"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
+    currency: "VHT"
+    asset_account: "Assets:US:ETrade:VHT"
+    dividend_accounts: "Income:US:ETrade:VHT:Dividend"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
+    currency: "RGAGX"
+    asset_account: "Assets:US:Vanguard:RGAGX"
+    cash_accounts: "Assets:US:Vanguard:Cash"
+  }
+  investment {
+    currency: "VBMPX"
+    asset_account: "Assets:US:Vanguard:VBMPX"
+    cash_accounts: "Assets:US:Vanguard:Cash"
+  }
+}
+groups {
+  group {
+    name: "currency.GLD"
+    investment: "Assets:US:ETrade:GLD"
+  }
+  group {
+    name: "currency.ITOT"
+    investment: "Assets:US:ETrade:ITOT"
+  }
+  group {
+    name: "currency.RGAGX"
+    investment: "Assets:US:Vanguard:RGAGX"
+  }
+  group {
+    name: "currency.VBMPX"
+    investment: "Assets:US:Vanguard:VBMPX"
+  }
+  group {
+    name: "currency.VEA"
+    investment: "Assets:US:ETrade:VEA"
+  }
+  group {
+    name: "currency.VHT"
+    investment: "Assets:US:ETrade:VHT"
+  }
+}
+

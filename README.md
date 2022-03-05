@@ -1,6 +1,8 @@
 # fava-portfolio-returns
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to calculate the portfolio returns.
 
+[![Screenshot](example/returns.png)](example/returns.png)
+
 ## Installation
 ```
 pip install git+https://github.com/andreasgerstmayr/fava-portfolio-returns.git
@@ -15,6 +17,9 @@ Enable this plugin in Fava by adding the following lines to your ledger:
   'beangrow_config': 'beangrow.pbtxt',
 }"
 ```
+
+## View Example Ledger
+`cd example; fava example.beancount`
 
 ## Building from Source
 Run `make build` to compile the frontend. The compiled and bundled frontend will be placed in `fava_portfolio_returns/templates/PortfolioReturns.html`.
