@@ -1,27 +1,31 @@
 import * as echarts from "echarts";
 
-type SeriesItem = [any, any];
-type ChartData = { [k: string]: SeriesItem[] };
-
 function getCurrencyFormatter(currency: string) {
   const currencyFormat = new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: currency,
+    currency,
   });
   return (value: any) => {
     return currencyFormat.format(value);
   };
 }
 
-export function cashflowChart(elementId: string, currency: string, data: ChartData, logarithmic: boolean = false) {
-  const chartDom = document.getElementById(elementId);
+export function cashflowChart(chartOptions: {
+  elementId: string;
+  currency: string;
+  data: any;
+  minDate: string;
+  maxDate: string;
+  logarithmic?: boolean;
+}) {
+  const chartDom = document.getElementById(chartOptions.elementId);
   const chart = echarts.init(chartDom);
-  const currencyFormatter = getCurrencyFormatter(currency);
+  const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
 
   const option: echarts.EChartsOption = {
     title: {
       left: "center",
-      text: logarithmic ? "log(Cash Flows)" : "Cash Flows",
+      text: chartOptions.logarithmic ? "log(Cash Flows)" : "Cash Flows",
     },
     tooltip: {
       trigger: "axis",
@@ -32,10 +36,11 @@ export function cashflowChart(elementId: string, currency: string, data: ChartDa
     },
     xAxis: {
       type: "time",
-      splitNumber: 8,
+      min: new Date(chartOptions.minDate),
+      max: new Date(chartOptions.maxDate),
     },
     yAxis: {
-      type: (logarithmic ? "log" : "value") as any,
+      type: (chartOptions.logarithmic ? "log" : "value") as any,
       axisLabel: {
         formatter: currencyFormatter,
       },
@@ -44,22 +49,30 @@ export function cashflowChart(elementId: string, currency: string, data: ChartDa
       {
         type: "bar",
         name: "Excl. dividends",
-        data: data["exdiv"],
+        data: chartOptions.data["exdiv"],
+        barWidth: 2,
       },
       {
         type: "bar",
         name: "Dividends",
-        data: data["div"],
+        data: chartOptions.data["div"],
+        barWidth: 2,
       },
     ],
   };
   chart.setOption(option);
 }
 
-export function cumValueChart(elementId: string, currency: string, data: ChartData) {
-  const chartDom = document.getElementById(elementId);
+export function cumValueChart(chartOptions: {
+  elementId: string;
+  currency: string;
+  data: any;
+  minDate: string;
+  maxDate: string;
+}) {
+  const chartDom = document.getElementById(chartOptions.elementId);
   const chart = echarts.init(chartDom);
-  const currencyFormatter = getCurrencyFormatter(currency);
+  const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
 
   const option: echarts.EChartsOption = {
     title: {
@@ -75,7 +88,8 @@ export function cumValueChart(elementId: string, currency: string, data: ChartDa
     },
     xAxis: {
       type: "time",
-      splitNumber: 8,
+      min: chartOptions.minDate,
+      max: chartOptions.maxDate,
     },
     yAxis: {
       type: "value",
@@ -88,12 +102,12 @@ export function cumValueChart(elementId: string, currency: string, data: ChartDa
         type: "line",
         name: "Amortized value from flows",
         showSymbol: false,
-        data: data["gamounts"],
+        data: chartOptions.data["gamounts"],
       },
       {
         type: "line",
         name: "Market value",
-        data: data["value"],
+        data: chartOptions.data["value"],
       },
     ],
   };

@@ -11,9 +11,8 @@ Please setup [beangrow](https://github.com/beancount/beangrow) first, using this
 
 Enable this plugin in Fava by adding the following lines to your ledger:
 ```
-2010-01-0 custom "fava-extension" "fava_portfolio_returns" "{
+2010-01-01 custom "fava-extension" "fava_portfolio_returns" "{
   'beangrow_config': 'beangrow.pbtxt',
-# 'beangrow_debug_dir': 'beangrow-debug/',
 }"
 ```
 

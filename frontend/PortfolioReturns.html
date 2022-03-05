@@ -42,9 +42,28 @@
     import { cashflowChart, cumValueChart } from "./charts";
 
     const report = JSON.parse(document.getElementById("report-data").innerHTML);
-    cashflowChart("cashflow-chart", report["target_currency"], report["plots"]["cashflows"]);
-    cashflowChart("cashflow-log-chart", report["target_currency"], report["plots"]["cashflows"], true);
-    cumValueChart("cumvalue-chart", report["target_currency"], report["plots"]["cumvalue"]);
+    cashflowChart({
+        elementId: "cashflow-chart",
+        currency: report["target_currency"],
+        data: report["plots"]["cashflows"],
+        minDate: report["plots"]["min_date"],
+        maxDate: report["plots"]["max_date"],
+    });
+    cashflowChart({
+        elementId: "cashflow-log-chart",
+        currency: report["target_currency"],
+        data: report["plots"]["cashflows"],
+        minDate: report["plots"]["min_date"],
+        maxDate: report["plots"]["max_date"],
+        logarithmic: true,
+    });
+    cumValueChart({
+        elementId: "cumvalue-chart",
+        currency: report["target_currency"],
+        data: report["plots"]["cumvalue"],
+        minDate: report["plots"]["min_date"],
+        maxDate: report["plots"]["max_date"],
+    });
   </script>
 
   <h3>Returns</h3>

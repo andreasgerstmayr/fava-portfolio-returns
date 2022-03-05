@@ -102,7 +102,12 @@ class PortfolioReturns(FavaExtensionBase):
         # Overlay value of assets over time.
         value_dates, value_values = returnslib.compute_portfolio_values(price_map, transactions)
         cumvalue_plot["value"] = list(zip(value_dates, value_values))
-        return {"cashflows": cashflows_plot, "cumvalue": cumvalue_plot}
+        return {
+            "cashflows": cashflows_plot,
+            "cumvalue": cumvalue_plot,
+            "min_date": dates[0] if dates else None,
+            "max_date": dates[-1] if dates else None,
+        }
 
     def _generate_report(
         self,
