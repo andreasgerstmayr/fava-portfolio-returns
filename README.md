@@ -1,4 +1,4 @@
-# fava-portfolio-returns
+# Fava Portfolio Returns
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to calculate the portfolio returns.
 
 [![Screenshot](example/returns.png)](example/returns.png)
@@ -28,7 +28,13 @@ You can run `make watch` to automatically rebuild the frontend for any changes.
 
 ## Contributing
 The goal of this Fava extension is to display beangrow reports in the browser.
-Please implement any calculation changes or additions in the [beangrow](https://github.com/beancount/beangrow) repository, and any user interface changes to this repository.
+Please implement any calculation changes or additions in the [beangrow](https://github.com/beancount/beangrow) repository, and any user interface changes in this repository.
+
+## Related Projects
+* [Fava Portfolio Summary](https://github.com/PhracturedBlue/fava-portfolio-summary)
+* [Fava Classy Portfolio](https://github.com/seltzered/fava-classy-portfolio)
+* [Fava Investor](https://github.com/redstreet/fava_investor)
+* [Fava Income Reports](https://github.com/andreasgerstmayr/fava-income-reports)
 
 ## Acknowledgements
 Thanks to Martin Blais and all contributors of [beancount](https://github.com/beancount/beancount) and [beangrow](https://github.com/beancount/beangrow),
