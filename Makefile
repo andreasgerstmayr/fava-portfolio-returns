@@ -19,6 +19,9 @@ format: deps  ## format source
 	yarn run format
 	black --line-length 120 fava_portfolio_returns
 
+clean:  ## clean build artifacts
+	rm -rf .parcel-cache fava_portfolio_returns/templates/*.html
+
 
 ##@ Helpers
 
