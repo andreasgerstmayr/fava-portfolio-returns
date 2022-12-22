@@ -19,7 +19,7 @@
     "format": "prettier -w frontend"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
+    "buffer": "^5.5.0",
     "parcel": "^2.3.1",
     "parcel-resolver-ignore": "^2.0.0",
     "prettier": "^2.5.1"

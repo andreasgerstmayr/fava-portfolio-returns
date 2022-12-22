@@ -31,7 +31,7 @@
   <img src="does_not_exist" style="display:none" onerror="if(!document.getElementById('fava-extension-javascript-loaded')){window.location.reload()}">
 
   {% set report = extension.report(group) %}
-  <script id="report-data" type="application/json">{{ report|tojson }}</script>
+  <script id="report-data" type="application/json">{{ {"target_currency": report["target_currency"], "plots": report["plots"]}|tojson }}</script>
 
   <h2>Portfolio Returns of {{ group }}</h2>
   <h3>Cash Flows</h3>
