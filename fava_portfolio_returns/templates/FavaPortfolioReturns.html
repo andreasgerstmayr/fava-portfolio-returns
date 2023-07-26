@@ -26,45 +26,16 @@
 
 {% set group = request.args.get('group', None) %}
 {% if group %}
-  <!-- https://github.com/beancount/fava/issues/1175 -->
-  <script>document.write("<span id='fava-extension-javascript-loaded' />")</script>
-  <img src="does_not_exist" style="display:none" onerror="if(!document.getElementById('fava-extension-javascript-loaded')){window.location.reload()}">
-
   {% set report = extension.report(group) %}
-  <script id="report-data" type="application/json">{{ {"target_currency": report["target_currency"], "plots": report["plots"]}|tojson }}</script>
+  <script id="favaPortfolioReturnsReportData" type="application/json">
+  {{ {"target_currency": report["target_currency"], "plots": report["plots"]}|tojson }}
+  </script>
 
   <h2>Portfolio Returns of {{ group }}</h2>
   <h3>Cash Flows</h3>
   <div id="cashflow-chart" style="height: 400px; margin-bottom: 40px;"></div>
   <div id="cashflow-log-chart" style="height: 400px; margin-bottom: 40px;"></div>
   <div id="cumvalue-chart" style="height: 400px; margin-bottom: 40px;"></div>
-  <script type="module">
-    import { cashflowChart, cumValueChart } from "./charts";
-
-    const report = JSON.parse(document.getElementById("report-data").innerHTML);
-    cashflowChart({
-        elementId: "cashflow-chart",
-        currency: report["target_currency"],
-        data: report["plots"]["cashflows"],
-        minDate: report["plots"]["min_date"],
-        maxDate: report["plots"]["max_date"],
-    });
-    cashflowChart({
-        elementId: "cashflow-log-chart",
-        currency: report["target_currency"],
-        data: report["plots"]["cashflows"],
-        minDate: report["plots"]["min_date"],
-        maxDate: report["plots"]["max_date"],
-        logarithmic: true,
-    });
-    cumValueChart({
-        elementId: "cumvalue-chart",
-        currency: report["target_currency"],
-        data: report["plots"]["cumvalue"],
-        minDate: report["plots"]["min_date"],
-        maxDate: report["plots"]["max_date"],
-    });
-  </script>
 
   <h3>Returns</h3>
   {{ returns_table(report["total_returns"]) }}
@@ -120,6 +91,6 @@
 {% else %}
   <h2>Portfolio Returns</h2>
   {% for group in extension.list_groups() %}
-    <h3><a href="{{ url_for('extension_report', report_name='PortfolioReturns', group=group.name) }}">{{ group.name }}</a></h3>
+    <h3><a href="{{ url_for('extension_report', extension_name='FavaPortfolioReturns', group=group.name) }}">{{ group.name }}</a></h3>
   {% endfor %}
 {% endif %}

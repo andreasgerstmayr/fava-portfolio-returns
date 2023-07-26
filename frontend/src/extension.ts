@@ -113,3 +113,34 @@ export function cumValueChart(chartOptions: {
   };
   chart.setOption(option);
 }
+
+export default {
+  onExtensionPageLoad() {
+    const reportJSON = (document.querySelector("#favaPortfolioReturnsReportData") as HTMLScriptElement)?.text;
+    if (!reportJSON) return;
+
+    const report = JSON.parse(reportJSON);
+    cashflowChart({
+      elementId: "cashflow-chart",
+      currency: report["target_currency"],
+      data: report["plots"]["cashflows"],
+      minDate: report["plots"]["min_date"],
+      maxDate: report["plots"]["max_date"],
+    });
+    cashflowChart({
+      elementId: "cashflow-log-chart",
+      currency: report["target_currency"],
+      data: report["plots"]["cashflows"],
+      minDate: report["plots"]["min_date"],
+      maxDate: report["plots"]["max_date"],
+      logarithmic: true,
+    });
+    cumValueChart({
+      elementId: "cumvalue-chart",
+      currency: report["target_currency"],
+      data: report["plots"]["cumvalue"],
+      minDate: report["plots"]["min_date"],
+      maxDate: report["plots"]["max_date"],
+    });
+  },
+};

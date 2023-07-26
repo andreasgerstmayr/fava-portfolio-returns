@@ -1,0 +1,13 @@
+{
+    "name": "fava-portfolio-returns",
+    "scripts": {
+        "build": "esbuild src/extension.ts --bundle --format=esm --outfile=../fava_portfolio_returns/FavaPortfolioReturns.js --minify",
+        "watch": "esbuild src/extension.ts --bundle --format=esm --outfile=../fava_portfolio_returns/FavaPortfolioReturns.js --watch"
+    },
+    "devDependencies": {
+        "esbuild": "^0.18.17"
+    },
+    "dependencies": {
+        "echarts": "git+https://github.com/andreasgerstmayr/echarts.git#support-negative-log-axis-dist"
+    }
+}

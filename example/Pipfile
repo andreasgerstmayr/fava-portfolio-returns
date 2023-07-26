@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fava-portfolio-returns = {editable = true, path = "."}
+fava-portfolio-returns = {editable = true, path = "./.."}
 
 [dev-packages]
 

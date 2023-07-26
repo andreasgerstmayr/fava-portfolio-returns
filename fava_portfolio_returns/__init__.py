@@ -29,21 +29,24 @@ from beangrow.reports import (
 )
 from beangrow.returns import Pricer
 from fava.ext import FavaExtensionBase
-from fava.helpers import FavaAPIException
+from fava.helpers import FavaAPIError
 
 Config = namedtuple("Config", ["beangrow_config", "beangrow_debug_dir"])
 
 
-class PortfolioReturns(FavaExtensionBase):
-
+class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
+    has_js_module = True
 
     def _read_config(self):
         if not (isinstance(self.config, dict) and "beangrow_config" in self.config):
-            raise FavaAPIException("Please specify a path to the beangrow configuration file.")
+            raise FavaAPIError(
+                "Please specify a path to the beangrow configuration file."
+            )
 
         return Config(
-            beangrow_config=self.config["beangrow_config"], beangrow_debug_dir=self.config.get("beangrow_debug_dir")
+            beangrow_config=self.config["beangrow_config"],
+            beangrow_debug_dir=self.config.get("beangrow_debug_dir"),
         )
 
     def list_groups(self):
@@ -100,7 +103,9 @@ class PortfolioReturns(FavaExtensionBase):
             cumvalue_plot["gamounts"] = list(zip(dates_all, gamounts))
 
         # Overlay value of assets over time.
-        value_dates, value_values = returnslib.compute_portfolio_values(price_map, transactions)
+        value_dates, value_values = returnslib.compute_portfolio_values(
+            price_map, transactions
+        )
         cumvalue_plot["value"] = list(zip(value_dates, value_values))
         return {
             "cashflows": cashflows_plot,
@@ -119,20 +124,32 @@ class PortfolioReturns(FavaExtensionBase):
         if not target_currency:
             cost_currencies = set(r.cost_currency for r in account_data)
             target_currency = cost_currencies.pop()
-            assert not cost_currencies, "Incompatible cost currencies {} for accounts {}".format(
+            assert (
+                not cost_currencies
+            ), "Incompatible cost currencies {} for accounts {}".format(
                 cost_currencies, ",".join([r.account for r in account_data])
             )
 
         # cash flows
-        cash_flows = returnslib.truncate_and_merge_cash_flows(pricer, account_data, None, end_date)
-        returns = returnslib.compute_returns(cash_flows, pricer, target_currency, end_date)
-        transactions = data.sorted([txn for ad in account_data for txn in ad.transactions])
+        cash_flows = returnslib.truncate_and_merge_cash_flows(
+            pricer, account_data, None, end_date
+        )
+        returns = returnslib.compute_returns(
+            cash_flows, pricer, target_currency, end_date
+        )
+        transactions = data.sorted(
+            [txn for ad in account_data for txn in ad.transactions]
+        )
 
         # cumulative value plot
-        plots = self._create_plots(pricer.price_map, cash_flows, transactions, returns.total)
+        plots = self._create_plots(
+            pricer.price_map, cash_flows, transactions, returns.total
+        )
 
         # returns
-        total_returns_tbl = Table(["Total", "Ex-Div", "Div"], [[returns.total, returns.exdiv, returns.div]])
+        total_returns_tbl = Table(
+            ["Total", "Ex-Div", "Div"], [[returns.total, returns.exdiv, returns.div]]
+        )
         calendar_returns_tbl = compute_returns_table(
             pricer, target_currency, account_data, get_calendar_intervals(TODAY)
         )
@@ -180,7 +197,9 @@ class PortfolioReturns(FavaExtensionBase):
             config.beangrow_debug_dir,
         )
 
-        report = next((r for r in beangrow_config.groups.group if r.name == group), None)
+        report = next(
+            (r for r in beangrow_config.groups.group if r.name == group), None
+        )
         if not report:
             return {}
 
