@@ -24,6 +24,11 @@ investments {
     cash_accounts: "Assets:US:ETrade:Cash"
   }
   investment {
+    currency: "CORP"
+    asset_account: "Assets:US:ETrade:CORP"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
     currency: "RGAGX"
     asset_account: "Assets:US:Vanguard:RGAGX"
     cash_accounts: "Assets:US:Vanguard:Cash"
@@ -36,28 +41,32 @@ investments {
 }
 groups {
   group {
-    name: "currency.GLD"
+    name: "Gold"
     investment: "Assets:US:ETrade:GLD"
   }
   group {
-    name: "currency.ITOT"
+    name: "iShares Core S&P Total U.S. Stock Market ETF"
     investment: "Assets:US:ETrade:ITOT"
   }
   group {
-    name: "currency.RGAGX"
+    name: "American Funds Growth Fund of America"
     investment: "Assets:US:Vanguard:RGAGX"
   }
   group {
-    name: "currency.VBMPX"
+    name: "Vanguard Total Bond Market Index Fund Institutional Plus Shares"
     investment: "Assets:US:Vanguard:VBMPX"
   }
   group {
-    name: "currency.VEA"
+    name: "Vanguard FTSE Developed Markets ETF"
     investment: "Assets:US:ETrade:VEA"
   }
   group {
-    name: "currency.VHT"
+    name: "Vanguard Health Care ETF"
     investment: "Assets:US:ETrade:VHT"
+  }
+  group {
+    name: "CORP"
+    investment: "Assets:US:ETrade:CORP"
   }
 }
 

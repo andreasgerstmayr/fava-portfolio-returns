@@ -9,16 +9,13 @@
 
 import datetime
 from collections import namedtuple
-from typing import List, Dict, Optional
-
+from typing import List, Dict, Optional, Tuple
+import numpy as np
+from beancount.core import data, getters, prices, convert
+from beancount.core.inventory import Inventory
+from beangrow import investments
 import beangrow.config as configlib
 import beangrow.returns as returnslib
-import numpy as np
-from beancount.core import data
-from beancount.core import getters
-from beancount.core import prices
-from beangrow import investments
-from beangrow.investments import CashFlow, AccountData
 from beangrow.reports import (
     Table,
     TODAY,
@@ -27,7 +24,6 @@ from beangrow.reports import (
     get_cumulative_intervals,
     get_accounts_table,
 )
-from beangrow.returns import Pricer
 from fava.ext import FavaExtensionBase
 from fava.helpers import FavaAPIError
 
@@ -38,7 +34,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
     has_js_module = True
 
-    def _read_config(self):
+    def read_config(self):
         if not (isinstance(self.config, dict) and "beangrow_config" in self.config):
             raise FavaAPIError(
                 "Please specify a path to the beangrow configuration file."
@@ -49,17 +45,105 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_debug_dir=self.config.get("beangrow_debug_dir"),
         )
 
-    def list_groups(self):
-        config = self._read_config()
+    def extract(
+        self, end_date
+    ) -> Tuple[
+        returnslib.Pricer, Dict, Dict[investments.Account, investments.AccountData]
+    ]:
+        config = self.read_config()
+
         entries = self.ledger.all_entries
         accounts = getters.get_accounts(entries)
-        beangrow_config = configlib.read_config(config.beangrow_config, None, accounts)
-        return beangrow_config.groups.group
+        dcontext = self.ledger.options["dcontext"]
 
-    def _create_plots(
+        price_map = prices.build_price_map(entries)
+        pricer = returnslib.Pricer(price_map)
+
+        beangrow_config = configlib.read_config(config.beangrow_config, None, accounts)
+
+        # Extract data from the ledger.
+        account_data_map = investments.extract(
+            entries,
+            dcontext,
+            beangrow_config,
+            end_date,
+            False,
+            config.beangrow_debug_dir,
+        )
+
+        return pricer, beangrow_config.groups.group, account_data_map
+
+    @staticmethod
+    def get_target_currency(adlist: List[investments.AccountData]) -> str:
+        cost_currencies = set(r.cost_currency for r in adlist)
+        target_currency = cost_currencies.pop()
+        if cost_currencies:
+            raise FavaAPIError(
+                "Incompatible cost currencies {} for accounts {}".format(
+                    cost_currencies, ",".join([r.account for r in adlist])
+                )
+            )
+        return target_currency
+
+    @staticmethod
+    def get_only_amount(inventory):
+        pos = inventory.get_only_position()
+        return pos.units if pos else None
+
+    def overview(self):
+        end_date = datetime.date.today()
+        pricer, groups, account_data_map = self.extract(end_date)
+
+        group_performance = []
+        for group in groups:
+            adlist = [account_data_map[name] for name in group.investment]
+            target_currency = self.get_target_currency(adlist)
+
+            units = Inventory()  # commodities of this group
+            cash_in_balance = Inventory()
+            cash_out_balance = Inventory()
+
+            for account_data in adlist:
+                for flow in account_data.cash_flows:
+                    if flow.amount.number >= 0:
+                        cash_out_balance.add_amount(flow.amount)
+                    else:
+                        cash_in_balance.add_amount(-flow.amount)
+                units.add_inventory(account_data.balance.reduce(convert.get_units))
+
+            cash_in = self.get_only_amount(cash_in_balance)
+            cash_out = self.get_only_amount(cash_out_balance)
+
+            value_balance = units.reduce(convert.get_value, pricer.price_map, end_date)
+            market_value_balance = value_balance.reduce(
+                convert.convert_position, target_currency, pricer.price_map
+            )
+            market_value = self.get_only_amount(market_value_balance)
+
+            returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
+            returns = self.get_only_amount(returns_balance)
+            returns_pct = self.get_only_amount(returns_balance).number / cash_in.number
+
+            group_performance.append(
+                {
+                    "name": group.name,
+                    "target_currency": target_currency,
+                    "cash_in": cash_in,
+                    "cash_out": cash_out,
+                    "market_value": market_value,
+                    "returns": returns,
+                    "returns_pct": returns_pct,
+                    "units": units,
+                }
+            )
+
+        return group_performance
+
+    def create_plots(
         self,
         price_map: prices.PriceMap,
-        flows: List[CashFlow],
+        target_currency: str,
+        flows: List[investments.CashFlow],
         transactions: data.Entries,
         returns_rate: float,
     ) -> Dict[str, str]:
@@ -83,52 +167,63 @@ class FavaPortfolioReturns(FavaExtensionBase):
             num_days = (date_max - date_min).days
             dates_all = [dates[0] + datetime.timedelta(days=x) for x in range(num_days)]
             gamounts = np.zeros(num_days)
+            amounts = np.zeros(num_days)
             rate = (1 + returns_rate) ** (1.0 / 365)
             for flow in flows:
                 remaining_days = (date_max - flow.date).days
                 amt = -float(flow.amount.number)
                 if remaining_days > 0:
                     gflow = amt * (rate ** np.arange(0, remaining_days))
-                    gamounts[-remaining_days:] = np.add(
-                        gamounts[-remaining_days:],
-                        gflow,
-                        out=gamounts[-remaining_days:],
-                        casting="unsafe",
-                    )
-                    # gamounts[-remaining_days:] += gflow
+                    gamounts[-remaining_days:] += gflow
+                    amounts[-remaining_days:] += amt
                 else:
                     gamounts[-1] += amt
+                    amounts[-1] += amt
 
-            # dates[0] if dates else None, dates[-1] if dates else None)
             cumvalue_plot["gamounts"] = list(zip(dates_all, gamounts))
+            cumvalue_plot["amounts"] = list(zip(dates_all, amounts))
 
         # Overlay value of assets over time.
         value_dates, value_values = returnslib.compute_portfolio_values(
-            price_map, transactions
+            price_map, target_currency, transactions
         )
         cumvalue_plot["value"] = list(zip(value_dates, value_values))
+
+        # Render PnL plot
+        pnl_plot = {"value": []}
+        flowsByDate = {f.date: f for f in flows}
+        value_idx = 0
+        spent = 0
+        for date in sorted(set(dates + value_dates)):
+            while (
+                value_idx + 1 < len(value_dates) and value_dates[value_idx + 1] <= date
+            ):
+                value_idx += 1
+
+            if date in flowsByDate:
+                spent += flowsByDate[date].amount.number
+
+            # beangrow closes (virtually sells) all stocks on the last day
+            market_value = value_values[value_idx] if date != dates[-1] else 0
+            pnl_plot["value"].append([date, spent + market_value])
+
         return {
             "cashflows": cashflows_plot,
             "cumvalue": cumvalue_plot,
+            "pnl": pnl_plot,
             "min_date": dates[0] if dates else None,
             "max_date": dates[-1] if dates else None,
         }
 
-    def _generate_report(
+    def generate_report(
         self,
-        pricer: Pricer,
-        account_data: List[AccountData],
+        pricer: returnslib.Pricer,
+        account_data: List[investments.AccountData],
         end_date: datetime.date,
         target_currency: Optional[str] = None,
     ):
         if not target_currency:
-            cost_currencies = set(r.cost_currency for r in account_data)
-            target_currency = cost_currencies.pop()
-            assert (
-                not cost_currencies
-            ), "Incompatible cost currencies {} for accounts {}".format(
-                cost_currencies, ",".join([r.account for r in account_data])
-            )
+            target_currency = self.get_target_currency(account_data)
 
         # cash flows
         cash_flows = returnslib.truncate_and_merge_cash_flows(
@@ -142,8 +237,8 @@ class FavaPortfolioReturns(FavaExtensionBase):
         )
 
         # cumulative value plot
-        plots = self._create_plots(
-            pricer.price_map, cash_flows, transactions, returns.total
+        plots = self.create_plots(
+            pricer.price_map, target_currency, cash_flows, transactions, returns.total
         )
 
         # returns
@@ -173,35 +268,15 @@ class FavaPortfolioReturns(FavaExtensionBase):
             "cashflows": cashflows_tbl,
         }
 
-    def report(self, group):
-        config = self._read_config()
-
+    def report(self, group_name):
         end_date = datetime.date.today()
+        pricer, groups, account_data_map = self.extract(end_date)
 
-        entries = self.ledger.all_entries
-        accounts = getters.get_accounts(entries)
-        dcontext = self.ledger.options["dcontext"]
+        for group in groups:
+            if group.name == group_name:
+                break
+        else:
+            raise FavaAPIError("Group not found")
 
-        price_map = prices.build_price_map(entries)
-        pricer = Pricer(price_map)
-
-        beangrow_config = configlib.read_config(config.beangrow_config, None, accounts)
-
-        # Extract data from the ledger.
-        account_data_map = investments.extract(
-            entries,
-            dcontext,
-            beangrow_config,
-            end_date,
-            False,
-            config.beangrow_debug_dir,
-        )
-
-        report = next(
-            (r for r in beangrow_config.groups.group if r.name == group), None
-        )
-        if not report:
-            return {}
-
-        adlist = [account_data_map[name] for name in report.investment]
-        return self._generate_report(pricer, adlist, end_date, report.currency)
+        adlist = [account_data_map[name] for name in group.investment]
+        return self.generate_report(pricer, adlist, end_date, group.currency)

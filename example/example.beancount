@@ -5,6 +5,8 @@
 * Options
 
 option "operating_currency" "USD"
+plugin "beancount.plugins.implicit_prices"
+
 1980-05-12 custom "fava-option" "language" "en"
 1980-05-12 custom "fava-extension" "fava_portfolio_returns" "{
   'beangrow_config': 'beangrow.pbtxt',
@@ -669,6 +671,11 @@ option "operating_currency" "USD"
 
 2022-02-19 balance Assets:US:BofA:Checking         522.64 USD
 
+2022-02-20 * "Transfering ETrade to Checking"
+  Assets:US:ETrade:Cash                          -3802.03 USD
+  Assets:US:BofA:Checking
+
+2022-02-21 balance Assets:US:ETrade:Cash           630.00 USD
 
 
 * Credit-Cards
@@ -5126,5 +5133,66 @@ option "operating_currency" "USD"
 
 
 
-* Cash
+* Test Stock
 
+2023-02-01 open Assets:US:ETrade:CORP "FIFO"
+2023-02-01 commodity CORP
+  name: "Example Stock"
+
+2023-02-01 * "Buy 100 CORP"
+  Assets:US:ETrade:Cash                           -110.00 USD
+  Assets:US:ETrade:CORP                               100 CORP {1 USD}
+  Expenses:Financial:Fees
+
+; 2023-02-01
+; 100 CORP (cost: 100 USD, worth: 100 USD)
+; spent: 110 USD
+
+2023-03-15 * "Buy 100 CORP"
+  Assets:US:ETrade:Cash                           -210.00 USD
+  Assets:US:ETrade:CORP                               100 CORP {2 USD}
+  Expenses:Financial:Fees
+
+; 2023-03-15
+; 200 CORP (cost: 300 USD, worth: 400 USD)
+; spent: 320 USD
+
+2023-05-01 * "Buy 100 CORP"
+  Assets:US:ETrade:Cash                           -310.00 USD
+  Assets:US:ETrade:CORP                               100 CORP {3 USD}
+  Expenses:Financial:Fees
+
+; 2023-05-01
+; 300 CORP (cost: 600 USD, worth: 900 USD)
+; spent: 630 USD
+
+2023-05-10 price CORP                                   2 USD
+
+; 2023-05-10
+; 300 CORP (cost: 600 USD, worth: 600 USD)
+; spent: 630 USD
+
+2023-06-01 * "Sell 50 CORP"
+  Assets:US:ETrade:Cash                                90 USD ; 50 x 2 USD - 10 USD fees
+  Assets:US:ETrade:CORP                               -50 CORP {} ; 50 CORP bought at 1 USD
+  Income:US:ETrade:PnL ; 40 USD
+
+; 2023-06-01
+; 250 CORP (cost: 500 USD on avg, worth: 500 USD)
+; spent: 630 USD, received: 90 USD
+
+2023-07-01 price CORP                                   3 USD
+
+; 2023-07-01
+; 250 CORP (cost: 500 USD on avg, worth: 750 USD)
+; spent: 630 USD, received: 90 USD
+
+; beangrow will automatically close ("sell") all remaining stocks
+;2023-08-01 * "Sell 250 CORP"
+;  Assets:US:ETrade:Cash                               750 USD ; 250 x 3 USD
+;  Assets:US:ETrade:CORP                              -250 CORP {} ; 50 CORP @ 1 USD + 100 @ 2 USD + 100 @ 3 USD
+;  Income:US:ETrade:PnL ; 190 USD
+
+; 2023-08-01
+; 0 CORP
+; spent: 630 USD, received: 840 USD, profit: 210 USD

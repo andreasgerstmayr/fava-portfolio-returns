@@ -1,0 +1,48 @@
+{% macro render_amount_cell(amount) %}
+{% if not amount %}
+<td class="num" data-sort-value="0">
+  <span class="num"></span>
+</td>
+{% else %}
+<td class="num" data-sort-value="{{ amount.number }}">
+  <span class="num">{{ amount.number | format_currency(amount.currency) }} {{ amount.currency }}</span>
+</td>
+{% endif %}
+{% endmacro %}
+
+{% set groups = extension.overview() %}
+<h2>Investments</h2>
+<table is="sortable-table">
+  <thead>
+    <tr>
+      <th data-sort="string">Investment</th>
+      <th data-sort="num">Units</th>
+      <th data-sort="num">Cash In</th>
+      <th data-sort="num">Cash Out</th>
+      <th data-sort="num">Market Value</th>
+      <th data-sort="num">Returns</th>
+      <th data-sort="num">Yield</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for group in groups %}
+    <tr>
+      <td><a href="{{ url_for('extension_report', extension_name='FavaPortfolioReturns', group=group.name) }}">{{ group.name }}</a></td>
+      <td class="num">
+        {% for unit in group.units %}
+        <span class="num">{{ unit }}</span><br>
+        {% endfor %}
+      </td>
+      {{ render_amount_cell(group.cash_in) }}
+      {{ render_amount_cell(group.cash_out) }}
+      {{ render_amount_cell(group.market_value) }}
+      <td class="num" data-sort-value="{{ group.returns.number }}">
+        <span class="num {% if group.returns.number >= 0 %}positive{% else %}negative{% endif %}">{{ group.returns.number | format_currency(group.returns.currency) }} {{ group.returns.currency }}</span>
+      </td>
+      <td class="num" data-sort-value="{{ group.returns_pct }}">
+        <span class="num {% if group.returns_pct >= 0 %}positive{% else %}negative{% endif %}">{{ "%.2f" | format(group.returns_pct * 100) }} %</span>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

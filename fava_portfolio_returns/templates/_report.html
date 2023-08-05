@@ -1,0 +1,98 @@
+{% macro returns_table(tab) %}
+<table>
+  <thead>
+    <tr>
+    {% for header in tab.header %}
+      <th>{{ header }}</th>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in tab.rows %}
+    <tr>
+      {% for val in row %}
+        {% if val is number %}
+          <td class="num">{{ "{:.2%}".format(val) }}</td>
+        {% else %}
+          <td>{{ val }}</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
+
+{% set report = extension.report(group) %}
+<script id="favaPortfolioReturnsReportData" type="application/json">
+{{ {"target_currency": report["target_currency"], "plots": report["plots"]}|tojson }}
+</script>
+
+<h2>Portfolio Returns: {{ group }}</h2>
+<div id="pnl-chart" class="chart"></div>
+
+<div id="cumvalue-chart">
+  <div class="chart-settings">
+    <label><input type="checkbox">Amortized</label>
+  </div>
+  <div class="chart"></div>
+</div>
+
+<div id="cashflow-chart">
+  <div class="chart-settings">
+    <label><input type="checkbox" checked>Logarithmic</label>
+  </div>
+  <div class="chart"></div>
+</div>
+
+<h3>Returns</h3>
+{{ returns_table(report["total_returns"]) }}
+{{ returns_table(report["calendar_returns"]) }}
+{{ returns_table(report["cumulative_returns"]) }}
+
+<br>
+<h3>Accounts</h3>
+<p>Cost Currency: {{ report["target_currency"] }}</p>
+<table>
+  <thead>
+    <tr>
+    {% for header in report["accounts"].columns.to_list() %}
+      <th>{{ header }}</th>
+    {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in report["accounts"].itertuples() %}
+    <tr>
+      <td>{{ row.Investment }}</td>
+      <td>{{ row.Description }}</td>
+      <td>{{ row.Status }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br>
+<h3>Cash Flows</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Dividend</th>
+      <th>Source</th>
+      <th>Investment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in report["cashflows"].itertuples() %}
+    <tr>
+      <td>{{ row.date }}</td>
+      <td class="num">{{ row.amount | format_currency(row.currency) }} {{ row.currency }}</td>
+      <td>{% if row.is_dividend %}yes{% else %}no{% endif %}</td>
+      <td>{{ row.source }}</td>
+      <td>{{ row.investment }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

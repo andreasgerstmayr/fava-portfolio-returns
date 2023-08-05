@@ -1,7 +1,8 @@
 # Fava Portfolio Returns
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to calculate the portfolio returns.
 
-[![Screenshot](example/returns.png)](example/returns.png)
+[![Overview](frontend/tests/e2e/__image_snapshots__/report_overview.png)](frontend/tests/e2e/__image_snapshots__/report_overview.png)
+[![Report](frontend/tests/e2e/__image_snapshots__/report_vht.png)](frontend/tests/e2e/__image_snapshots__/report_vht.png)
 
 ## Installation
 ```
