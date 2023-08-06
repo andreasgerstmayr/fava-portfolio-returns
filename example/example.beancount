@@ -675,7 +675,12 @@ plugin "beancount.plugins.implicit_prices"
   Assets:US:ETrade:Cash                          -3802.03 USD
   Assets:US:BofA:Checking
 
+2022-02-20 * "Transfering Checking to ETrade:CashEUR"
+  Assets:US:ETrade:CashEUR                         110.00 EUR @@ 120.00 USD
+  Assets:US:BofA:Checking
+
 2022-02-21 balance Assets:US:ETrade:Cash           630.00 USD
+2022-02-21 balance Assets:US:ETrade:CashEUR        110.00 EUR
 
 
 * Credit-Cards
@@ -2580,13 +2585,14 @@ plugin "beancount.plugins.implicit_prices"
 
 * Taxable Investments
 
-2020-01-01 open Assets:US:ETrade:Cash                       USD
-2020-01-01 open Assets:US:ETrade:ITOT                       ITOT
+2020-01-01 open Assets:US:ETrade:Cash                      USD
+2020-01-01 open Assets:US:ETrade:CashEUR                   EUR
+2020-01-01 open Assets:US:ETrade:ITOT                      ITOT
 2020-01-01 open Assets:US:ETrade:VEA                       VEA
 2020-01-01 open Assets:US:ETrade:VHT                       VHT
 2020-01-01 open Assets:US:ETrade:GLD                       GLD
-2020-01-01 open Income:US:ETrade:PnL                        USD
-2020-01-01 open Income:US:ETrade:ITOT:Dividend              USD
+2020-01-01 open Income:US:ETrade:PnL                       USD
+2020-01-01 open Income:US:ETrade:ITOT:Dividend             USD
 2020-01-01 open Income:US:ETrade:VEA:Dividend              USD
 2020-01-01 open Income:US:ETrade:VHT:Dividend              USD
 2020-01-01 open Income:US:ETrade:GLD:Dividend              USD
@@ -5132,8 +5138,7 @@ plugin "beancount.plugins.implicit_prices"
 2022-02-18 price GLD                               144.57 USD
 
 
-
-* Test Stock
+* Test Stock CORP
 
 2023-02-01 open Assets:US:ETrade:CORP "FIFO"
 2023-02-01 commodity CORP
@@ -5187,6 +5192,9 @@ plugin "beancount.plugins.implicit_prices"
 ; 250 CORP (cost: 500 USD on avg, worth: 750 USD)
 ; spent: 630 USD, received: 90 USD
 
+2023-07-01 balance Assets:US:ETrade:Cash             90.0 USD
+2023-07-01 balance Assets:US:ETrade:CORP              250 CORP
+
 ; beangrow will automatically close ("sell") all remaining stocks
 ;2023-08-01 * "Sell 250 CORP"
 ;  Assets:US:ETrade:Cash                               750 USD ; 250 x 3 USD
@@ -5196,3 +5204,40 @@ plugin "beancount.plugins.implicit_prices"
 ; 2023-08-01
 ; 0 CORP
 ; spent: 630 USD, received: 840 USD, profit: 210 USD
+
+
+* Test Stock CORPEUR
+
+2023-02-01 open Assets:US:ETrade:CORPEUR "FIFO"
+2023-02-01 commodity CORPEUR
+  name: "Example Stock in EUR"
+
+2023-02-01 * "Buy 100 CORPEUR"
+  Assets:US:ETrade:CashEUR                        -110.00 EUR
+  Assets:US:ETrade:CORPEUR                            100 CORPEUR {1.00 EUR}
+  Expenses:Financial:Fees
+
+2023-03-01 price CORPEUR                             3.00 EUR
+2023-03-01 balance Assets:US:ETrade:CashEUR          0.00 EUR
+2023-03-01 balance Assets:US:ETrade:CORPEUR           100 CORPEUR
+
+
+* Test Stock CORPSPL
+
+2023-08-02 open Assets:US:ETrade:CORPSPL "FIFO"
+2023-08-02 commodity CORPSPL
+  name: "Example Stock with stock split"
+
+2023-08-02 * "Buy 50 CORPSPL"
+  Assets:US:ETrade:Cash                            -90.00 USD
+  Assets:US:ETrade:CORPSPL                             50 CORPSPL {1.00 USD}
+  Expenses:Financial:Fees
+
+2023-08-04 * "CORPSPL Stock split 10:1"
+  Assets:US:ETrade:CORPSPL                            -50 CORPSPL {}
+  Assets:US:ETrade:CORPSPL                            500 CORPSPL {0.10 USD}
+
+2023-08-05 price CORPSPL 0.10 USD
+
+2023-08-06 balance Assets:US:ETrade:Cash             0.00 USD
+2023-08-06 balance Assets:US:ETrade:CORPSPL           500 CORPSPL

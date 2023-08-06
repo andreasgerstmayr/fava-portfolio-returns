@@ -30,7 +30,7 @@
       <td><a href="{{ url_for('extension_report', extension_name='FavaPortfolioReturns', group=group.name) }}">{{ group.name }}</a></td>
       <td class="num">
         {% for unit in group.units %}
-        <span class="num">{{ unit }}</span><br>
+        <span class="num">{{ unit.number }} {{ unit.currency }}</span><br>
         {% endfor %}
       </td>
       {{ render_amount_cell(group.cash_in) }}

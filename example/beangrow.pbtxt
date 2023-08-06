@@ -29,6 +29,16 @@ investments {
     cash_accounts: "Assets:US:ETrade:Cash"
   }
   investment {
+    currency: "CORPEUR"
+    asset_account: "Assets:US:ETrade:CORPEUR"
+    cash_accounts: "Assets:US:ETrade:CashEUR"
+  }
+  investment {
+    currency: "CORPSPL"
+    asset_account: "Assets:US:ETrade:CORPSPL"
+    cash_accounts: "Assets:US:ETrade:Cash"
+  }
+  investment {
     currency: "RGAGX"
     asset_account: "Assets:US:Vanguard:RGAGX"
     cash_accounts: "Assets:US:Vanguard:Cash"
@@ -67,6 +77,14 @@ groups {
   group {
     name: "CORP"
     investment: "Assets:US:ETrade:CORP"
+  }
+  group {
+    name: "CORPEUR"
+    investment: "Assets:US:ETrade:CORPEUR"
+  }
+  group {
+    name: "CORPSPL"
+    investment: "Assets:US:ETrade:CORPSPL"
   }
 }
 

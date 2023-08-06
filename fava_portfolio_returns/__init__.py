@@ -34,7 +34,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
     has_js_module = True
 
-    def read_config(self):
+    def read_config(self) -> Config:
         if not (isinstance(self.config, dict) and "beangrow_config" in self.config):
             raise FavaAPIError(
                 "Please specify a path to the beangrow configuration file."
@@ -75,15 +75,14 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
     @staticmethod
     def get_target_currency(adlist: List[investments.AccountData]) -> str:
-        cost_currencies = set(r.cost_currency for r in adlist)
-        target_currency = cost_currencies.pop()
-        if cost_currencies:
+        cost_currencies = set(ad.cost_currency for ad in adlist)
+        if len(cost_currencies) != 1:
             raise FavaAPIError(
                 "Incompatible cost currencies {} for accounts {}".format(
-                    cost_currencies, ",".join([r.account for r in adlist])
+                    ", ".join(cost_currencies), ", ".join([ad.account for ad in adlist])
                 )
             )
-        return target_currency
+        return cost_currencies.pop()
 
     @staticmethod
     def get_only_amount(inventory):
@@ -97,7 +96,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
         group_performance = []
         for group in groups:
             adlist = [account_data_map[name] for name in group.investment]
-            target_currency = self.get_target_currency(adlist)
+            target_currency = group.currency
+            if not target_currency:
+                target_currency = self.get_target_currency(adlist)
 
             units = Inventory()  # commodities of this group
             cash_in_balance = Inventory()
@@ -174,7 +175,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 amt = -float(flow.amount.number)
                 if remaining_days > 0:
                     gflow = amt * (rate ** np.arange(0, remaining_days))
-                    gamounts[-remaining_days:] += gflow
+                    gamounts[-remaining_days:] = np.add(
+                         gamounts[-remaining_days:],
+                         gflow,
+                         out=gamounts[-remaining_days:],
+                         casting="unsafe",
+                     )
                     amounts[-remaining_days:] += amt
                 else:
                     gamounts[-1] += amt
