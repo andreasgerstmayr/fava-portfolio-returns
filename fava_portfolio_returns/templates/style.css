@@ -1,7 +1,7 @@
-.num.positive {
+td.num.positive span {
     color: #3daf46;
 }
-.num.negative {
+td.num.negative span {
     color: #af3d3d;
 }
 

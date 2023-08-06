@@ -42,7 +42,7 @@ export const CumValueChart = (
             series: [
                 {
                     type: "line",
-                    name: amortized ? "Amortized value from flows" : "Value from flows",
+                    name: amortized ? "Amortized value from cash flows" : "Value from cash flows",
                     showSymbol: false,
                     data: chartOptions.data[amortized ? "gamounts" : "amounts"],
                 },
