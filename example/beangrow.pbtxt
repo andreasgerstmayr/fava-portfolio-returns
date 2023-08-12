@@ -26,6 +26,7 @@ investments {
   investment {
     currency: "CORP"
     asset_account: "Assets:US:ETrade:CORP"
+    dividend_accounts: "Income:US:ETrade:CORP:Dividend"
     cash_accounts: "Assets:US:ETrade:Cash"
   }
   investment {

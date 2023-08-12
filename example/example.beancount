@@ -5141,6 +5141,7 @@ plugin "beancount.plugins.implicit_prices"
 * Test Stock CORP
 
 2023-02-01 open Assets:US:ETrade:CORP "FIFO"
+2023-02-01 open Income:US:ETrade:CORP:Dividend
 2023-02-01 commodity CORP
   name: "Example Stock"
 
@@ -5195,6 +5196,16 @@ plugin "beancount.plugins.implicit_prices"
 2023-07-01 balance Assets:US:ETrade:Cash             90.0 USD
 2023-07-01 balance Assets:US:ETrade:CORP              250 CORP
 
+2023-07-10 * "Dividend"
+  Assets:US:ETrade:Cash                                20 USD
+  Income:US:ETrade:CORP:Dividend
+
+; 2023-07-11
+; 250 CORP (cost: 500 USD on avg, worth: 750 USD)
+; spent: 630 USD, received: 110 USD
+
+2023-07-11 balance Assets:US:ETrade:Cash           110.00 USD
+
 ; beangrow will automatically close ("sell") all remaining stocks
 ;2023-08-01 * "Sell 250 CORP"
 ;  Assets:US:ETrade:Cash                               750 USD ; 250 x 3 USD
@@ -5203,7 +5214,7 @@ plugin "beancount.plugins.implicit_prices"
 
 ; 2023-08-01
 ; 0 CORP
-; spent: 630 USD, received: 840 USD, profit: 210 USD
+; spent: 630 USD, received: 860 USD, profit: 230 USD
 
 
 * Test Stock CORPEUR
@@ -5229,7 +5240,7 @@ plugin "beancount.plugins.implicit_prices"
   name: "Example Stock with stock split"
 
 2023-08-02 * "Buy 50 CORPSPL"
-  Assets:US:ETrade:Cash                            -90.00 USD
+  Assets:US:ETrade:Cash                           -110.00 USD
   Assets:US:ETrade:CORPSPL                             50 CORPSPL {1.00 USD}
   Expenses:Financial:Fees
 
@@ -5237,7 +5248,7 @@ plugin "beancount.plugins.implicit_prices"
   Assets:US:ETrade:CORPSPL                            -50 CORPSPL {}
   Assets:US:ETrade:CORPSPL                            500 CORPSPL {0.10 USD}
 
-2023-08-05 price CORPSPL 0.10 USD
+2023-08-05 price CORPSPL                             0.10 USD
 
 2023-08-06 balance Assets:US:ETrade:Cash             0.00 USD
 2023-08-06 balance Assets:US:ETrade:CORPSPL           500 CORPSPL
