@@ -26,6 +26,7 @@ from beangrow.reports import (
 )
 from fava.ext import FavaExtensionBase
 from fava.helpers import FavaAPIError
+from fava.context import g
 
 Config = namedtuple("Config", ["beangrow_config", "beangrow_debug_dir"])
 
@@ -90,12 +91,19 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return pos.units if pos else None
 
     def overview(self):
-        end_date = datetime.date.today()
+        end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
         group_performance = []
         for group in groups:
-            adlist = [account_data_map[name] for name in group.investment]
+            adlist = [
+                account_data_map[name]
+                for name in group.investment
+                if name in account_data_map
+            ]
+            if not adlist:
+                continue
+
             target_currency = group.currency
             if not target_currency:
                 target_currency = self.get_target_currency(adlist)
@@ -176,11 +184,11 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 if remaining_days > 0:
                     gflow = amt * (rate ** np.arange(0, remaining_days))
                     gamounts[-remaining_days:] = np.add(
-                         gamounts[-remaining_days:],
-                         gflow,
-                         out=gamounts[-remaining_days:],
-                         casting="unsafe",
-                     )
+                        gamounts[-remaining_days:],
+                        gflow,
+                        out=gamounts[-remaining_days:],
+                        casting="unsafe",
+                    )
                     amounts[-remaining_days:] += amt
                 else:
                     gamounts[-1] += amt
@@ -199,7 +207,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         pnl_plot = {"value": []}
         flowsByDate = {f.date: f for f in flows}
         value_idx = 0
-        spent = 0
+        spent_amount = 0
         for date in sorted(set(dates + value_dates)):
             while (
                 value_idx + 1 < len(value_dates) and value_dates[value_idx + 1] <= date
@@ -207,11 +215,11 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 value_idx += 1
 
             if date in flowsByDate:
-                spent += flowsByDate[date].amount.number
+                spent_amount += -flowsByDate[date].amount.number
 
             # beangrow closes (virtually sells) all stocks on the last day
             market_value = value_values[value_idx] if date != dates[-1] else 0
-            pnl_plot["value"].append([date, spent + market_value])
+            pnl_plot["value"].append([date, market_value - spent_amount])
 
         return {
             "cashflows": cashflows_plot,
@@ -275,7 +283,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         }
 
     def report(self, group_name):
-        end_date = datetime.date.today()
+        end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
         for group in groups:
@@ -284,5 +292,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
         else:
             raise FavaAPIError("Group not found")
 
-        adlist = [account_data_map[name] for name in group.investment]
+        adlist = [
+            account_data_map[name]
+            for name in group.investment
+            if name in account_data_map
+        ]
+        if not adlist:
+            raise FavaAPIError("No transactions found in the specified time period")
+
         return self.generate_report(pricer, adlist, end_date, group.currency)

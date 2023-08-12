@@ -29,7 +29,7 @@ You can run `make watch` to automatically rebuild the frontend for any changes.
 
 ## Contributing
 The goal of this Fava extension is to display beangrow reports in the browser.
-Please implement any calculation changes or additions in the [beangrow](https://github.com/beancount/beangrow) repository, and any user interface changes in this repository.
+Please implement calculation changes or additions in the [beangrow](https://github.com/beancount/beangrow) repository, and any user interface changes in this repository.
 
 ## Related Projects
 * [Fava Portfolio Summary](https://github.com/PhracturedBlue/fava-portfolio-summary)
