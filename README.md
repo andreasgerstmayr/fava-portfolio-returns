@@ -23,7 +23,7 @@ Enable this plugin in Fava by adding the following lines to your ledger:
 `cd example; fava example.beancount`
 
 ## Building from Source
-Run `make build` to compile the frontend. The compiled and bundled frontend will be placed in `fava_portfolio_returns/templates/PortfolioReturns.html`.
+Run `make build` to compile the frontend. The compiled and bundled code will be placed in `fava_portfolio_returns/FavaPortfolioReturns.js`.
 
 You can run `make watch` to automatically rebuild the frontend for any changes.
 
@@ -35,7 +35,7 @@ Please implement calculation changes or additions in the [beangrow](https://gith
 * [Fava Portfolio Summary](https://github.com/PhracturedBlue/fava-portfolio-summary)
 * [Fava Classy Portfolio](https://github.com/seltzered/fava-classy-portfolio)
 * [Fava Investor](https://github.com/redstreet/fava_investor)
-* [Fava Income Reports](https://github.com/andreasgerstmayr/fava-income-reports)
+* [Fava Dashboards](https://github.com/andreasgerstmayr/fava-dashboards)
 
 ## Acknowledgements
 Thanks to Martin Blais and all contributors of [beancount](https://github.com/beancount/beancount) and [beangrow](https://github.com/beancount/beangrow),
