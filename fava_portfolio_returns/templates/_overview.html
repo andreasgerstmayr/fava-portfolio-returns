@@ -32,6 +32,7 @@
       <th data-sort="num">Market Value</th>
       <th data-sort="num">Returns</th>
       <th data-sort="num">Yield</th>
+      <th data-sort="num">IRR</th>
     </tr>
   </thead>
   <tbody>
@@ -51,6 +52,9 @@
       </td>
       <td class="num {% if group.returns_pct >= 0 %}positive{% else %}negative{% endif %}" data-sort-value="{{ group.returns_pct }}">
         <span class="num">{{ "%.2f" | format(group.returns_pct * 100) }} %</span>
+      </td>
+      <td class="num {% if group.irr >= 0 %}positive{% else %}negative{% endif %}" data-sort-value="{{ group.irr }}">
+        <span class="num">{{ "%.2f" | format(group.irr * 100) }} %</span>
       </td>
     </tr>
     {% endfor %}

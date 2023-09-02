@@ -122,6 +122,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
         returns = self.get_only_amount(returns_balance)
         returns_pct = self.get_only_amount(returns_balance).number / cash_in.number
 
+        truncated_cash_flows = returnslib.truncate_and_merge_cash_flows(
+            pricer, adlist, None, end_date
+        )
+        irr = returnslib.compute_returns(
+            truncated_cash_flows, pricer, target_currency, end_date
+        )
+
         return {
             "target_currency": target_currency,
             "cash_in": cash_in,
@@ -129,6 +136,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             "market_value": market_value,
             "returns": returns,
             "returns_pct": returns_pct,
+            "irr": irr.total,
             "units": units,
         }
 
