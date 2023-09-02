@@ -10,35 +10,46 @@ export function ProfitAndLossChart(
         maxDate: string;
     },
 ) {
-    const chart = echarts.init(elem);
+    const absoluteCheckbox = elem.querySelector("input") as HTMLInputElement;
+    const chartDom = elem.querySelector(".chart") as HTMLElement;
+    const chart = echarts.init(chartDom);
     const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
+    const percentageFormatter = new Intl.NumberFormat(undefined, { style: "percent" }).format as (value: any) => string;
 
-    const option: echarts.EChartsOption = {
-        title: {
-            left: "center",
-            text: "Profit and Loss",
-        },
-        tooltip: {
-            trigger: "axis",
-            valueFormatter: currencyFormatter,
-        },
-        xAxis: {
-            type: "time",
-            min: chartOptions.minDate,
-            max: chartOptions.maxDate,
-        },
-        yAxis: {
-            type: "value",
-            axisLabel: {
-                formatter: currencyFormatter,
+    const renderChart = (absolute: boolean) => {
+        const option: echarts.EChartsOption = {
+            title: {
+                left: "center",
+                text: "Profit and Loss",
             },
-        },
-        series: [
-            {
-                type: "line",
-                data: chartOptions.data["value"],
+            tooltip: {
+                trigger: "axis",
+                valueFormatter: absolute ? currencyFormatter : percentageFormatter,
             },
-        ],
+            xAxis: {
+                type: "time",
+                min: chartOptions.minDate,
+                max: chartOptions.maxDate,
+            },
+            yAxis: {
+                type: "value",
+                axisLabel: {
+                    formatter: absolute ? currencyFormatter : percentageFormatter,
+                },
+            },
+            series: [
+                {
+                    type: "line",
+                    data: chartOptions.data[absolute ? "value" : "value_pct"],
+                },
+            ],
+        };
+        chart.setOption(option);
     };
-    chart.setOption(option);
+
+    absoluteCheckbox.addEventListener("click", (e) => {
+        const absolute = (e.target as HTMLInputElement).checked;
+        renderChart(absolute);
+    });
+    renderChart(true);
 }

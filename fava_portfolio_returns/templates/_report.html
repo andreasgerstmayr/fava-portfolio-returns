@@ -29,7 +29,12 @@
 </script>
 
 <h2>Portfolio Returns: {{ group }}</h2>
-<div id="pnl-chart" class="chart"></div>
+<div id="pnl-chart">
+  <div class="chart-settings">
+    <label><input type="checkbox" checked>Absolute</label>
+  </div>
+  <div class="chart"></div>
+</div>
 
 <div id="cumvalue-chart">
   <div class="chart-settings">
@@ -45,7 +50,7 @@
   <div class="chart"></div>
 </div>
 
-<h3>Returns</h3>
+<h3>Internal Rate of Returns</h3>
 {{ returns_table(report["total_returns"]) }}
 {{ returns_table(report["calendar_returns"]) }}
 {{ returns_table(report["cumulative_returns"]) }}

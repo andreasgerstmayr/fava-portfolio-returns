@@ -12,6 +12,7 @@ from collections import namedtuple
 from typing import List, Dict, Optional, Tuple
 import numpy as np
 from beancount.core import data, getters, prices, convert
+from beancount.core.number import ZERO
 from beancount.core.inventory import Inventory
 from beangrow import investments
 import beangrow.config as configlib
@@ -120,7 +121,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
         returns = self.get_only_amount(returns_balance)
-        returns_pct = self.get_only_amount(returns_balance).number / cash_in.number
+        returns_pct = returns.number / cash_in.number
 
         truncated_cash_flows = returnslib.truncate_and_merge_cash_flows(
             pricer, adlist, None, end_date
@@ -130,14 +131,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
         )
 
         return {
-            "target_currency": target_currency,
+            "units": units,
             "cash_in": cash_in,
             "cash_out": cash_out,
             "market_value": market_value,
             "returns": returns,
             "returns_pct": returns_pct,
             "irr": irr.total,
-            "units": units,
         }
 
     def overview(self):
@@ -221,22 +221,31 @@ class FavaPortfolioReturns(FavaExtensionBase):
         cumvalue_plot["value"] = list(zip(value_dates, value_values))
 
         # Render PnL plot
-        pnl_plot = {"value": []}
+        pnl_plot = {"value": [], "value_pct": []}
         flowsByDate = {f.date: f for f in flows}
         value_idx = 0
-        spent_amount = 0
-        for date in sorted(set(dates + value_dates)):
+        cash_in = ZERO
+        cash_out = ZERO
+
+        # beangrow closes (virtually sells) all stocks on the last day, therefore skip last date
+        for date in sorted(set(dates + value_dates))[:-1]:
             while (
                 value_idx + 1 < len(value_dates) and value_dates[value_idx + 1] <= date
             ):
                 value_idx += 1
 
             if date in flowsByDate:
-                spent_amount += -flowsByDate[date].amount.number
+                if flowsByDate[date].amount.number >= 0:
+                    cash_out += flowsByDate[date].amount.number
+                else:
+                    cash_in += -flowsByDate[date].amount.number
 
-            # beangrow closes (virtually sells) all stocks on the last day
-            market_value = value_values[value_idx] if date != dates[-1] else 0
-            pnl_plot["value"].append([date, market_value - spent_amount])
+            market_value = value_values[value_idx]
+            returns = market_value + cash_out - cash_in
+            pnl_plot["value"].append([date, returns])
+            pnl_plot["value_pct"].append(
+                [date, returns / cash_in if cash_in != ZERO else ZERO]
+            )
 
         return {
             "cashflows": cashflows_plot,

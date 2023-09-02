@@ -5163,6 +5163,7 @@ plugin "beancount.plugins.implicit_prices"
 ; 2023-03-15
 ; 200 CORP (cost: 300 USD, worth: 400 USD)
 ; spent: 320 USD
+; yield: 25%
 
 2023-05-01 * "Buy 100 CORP"
   Assets:US:ETrade:Cash                           -310.00 USD
