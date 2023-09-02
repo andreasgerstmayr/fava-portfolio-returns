@@ -90,11 +90,53 @@ class FavaPortfolioReturns(FavaExtensionBase):
         pos = inventory.get_only_position()
         return pos.units if pos else None
 
+    def calculate_group_performance(
+        self,
+        pricer: returnslib.Pricer,
+        adlist: List[investments.AccountData],
+        end_date: datetime.date,
+        target_currency: Optional[str] = None,
+    ):
+        units = Inventory()  # commodities of this group
+        cash_in_balance = Inventory()
+        cash_out_balance = Inventory()
+
+        for account_data in adlist:
+            for flow in account_data.cash_flows:
+                if flow.amount.number >= 0:
+                    cash_out_balance.add_amount(flow.amount)
+                else:
+                    cash_in_balance.add_amount(-flow.amount)
+            units.add_inventory(account_data.balance.reduce(convert.get_units))
+
+        cash_in = self.get_only_amount(cash_in_balance)
+        cash_out = self.get_only_amount(cash_out_balance)
+
+        value_balance = units.reduce(convert.get_value, pricer.price_map, end_date)
+        market_value_balance = value_balance.reduce(
+            convert.convert_position, target_currency, pricer.price_map
+        )
+        market_value = self.get_only_amount(market_value_balance)
+
+        returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
+        returns = self.get_only_amount(returns_balance)
+        returns_pct = self.get_only_amount(returns_balance).number / cash_in.number
+
+        return {
+            "target_currency": target_currency,
+            "cash_in": cash_in,
+            "cash_out": cash_out,
+            "market_value": market_value,
+            "returns": returns,
+            "returns_pct": returns_pct,
+            "units": units,
+        }
+
     def overview(self):
         end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
-        group_performance = []
+        group_performances = []
         for group in groups:
             adlist = [
                 account_data_map[name]
@@ -108,45 +150,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
             if not target_currency:
                 target_currency = self.get_target_currency(adlist)
 
-            units = Inventory()  # commodities of this group
-            cash_in_balance = Inventory()
-            cash_out_balance = Inventory()
-
-            for account_data in adlist:
-                for flow in account_data.cash_flows:
-                    if flow.amount.number >= 0:
-                        cash_out_balance.add_amount(flow.amount)
-                    else:
-                        cash_in_balance.add_amount(-flow.amount)
-                units.add_inventory(account_data.balance.reduce(convert.get_units))
-
-            cash_in = self.get_only_amount(cash_in_balance)
-            cash_out = self.get_only_amount(cash_out_balance)
-
-            value_balance = units.reduce(convert.get_value, pricer.price_map, end_date)
-            market_value_balance = value_balance.reduce(
-                convert.convert_position, target_currency, pricer.price_map
+            performance = self.calculate_group_performance(
+                pricer, adlist, end_date, target_currency
             )
-            market_value = self.get_only_amount(market_value_balance)
+            group_performances.append(dict(name=group.name, **performance))
 
-            returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
-            returns = self.get_only_amount(returns_balance)
-            returns_pct = self.get_only_amount(returns_balance).number / cash_in.number
-
-            group_performance.append(
-                {
-                    "name": group.name,
-                    "target_currency": target_currency,
-                    "cash_in": cash_in,
-                    "cash_out": cash_out,
-                    "market_value": market_value,
-                    "returns": returns,
-                    "returns_pct": returns_pct,
-                    "units": units,
-                }
-            )
-
-        return group_performance
+        return group_performances
 
     def create_plots(
         self,

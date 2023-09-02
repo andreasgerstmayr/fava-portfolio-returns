@@ -8,7 +8,7 @@ export const CumValueChart = (
         data: any;
         minDate: string;
         maxDate: string;
-    }
+    },
 ) => {
     const amortizedCheckbox = elem.querySelector("input") as HTMLInputElement;
     const chartDom = elem.querySelector(".chart") as HTMLElement;

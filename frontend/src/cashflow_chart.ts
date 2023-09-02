@@ -8,7 +8,7 @@ export const CashflowChart = (
         data: any;
         minDate: string;
         maxDate: string;
-    }
+    },
 ) => {
     const logCheckbox = elem.querySelector("input") as HTMLInputElement;
     const chartDom = elem.querySelector(".chart") as HTMLElement;

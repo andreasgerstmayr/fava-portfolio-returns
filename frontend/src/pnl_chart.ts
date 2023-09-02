@@ -8,7 +8,7 @@ export function ProfitAndLossChart(
         data: any;
         minDate: string;
         maxDate: string;
-    }
+    },
 ) {
     const chart = echarts.init(elem);
     const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
