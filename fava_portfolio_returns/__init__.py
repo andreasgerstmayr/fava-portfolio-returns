@@ -7,8 +7,10 @@
 # of the GNU Public License, version 2.
 #
 
+import os.path
 import datetime
 from collections import namedtuple
+from functools import cached_property
 from typing import List, Dict, Optional, Tuple
 import numpy as np
 from beancount.core import data, getters, prices, convert
@@ -28,21 +30,20 @@ from fava.ext import FavaExtensionBase
 from fava.helpers import FavaAPIError
 from fava.context import g
 
-Config = namedtuple("Config", ["beangrow_config", "beangrow_debug_dir"])
+Config = namedtuple("Config", ["beangrow_config_path", "beangrow_debug_dir"])
 
 
 class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
     has_js_module = True
 
-    def read_config(self) -> Config:
-        if not (isinstance(self.config, dict) and "beangrow_config" in self.config):
-            raise FavaAPIError(
-                "Please specify a path to the beangrow configuration file."
-            )
-
+    @cached_property
+    def ext_config(self) -> Config:
+        cfg = self.config if isinstance(self.config, dict) else {}
         return Config(
-            beangrow_config=self.config["beangrow_config"],
+            beangrow_config_path=os.path.abspath(
+                cfg.get("beangrow_config", "beangrow.pbtxt")
+            ),
             beangrow_debug_dir=self.config.get("beangrow_debug_dir"),
         )
 
@@ -51,8 +52,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
     ) -> Tuple[
         returnslib.Pricer, Dict, Dict[investments.Account, investments.AccountData]
     ]:
-        config = self.read_config()
-
         entries = self.ledger.all_entries
         accounts = getters.get_accounts(entries)
         dcontext = self.ledger.options["dcontext"]
@@ -60,7 +59,14 @@ class FavaPortfolioReturns(FavaExtensionBase):
         price_map = prices.build_price_map(entries)
         pricer = returnslib.Pricer(price_map)
 
-        beangrow_config = configlib.read_config(config.beangrow_config, None, accounts)
+        try:
+            beangrow_config = configlib.read_config(
+                self.ext_config.beangrow_config_path, None, accounts
+            )
+        except Exception as ex:
+            raise FavaAPIError(
+                f"Cannot read beangrow configuration file {self.ext_config.beangrow_config_path}: {ex}"
+            )
 
         # Extract data from the ledger.
         account_data_map = investments.extract(
@@ -69,7 +75,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_config,
             end_date,
             False,
-            config.beangrow_debug_dir,
+            self.ext_config.beangrow_debug_dir,
         )
 
         return pricer, beangrow_config.groups.group, account_data_map
