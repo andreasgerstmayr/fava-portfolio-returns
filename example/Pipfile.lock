@@ -42,8 +42,8 @@
             "version": "==2.3.5"
         },
         "beangrow": {
-            "git": "https://github.com/andreasgerstmayr/beangrow.git",
-            "ref": "2d82ed31b125de0e2e0143056e9d53e0121d33dc"
+            "git": "https://github.com/beancount/beangrow.git",
+            "ref": "ae1102bd3588ae119c34f544993497369b3befaf"
         },
         "beautifulsoup4": {
             "hashes": [
