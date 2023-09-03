@@ -27,6 +27,7 @@ describe("Report: PNG Snapshot Tests", () => {
 describe("Report: HTML Snapshot Tests", () => {
     for (let dashboard of dashboards) {
         it(dashboard.name, async () => {
+            await page.setUserAgent("puppeteer");
             await page.goto(`${BASE_URL}${dashboard.link}`);
             await waitFor(1500); // wait for animations to finish
 

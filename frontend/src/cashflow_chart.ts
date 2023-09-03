@@ -12,7 +12,8 @@ export const CashflowChart = (
 ) => {
     const logCheckbox = elem.querySelector("input") as HTMLInputElement;
     const chartDom = elem.querySelector(".chart") as HTMLElement;
-    const chart = echarts.init(chartDom);
+    const renderer = window.navigator.userAgent === "puppeteer" ? "svg" : undefined;
+    const chart = echarts.init(chartDom, undefined, { renderer });
     const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
 
     const renderChart = (logarithmic: boolean) => {

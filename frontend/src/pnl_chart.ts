@@ -12,7 +12,8 @@ export function ProfitAndLossChart(
 ) {
     const absoluteCheckbox = elem.querySelector("input") as HTMLInputElement;
     const chartDom = elem.querySelector(".chart") as HTMLElement;
-    const chart = echarts.init(chartDom);
+    const renderer = window.navigator.userAgent === "puppeteer" ? "svg" : undefined;
+    const chart = echarts.init(chartDom, undefined, { renderer });
     const currencyFormatter = getCurrencyFormatter(chartOptions.currency);
     const percentageFormatter = new Intl.NumberFormat(undefined, { style: "percent" }).format as (value: any) => string;
 
