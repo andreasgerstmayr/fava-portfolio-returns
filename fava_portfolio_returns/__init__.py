@@ -19,7 +19,6 @@ import beangrow.config as configlib
 import beangrow.returns as returnslib
 from beangrow.reports import (
     Table,
-    TODAY,
     compute_returns_table,
     get_calendar_intervals,
     get_cumulative_intervals,
@@ -286,10 +285,10 @@ class FavaPortfolioReturns(FavaExtensionBase):
             ["Total", "Ex-Div", "Div"], [[returns.total, returns.exdiv, returns.div]]
         )
         calendar_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_calendar_intervals(TODAY)
+            pricer, target_currency, account_data, get_calendar_intervals(end_date)
         )
         cumulative_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_cumulative_intervals(TODAY)
+            pricer, target_currency, account_data, get_cumulative_intervals(end_date)
         )
 
         # accounts
