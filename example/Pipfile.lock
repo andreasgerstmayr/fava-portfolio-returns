@@ -175,11 +175,11 @@
         },
         "cheroot": {
             "hashes": [
-                "sha256:3d47ad9ee19ecbec144b4758399036692fdbf67a40b96eef1fb1454367b3d338",
-                "sha256:fa4231fdb42d7720df118ff62a79371e406369f49e6f867c63ad649cfb4e466c"
+                "sha256:59c4a1877fef9969b3c3c080caaaf377e2780919437853fc0d32a9df40b311f0",
+                "sha256:8f65dd38ad3d56419cfe2d1b5e4b4e3282b1d58758ca2a336231641a80cf0717"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==9.0.0"
+            "version": "==10.0.0"
         },
         "click": {
             "hashes": [
@@ -244,11 +244,11 @@
         },
         "fava": {
             "hashes": [
-                "sha256:2afb4b16a2d5062c59abd554840835c18b790135ee33d46fee2ede4382059ea2",
-                "sha256:4496cfaa3ea15ea7fc0f91bcceb83404061fc524437d4811346c17f8b6653cf6"
+                "sha256:612c54ab09afecb42a9d3f54d5d6aef6961a2af1041b94db8bba2bca524a929d",
+                "sha256:71eba65620a725a4edc33984e10c41fa9a33d470ec8b5010cf177156d5fb0245"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==1.25.1"
+            "version": "==1.26"
         },
         "fava-portfolio-returns": {
             "editable": true,
@@ -320,11 +320,11 @@
         },
         "google-api-python-client": {
             "hashes": [
-                "sha256:48277291894876a1ca7ed4127e055e81f81e6343ced1b544a7200ae2c119dcd7",
-                "sha256:5215f4cd577753fc4192ccfbe0bb8b55d4bb5fd68fa6268ac5cf271b6305de31"
+                "sha256:6e4f50cb103d6bd5399b2f94ecec13a70033554cfbd7cc9c7a4f8fa2aacb3536",
+                "sha256:93d4f7dc70f6c8349b9dcce20b7d1610aede50af01f4cae2505596bff6bb76c7"
             ],
             "markers": "python_version >= '3.7'",
-            "version": "==2.97.0"
+            "version": "==2.98.0"
         },
         "google-auth": {
             "hashes": [
@@ -721,7 +721,7 @@
                 "sha256:626c369fa0eb37bac0291bce8259b332fd59ac792fa5497b59837309cd5b114a",
                 "sha256:64e0735fcfdc6f3464ea133afe8ea4483b1c5fe3a3d69852e6503b43a0b222e6"
             ],
-            "markers": "python_version >= '3.6'",
+            "markers": "python_version >= '3.8'",
             "version": "==10.1.0"
         },
         "numpy": {
@@ -943,10 +943,10 @@
         },
         "pytz": {
             "hashes": [
-                "sha256:1d8ce29db189191fb55338ee6d0387d82ab59f3d00eac103412d64e0ebd0c588",
-                "sha256:a151b3abb88eda1d4e34a9814df37de2a80e301e68ba0fd856fb9b46bfbbbffb"
+                "sha256:7b4fddbeb94a1eba4b557da24f19fdf9db575192544270a9101d8509f9f43d7b",
+                "sha256:ce42d816b81b68506614c11e8937d3aa9e41007ceb50bfdcb0749b921bf646c7"
             ],
-            "version": "==2023.3"
+            "version": "==2023.3.post1"
         },
         "requests": {
             "hashes": [

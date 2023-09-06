@@ -40,11 +40,15 @@ class FavaPortfolioReturns(FavaExtensionBase):
     @cached_property
     def ext_config(self) -> Config:
         cfg = self.config if isinstance(self.config, dict) else {}
+        beangrow_debug_dir = self.config.get("beangrow_debug_dir")
+        if beangrow_debug_dir:
+            beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
+
         return Config(
-            beangrow_config_path=os.path.abspath(
+            beangrow_config_path=self.ledger.join_path(
                 cfg.get("beangrow_config", "beangrow.pbtxt")
             ),
-            beangrow_debug_dir=self.config.get("beangrow_debug_dir"),
+            beangrow_debug_dir=beangrow_debug_dir,
         )
 
     def extract(
