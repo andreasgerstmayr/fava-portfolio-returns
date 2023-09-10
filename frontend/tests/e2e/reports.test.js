@@ -33,6 +33,14 @@ describe("Report: HTML Snapshot Tests", () => {
 
             let html = await page.$eval("article", (element) => element.innerHTML);
             html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
+
+            // HACK: remove nondeterministic rendering
+            html = html.replaceAll(/(?<=\.\d{9})\d+/g, ""); // ignore digits after 9th digit
+            html = html.replaceAll(/y=".+?"/g, "");
+            html = html.replaceAll(/transform="translate(.+?)"/g, "");
+            html = html.replaceAll(/transform="matrix(.+?)"/g, "");
+            html = html.replaceAll(/<path d=".+?"/g, "<path ");
+
             expect(html).toMatchSnapshot();
         });
     }

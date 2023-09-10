@@ -1,0 +1,37 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo pip3 install black
+          sudo npm install -g prettier
+
+      - name: Build frontend
+        run: make build
+
+      - name: Install fava-portfolio-returns
+        run: pip3 install .
+
+      - name: Start Fava
+        run: cd example; fava example.beancount &
+
+      - name: Run HTML tests
+        run: cd frontend; npm run test -- -t HTML
+
+      - name: Run formatter
+        run: |
+          make format
+          git diff --exit-code

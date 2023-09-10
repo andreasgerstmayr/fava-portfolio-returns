@@ -7,7 +7,6 @@
 # of the GNU Public License, version 2.
 #
 
-import os.path
 import datetime
 from collections import namedtuple
 from functools import cached_property
