@@ -16,6 +16,6 @@ test: frontend/node_modules
 
 .PHONY: format
 format:
-	prettier -w frontend fava_portfolio_returns/templates/*.css
-	black fava_portfolio_returns/__init__.py
-	find . -name '*.beancount' -exec bean-format -c 59 -o "{}" "{}" \;
+	prettier -w frontend src/fava_portfolio_returns/templates/*.css
+	black src/fava_portfolio_returns/__init__.py
+	find example -name '*.beancount' -exec bean-format -c 59 -o "{}" "{}" \;
