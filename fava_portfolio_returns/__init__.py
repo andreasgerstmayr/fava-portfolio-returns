@@ -8,7 +8,7 @@
 #
 
 import datetime
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 from functools import cached_property
 from typing import List, Dict, Optional, Tuple
 import numpy as np
@@ -181,20 +181,26 @@ class FavaPortfolioReturns(FavaExtensionBase):
         transactions: data.Entries,
         returns_rate: float,
     ) -> Dict[str, str]:
-        # Render cash flows.
-        cashflows_plot = {}
-        dates = [f.date for f in flows]
-        dates_exdiv = [f.date for f in flows if not f.is_dividend]
-        dates_div = [f.date for f in flows if f.is_dividend]
-        # amounts = np.array([f.amount.number for f in flows])
-        amounts_exdiv = np.array([f.amount.number for f in flows if not f.is_dividend])
-        amounts_div = np.array([f.amount.number for f in flows if f.is_dividend])
+        # Group flows by date and accumulate div/exdiv flows.
+        flowsByDate = defaultdict(list)
+        flowsDivByDate = defaultdict(lambda: ZERO)
+        flowsExDivByDate = defaultdict(lambda: ZERO)
+        for flow in flows:
+            flowsByDate[flow.date].append(flow)
+            if flow.is_dividend:
+                flowsDivByDate[flow.date] += flow.amount.number
+            else:
+                flowsExDivByDate[flow.date] += flow.amount.number
 
-        cashflows_plot["exdiv"] = list(zip(dates_exdiv, amounts_exdiv))
-        cashflows_plot["div"] = list(zip(dates_div, amounts_div))
+        # Render cash flows.
+        cashflows_plot = {
+            "div": list(flowsDivByDate.items()),
+            "exdiv": list(flowsExDivByDate.items()),
+        }
 
         # Render cumulative cash flows, with returns growth.
         cumvalue_plot = {}
+        dates = [f.date for f in flows]
         if dates:
             date_min = dates[0] - datetime.timedelta(days=1)
             date_max = dates[-1]
@@ -230,7 +236,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         # Render PnL plot
         pnl_plot = {"value": [], "value_pct": []}
-        flowsByDate = {f.date: f for f in flows}
         value_idx = 0
         cash_in = ZERO
         cash_out = ZERO
@@ -242,11 +247,11 @@ class FavaPortfolioReturns(FavaExtensionBase):
             ):
                 value_idx += 1
 
-            if date in flowsByDate:
-                if flowsByDate[date].amount.number >= 0:
-                    cash_out += flowsByDate[date].amount.number
+            for flow in flowsByDate.get(date, []):
+                if flow.amount.number >= 0:
+                    cash_out += flow.amount.number
                 else:
-                    cash_in += -flowsByDate[date].amount.number
+                    cash_in += -flow.amount.number
 
             market_value = value_values[value_idx]
             returns = market_value + cash_out - cash_in
