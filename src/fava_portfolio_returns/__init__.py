@@ -103,9 +103,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
         self,
         pricer: returnslib.Pricer,
         adlist: List[investments.AccountData],
+        start_date: datetime.date,
         end_date: datetime.date,
         target_currency: Optional[str] = None,
     ):
+        if not target_currency:
+            target_currency = self.get_target_currency(adlist)
+
         units = Inventory()  # commodities of this group
         cash_in_balance = Inventory()
         cash_out_balance = Inventory()
@@ -132,7 +136,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         returns_pct = returns.number / cash_in.number
 
         truncated_cash_flows = returnslib.truncate_and_merge_cash_flows(
-            pricer, adlist, None, end_date
+            pricer, adlist, start_date, end_date
         )
         irr = returnslib.compute_returns(
             truncated_cash_flows, pricer, target_currency, end_date
@@ -149,6 +153,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         }
 
     def overview(self):
+        start_date = g.filtered._date_first
         end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
@@ -162,12 +167,8 @@ class FavaPortfolioReturns(FavaExtensionBase):
             if not adlist:
                 continue
 
-            target_currency = group.currency
-            if not target_currency:
-                target_currency = self.get_target_currency(adlist)
-
             performance = self.calculate_group_performance(
-                pricer, adlist, end_date, target_currency
+                pricer, adlist, start_date, end_date, group.currency
             )
             group_performances.append(dict(name=group.name, **performance))
 
@@ -232,20 +233,27 @@ class FavaPortfolioReturns(FavaExtensionBase):
         value_dates, value_values = returnslib.compute_portfolio_values(
             price_map, target_currency, transactions
         )
-        cumvalue_plot["value"] = list(zip(value_dates, value_values))
+        market_values = [
+            (date, value)
+            for date, value in zip(value_dates, value_values)
+            if dates[0] <= date <= dates[-1]
+        ]
+        cumvalue_plot["value"] = market_values
 
         # Render PnL plot
         pnl_plot = {"value": [], "value_pct": []}
-        value_idx = 0
+        pnl_dates = dates + [date for date, _ in market_values]
+        market_values_idx = 0
         cash_in = ZERO
         cash_out = ZERO
 
-        # beangrow closes (virtually sells) all stocks on the last day, therefore skip last date
-        for date in sorted(set(dates + value_dates))[:-1]:
+        # beangrow truncates (virtually sells) all stocks on the last day, therefore skip last date
+        for date in sorted(set(pnl_dates))[:-1]:
             while (
-                value_idx + 1 < len(value_dates) and value_dates[value_idx + 1] <= date
+                market_values_idx + 1 < len(market_values)
+                and market_values[market_values_idx + 1][0] <= date
             ):
-                value_idx += 1
+                market_values_idx += 1
 
             for flow in flowsByDate.get(date, []):
                 if flow.amount.number >= 0:
@@ -253,7 +261,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 else:
                     cash_in += -flow.amount.number
 
-            market_value = value_values[value_idx]
+            market_value = market_values[market_values_idx][1]
             returns = market_value + cash_out - cash_in
             pnl_plot["value"].append([date, returns])
             pnl_plot["value_pct"].append(
@@ -272,6 +280,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         self,
         pricer: returnslib.Pricer,
         account_data: List[investments.AccountData],
+        start_date: datetime.date,
         end_date: datetime.date,
         target_currency: Optional[str] = None,
     ):
@@ -280,7 +289,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         # cash flows
         cash_flows = returnslib.truncate_and_merge_cash_flows(
-            pricer, account_data, None, end_date
+            pricer, account_data, start_date, end_date
         )
         returns = returnslib.compute_returns(
             cash_flows, pricer, target_currency, end_date
@@ -322,6 +331,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         }
 
     def report(self, group_name):
+        start_date = g.filtered._date_first
         end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
@@ -339,4 +349,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if not adlist:
             raise FavaAPIError("No transactions found in the specified time period")
 
-        return self.generate_report(pricer, adlist, end_date, group.currency)
+        return self.generate_report(
+            pricer, adlist, start_date, end_date, group.currency
+        )
