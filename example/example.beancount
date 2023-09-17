@@ -5230,12 +5230,19 @@ plugin "beancount.plugins.implicit_prices"
 2023-02-01 * "Buy 100 CORPEUR"
   Assets:US:ETrade:CashEUR                        -110.00 EUR
   Assets:US:ETrade:CORPEUR                            100 CORPEUR {1.00 EUR}
-  Expenses:Financial:Fees
+  Expenses:Financial:Fees                           10.00 EUR
 
 2023-03-01 price CORPEUR                             3.00 EUR
 2023-03-01 balance Assets:US:ETrade:CashEUR          0.00 EUR
 2023-03-01 balance Assets:US:ETrade:CORPEUR           100 CORPEUR
 
+2023-06-01 * "Sell 100 CORPEUR"
+  Assets:US:ETrade:CORPEUR                           -100 CORPEUR {}
+  Assets:US:ETrade:CashEUR                          90.00 EUR
+  Expenses:Financial:Fees                           10.00 EUR
+
+2023-06-02 balance Assets:US:ETrade:CashEUR         90.00 EUR
+2023-06-02 balance Assets:US:ETrade:CORPEUR             0 CORPEUR
 
 * Test Stock CORPSPL
 

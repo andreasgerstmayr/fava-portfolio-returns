@@ -5545,6 +5545,3730 @@ td.num.negative span {
 </script>
 `;
 
+exports[`Report: HTML Snapshot Tests CORPEUR 1`] = `
+<style type="text/css">
+  td.num.positive span {
+    color: #3daf46;
+}
+td.num.negative span {
+    color: #af3d3d;
+}
+
+#pnl-chart,
+#cumvalue-chart,
+#cashflow-chart {
+    margin-bottom: 40px;
+}
+.chart {
+    height: 400px;
+}
+.chart-settings {
+    width: 1471px;
+    padding-right: 150px;
+    text-align: right;
+}
+</style>
+<script id="favaPortfolioReturnsReportData"
+        type="application/json"
+>
+  {
+  "plots": {
+    "cashflows": {
+      "div": [],
+      "exdiv": [
+        [
+          "2023-02-01",
+          -110.00
+        ],
+        [
+          "2023-06-01",
+          90.00
+        ]
+      ]
+    },
+    "cumvalue": {
+      "amounts": [
+        [
+          "2023-02-01",
+          0.0
+        ],
+        [
+          "2023-02-02",
+          110.0
+        ],
+        [
+          "2023-02-03",
+          110.0
+        ],
+        [
+          "2023-02-04",
+          110.0
+        ],
+        [
+          "2023-02-05",
+          110.0
+        ],
+        [
+          "2023-02-06",
+          110.0
+        ],
+        [
+          "2023-02-07",
+          110.0
+        ],
+        [
+          "2023-02-08",
+          110.0
+        ],
+        [
+          "2023-02-09",
+          110.0
+        ],
+        [
+          "2023-02-10",
+          110.0
+        ],
+        [
+          "2023-02-11",
+          110.0
+        ],
+        [
+          "2023-02-12",
+          110.0
+        ],
+        [
+          "2023-02-13",
+          110.0
+        ],
+        [
+          "2023-02-14",
+          110.0
+        ],
+        [
+          "2023-02-15",
+          110.0
+        ],
+        [
+          "2023-02-16",
+          110.0
+        ],
+        [
+          "2023-02-17",
+          110.0
+        ],
+        [
+          "2023-02-18",
+          110.0
+        ],
+        [
+          "2023-02-19",
+          110.0
+        ],
+        [
+          "2023-02-20",
+          110.0
+        ],
+        [
+          "2023-02-21",
+          110.0
+        ],
+        [
+          "2023-02-22",
+          110.0
+        ],
+        [
+          "2023-02-23",
+          110.0
+        ],
+        [
+          "2023-02-24",
+          110.0
+        ],
+        [
+          "2023-02-25",
+          110.0
+        ],
+        [
+          "2023-02-26",
+          110.0
+        ],
+        [
+          "2023-02-27",
+          110.0
+        ],
+        [
+          "2023-02-28",
+          110.0
+        ],
+        [
+          "2023-03-01",
+          110.0
+        ],
+        [
+          "2023-03-02",
+          110.0
+        ],
+        [
+          "2023-03-03",
+          110.0
+        ],
+        [
+          "2023-03-04",
+          110.0
+        ],
+        [
+          "2023-03-05",
+          110.0
+        ],
+        [
+          "2023-03-06",
+          110.0
+        ],
+        [
+          "2023-03-07",
+          110.0
+        ],
+        [
+          "2023-03-08",
+          110.0
+        ],
+        [
+          "2023-03-09",
+          110.0
+        ],
+        [
+          "2023-03-10",
+          110.0
+        ],
+        [
+          "2023-03-11",
+          110.0
+        ],
+        [
+          "2023-03-12",
+          110.0
+        ],
+        [
+          "2023-03-13",
+          110.0
+        ],
+        [
+          "2023-03-14",
+          110.0
+        ],
+        [
+          "2023-03-15",
+          110.0
+        ],
+        [
+          "2023-03-16",
+          110.0
+        ],
+        [
+          "2023-03-17",
+          110.0
+        ],
+        [
+          "2023-03-18",
+          110.0
+        ],
+        [
+          "2023-03-19",
+          110.0
+        ],
+        [
+          "2023-03-20",
+          110.0
+        ],
+        [
+          "2023-03-21",
+          110.0
+        ],
+        [
+          "2023-03-22",
+          110.0
+        ],
+        [
+          "2023-03-23",
+          110.0
+        ],
+        [
+          "2023-03-24",
+          110.0
+        ],
+        [
+          "2023-03-25",
+          110.0
+        ],
+        [
+          "2023-03-26",
+          110.0
+        ],
+        [
+          "2023-03-27",
+          110.0
+        ],
+        [
+          "2023-03-28",
+          110.0
+        ],
+        [
+          "2023-03-29",
+          110.0
+        ],
+        [
+          "2023-03-30",
+          110.0
+        ],
+        [
+          "2023-03-31",
+          110.0
+        ],
+        [
+          "2023-04-01",
+          110.0
+        ],
+        [
+          "2023-04-02",
+          110.0
+        ],
+        [
+          "2023-04-03",
+          110.0
+        ],
+        [
+          "2023-04-04",
+          110.0
+        ],
+        [
+          "2023-04-05",
+          110.0
+        ],
+        [
+          "2023-04-06",
+          110.0
+        ],
+        [
+          "2023-04-07",
+          110.0
+        ],
+        [
+          "2023-04-08",
+          110.0
+        ],
+        [
+          "2023-04-09",
+          110.0
+        ],
+        [
+          "2023-04-10",
+          110.0
+        ],
+        [
+          "2023-04-11",
+          110.0
+        ],
+        [
+          "2023-04-12",
+          110.0
+        ],
+        [
+          "2023-04-13",
+          110.0
+        ],
+        [
+          "2023-04-14",
+          110.0
+        ],
+        [
+          "2023-04-15",
+          110.0
+        ],
+        [
+          "2023-04-16",
+          110.0
+        ],
+        [
+          "2023-04-17",
+          110.0
+        ],
+        [
+          "2023-04-18",
+          110.0
+        ],
+        [
+          "2023-04-19",
+          110.0
+        ],
+        [
+          "2023-04-20",
+          110.0
+        ],
+        [
+          "2023-04-21",
+          110.0
+        ],
+        [
+          "2023-04-22",
+          110.0
+        ],
+        [
+          "2023-04-23",
+          110.0
+        ],
+        [
+          "2023-04-24",
+          110.0
+        ],
+        [
+          "2023-04-25",
+          110.0
+        ],
+        [
+          "2023-04-26",
+          110.0
+        ],
+        [
+          "2023-04-27",
+          110.0
+        ],
+        [
+          "2023-04-28",
+          110.0
+        ],
+        [
+          "2023-04-29",
+          110.0
+        ],
+        [
+          "2023-04-30",
+          110.0
+        ],
+        [
+          "2023-05-01",
+          110.0
+        ],
+        [
+          "2023-05-02",
+          110.0
+        ],
+        [
+          "2023-05-03",
+          110.0
+        ],
+        [
+          "2023-05-04",
+          110.0
+        ],
+        [
+          "2023-05-05",
+          110.0
+        ],
+        [
+          "2023-05-06",
+          110.0
+        ],
+        [
+          "2023-05-07",
+          110.0
+        ],
+        [
+          "2023-05-08",
+          110.0
+        ],
+        [
+          "2023-05-09",
+          110.0
+        ],
+        [
+          "2023-05-10",
+          110.0
+        ],
+        [
+          "2023-05-11",
+          110.0
+        ],
+        [
+          "2023-05-12",
+          110.0
+        ],
+        [
+          "2023-05-13",
+          110.0
+        ],
+        [
+          "2023-05-14",
+          110.0
+        ],
+        [
+          "2023-05-15",
+          110.0
+        ],
+        [
+          "2023-05-16",
+          110.0
+        ],
+        [
+          "2023-05-17",
+          110.0
+        ],
+        [
+          "2023-05-18",
+          110.0
+        ],
+        [
+          "2023-05-19",
+          110.0
+        ],
+        [
+          "2023-05-20",
+          110.0
+        ],
+        [
+          "2023-05-21",
+          110.0
+        ],
+        [
+          "2023-05-22",
+          110.0
+        ],
+        [
+          "2023-05-23",
+          110.0
+        ],
+        [
+          "2023-05-24",
+          110.0
+        ],
+        [
+          "2023-05-25",
+          110.0
+        ],
+        [
+          "2023-05-26",
+          110.0
+        ],
+        [
+          "2023-05-27",
+          110.0
+        ],
+        [
+          "2023-05-28",
+          110.0
+        ],
+        [
+          "2023-05-29",
+          110.0
+        ],
+        [
+          "2023-05-30",
+          110.0
+        ],
+        [
+          "2023-05-31",
+          110.0
+        ],
+        [
+          "2023-06-01",
+          20.0
+        ]
+      ],
+      "gamounts": [
+        [
+          "2023-02-01",
+          0.0
+        ],
+        [
+          "2023-02-02",
+          110.0
+        ],
+        [
+          "2023-02-03",
+          109.816205580
+        ],
+        [
+          "2023-02-04",
+          109.632718256
+        ],
+        [
+          "2023-02-05",
+          109.449537513
+        ],
+        [
+          "2023-02-06",
+          109.266662838
+        ],
+        [
+          "2023-02-07",
+          109.084093722
+        ],
+        [
+          "2023-02-08",
+          108.901829653
+        ],
+        [
+          "2023-02-09",
+          108.719870121
+        ],
+        [
+          "2023-02-10",
+          108.538214617
+        ],
+        [
+          "2023-02-11",
+          108.356862635
+        ],
+        [
+          "2023-02-12",
+          108.175813665
+        ],
+        [
+          "2023-02-13",
+          107.995067203
+        ],
+        [
+          "2023-02-14",
+          107.814622743
+        ],
+        [
+          "2023-02-15",
+          107.634479780
+        ],
+        [
+          "2023-02-16",
+          107.454637810
+        ],
+        [
+          "2023-02-17",
+          107.275096331
+        ],
+        [
+          "2023-02-18",
+          107.095854840
+        ],
+        [
+          "2023-02-19",
+          106.916912836
+        ],
+        [
+          "2023-02-20",
+          106.738269819
+        ],
+        [
+          "2023-02-21",
+          106.559925289
+        ],
+        [
+          "2023-02-22",
+          106.381878747
+        ],
+        [
+          "2023-02-23",
+          106.204129696
+        ],
+        [
+          "2023-02-24",
+          106.026677639
+        ],
+        [
+          "2023-02-25",
+          105.849522079
+        ],
+        [
+          "2023-02-26",
+          105.672662520
+        ],
+        [
+          "2023-02-27",
+          105.496098469
+        ],
+        [
+          "2023-02-28",
+          105.319829432
+        ],
+        [
+          "2023-03-01",
+          105.143854915
+        ],
+        [
+          "2023-03-02",
+          104.968174426
+        ],
+        [
+          "2023-03-03",
+          104.792787475
+        ],
+        [
+          "2023-03-04",
+          104.617693571
+        ],
+        [
+          "2023-03-05",
+          104.442892223
+        ],
+        [
+          "2023-03-06",
+          104.268382944
+        ],
+        [
+          "2023-03-07",
+          104.094165246
+        ],
+        [
+          "2023-03-08",
+          103.920238640
+        ],
+        [
+          "2023-03-09",
+          103.746602641
+        ],
+        [
+          "2023-03-10",
+          103.573256763
+        ],
+        [
+          "2023-03-11",
+          103.400200522
+        ],
+        [
+          "2023-03-12",
+          103.227433433
+        ],
+        [
+          "2023-03-13",
+          103.054955013
+        ],
+        [
+          "2023-03-14",
+          102.882764781
+        ],
+        [
+          "2023-03-15",
+          102.710862253
+        ],
+        [
+          "2023-03-16",
+          102.539246951
+        ],
+        [
+          "2023-03-17",
+          102.367918394
+        ],
+        [
+          "2023-03-18",
+          102.196876102
+        ],
+        [
+          "2023-03-19",
+          102.026119598
+        ],
+        [
+          "2023-03-20",
+          101.855648403
+        ],
+        [
+          "2023-03-21",
+          101.685462042
+        ],
+        [
+          "2023-03-22",
+          101.515560038
+        ],
+        [
+          "2023-03-23",
+          101.345941917
+        ],
+        [
+          "2023-03-24",
+          101.176607203
+        ],
+        [
+          "2023-03-25",
+          101.007555423
+        ],
+        [
+          "2023-03-26",
+          100.838786106
+        ],
+        [
+          "2023-03-27",
+          100.670298777
+        ],
+        [
+          "2023-03-28",
+          100.502092967
+        ],
+        [
+          "2023-03-29",
+          100.334168206
+        ],
+        [
+          "2023-03-30",
+          100.166524023
+        ],
+        [
+          "2023-03-31",
+          99.999159949
+        ],
+        [
+          "2023-04-01",
+          99.832075517
+        ],
+        [
+          "2023-04-02",
+          99.665270260
+        ],
+        [
+          "2023-04-03",
+          99.498743710
+        ],
+        [
+          "2023-04-04",
+          99.332495403
+        ],
+        [
+          "2023-04-05",
+          99.166524873
+        ],
+        [
+          "2023-04-06",
+          99.000831656
+        ],
+        [
+          "2023-04-07",
+          98.835415290
+        ],
+        [
+          "2023-04-08",
+          98.670275310
+        ],
+        [
+          "2023-04-09",
+          98.505411256
+        ],
+        [
+          "2023-04-10",
+          98.340822667
+        ],
+        [
+          "2023-04-11",
+          98.176509082
+        ],
+        [
+          "2023-04-12",
+          98.012470041
+        ],
+        [
+          "2023-04-13",
+          97.848705087
+        ],
+        [
+          "2023-04-14",
+          97.685213761
+        ],
+        [
+          "2023-04-15",
+          97.521995605
+        ],
+        [
+          "2023-04-16",
+          97.359050164
+        ],
+        [
+          "2023-04-17",
+          97.196376982
+        ],
+        [
+          "2023-04-18",
+          97.033975603
+        ],
+        [
+          "2023-04-19",
+          96.871845574
+        ],
+        [
+          "2023-04-20",
+          96.709986442
+        ],
+        [
+          "2023-04-21",
+          96.548397753
+        ],
+        [
+          "2023-04-22",
+          96.387079056
+        ],
+        [
+          "2023-04-23",
+          96.226029899
+        ],
+        [
+          "2023-04-24",
+          96.065249833
+        ],
+        [
+          "2023-04-25",
+          95.904738408
+        ],
+        [
+          "2023-04-26",
+          95.744495175
+        ],
+        [
+          "2023-04-27",
+          95.584519685
+        ],
+        [
+          "2023-04-28",
+          95.424811492
+        ],
+        [
+          "2023-04-29",
+          95.265370148
+        ],
+        [
+          "2023-04-30",
+          95.106195208
+        ],
+        [
+          "2023-05-01",
+          94.947286228
+        ],
+        [
+          "2023-05-02",
+          94.788642761
+        ],
+        [
+          "2023-05-03",
+          94.630264365
+        ],
+        [
+          "2023-05-04",
+          94.472150598
+        ],
+        [
+          "2023-05-05",
+          94.314301015
+        ],
+        [
+          "2023-05-06",
+          94.156715178
+        ],
+        [
+          "2023-05-07",
+          93.999392643
+        ],
+        [
+          "2023-05-08",
+          93.842332973
+        ],
+        [
+          "2023-05-09",
+          93.685535727
+        ],
+        [
+          "2023-05-10",
+          93.529000467
+        ],
+        [
+          "2023-05-11",
+          93.372726755
+        ],
+        [
+          "2023-05-12",
+          93.216714154
+        ],
+        [
+          "2023-05-13",
+          93.060962229
+        ],
+        [
+          "2023-05-14",
+          92.905470542
+        ],
+        [
+          "2023-05-15",
+          92.750238661
+        ],
+        [
+          "2023-05-16",
+          92.595266149
+        ],
+        [
+          "2023-05-17",
+          92.440552575
+        ],
+        [
+          "2023-05-18",
+          92.286097506
+        ],
+        [
+          "2023-05-19",
+          92.131900509
+        ],
+        [
+          "2023-05-20",
+          91.977961153
+        ],
+        [
+          "2023-05-21",
+          91.824279008
+        ],
+        [
+          "2023-05-22",
+          91.670853644
+        ],
+        [
+          "2023-05-23",
+          91.517684633
+        ],
+        [
+          "2023-05-24",
+          91.364771545
+        ],
+        [
+          "2023-05-25",
+          91.212113953
+        ],
+        [
+          "2023-05-26",
+          91.059711430
+        ],
+        [
+          "2023-05-27",
+          90.907563550
+        ],
+        [
+          "2023-05-28",
+          90.755669888
+        ],
+        [
+          "2023-05-29",
+          90.604030019
+        ],
+        [
+          "2023-05-30",
+          90.452643519
+        ],
+        [
+          "2023-05-31",
+          90.301509963
+        ],
+        [
+          "2023-06-01",
+          0.150628931
+        ]
+      ],
+      "value": [
+        [
+          "2023-02-01",
+          100.00
+        ],
+        [
+          "2023-03-01",
+          300.00
+        ],
+        [
+          "2023-06-01",
+          0
+        ]
+      ]
+    },
+    "max_date": "2023-06-01",
+    "min_date": "2023-02-01",
+    "pnl": {
+      "value": [
+        [
+          "2023-02-01",
+          -10.00
+        ],
+        [
+          "2023-03-01",
+          190.00
+        ],
+        [
+          "2023-06-01",
+          -20.00
+        ]
+      ],
+      "value_pct": [
+        [
+          "2023-02-01",
+          -0.090909090
+        ],
+        [
+          "2023-03-01",
+          1.727272727
+        ],
+        [
+          "2023-06-01",
+          -0.181818181
+        ]
+      ]
+    }
+  },
+  "target_currency": "EUR"
+}
+</script>
+<h2>
+  Portfolio Returns: CORPEUR
+</h2>
+<div id="pnl-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox"
+             checked
+      >
+      Absolute
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -€50.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €0.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €50.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €150.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €200.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Feb
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Mar
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Apr
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            May
+          </text>
+          <g clip-path="url(#zr0-c0)">
+            <path fill="none"
+                  stroke="#5470c6"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            Profit and Loss
+          </text>
+        </g>
+        <defs>
+          <clipPath id="zr0-c0">
+            <path fill="#000">
+            </path>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<div id="cumvalue-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox">
+      Amortized
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €0.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €50.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €150.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €200.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €250.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €300.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Feb
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Mar
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Apr
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            May
+          </text>
+          <g clip-path="url(#zr1-c0)">
+            <path fill="none"
+                  stroke="#5470c6"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <g clip-path="url(#zr1-c1)">
+            <path fill="none"
+                  stroke="#91cc75"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <path fill="#000"
+                stroke="#5470c6"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Value from cash flows
+          </text>
+          <path fill="#000"
+                stroke="#91cc75"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Market value
+          </text>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            Cumulative Value
+          </text>
+        </g>
+        <defs>
+          <clipPath id="zr1-c0">
+            <path fill="#000">
+            </path>
+          </clipPath>
+          <clipPath id="zr1-c1">
+            <path fill="#000">
+            </path>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<div id="cashflow-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox"
+             checked
+      >
+      Logarithmic
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -€1,000.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -€100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -€10.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €1.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €10.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            €100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Feb
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Mar
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Apr
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            May
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            Jun
+          </text>
+          <path fill="#5470c6">
+          </path>
+          <path fill="#5470c6">
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <path fill="#5470c6">
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Excl. dividends
+          </text>
+          <path fill="#91cc75">
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                x="30"
+                fill="#333"
+          >
+            Dividends
+          </text>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            log(Cash Flows)
+          </text>
+        </g>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<h3>
+  Internal Rate of Returns
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Return
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Return
+      </th>
+      <th>
+        15_years_ago
+      </th>
+      <th>
+        10_years_ago
+      </th>
+      <th>
+        5_years_ago
+      </th>
+      <th>
+        4_years_ago
+      </th>
+      <th>
+        3_years_ago
+      </th>
+      <th>
+        2_years_ago
+      </th>
+      <th>
+        1_year_ago
+      </th>
+      <th>
+        ytd
+      </th>
+      <th>
+        rolling_6_months_ago
+      </th>
+      <th>
+        rolling_3_months_ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -28.22%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -45.69%
+      </td>
+      <td class="num">
+        -28.22%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Accounts
+</h3>
+<p>
+  Cost Currency: EUR
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Investment
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Assets:US:ETrade:CORPEUR
+      </td>
+      <td>
+        Example Stock in EUR
+      </td>
+      <td>
+        Empty
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Cash Flows
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Date
+      </th>
+      <th>
+        Amount
+      </th>
+      <th>
+        Dividend
+      </th>
+      <th>
+        Source
+      </th>
+      <th>
+        Investment
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        2023-02-01
+      </td>
+      <td class="num">
+        -110.00 EUR
+      </td>
+      <td>
+        no
+      </td>
+      <td>
+        cash
+      </td>
+      <td>
+        Assets:US:ETrade:CORPEUR
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2023-06-01
+      </td>
+      <td class="num">
+        90.00 EUR
+      </td>
+      <td>
+        no
+      </td>
+      <td>
+        cash
+      </td>
+      <td>
+        Assets:US:ETrade:CORPEUR
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script type="application/json"
+        id="page-title"
+>
+  "Portfolio Returns"
+</script>
+`;
+
+exports[`Report: HTML Snapshot Tests CORPSPL 1`] = `
+<style type="text/css">
+  td.num.positive span {
+    color: #3daf46;
+}
+td.num.negative span {
+    color: #af3d3d;
+}
+
+#pnl-chart,
+#cumvalue-chart,
+#cashflow-chart {
+    margin-bottom: 40px;
+}
+.chart {
+    height: 400px;
+}
+.chart-settings {
+    width: 1471px;
+    padding-right: 150px;
+    text-align: right;
+}
+</style>
+<script id="favaPortfolioReturnsReportData"
+        type="application/json"
+>
+  {
+  "plots": {
+    "cashflows": {
+      "div": [],
+      "exdiv": [
+        [
+          "2023-08-02",
+          -110.00
+        ],
+        [
+          "2023-08-05",
+          50.00
+        ]
+      ]
+    },
+    "cumvalue": {
+      "amounts": [
+        [
+          "2023-08-02",
+          0.0
+        ],
+        [
+          "2023-08-03",
+          110.0
+        ],
+        [
+          "2023-08-04",
+          110.0
+        ],
+        [
+          "2023-08-05",
+          60.0
+        ]
+      ],
+      "gamounts": [
+        [
+          "2023-08-02",
+          0.0
+        ],
+        [
+          "2023-08-03",
+          110.0
+        ],
+        [
+          "2023-08-04",
+          104.702663799
+        ],
+        [
+          "2023-08-05",
+          49.660434605
+        ]
+      ],
+      "value": [
+        [
+          "2023-08-02",
+          50.00
+        ],
+        [
+          "2023-08-04",
+          50.00
+        ],
+        [
+          "2023-08-05",
+          50.00
+        ]
+      ]
+    },
+    "max_date": "2023-08-05",
+    "min_date": "2023-08-02",
+    "pnl": {
+      "value": [
+        [
+          "2023-08-02",
+          -60.00
+        ],
+        [
+          "2023-08-04",
+          -60.00
+        ],
+        [
+          "2023-08-05",
+          -60.00
+        ]
+      ],
+      "value_pct": [
+        [
+          "2023-08-02",
+          -0.545454545
+        ],
+        [
+          "2023-08-04",
+          -0.545454545
+        ],
+        [
+          "2023-08-05",
+          -0.545454545
+        ]
+      ]
+    }
+  },
+  "target_currency": "USD"
+}
+</script>
+<h2>
+  Portfolio Returns: CORPSPL
+</h2>
+<div id="pnl-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox"
+             checked
+      >
+      Absolute
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$60.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$50.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$40.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$30.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$20.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$10.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $0.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            2
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            3
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            4
+          </text>
+          <g clip-path="url(#zr0-c0)">
+            <path fill="none"
+                  stroke="#5470c6"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+          >
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            Profit and Loss
+          </text>
+        </g>
+        <defs>
+          <clipPath id="zr0-c0">
+            <path fill="#000">
+            </path>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<div id="cumvalue-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox">
+      Amortized
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $0.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $20.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $40.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $60.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $80.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $120.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            06:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            18:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            2
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            3
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            4
+          </text>
+          <g clip-path="url(#zr1-c0)">
+            <path fill="none"
+                  stroke="#5470c6"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <g clip-path="url(#zr1-c1)">
+            <path fill="none"
+                  stroke="#91cc75"
+                  stroke-width="2"
+                  stroke-linejoin="bevel"
+            >
+            </path>
+          </g>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+          >
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <path fill="#000"
+                stroke="#5470c6"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#5470c6"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Value from cash flows
+          </text>
+          <path fill="#000"
+                stroke="#91cc75"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <path fill="#fff"
+                stroke="#91cc75"
+                stroke-width="2"
+                stroke-linecap="butt"
+                stroke-miterlimit="10"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Market value
+          </text>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            Cumulative Value
+          </text>
+        </g>
+        <defs>
+          <clipPath id="zr1-c0">
+            <path fill="#000">
+            </path>
+          </clipPath>
+          <clipPath id="zr1-c1">
+            <path fill="#000">
+            </path>
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<div id="cashflow-chart">
+  <div class="chart-settings">
+    <label>
+      <input type="checkbox"
+             checked
+      >
+      Logarithmic
+    </label>
+  </div>
+  <div class="chart"
+       style="position: relative;"
+  >
+    <div style="position: relative; overflow: hidden; width: 1478px; height: 400px;">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           version="1.1"
+           baseprofile="full"
+           width="1478"
+           height="400"
+           style="position:absolute;left:0;top:0;user-select:none"
+      >
+        <rect width="1478"
+              height="400"
+              x="0"
+              id="0"
+              fill="none"
+              fill-opacit
+        >
+        </rect>
+        <g>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#E0E6F1"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+                stroke-linecap="round"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <path fill="none"
+                stroke="#6E7079"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$1,000.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            -$10.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $1.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $10.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="end"
+                style="font-size:12px;font-family:sans-serif;"
+                fill="#6E7079"
+          >
+            $100.00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font: normal normal 12px sans-serif"
+                fill="#6E7079"
+          >
+            12:00
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            3
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            4
+          </text>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:12px;font-family:sans-serif;font-weight:bold;"
+                fill="#6E7079"
+          >
+            5
+          </text>
+          <path fill="#5470c6">
+          </path>
+          <path fill="#5470c6">
+          </path>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <path fill="#5470c6">
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                xml:space="preserve"
+                x="30"
+                fill="#333"
+          >
+            Excl. dividends
+          </text>
+          <path fill="#91cc75">
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="start"
+                style="font-size:12px;font-family:sans-serif;"
+                x="30"
+                fill="#333"
+          >
+            Dividends
+          </text>
+          <path fill="rgb(0,0,0)"
+                fill-opacit
+                stroke="#ccc"
+                stroke-width="0"
+          >
+          </path>
+          <text dominant-baseline="central"
+                text-anchor="middle"
+                style="font-size:18px;font-family:sans-serif;font-weight:bold;"
+                xml:space="preserve"
+                fill="#464646"
+          >
+            log(Cash Flows)
+          </text>
+        </g>
+      </svg>
+    </div>
+    <div class>
+    </div>
+  </div>
+</div>
+<h3>
+  Internal Rate of Returns
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Return
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Return
+      </th>
+      <th>
+        15_years_ago
+      </th>
+      <th>
+        10_years_ago
+      </th>
+      <th>
+        5_years_ago
+      </th>
+      <th>
+        4_years_ago
+      </th>
+      <th>
+        3_years_ago
+      </th>
+      <th>
+        2_years_ago
+      </th>
+      <th>
+        1_year_ago
+      </th>
+      <th>
+        ytd
+      </th>
+      <th>
+        rolling_6_months_ago
+      </th>
+      <th>
+        rolling_3_months_ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+      <td class="num">
+        -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Accounts
+</h3>
+<p>
+  Cost Currency: USD
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Investment
+      </th>
+      <th>
+        Description
+      </th>
+      <th>
+        Status
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Assets:US:ETrade:CORPSPL
+      </td>
+      <td>
+        Example Stock with stock split
+      </td>
+      <td>
+        Active
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Cash Flows
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Date
+      </th>
+      <th>
+        Amount
+      </th>
+      <th>
+        Dividend
+      </th>
+      <th>
+        Source
+      </th>
+      <th>
+        Investment
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        2023-08-02
+      </td>
+      <td class="num">
+        -110.00 USD
+      </td>
+      <td>
+        no
+      </td>
+      <td>
+        cash
+      </td>
+      <td>
+        Assets:US:ETrade:CORPSPL
+      </td>
+    </tr>
+    <tr>
+      <td>
+        2023-08-05
+      </td>
+      <td class="num">
+        50.00 USD
+      </td>
+      <td>
+        no
+      </td>
+      <td>
+        close
+      </td>
+      <td>
+        Assets:US:ETrade:CORPSPL
+      </td>
+    </tr>
+  </tbody>
+</table>
+<script type="application/json"
+        id="page-title"
+>
+  "Portfolio Returns"
+</script>
+`;
+
 exports[`Report: HTML Snapshot Tests Gold 1`] = `
 <style type="text/css">
   td.num.positive span {
@@ -17472,12 +21196,6 @@ td.num.negative span {
         </a>
       </td>
       <td class="num">
-        <span class="num"
-              title="Example Stock in EUR"
-        >
-          100 CORPEUR
-        </span>
-        <br>
       </td>
       <td class="num"
           data-sort-value="110.00"
@@ -17489,41 +21207,41 @@ td.num.negative span {
         </span>
       </td>
       <td class="num"
+          data-sort-value="90.00"
+      >
+        <span class="num"
+              title="EUR"
+        >
+          90.00 EUR
+        </span>
+      </td>
+      <td class="num"
           data-sort-value="0"
       >
         <span class="num">
         </span>
       </td>
-      <td class="num"
-          data-sort-value="300.00"
+      <td class="num negative"
+          data-sort-value="-20.00"
       >
         <span class="num"
               title="EUR"
         >
-          300.00 EUR
+          -20.00 EUR
         </span>
       </td>
-      <td class="num positive"
-          data-sort-value="190.00"
-      >
-        <span class="num"
-              title="EUR"
-        >
-          190.00 EUR
-        </span>
-      </td>
-      <td class="num positive"
-          data-sort-value="1.727272727"
+      <td class="num negative"
+          data-sort-value="-0.181818181"
       >
         <span class="num">
-          172.73 %
+          -18.18 %
         </span>
       </td>
-      <td class="num positive"
-          data-sort-value="6.239035248"
+      <td class="num negative"
+          data-sort-value="-0.456851961"
       >
         <span class="num">
-          623.90 %
+          -45.69 %
         </span>
       </td>
     </tr>
