@@ -10,6 +10,7 @@ const dashboards = [
     { name: "Gold", link: "/extension/FavaPortfolioReturns/?group=Gold" },
     { name: "VHT", link: "/extension/FavaPortfolioReturns/?group=Vanguard+Health+Care+ETF" },
     { name: "CORP", link: "/extension/FavaPortfolioReturns/?group=CORP" },
+    { name: "CORPEUR", link: "/extension/FavaPortfolioReturns/?group=CORPEUR" },
     { name: "CORP June to August", link: "/extension/FavaPortfolioReturns/?group=CORP&time=2023-06+-+2023-08" },
 ];
 
