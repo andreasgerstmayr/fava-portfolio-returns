@@ -5214,6 +5214,8 @@ plugin "beancount.plugins.implicit_prices"
 ;  Assets:US:ETrade:CORP                              -250 CORP {} ; 50 CORP @ 1 USD + 100 @ 2 USD + 100 @ 3 USD
 ;  Income:US:ETrade:PnL ; 190 USD
 
+2023-08-01 price CORP                                   3 USD
+
 ; 2023-08-01
 ; 0 CORP
 ; spent: 630 USD, received: 860 USD, profit: 230 USD

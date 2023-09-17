@@ -247,21 +247,26 @@ class FavaPortfolioReturns(FavaExtensionBase):
         cash_in = ZERO
         cash_out = ZERO
 
-        # beangrow truncates (virtually sells) all stocks on the last day, therefore skip last date
-        for date in sorted(set(pnl_dates))[:-1]:
+        for date in sorted(set(pnl_dates)):
             while (
                 market_values_idx + 1 < len(market_values)
                 and market_values[market_values_idx + 1][0] <= date
             ):
                 market_values_idx += 1
 
+            is_closed = False
             for flow in flowsByDate.get(date, []):
                 if flow.amount.number >= 0:
                     cash_out += flow.amount.number
                 else:
                     cash_in += -flow.amount.number
 
-            market_value = market_values[market_values_idx][1]
+                if flow.source == "close":
+                    is_closed = True
+
+            # beangrow truncates (virtually sells) all investments on the last day,
+            # therefore we set the market value of the investment to 0
+            market_value = market_values[market_values_idx][1] if not is_closed else 0
             returns = market_value + cash_out - cash_in
             pnl_plot["value"].append([date, returns])
             pnl_plot["value_pct"].append(
