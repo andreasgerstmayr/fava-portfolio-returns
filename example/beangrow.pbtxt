@@ -80,6 +80,11 @@ groups {
     investment: "Assets:US:ETrade:CORP"
   }
   group {
+    name: "CORP (converted to EUR)"
+    investment: "Assets:US:ETrade:CORP"
+    currency: "EUR"
+  }
+  group {
     name: "CORPEUR"
     investment: "Assets:US:ETrade:CORPEUR"
   }
@@ -87,5 +92,10 @@ groups {
     name: "CORPSPL"
     investment: "Assets:US:ETrade:CORPSPL"
   }
+  group {
+    name: "CORP (all)"
+    investment: "Assets:US:ETrade:CORP"
+    investment: "Assets:US:ETrade:CORPEUR"
+    currency: "USD"
+  }
 }
-

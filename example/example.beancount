@@ -5138,6 +5138,8 @@ plugin "beancount.plugins.implicit_prices"
 2022-02-18 price VHT                               240.66 USD
 2022-02-18 price GLD                               144.57 USD
 
+2023-01-01 price EUR                                 2.00 USD
+
 
 * Test Stock CORP
 
@@ -5215,6 +5217,7 @@ plugin "beancount.plugins.implicit_prices"
 ;  Income:US:ETrade:PnL ; 190 USD
 
 2023-08-01 price CORP                                   3 USD
+2023-08-01 price CORP                                1.50 EUR
 
 ; 2023-08-01
 ; 0 CORP

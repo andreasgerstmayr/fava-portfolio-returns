@@ -21,13 +21,18 @@ test-js-update:
 run:
 	cd example; pipenv run fava example.beancount
 
+run-debug:
+	cd example; pipenv run fava --debug example.beancount
+
 format:
 	cd frontend; npx prettier -w . ../src/fava_portfolio_returns/templates/*.css
 	cd example; pipenv run black ../src/fava_portfolio_returns/__init__.py
 	cd example; find . -name '*.beancount' -exec pipenv run bean-format -c 59 -o "{}" "{}" \;
 
 ci:
+	make build-js
 	make run &
 	make test-js
+
 	make format
 	git diff --exit-code
