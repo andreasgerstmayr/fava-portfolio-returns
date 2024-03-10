@@ -34,6 +34,14 @@ from fava.context import g
 ExtConfig = namedtuple("ExtConfig", ["beangrow_config_path", "beangrow_debug_dir"])
 
 
+class CurrencyConversionException(FavaAPIError):
+    def __init__(self, source, target, date):
+        super().__init__(
+            f"Could not convert {source} to {target} at {date}."
+            " Please add additional price directives to the ledger to support this conversion."
+        )
+
+
 class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
     has_js_module = True
@@ -103,9 +111,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
     ) -> List[CashFlow]:
         target_flows = []
         for flow in flows:
-            target_flow = flow._replace(
-                amount=pricer.convert_amount(flow.amount, target_currency, flow.date)
-            )
+            target_amt = pricer.convert_amount(flow.amount, target_currency, flow.date)
+            if target_amt.currency != target_currency:
+                raise CurrencyConversionException(
+                    target_amt.currency, target_currency, flow.date
+                )
+
+            target_flow = flow._replace(amount=target_amt)
             target_flows.append(target_flow)
         return target_flows
 
@@ -151,6 +163,11 @@ class FavaPortfolioReturns(FavaExtensionBase):
             convert.convert_position, target_currency, pricer.price_map, end_date
         )
         market_value = self.get_only_amount(market_value_balance)
+
+        if market_value and market_value.currency != target_currency:
+            raise CurrencyConversionException(
+                market_value.currency, target_currency, end_date
+            )
 
         returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
         returns = self.get_only_amount(returns_balance)
