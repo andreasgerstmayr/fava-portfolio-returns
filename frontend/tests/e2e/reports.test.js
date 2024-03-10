@@ -18,6 +18,10 @@ describe("Report: PNG Snapshot Tests", () => {
     for (let dashboard of dashboards) {
         it(dashboard.name, async () => {
             await page.goto(`${BASE_URL}${dashboard.link}`);
+            await page.evaluate(() => {
+                // full page screenshot doesn't work due to sticky sidebar
+                document.body.style.height = "inherit";
+            });
             await waitFor(1500); // wait for animations to finish
 
             const screenshot = await page.screenshot({ fullPage: true });
@@ -34,15 +38,8 @@ describe("Report: HTML Snapshot Tests", () => {
             await waitFor(1500); // wait for animations to finish
 
             let html = await page.$eval("article", (element) => element.innerHTML);
+            // remove nondeterministic rendering
             html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
-
-            // HACK: remove nondeterministic rendering
-            html = html.replaceAll(/(?<=\.\d{9})\d+/g, ""); // ignore digits after 9th digit
-            html = html.replaceAll(/y=".+?"/g, "");
-            html = html.replaceAll(/transform="translate(.+?)"/g, "");
-            html = html.replaceAll(/transform="matrix(.+?)"/g, "");
-            html = html.replaceAll(/<path d=".+?"/g, "<path ");
-
             expect(html).toMatchSnapshot();
         });
     }
