@@ -41,6 +41,7 @@ describe("Report: HTML Snapshot Tests", () => {
             let html = await page.$eval("article", (element) => element.innerHTML);
             // remove nondeterministic rendering
             html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
+            html = html.replaceAll(/zr[0-9]+-c[0-9]+/g, "zrX-cY");
             expect(html).toMatchSnapshot();
         });
     }
