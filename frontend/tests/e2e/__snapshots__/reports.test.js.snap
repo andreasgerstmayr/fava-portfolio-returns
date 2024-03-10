@@ -20942,6 +20942,71 @@ td.num.negative span {
         </span>
       </td>
     </tr>
+    <tr>
+      <td>
+        <a href="/beancount/extension/FavaPortfolioReturns/?group=CORP+(all)">
+          CORP (all)
+        </a>
+      </td>
+      <td class="num">
+        <span class="num"
+              title="Example Stock"
+        >
+          250 CORP
+        </span>
+        <br>
+      </td>
+      <td class="num"
+          data-sort-value="850.0000"
+      >
+        <span class="num"
+              title="US Dollar"
+        >
+          850.00 USD
+        </span>
+      </td>
+      <td class="num"
+          data-sort-value="290.0000"
+      >
+        <span class="num"
+              title="US Dollar"
+        >
+          290.00 USD
+        </span>
+      </td>
+      <td class="num"
+          data-sort-value="750"
+      >
+        <span class="num"
+              title="US Dollar"
+        >
+          750.00 USD
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="190.0000"
+      >
+        <span class="num"
+              title="US Dollar"
+        >
+          190.00 USD
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.2235294117647058823529411765"
+      >
+        <span class="num">
+          22.35 %
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.7995767890632066"
+      >
+        <span class="num">
+          79.96 %
+        </span>
+      </td>
+    </tr>
   </tbody>
 </table>
 <script type="application/json"

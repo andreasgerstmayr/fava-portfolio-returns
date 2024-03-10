@@ -5223,6 +5223,8 @@ plugin "beancount.plugins.implicit_prices"
 
 * Test Stock CORPEUR
 
+2023-01-01 price EUR                                 2.00 USD
+
 2023-02-01 open Assets:US:ETrade:CORPEUR "FIFO"
 2023-02-01 commodity CORPEUR
   name: "Example Stock in EUR"

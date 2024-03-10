@@ -15,8 +15,10 @@ import numpy as np
 from beancount.core import data, getters, prices, convert
 from beancount.core.number import ZERO
 from beancount.core.inventory import Inventory
+from beancount.core.amount import Amount
 from beangrow import investments
 import beangrow.config as configlib
+from beangrow.investments import CashFlow
 import beangrow.returns as returnslib
 from beangrow.reports import (
     Table,
@@ -29,7 +31,7 @@ from fava.ext import FavaExtensionBase
 from fava.helpers import FavaAPIError
 from fava.context import g
 
-Config = namedtuple("Config", ["beangrow_config_path", "beangrow_debug_dir"])
+ExtConfig = namedtuple("ExtConfig", ["beangrow_config_path", "beangrow_debug_dir"])
 
 
 class FavaPortfolioReturns(FavaExtensionBase):
@@ -37,13 +39,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
     has_js_module = True
 
     @cached_property
-    def ext_config(self) -> Config:
+    def ext_config(self) -> ExtConfig:
         cfg = self.config if isinstance(self.config, dict) else {}
         beangrow_debug_dir = self.config.get("beangrow_debug_dir")
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
-        return Config(
+        return ExtConfig(
             beangrow_config_path=self.ledger.join_path(
                 cfg.get("beangrow_config", "beangrow.pbtxt")
             ),
@@ -88,14 +90,27 @@ class FavaPortfolioReturns(FavaExtensionBase):
         cost_currencies = set(ad.cost_currency for ad in adlist)
         if len(cost_currencies) != 1:
             raise FavaAPIError(
-                "Incompatible cost currencies {} for accounts {}".format(
+                "Found multiple cost currencies {} for accounts {}."
+                " Please specify a single currency for the group in the beangrow configuration file.".format(
                     ", ".join(cost_currencies), ", ".join([ad.account for ad in adlist])
                 )
             )
         return cost_currencies.pop()
 
     @staticmethod
-    def get_only_amount(inventory):
+    def get_flows_in_target_currency(
+        pricer: returnslib.Pricer, flows: List[CashFlow], target_currency: str
+    ) -> List[CashFlow]:
+        target_flows = []
+        for flow in flows:
+            target_flow = flow._replace(
+                amount=pricer.convert_amount(flow.amount, target_currency, flow.date)
+            )
+            target_flows.append(target_flow)
+        return target_flows
+
+    @staticmethod
+    def get_only_amount(inventory: Inventory) -> Optional[Amount]:
         pos = inventory.get_only_position()
         return pos.units if pos else None
 
@@ -110,24 +125,30 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if not target_currency:
             target_currency = self.get_target_currency(adlist)
 
-        units = Inventory()  # commodities of this group
-        cash_in_balance = Inventory()
-        cash_out_balance = Inventory()
+        units_balance = Inventory()  # all commodities of this group
+        cash_in_balance = Inventory()  # all incoming flows in target currency
+        cash_out_balance = Inventory()  # all outgoing flows in target currency
 
         for account_data in adlist:
-            for flow in account_data.cash_flows:
+            flows_target_ccy = self.get_flows_in_target_currency(
+                pricer, account_data.cash_flows, target_currency
+            )
+            for flow in flows_target_ccy:
                 if flow.amount.number >= 0:
                     cash_out_balance.add_amount(flow.amount)
                 else:
                     cash_in_balance.add_amount(-flow.amount)
-            units.add_inventory(account_data.balance.reduce(convert.get_units))
+            units_balance.add_inventory(account_data.balance.reduce(convert.get_units))
 
         cash_in = self.get_only_amount(cash_in_balance)
         cash_out = self.get_only_amount(cash_out_balance)
 
-        value_balance = units.reduce(convert.get_value, pricer.price_map, end_date)
+        # Ref. https://github.com/beancount/beangrow/blob/7dd642b10a66c10ec807d9eb50fd58dc26635ba2/beangrow/returns.py#L228
+        value_balance = units_balance.reduce(
+            convert.get_value, pricer.price_map, end_date
+        )
         market_value_balance = value_balance.reduce(
-            convert.convert_position, target_currency, pricer.price_map
+            convert.convert_position, target_currency, pricer.price_map, end_date
         )
         market_value = self.get_only_amount(market_value_balance)
 
@@ -143,7 +164,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         )
 
         return {
-            "units": units,
+            "units": units_balance,
             "cash_in": cash_in,
             "cash_out": cash_out,
             "market_value": market_value,
@@ -176,17 +197,22 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
     def create_plots(
         self,
-        price_map: prices.PriceMap,
+        pricer: returnslib.Pricer,
         target_currency: str,
         flows: List[investments.CashFlow],
         transactions: data.Entries,
         returns_rate: float,
     ) -> Dict[str, str]:
+        # Convert flows to target currency
+        flows_target_ccy = self.get_flows_in_target_currency(
+            pricer, flows, target_currency
+        )
+
         # Group flows by date and accumulate div/exdiv flows.
         flowsByDate = defaultdict(list)
         flowsDivByDate = defaultdict(lambda: ZERO)
         flowsExDivByDate = defaultdict(lambda: ZERO)
-        for flow in flows:
+        for flow in flows_target_ccy:
             flowsByDate[flow.date].append(flow)
             if flow.is_dividend:
                 flowsDivByDate[flow.date] += flow.amount.number
@@ -201,7 +227,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         # Render cumulative cash flows, with returns growth.
         cumvalue_plot = {}
-        dates = [f.date for f in flows]
+        dates = [f.date for f in flows_target_ccy]
         if dates:
             date_min = dates[0] - datetime.timedelta(days=1)
             date_max = dates[-1]
@@ -210,7 +236,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             gamounts = np.zeros(num_days)
             amounts = np.zeros(num_days)
             rate = (1 + returns_rate) ** (1.0 / 365)
-            for flow in flows:
+            for flow in flows_target_ccy:
                 remaining_days = (date_max - flow.date).days
                 amt = -float(flow.amount.number)
                 if remaining_days > 0:
@@ -231,7 +257,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         # Overlay value of assets over time.
         value_dates, value_values = returnslib.compute_portfolio_values(
-            price_map, target_currency, transactions
+            pricer.price_map, target_currency, transactions
         )
         market_values = [
             (date, value)
@@ -305,7 +331,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         # cumulative value plot
         plots = self.create_plots(
-            pricer.price_map, target_currency, cash_flows, transactions, returns.total
+            pricer, target_currency, cash_flows, transactions, returns.total
         )
 
         # returns

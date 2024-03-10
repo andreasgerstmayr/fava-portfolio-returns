@@ -87,5 +87,10 @@ groups {
     name: "CORPSPL"
     investment: "Assets:US:ETrade:CORPSPL"
   }
+  group {
+    name: "CORP (all)"
+    investment: "Assets:US:ETrade:CORP"
+    investment: "Assets:US:ETrade:CORPEUR"
+    currency: "USD"
+  }
 }
-
