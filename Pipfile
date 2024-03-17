@@ -4,10 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fava-portfolio-returns = {editable = true, path = "./.."}
+fava-portfolio-returns = {editable = true, path = "."}
 
 [dev-packages]
 black = "*"
+mypy = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.11"

@@ -8,19 +8,19 @@
 #
 
 import datetime
+from decimal import Decimal
 from collections import namedtuple, defaultdict
-from functools import cached_property
-from typing import List, Dict, Optional, Tuple
+from typing import Any, List, Dict, Optional, Tuple
 import numpy as np
-from beancount.core import data, getters, prices, convert
-from beancount.core.number import ZERO
-from beancount.core.inventory import Inventory
-from beancount.core.amount import Amount
-from beangrow import investments
-import beangrow.config as configlib
-from beangrow.investments import CashFlow
-import beangrow.returns as returnslib
-from beangrow.reports import (
+from beancount.core import data, getters, prices, convert  # type: ignore
+from beancount.core.number import ZERO  # type: ignore
+from beancount.core.inventory import Inventory  # type: ignore
+from beancount.core.amount import Amount  # type: ignore
+from beangrow import investments  # type: ignore
+import beangrow.config as configlib  # type: ignore
+from beangrow.investments import CashFlow  # type: ignore
+import beangrow.returns as returnslib  # type: ignore
+from beangrow.reports import (  # type: ignore
     Table,
     compute_returns_table,
     get_calendar_intervals,
@@ -46,8 +46,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
     report_title = "Portfolio Returns"
     has_js_module = True
 
-    @cached_property
-    def ext_config(self) -> ExtConfig:
+    def read_ext_config(self) -> ExtConfig:
         cfg = self.config if isinstance(self.config, dict) else {}
         beangrow_debug_dir = self.config.get("beangrow_debug_dir")
         if beangrow_debug_dir:
@@ -65,6 +64,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
     ) -> Tuple[
         returnslib.Pricer, Dict, Dict[investments.Account, investments.AccountData]
     ]:
+        ext_config = self.read_ext_config()
         entries = self.ledger.all_entries
         accounts = getters.get_accounts(entries)
         dcontext = self.ledger.options["dcontext"]
@@ -74,12 +74,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         try:
             beangrow_config = configlib.read_config(
-                self.ext_config.beangrow_config_path, None, accounts
+                ext_config.beangrow_config_path, None, accounts
             )
         except Exception as ex:
             raise FavaAPIError(
-                f"Cannot read beangrow configuration file {self.ext_config.beangrow_config_path}: {ex}"
-            )
+                f"Cannot read beangrow configuration file {ext_config.beangrow_config_path}: {ex}"
+            ) from ex
 
         # Extract data from the ledger.
         account_data_map = investments.extract(
@@ -88,20 +88,20 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_config,
             end_date,
             False,
-            self.ext_config.beangrow_debug_dir,
+            ext_config.beangrow_debug_dir,
         )
 
-        return pricer, beangrow_config.groups.group, account_data_map
+        return pricer, beangrow_config.groups.group, account_data_map # pylint: disable=no-member
 
     @staticmethod
     def get_target_currency(adlist: List[investments.AccountData]) -> str:
         cost_currencies = set(ad.cost_currency for ad in adlist)
         if len(cost_currencies) != 1:
+            curr = ', '.join(cost_currencies)
+            accs = ', '.join([ad.account for ad in adlist])
             raise FavaAPIError(
-                "Found multiple cost currencies {} for accounts {}."
-                " Please specify a single currency for the group in the beangrow configuration file.".format(
-                    ", ".join(cost_currencies), ", ".join([ad.account for ad in adlist])
-                )
+                f"Found multiple cost currencies {curr} for accounts {accs}."
+                " Please specify a single currency for the group in the beangrow configuration file."
             )
         return cost_currencies.pop()
 
@@ -171,7 +171,11 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
         returns = self.get_only_amount(returns_balance)
-        returns_pct = returns.number / cash_in.number
+        returns_pct = (
+            returns.number / cash_in.number
+            if returns is not None and cash_in is not None
+            else 0
+        )
 
         truncated_cash_flows = returnslib.truncate_and_merge_cash_flows(
             pricer, adlist, start_date, end_date
@@ -191,7 +195,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
         }
 
     def overview(self):
+        # pylint: disable=protected-access
         start_date = g.filtered._date_first
+        # pylint: disable=protected-access
         end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
@@ -208,7 +214,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             performance = self.calculate_group_performance(
                 pricer, adlist, start_date, end_date, group.currency
             )
-            group_performances.append(dict(name=group.name, **performance))
+            group_performances.append({"name": group.name, **performance})
 
         return group_performances
 
@@ -219,27 +225,27 @@ class FavaPortfolioReturns(FavaExtensionBase):
         flows: List[investments.CashFlow],
         transactions: data.Entries,
         returns_rate: float,
-    ) -> Dict[str, str]:
+    ) -> Dict[str, Any]:
         # Convert flows to target currency
         flows_target_ccy = self.get_flows_in_target_currency(
             pricer, flows, target_currency
         )
 
         # Group flows by date and accumulate div/exdiv flows.
-        flowsByDate = defaultdict(list)
-        flowsDivByDate = defaultdict(lambda: ZERO)
-        flowsExDivByDate = defaultdict(lambda: ZERO)
+        flows_by_date = defaultdict(list)
+        flows_div_by_date: Dict[datetime.date, Decimal] = defaultdict(lambda: ZERO)
+        flows_ex_div_by_date: Dict[datetime.date, Decimal] = defaultdict(lambda: ZERO)
         for flow in flows_target_ccy:
-            flowsByDate[flow.date].append(flow)
+            flows_by_date[flow.date].append(flow)
             if flow.is_dividend:
-                flowsDivByDate[flow.date] += flow.amount.number
+                flows_div_by_date[flow.date] += flow.amount.number
             else:
-                flowsExDivByDate[flow.date] += flow.amount.number
+                flows_ex_div_by_date[flow.date] += flow.amount.number
 
         # Render cash flows.
         cashflows_plot = {
-            "div": list(flowsDivByDate.items()),
-            "exdiv": list(flowsExDivByDate.items()),
+            "div": list(flows_div_by_date.items()),
+            "exdiv": list(flows_ex_div_by_date.items()),
         }
 
         # Render cumulative cash flows, with returns growth.
@@ -284,7 +290,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         cumvalue_plot["value"] = market_values
 
         # Render PnL plot
-        pnl_plot = {"value": [], "value_pct": []}
+        pnl_plot: Dict[str, list] = {"value": [], "value_pct": []}
         pnl_dates = dates + [date for date, _ in market_values]
         market_values_idx = 0
         cash_in = ZERO
@@ -298,7 +304,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 market_values_idx += 1
 
             is_closed = False
-            for flow in flowsByDate.get(date, []):
+            for flow in flows_by_date.get(date, []):
                 if flow.amount.number >= 0:
                     cash_out += flow.amount.number
                 else:
@@ -379,7 +385,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
         }
 
     def report(self, group_name):
+        # pylint: disable=protected-access
         start_date = g.filtered._date_first
+        # pylint: disable=protected-access
         end_date = g.filtered._date_last - datetime.timedelta(days=1)
         pricer, groups, account_data_map = self.extract(end_date)
 
