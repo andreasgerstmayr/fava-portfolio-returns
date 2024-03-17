@@ -91,14 +91,18 @@ class FavaPortfolioReturns(FavaExtensionBase):
             ext_config.beangrow_debug_dir,
         )
 
-        return pricer, beangrow_config.groups.group, account_data_map # pylint: disable=no-member
+        return (
+            pricer,
+            beangrow_config.groups.group,  # pylint: disable=no-member
+            account_data_map,
+        )
 
     @staticmethod
     def get_target_currency(adlist: List[investments.AccountData]) -> str:
         cost_currencies = set(ad.cost_currency for ad in adlist)
         if len(cost_currencies) != 1:
-            curr = ', '.join(cost_currencies)
-            accs = ', '.join([ad.account for ad in adlist])
+            curr = ", ".join(cost_currencies)
+            accs = ", ".join([ad.account for ad in adlist])
             raise FavaAPIError(
                 f"Found multiple cost currencies {curr} for accounts {accs}."
                 " Please specify a single currency for the group in the beangrow configuration file."
