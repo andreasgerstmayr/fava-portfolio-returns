@@ -26,9 +26,9 @@ Enable this plugin in Fava by adding the following lines to your ledger:
 `cd example; fava example.beancount`
 
 ## Building from Source
-Run `make build` to compile the frontend. The compiled and bundled code will be placed in `fava_portfolio_returns/FavaPortfolioReturns.js`.
+Run `make build-js` to compile the frontend. The compiled and bundled code will be placed in `src/fava_portfolio_returns/FavaPortfolioReturns.js`.
 
-You can run `make watch` to automatically rebuild the frontend for any changes.
+You can run `make watch-js` to automatically rebuild the frontend for any changes.
 
 ## Contributing
 The goal of this Fava extension is to display beangrow reports in the browser.
