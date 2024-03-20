@@ -8,10 +8,10 @@ deps-js-update:
 	cd frontend; npx npm-check-updates -i
 
 deps-py:
-	pipenv install -d
+	rye sync
 
 deps-py-update:
-	pipenv update
+	rye lock --update-all
 
 deps: deps-js deps-py
 
@@ -34,20 +34,20 @@ test: test-js
 
 ## Utils
 run:
-	cd example; pipenv run fava example.beancount
+	cd example; rye run fava example.beancount
 
 run-debug:
-	cd example; pipenv run fava --debug example.beancount
+	cd example; rye run fava --debug example.beancount
 
 lint:
 	cd frontend; npx tsc --noEmit
-	pipenv run mypy src/fava_portfolio_returns/__init__.py
-	pipenv run pylint src/fava_portfolio_returns/__init__.py
+	rye run mypy src/fava_portfolio_returns/__init__.py
+	rye run pylint src/fava_portfolio_returns/__init__.py
 
 format:
 	cd frontend; npx prettier -w . ../src/fava_portfolio_returns/templates/*.css
-	pipenv run black src/fava_portfolio_returns/__init__.py
-	find example -name '*.beancount' -exec pipenv run bean-format -c 59 -o "{}" "{}" \;
+	rye run black src/fava_portfolio_returns/__init__.py
+	find example -name '*.beancount' -exec rye run bean-format -c 59 -o "{}" "{}" \;
 
 ci:
 	make lint
