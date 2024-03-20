@@ -1,8 +1,43 @@
-[build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm>=6.2"]
-build-backend = "setuptools.build_meta"
+[project]
+name = "fava-portfolio-returns"
+dynamic = ["version"]
+description = "fava-portfolio-returns shows portfolio returns in Fava"
+authors = [
+    { name = "Andreas Gerstmayr", email = "andreas@gerstmayr.me" }
+]
+dependencies = [
+    "fava>=1.26",
+    "beangrow @ git+https://github.com/beancount/beangrow",
+    "protobuf<3.21",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+license = {text = "GPL-2.0"}
 
-[tool.setuptools_scm]
+[project.urls]
+Source = "https://github.com/andreasgerstmayr/fava-portfolio-returns"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "black>=24.3.0",
+    "mypy>=1.9.0",
+    "pylint>=3.1.0",
+    "types-PyYAML>=6.0.12.20240311",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fava_portfolio_returns"]
 
 [tool.pylint.'messages control']
 disable = [
