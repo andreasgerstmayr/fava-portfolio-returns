@@ -6,6 +6,7 @@
 #   features: []
 #   all-features: false
 #   with-sources: false
+#   generate-hashes: false
 
 -e file:.
 astroid==3.1.0
@@ -16,7 +17,7 @@ babel==2.14.0
 beancount==2.3.6
     # via beangrow
     # via fava
-beangrow @ git+https://github.com/beancount/beangrow
+beangrow @ git+https://github.com/beancount/beangrow@7dd642b10a66c10ec807d9eb50fd58dc26635ba2
     # via fava-portfolio-returns
 beautifulsoup4==4.12.3
     # via beancount

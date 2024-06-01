@@ -1849,7 +1849,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1858,7 +1858,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(326.7578 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1867,7 +1867,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(524.8897 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1876,7 +1876,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(716.6303 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1885,7 +1885,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(914.7622 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1894,7 +1894,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1106.5027 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1903,7 +1903,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1304.6346 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -1973,7 +1973,7 @@ td.num.negative span {
                 stroke="#5470c6"
           >
           </path>
-          <path d="M-71.5906 -5l143.1812 0l0 20.7999l-143.1812 0Z"
+          <path d="M-81.0122 -5l162.0244 0l0 20.8018l-162.0244 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -1984,7 +1984,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -2180,7 +2180,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2189,7 +2189,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(326.7578 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2198,7 +2198,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(524.8897 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2207,7 +2207,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(716.6303 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2216,7 +2216,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(914.7622 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2225,7 +2225,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1106.5027 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2234,7 +2234,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1304.6346 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2307,8 +2307,8 @@ td.num.negative span {
                 stroke="#91cc75"
           >
           </path>
-          <path d="M-5 -5l278.0454 0l0 23.2l-278.0454 0Z"
-                transform="translate(604.9773 381.8)"
+          <path d="M-5 -5l290.9395 0l0 23.2l-290.9395 0Z"
+                transform="translate(598.5303 381.8)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -2316,7 +2316,7 @@ td.num.negative span {
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#000"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -2325,7 +2325,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#fff"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -2338,19 +2338,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Value from cash flows
           </text>
-          <path d="M-1 0.4l153.7369 0l0 13.2l-153.7369 0Z"
-                transform="translate(605.9773 381.4)"
+          <path d="M-1 0.4l162.0977 0l0 13.2l-162.0977 0Z"
+                transform="translate(599.5303 381.4)"
                 fill="transparent"
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#000"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -2359,7 +2359,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#fff"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -2372,18 +2372,18 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Market value
           </text>
-          <path d="M-1 0.4l104.3085 0l0 13.2l-104.3085 0Z"
-                transform="translate(769.7142 381.4)"
+          <path d="M-1 0.4l108.8418 0l0 13.2l-108.8418 0Z"
+                transform="translate(771.6279 381.4)"
                 fill="transparent"
           >
           </path>
-          <path d="M-84.0915 -5l168.183 0l0 20.7999l-168.183 0Z"
+          <path d="M-93.5894 -5l187.1787 0l0 20.8018l-187.1787 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -2394,7 +2394,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -2585,7 +2585,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(150 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2594,7 +2594,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(328.2919 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2603,7 +2603,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(525.6865 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2612,7 +2612,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(716.7135 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2621,7 +2621,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(914.1081 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2630,7 +2630,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1105.1351 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2639,7 +2639,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1302.5297 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -2670,8 +2670,8 @@ td.num.negative span {
                 fill="#91cc75"
           >
           </path>
-          <path d="M-5 -5l218.073 0l0 24l-218.073 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M-5 -5l229.3789 0l0 24l-229.3789 0Z"
+                transform="translate(629.3105 381)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -2679,7 +2679,7 @@ td.num.negative span {
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#5470c6"
           >
           </path>
@@ -2688,19 +2688,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Excl. dividends
           </text>
-          <path d="M0 0l112.3326 0l0 14l-112.3326 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M0 0l119.8945 0l0 14l-119.8945 0Z"
+                transform="translate(629.3105 381)"
                 fill="transparent"
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#91cc75"
           >
           </path>
@@ -2708,18 +2708,18 @@ td.num.negative span {
                 text-anchor="start"
                 x="30"
                 y="7"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Dividends
           </text>
-          <path d="M0 0l85.7404 0l0 14l-85.7404 0Z"
-                transform="translate(757.2961 381)"
+          <path d="M0 0l89.4844 0l0 14l-89.4844 0Z"
+                transform="translate(759.2051 381)"
                 fill="transparent"
           >
           </path>
-          <path d="M-74.2636 -5l148.5271 0l0 20.7999l-148.5271 0Z"
+          <path d="M-85.6001 -5l171.2002 0l0 20.8018l-171.2002 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -2730,7 +2730,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -4387,7 +4387,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(238.7538 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4396,7 +4396,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(329.7077 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4405,7 +4405,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(420.6615 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4414,7 +4414,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(511.6154 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4423,7 +4423,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(628.556 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4432,7 +4432,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(719.5099 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4441,7 +4441,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(810.4637 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4450,7 +4450,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(901.4176 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4459,7 +4459,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1031.3516 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4468,7 +4468,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1122.3055 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4477,7 +4477,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1213.2593 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4486,7 +4486,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1304.2132 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4495,7 +4495,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4504,7 +4504,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(537.6022 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4513,7 +4513,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(940.3978 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4559,7 +4559,7 @@ td.num.negative span {
                 stroke="#5470c6"
           >
           </path>
-          <path d="M-71.5906 -5l143.1812 0l0 20.7999l-143.1812 0Z"
+          <path d="M-81.0122 -5l162.0244 0l0 20.8018l-162.0244 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -4570,7 +4570,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -4793,7 +4793,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(238.7538 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4802,7 +4802,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(329.7077 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4811,7 +4811,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(420.6615 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4820,7 +4820,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(511.6154 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4829,7 +4829,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(628.556 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4838,7 +4838,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(719.5099 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4847,7 +4847,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(810.4637 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4856,7 +4856,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(901.4176 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4865,7 +4865,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1031.3516 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4874,7 +4874,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1122.3055 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4883,7 +4883,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1213.2593 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4892,7 +4892,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1304.2132 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -4901,7 +4901,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4910,7 +4910,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(537.6022 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4919,7 +4919,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(940.3978 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -4968,8 +4968,8 @@ td.num.negative span {
                 stroke="#91cc75"
           >
           </path>
-          <path d="M-5 -5l278.0454 0l0 23.2l-278.0454 0Z"
-                transform="translate(604.9773 381.8)"
+          <path d="M-5 -5l290.9395 0l0 23.2l-290.9395 0Z"
+                transform="translate(598.5303 381.8)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -4977,7 +4977,7 @@ td.num.negative span {
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#000"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -4986,7 +4986,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#fff"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -4999,19 +4999,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Value from cash flows
           </text>
-          <path d="M-1 0.4l153.7369 0l0 13.2l-153.7369 0Z"
-                transform="translate(605.9773 381.4)"
+          <path d="M-1 0.4l162.0977 0l0 13.2l-162.0977 0Z"
+                transform="translate(599.5303 381.4)"
                 fill="transparent"
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#000"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -5020,7 +5020,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#fff"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -5033,18 +5033,18 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Market value
           </text>
-          <path d="M-1 0.4l104.3085 0l0 13.2l-104.3085 0Z"
-                transform="translate(769.7142 381.4)"
+          <path d="M-1 0.4l108.8418 0l0 13.2l-108.8418 0Z"
+                transform="translate(771.6279 381.4)"
                 fill="transparent"
           >
           </path>
-          <path d="M-84.0915 -5l168.183 0l0 20.7999l-168.183 0Z"
+          <path d="M-93.5894 -5l187.1787 0l0 20.8018l-187.1787 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -5055,7 +5055,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -5286,7 +5286,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(240.6154 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5295,7 +5295,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(331.2308 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5304,7 +5304,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(421.8462 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5313,7 +5313,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(512.4615 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5322,7 +5322,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(628.967 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5331,7 +5331,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(719.5824 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5340,7 +5340,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(810.1978 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5349,7 +5349,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(900.8132 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5358,7 +5358,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1030.2637 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5367,7 +5367,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1120.8791 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5376,7 +5376,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1211.4945 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5385,7 +5385,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1302.1099 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -5394,7 +5394,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(150 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -5403,7 +5403,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(538.3516 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -5412,7 +5412,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(939.6484 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -5431,8 +5431,8 @@ td.num.negative span {
                 fill="#91cc75"
           >
           </path>
-          <path d="M-5 -5l218.073 0l0 24l-218.073 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M-5 -5l229.3789 0l0 24l-229.3789 0Z"
+                transform="translate(629.3105 381)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -5440,7 +5440,7 @@ td.num.negative span {
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#5470c6"
           >
           </path>
@@ -5449,19 +5449,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Excl. dividends
           </text>
-          <path d="M0 0l112.3326 0l0 14l-112.3326 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M0 0l119.8945 0l0 14l-119.8945 0Z"
+                transform="translate(629.3105 381)"
                 fill="transparent"
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#91cc75"
           >
           </path>
@@ -5469,18 +5469,18 @@ td.num.negative span {
                 text-anchor="start"
                 x="30"
                 y="7"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Dividends
           </text>
-          <path d="M0 0l85.7404 0l0 14l-85.7404 0Z"
-                transform="translate(757.2961 381)"
+          <path d="M0 0l89.4844 0l0 14l-89.4844 0Z"
+                transform="translate(759.2051 381)"
                 fill="transparent"
           >
           </path>
-          <path d="M-74.2636 -5l148.5271 0l0 20.7999l-148.5271 0Z"
+          <path d="M-85.6001 -5l171.2002 0l0 20.8018l-171.2002 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -5491,7 +5491,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -7240,7 +7240,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7249,7 +7249,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(423.6933 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7258,7 +7258,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(729.1467 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7267,7 +7267,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1024.7467 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7301,7 +7301,7 @@ td.num.negative span {
                 stroke="#5470c6"
           >
           </path>
-          <path d="M-71.5906 -5l143.1812 0l0 20.7999l-143.1812 0Z"
+          <path d="M-81.0122 -5l162.0244 0l0 20.8018l-162.0244 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -7312,7 +7312,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -7480,7 +7480,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(147.8 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7489,7 +7489,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(423.6933 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7498,7 +7498,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(729.1467 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7507,7 +7507,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1024.7467 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7550,8 +7550,8 @@ td.num.negative span {
                 stroke="#91cc75"
           >
           </path>
-          <path d="M-5 -5l278.0454 0l0 23.2l-278.0454 0Z"
-                transform="translate(604.9773 381.8)"
+          <path d="M-5 -5l290.9395 0l0 23.2l-290.9395 0Z"
+                transform="translate(598.5303 381.8)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -7559,7 +7559,7 @@ td.num.negative span {
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#000"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -7568,7 +7568,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#fff"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -7581,19 +7581,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Value from cash flows
           </text>
-          <path d="M-1 0.4l153.7369 0l0 13.2l-153.7369 0Z"
-                transform="translate(605.9773 381.4)"
+          <path d="M-1 0.4l162.0977 0l0 13.2l-162.0977 0Z"
+                transform="translate(599.5303 381.4)"
                 fill="transparent"
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#000"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -7602,7 +7602,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#fff"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -7615,18 +7615,18 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Market value
           </text>
-          <path d="M-1 0.4l104.3085 0l0 13.2l-104.3085 0Z"
-                transform="translate(769.7142 381.4)"
+          <path d="M-1 0.4l108.8418 0l0 13.2l-108.8418 0Z"
+                transform="translate(771.6279 381.4)"
                 fill="transparent"
           >
           </path>
-          <path d="M-84.0915 -5l168.183 0l0 20.7999l-168.183 0Z"
+          <path d="M-93.5894 -5l187.1787 0l0 20.8018l-187.1787 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -7637,7 +7637,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -7805,7 +7805,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(150 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7814,7 +7814,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(424.8667 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7823,7 +7823,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(729.1833 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7832,7 +7832,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1023.6833 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7841,7 +7841,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1328 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -7856,8 +7856,8 @@ td.num.negative span {
                 fill="#5470c6"
           >
           </path>
-          <path d="M-5 -5l218.073 0l0 24l-218.073 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M-5 -5l229.3789 0l0 24l-229.3789 0Z"
+                transform="translate(629.3105 381)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -7865,7 +7865,7 @@ td.num.negative span {
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#5470c6"
           >
           </path>
@@ -7874,19 +7874,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Excl. dividends
           </text>
-          <path d="M0 0l112.3326 0l0 14l-112.3326 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M0 0l119.8945 0l0 14l-119.8945 0Z"
+                transform="translate(629.3105 381)"
                 fill="transparent"
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#91cc75"
           >
           </path>
@@ -7894,18 +7894,18 @@ td.num.negative span {
                 text-anchor="start"
                 x="30"
                 y="7"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Dividends
           </text>
-          <path d="M0 0l85.7404 0l0 14l-85.7404 0Z"
-                transform="translate(757.2961 381)"
+          <path d="M0 0l89.4844 0l0 14l-89.4844 0Z"
+                transform="translate(759.2051 381)"
                 fill="transparent"
           >
           </path>
-          <path d="M-74.2636 -5l148.5271 0l0 20.7999l-148.5271 0Z"
+          <path d="M-85.6001 -5l171.2002 0l0 20.8018l-171.2002 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -7916,7 +7916,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -17908,7 +17908,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(352.2924 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17917,7 +17917,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(456.2522 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17926,7 +17926,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(561.3544 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17935,7 +17935,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.274 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17944,7 +17944,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(873.2338 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17953,7 +17953,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(978.336 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17962,7 +17962,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1186.2557 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17971,7 +17971,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1290.2155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -17980,7 +17980,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(249.475 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -17989,7 +17989,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.4566 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -17998,7 +17998,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1083.4383 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -18476,7 +18476,7 @@ td.num.negative span {
                 stroke="#5470c6"
           >
           </path>
-          <path d="M-71.5906 -5l143.1812 0l0 20.7999l-143.1812 0Z"
+          <path d="M-81.0122 -5l162.0244 0l0 20.8018l-162.0244 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -18487,7 +18487,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -18677,7 +18677,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(352.2924 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18686,7 +18686,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(456.2522 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18695,7 +18695,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(561.3544 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18704,7 +18704,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.274 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18713,7 +18713,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(873.2338 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18722,7 +18722,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(978.336 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18731,7 +18731,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1186.2557 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18740,7 +18740,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1290.2155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -18749,7 +18749,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(249.475 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -18758,7 +18758,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.4566 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -18767,7 +18767,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1083.4383 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -19248,8 +19248,8 @@ td.num.negative span {
                 stroke="#91cc75"
           >
           </path>
-          <path d="M-5 -5l278.0454 0l0 23.2l-278.0454 0Z"
-                transform="translate(604.9773 381.8)"
+          <path d="M-5 -5l290.9395 0l0 23.2l-290.9395 0Z"
+                transform="translate(598.5303 381.8)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -19257,7 +19257,7 @@ td.num.negative span {
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#000"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -19266,7 +19266,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#fff"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -19279,19 +19279,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Value from cash flows
           </text>
-          <path d="M-1 0.4l153.7369 0l0 13.2l-153.7369 0Z"
-                transform="translate(605.9773 381.4)"
+          <path d="M-1 0.4l162.0977 0l0 13.2l-162.0977 0Z"
+                transform="translate(599.5303 381.4)"
                 fill="transparent"
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#000"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -19300,7 +19300,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#fff"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -19313,18 +19313,18 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Market value
           </text>
-          <path d="M-1 0.4l104.3085 0l0 13.2l-104.3085 0Z"
-                transform="translate(769.7142 381.4)"
+          <path d="M-1 0.4l108.8418 0l0 13.2l-108.8418 0Z"
+                transform="translate(771.6279 381.4)"
                 fill="transparent"
           >
           </path>
-          <path d="M-84.0915 -5l168.183 0l0 20.7999l-168.183 0Z"
+          <path d="M-93.5894 -5l187.1787 0l0 20.8018l-187.1787 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -19335,7 +19335,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -19572,7 +19572,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(353.7314 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19581,7 +19581,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(457.3043 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19590,7 +19590,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(562.0155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19599,7 +19599,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.1614 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19608,7 +19608,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(872.7343 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19617,7 +19617,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(977.4454 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19626,7 +19626,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1184.5913 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19635,7 +19635,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1288.1643 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -19644,7 +19644,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(251.2966 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -19653,7 +19653,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.7266 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -19662,7 +19662,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1082.1565 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -19701,8 +19701,8 @@ td.num.negative span {
                 fill="#91cc75"
           >
           </path>
-          <path d="M-5 -5l218.073 0l0 24l-218.073 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M-5 -5l229.3789 0l0 24l-229.3789 0Z"
+                transform="translate(629.3105 381)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -19710,7 +19710,7 @@ td.num.negative span {
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#5470c6"
           >
           </path>
@@ -19719,19 +19719,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Excl. dividends
           </text>
-          <path d="M0 0l112.3326 0l0 14l-112.3326 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M0 0l119.8945 0l0 14l-119.8945 0Z"
+                transform="translate(629.3105 381)"
                 fill="transparent"
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#91cc75"
           >
           </path>
@@ -19739,18 +19739,18 @@ td.num.negative span {
                 text-anchor="start"
                 x="30"
                 y="7"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Dividends
           </text>
-          <path d="M0 0l85.7404 0l0 14l-85.7404 0Z"
-                transform="translate(757.2961 381)"
+          <path d="M0 0l89.4844 0l0 14l-89.4844 0Z"
+                transform="translate(759.2051 381)"
                 fill="transparent"
           >
           </path>
-          <path d="M-74.2636 -5l148.5271 0l0 20.7999l-148.5271 0Z"
+          <path d="M-85.6001 -5l171.2002 0l0 20.8018l-171.2002 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -19761,7 +19761,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -30641,7 +30641,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(352.2924 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30650,7 +30650,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(456.2522 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30659,7 +30659,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(561.3544 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30668,7 +30668,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.274 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30677,7 +30677,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(873.2338 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30686,7 +30686,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(978.336 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30695,7 +30695,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1186.2557 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30704,7 +30704,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1290.2155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -30713,7 +30713,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(249.475 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -30722,7 +30722,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.4566 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -30731,7 +30731,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1083.4383 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -31221,7 +31221,7 @@ td.num.negative span {
                 stroke="#5470c6"
           >
           </path>
-          <path d="M-71.5906 -5l143.1812 0l0 20.7999l-143.1812 0Z"
+          <path d="M-81.0122 -5l162.0244 0l0 20.8018l-162.0244 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -31232,7 +31232,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -31422,7 +31422,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(352.2924 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31431,7 +31431,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(456.2522 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31440,7 +31440,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(561.3544 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31449,7 +31449,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.274 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31458,7 +31458,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(873.2338 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31467,7 +31467,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(978.336 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31476,7 +31476,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1186.2557 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31485,7 +31485,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1290.2155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -31494,7 +31494,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(249.475 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -31503,7 +31503,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.4566 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -31512,7 +31512,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1083.4383 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -32005,8 +32005,8 @@ td.num.negative span {
                 stroke="#91cc75"
           >
           </path>
-          <path d="M-5 -5l278.0454 0l0 23.2l-278.0454 0Z"
-                transform="translate(604.9773 381.8)"
+          <path d="M-5 -5l290.9395 0l0 23.2l-290.9395 0Z"
+                transform="translate(598.5303 381.8)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -32014,7 +32014,7 @@ td.num.negative span {
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#000"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -32023,7 +32023,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#fff"
                 stroke="#5470c6"
                 stroke-width="2"
@@ -32036,19 +32036,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(605.9773 381.4)"
+                transform="translate(599.5303 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Value from cash flows
           </text>
-          <path d="M-1 0.4l153.7369 0l0 13.2l-153.7369 0Z"
-                transform="translate(605.9773 381.4)"
+          <path d="M-1 0.4l162.0977 0l0 13.2l-162.0977 0Z"
+                transform="translate(599.5303 381.4)"
                 fill="transparent"
           >
           </path>
           <path d="M0 7L25 7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#000"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -32057,7 +32057,7 @@ td.num.negative span {
           >
           </path>
           <path d="M18.1 7A5.6 5.6 0 1 1 18.1 6.9994"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#fff"
                 stroke="#91cc75"
                 stroke-width="2"
@@ -32070,18 +32070,18 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(769.7142 381.4)"
+                transform="translate(771.6279 381.4)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Market value
           </text>
-          <path d="M-1 0.4l104.3085 0l0 13.2l-104.3085 0Z"
-                transform="translate(769.7142 381.4)"
+          <path d="M-1 0.4l108.8418 0l0 13.2l-108.8418 0Z"
+                transform="translate(771.6279 381.4)"
                 fill="transparent"
           >
           </path>
-          <path d="M-84.0915 -5l168.183 0l0 20.7999l-168.183 0Z"
+          <path d="M-93.5894 -5l187.1787 0l0 20.8018l-187.1787 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -32092,7 +32092,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
@@ -32329,7 +32329,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(353.7314 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32338,7 +32338,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(457.3043 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32347,7 +32347,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(562.0155 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32356,7 +32356,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(769.1614 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32365,7 +32365,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(872.7343 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32374,7 +32374,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(977.4454 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32383,7 +32383,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1184.5913 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32392,7 +32392,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1288.1643 338)"
                 fill="#6E7079"
                 style="font: 12px sans-serif;"
@@ -32401,7 +32401,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(251.2966 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -32410,7 +32410,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(666.7266 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -32419,7 +32419,7 @@ td.num.negative span {
           </text>
           <text dominant-baseline="central"
                 text-anchor="middle"
-                y="3.6000289916992188"
+                y="3.6005859375"
                 transform="translate(1082.1565 338)"
                 fill="#6E7079"
                 style="font-size: 12px; font-family: sans-serif; font-weight: bold;"
@@ -32458,8 +32458,8 @@ td.num.negative span {
                 fill="#91cc75"
           >
           </path>
-          <path d="M-5 -5l218.073 0l0 24l-218.073 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M-5 -5l229.3789 0l0 24l-229.3789 0Z"
+                transform="translate(629.3105 381)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
                 stroke="#ccc"
@@ -32467,7 +32467,7 @@ td.num.negative span {
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#5470c6"
           >
           </path>
@@ -32476,19 +32476,19 @@ td.num.negative span {
                 xml:space="preserve"
                 x="30"
                 y="7"
-                transform="translate(634.9635 381)"
+                transform="translate(629.3105 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Excl. dividends
           </text>
-          <path d="M0 0l112.3326 0l0 14l-112.3326 0Z"
-                transform="translate(634.9635 381)"
+          <path d="M0 0l119.8945 0l0 14l-119.8945 0Z"
+                transform="translate(629.3105 381)"
                 fill="transparent"
           >
           </path>
           <path d="M3.5 0L21.5 0A3.5 3.5 0 0 1 25 3.5L25 10.5A3.5 3.5 0 0 1 21.5 14L3.5 14A3.5 3.5 0 0 1 0 10.5L0 3.5A3.5 3.5 0 0 1 3.5 0"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#91cc75"
           >
           </path>
@@ -32496,18 +32496,18 @@ td.num.negative span {
                 text-anchor="start"
                 x="30"
                 y="7"
-                transform="translate(757.2961 381)"
+                transform="translate(759.2051 381)"
                 fill="#333"
                 style="font-size: 12px; font-family: sans-serif;"
           >
             Dividends
           </text>
-          <path d="M0 0l85.7404 0l0 14l-85.7404 0Z"
-                transform="translate(757.2961 381)"
+          <path d="M0 0l89.4844 0l0 14l-89.4844 0Z"
+                transform="translate(759.2051 381)"
                 fill="transparent"
           >
           </path>
-          <path d="M-74.2636 -5l148.5271 0l0 20.7999l-148.5271 0Z"
+          <path d="M-85.6001 -5l171.2002 0l0 20.8018l-171.2002 0Z"
                 transform="translate(739 5)"
                 fill="rgb(0,0,0)"
                 fill-opacity="0"
@@ -32518,7 +32518,7 @@ td.num.negative span {
           <text dominant-baseline="central"
                 text-anchor="middle"
                 xml:space="preserve"
-                y="5.39996337890625"
+                y="5.40087890625"
                 transform="translate(739 5)"
                 fill="#464646"
                 style="font-size: 18px; font-family: sans-serif; font-weight: bold;"
