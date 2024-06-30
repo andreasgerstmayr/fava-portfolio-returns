@@ -12,8 +12,8 @@
         "jest-puppeteer": "^10.0.1",
         "jest-serializer-html": "^7.1.0",
         "prettier": "^3.3.2",
-        "puppeteer": "^22.11.0",
-        "typescript": "^5.4.2"
+        "puppeteer": "^22.12.0",
+        "typescript": "^5.5.2"
     },
     "dependencies": {
         "echarts": "git+https://github.com/andreasgerstmayr/echarts.git#support-negative-log-axis-dist"
