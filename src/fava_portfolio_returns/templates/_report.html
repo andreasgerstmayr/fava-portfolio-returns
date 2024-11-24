@@ -25,7 +25,7 @@
 
 {% set report = extension.report(group) %}
 <script id="favaPortfolioReturnsReportData" type="application/json">
-{{ {"target_currency": report["target_currency"], "plots": report["plots"]}|tojson }}
+{{ {"target_currency": report.target_currency, "plots": report.plots}|tojson }}
 </script>
 
 <h2>Portfolio Returns: {{ group }}</h2>
@@ -50,24 +50,30 @@
   <div class="chart"></div>
 </div>
 
-<h3>Internal Rate of Returns</h3>
-{{ returns_table(report["total_returns"]) }}
-{{ returns_table(report["calendar_returns"]) }}
-{{ returns_table(report["cumulative_returns"]) }}
+<h3>Internal Rate of Return (IRR)</h3>
+{{ returns_table(report.returns.irr.total) }}
+{{ returns_table(report.returns.irr.annualized) }}
+{{ returns_table(report.returns.irr.cumulative) }}
+
+<br>
+<h3>Modified Dietz Return (MDR)</h3>
+{{ returns_table(report.returns.mdr.total) }}
+{{ returns_table(report.returns.mdr.annualized) }}
+{{ returns_table(report.returns.mdr.cumulative) }}
 
 <br>
 <h3>Accounts</h3>
-<p>Cost Currency: {{ report["target_currency"] }}</p>
+<p>Cost Currency: {{ report.target_currency }}</p>
 <table>
   <thead>
     <tr>
-    {% for header in report["accounts"].columns.to_list() %}
+    {% for header in report.accounts.columns.to_list() %}
       <th>{{ header }}</th>
     {% endfor %}
     </tr>
   </thead>
   <tbody>
-    {% for row in report["accounts"].itertuples() %}
+    {% for row in report.accounts.itertuples() %}
     <tr>
       <td>{{ row.Investment }}</td>
       <td>{{ row.Description }}</td>
@@ -90,7 +96,7 @@
     </tr>
   </thead>
   <tbody>
-    {% for row in report["cashflows"].itertuples() %}
+    {% for row in report.cashflows.itertuples() %}
     <tr>
       <td>{{ row.date }}</td>
       <td class="num">{{ row.amount | format_currency(row.currency) }} {{ row.currency }}</td>

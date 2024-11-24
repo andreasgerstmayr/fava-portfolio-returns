@@ -7,7 +7,7 @@ authors = [
 ]
 dependencies = [
     "fava>=1.26",
-    "beangrow>=1.0.0",
+    "beangrow @ git+https://github.com/beancount/beangrow",
     "protobuf<3.21",
 ]
 readme = "README.md"

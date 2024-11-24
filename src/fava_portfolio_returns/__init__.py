@@ -20,13 +20,7 @@ from beangrow import investments  # type: ignore
 import beangrow.config as configlib  # type: ignore
 from beangrow.investments import CashFlow  # type: ignore
 import beangrow.returns as returnslib  # type: ignore
-from beangrow.reports import (  # type: ignore
-    Table,
-    compute_returns_table,
-    get_calendar_intervals,
-    get_cumulative_intervals,
-    get_accounts_table,
-)
+from beangrow import reports  # type: ignore
 from fava.ext import FavaExtensionBase
 from fava.helpers import FavaAPIError
 from fava.context import g
@@ -187,6 +181,14 @@ class FavaPortfolioReturns(FavaExtensionBase):
         irr = returnslib.compute_returns(
             truncated_cash_flows, pricer, target_currency, end_date
         )
+        try:
+            mdr = returnslib.compute_returns(
+                truncated_cash_flows, pricer, target_currency, end_date, dietz=True
+            )
+        except TypeError as ex:
+            raise FavaAPIError(
+                "You are using an incompatible version of beangrow, please regenerate your lockfile and venv to install a supported version of beangrow."
+            ) from ex
 
         return {
             "units": units_balance,
@@ -196,6 +198,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             "returns": returns,
             "returns_pct": returns_pct,
             "irr": irr.total,
+            "mdr": mdr.total,
         }
 
     def overview(self):
@@ -268,12 +271,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 amt = -float(flow.amount.number)
                 if remaining_days > 0:
                     gflow = amt * (rate ** np.arange(0, remaining_days))
-                    gamounts[-remaining_days:] = np.add(
-                        gamounts[-remaining_days:],
-                        gflow,
-                        out=gamounts[-remaining_days:],
-                        casting="unsafe",
-                    )
+                    gamounts[-remaining_days:] += gflow
                     amounts[-remaining_days:] += amt
                 else:
                     gamounts[-1] += amt
@@ -327,9 +325,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
             )
 
         return {
-            "cashflows": cashflows_plot,
-            "cumvalue": cumvalue_plot,
             "pnl": pnl_plot,
+            "cumvalue": cumvalue_plot,
+            "cashflows": cashflows_plot,
             "min_date": dates[0] if dates else None,
             "max_date": dates[-1] if dates else None,
         }
@@ -345,45 +343,86 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if not target_currency:
             target_currency = self.get_target_currency(account_data)
 
-        # cash flows
+        # compute cash flows
         cash_flows = returnslib.truncate_and_merge_cash_flows(
             pricer, account_data, start_date, end_date
-        )
-        returns = returnslib.compute_returns(
-            cash_flows, pricer, target_currency, end_date
         )
         transactions = data.sorted(
             [txn for ad in account_data for txn in ad.transactions]
         )
 
-        # cumulative value plot
+        # IRR
+        irr_total = returnslib.compute_returns(
+            cash_flows, pricer, target_currency, end_date
+        )
+        irr_total_returns_tbl = reports.Table(
+            ["Total Returns", "Ex-Div", "Div"],
+            [[irr_total.total, irr_total.exdiv, irr_total.div]],
+        )
+        irr_annualized_returns_tbl = reports.compute_returns_table(
+            pricer,
+            target_currency,
+            account_data,
+            reports.get_calendar_intervals(end_date),
+            header_text="Annualized Returns",
+        )
+        irr_cumulative_returns_tbl = reports.compute_returns_table(
+            pricer,
+            target_currency,
+            account_data,
+            reports.get_cumulative_intervals(end_date),
+            header_text="Cumulative Returns",
+        )
+
+        # Modified Dietz Returns
+        mdr_total = returnslib.compute_returns(
+            cash_flows, pricer, target_currency, end_date, dietz=True
+        )
+        mdr_total_returns_tbl = reports.Table(
+            ["Total Returns", "Ex-Div", "Div"],
+            [[mdr_total.total, mdr_total.exdiv, mdr_total.div]],
+        )
+        mdr_annualized_returns_tbl = reports.compute_returns_table(
+            pricer,
+            target_currency,
+            account_data,
+            reports.get_calendar_intervals(end_date),
+            header_text="Annualized Returns",
+            dietz=True,
+        )
+        mdr_cumulative_returns_tbl = reports.compute_returns_table(
+            pricer,
+            target_currency,
+            account_data,
+            reports.get_cumulative_intervals(end_date),
+            header_text="Cumulative Returns",
+            dietz=True,
+        )
+
+        # PnL, cumulative value and cashflow charts
         plots = self.create_plots(
-            pricer, target_currency, cash_flows, transactions, returns.total
+            pricer, target_currency, cash_flows, transactions, irr_total.total
         )
 
-        # returns
-        total_returns_tbl = Table(
-            ["Total", "Ex-Div", "Div"], [[returns.total, returns.exdiv, returns.div]]
-        )
-        calendar_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_calendar_intervals(end_date)
-        )
-        cumulative_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_cumulative_intervals(end_date)
-        )
-
-        # accounts
-        accounts_tbl = get_accounts_table(account_data)
-
-        # cash flows
+        # accounts and cashflow tables
+        accounts_tbl = reports.get_accounts_table(account_data)
         cashflows_tbl = investments.cash_flows_to_table(cash_flows)
 
         return {
             "target_currency": target_currency,
             "plots": plots,
-            "total_returns": total_returns_tbl,
-            "calendar_returns": calendar_returns_tbl,
-            "cumulative_returns": cumulative_returns_tbl,
+            "returns": {
+                "irr": {
+                    "total": irr_total_returns_tbl,
+                    "annualized": irr_annualized_returns_tbl,
+                    "cumulative": irr_cumulative_returns_tbl,
+                },
+                "mdr": {
+                    "total": mdr_total_returns_tbl,
+                    "annualized": mdr_annualized_returns_tbl,
+                    "cumulative": mdr_cumulative_returns_tbl,
+                },
+            },
             "accounts": accounts_tbl,
             "cashflows": cashflows_tbl,
         }
