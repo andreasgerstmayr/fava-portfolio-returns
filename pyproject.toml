@@ -11,7 +11,7 @@ dependencies = [
     "protobuf<3.21",
 ]
 readme = "README.md"
-requires-python = ">= 3.8"
+requires-python = ">= 3.10"
 license = {text = "GPL-2.0"}
 
 [project.urls]
@@ -21,9 +21,8 @@ Source = "https://github.com/andreasgerstmayr/fava-portfolio-returns"
 requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
-[tool.rye]
-managed = true
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "black>=24.3.0",
     "mypy>=1.9.0",
     "pylint>=3.1.0",
@@ -46,6 +45,7 @@ disable = [
     "missing-function-docstring",
     "line-too-long",
     "too-many-arguments",
+    "too-many-positional-arguments",
     "too-many-locals",
     "too-many-branches",
     "too-many-statements",
