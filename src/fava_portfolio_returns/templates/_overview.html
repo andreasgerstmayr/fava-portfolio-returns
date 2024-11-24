@@ -32,7 +32,8 @@
       <th data-sort="num">Market Value</th>
       <th data-sort="num">Returns</th>
       <th data-sort="num">Yield</th>
-      <th data-sort="num">IRR</th>
+      <th data-sort="num" title="Internal Rate of Return">IRR</th>
+      <th data-sort="num" title="Modified Dietz Return">MDR</th>
     </tr>
   </thead>
   <tbody>
@@ -55,6 +56,9 @@
       </td>
       <td class="num {% if group.irr >= 0 %}positive{% else %}negative{% endif %}" data-sort-value="{{ group.irr }}">
         <span class="num">{{ "%.2f" | format(group.irr * 100) }} %</span>
+      </td>
+      <td class="num {% if group.mdr >= 0 %}positive{% else %}negative{% endif %}" data-sort-value="{{ group.mdr }}">
+        <span class="num">{{ "%.2f" | format(group.mdr * 100) }} %</span>
       </td>
     </tr>
     {% endfor %}

@@ -2745,13 +2745,13 @@ td.num.negative span {
   </div>
 </div>
 <h3>
-  Internal Rate of Returns
+  Internal Rate of Return (IRR)
 </h3>
 <table>
   <thead>
     <tr>
       <th>
-        Total
+        Total Returns
       </th>
       <th>
         Ex-Div
@@ -2779,7 +2779,7 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Annualized Returns
       </th>
       <th>
         2008
@@ -2997,37 +2997,37 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Cumulative Returns
       </th>
       <th>
-        15_years_ago
+        15 years ago
       </th>
       <th>
-        10_years_ago
+        10 years ago
       </th>
       <th>
-        5_years_ago
+        5 years ago
       </th>
       <th>
-        4_years_ago
+        4 years ago
       </th>
       <th>
-        3_years_ago
+        3 years ago
       </th>
       <th>
-        2_years_ago
+        2 years ago
       </th>
       <th>
-        1_year_ago
+        1 year ago
       </th>
       <th>
-        ytd
+        YTD
       </th>
       <th>
-        rolling_6_months_ago
+        rolling 6 months ago
       </th>
       <th>
-        rolling_3_months_ago
+        rolling 3 months ago
       </th>
     </tr>
   </thead>
@@ -3135,6 +3135,402 @@ td.num.negative span {
       </td>
       <td class="num">
         7.80%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Modified Dietz Return (MDR)
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total Returns
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Annualized Returns
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Cumulative Returns
+      </th>
+      <th>
+        15 years ago
+      </th>
+      <th>
+        10 years ago
+      </th>
+      <th>
+        5 years ago
+      </th>
+      <th>
+        4 years ago
+      </th>
+      <th>
+        3 years ago
+      </th>
+      <th>
+        2 years ago
+      </th>
+      <th>
+        1 year ago
+      </th>
+      <th>
+        YTD
+      </th>
+      <th>
+        rolling 6 months ago
+      </th>
+      <th>
+        rolling 3 months ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        57.28%
+      </td>
+      <td class="num">
+        50.37%
+      </td>
+      <td class="num">
+        -5.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        51.92%
+      </td>
+      <td class="num">
+        45.81%
+      </td>
+      <td class="num">
+        -7.42%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        5.36%
+      </td>
+      <td class="num">
+        4.56%
+      </td>
+      <td class="num">
+        2.42%
       </td>
     </tr>
   </tbody>
@@ -5506,13 +5902,13 @@ td.num.negative span {
   </div>
 </div>
 <h3>
-  Internal Rate of Returns
+  Internal Rate of Return (IRR)
 </h3>
 <table>
   <thead>
     <tr>
       <th>
-        Total
+        Total Returns
       </th>
       <th>
         Ex-Div
@@ -5540,7 +5936,7 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Annualized Returns
       </th>
       <th>
         2008
@@ -5758,37 +6154,37 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Cumulative Returns
       </th>
       <th>
-        15_years_ago
+        15 years ago
       </th>
       <th>
-        10_years_ago
+        10 years ago
       </th>
       <th>
-        5_years_ago
+        5 years ago
       </th>
       <th>
-        4_years_ago
+        4 years ago
       </th>
       <th>
-        3_years_ago
+        3 years ago
       </th>
       <th>
-        2_years_ago
+        2 years ago
       </th>
       <th>
-        1_year_ago
+        1 year ago
       </th>
       <th>
-        ytd
+        YTD
       </th>
       <th>
-        rolling_6_months_ago
+        rolling 6 months ago
       </th>
       <th>
-        rolling_3_months_ago
+        rolling 3 months ago
       </th>
     </tr>
   </thead>
@@ -5896,6 +6292,402 @@ td.num.negative span {
       </td>
       <td class="num">
         64.74%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Modified Dietz Return (MDR)
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total Returns
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        52.28%
+      </td>
+      <td class="num">
+        47.15%
+      </td>
+      <td class="num">
+        5.13%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Annualized Returns
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Cumulative Returns
+      </th>
+      <th>
+        15 years ago
+      </th>
+      <th>
+        10 years ago
+      </th>
+      <th>
+        5 years ago
+      </th>
+      <th>
+        4 years ago
+      </th>
+      <th>
+        3 years ago
+      </th>
+      <th>
+        2 years ago
+      </th>
+      <th>
+        1 year ago
+      </th>
+      <th>
+        YTD
+      </th>
+      <th>
+        rolling 6 months ago
+      </th>
+      <th>
+        rolling 3 months ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        55.27%
+      </td>
+      <td class="num">
+        49.83%
+      </td>
+      <td class="num">
+        52.28%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        49.86%
+      </td>
+      <td class="num">
+        45.09%
+      </td>
+      <td class="num">
+        47.15%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        5.41%
+      </td>
+      <td class="num">
+        4.74%
+      </td>
+      <td class="num">
+        5.13%
       </td>
     </tr>
   </tbody>
@@ -7931,13 +8723,13 @@ td.num.negative span {
   </div>
 </div>
 <h3>
-  Internal Rate of Returns
+  Internal Rate of Return (IRR)
 </h3>
 <table>
   <thead>
     <tr>
       <th>
-        Total
+        Total Returns
       </th>
       <th>
         Ex-Div
@@ -7965,7 +8757,7 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Annualized Returns
       </th>
       <th>
         2008
@@ -8183,37 +8975,37 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Cumulative Returns
       </th>
       <th>
-        15_years_ago
+        15 years ago
       </th>
       <th>
-        10_years_ago
+        10 years ago
       </th>
       <th>
-        5_years_ago
+        5 years ago
       </th>
       <th>
-        4_years_ago
+        4 years ago
       </th>
       <th>
-        3_years_ago
+        3 years ago
       </th>
       <th>
-        2_years_ago
+        2 years ago
       </th>
       <th>
-        1_year_ago
+        1 year ago
       </th>
       <th>
-        ytd
+        YTD
       </th>
       <th>
-        rolling_6_months_ago
+        rolling 6 months ago
       </th>
       <th>
-        rolling_3_months_ago
+        rolling 3 months ago
       </th>
     </tr>
   </thead>
@@ -8286,6 +9078,402 @@ td.num.negative span {
       </td>
       <td class="num">
         -100.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Modified Dietz Return (MDR)
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total Returns
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Annualized Returns
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Cumulative Returns
+      </th>
+      <th>
+        15 years ago
+      </th>
+      <th>
+        10 years ago
+      </th>
+      <th>
+        5 years ago
+      </th>
+      <th>
+        4 years ago
+      </th>
+      <th>
+        3 years ago
+      </th>
+      <th>
+        2 years ago
+      </th>
+      <th>
+        1 year ago
+      </th>
+      <th>
+        YTD
+      </th>
+      <th>
+        rolling 6 months ago
+      </th>
+      <th>
+        rolling 3 months ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -116.07%
+      </td>
+      <td class="num">
+        -100.66%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        -116.07%
+      </td>
+      <td class="num">
+        -100.66%
       </td>
     </tr>
     <tr>
@@ -19776,13 +20964,13 @@ td.num.negative span {
   </div>
 </div>
 <h3>
-  Internal Rate of Returns
+  Internal Rate of Return (IRR)
 </h3>
 <table>
   <thead>
     <tr>
       <th>
-        Total
+        Total Returns
       </th>
       <th>
         Ex-Div
@@ -19810,7 +20998,7 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Annualized Returns
       </th>
       <th>
         2008
@@ -20028,37 +21216,37 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Cumulative Returns
       </th>
       <th>
-        15_years_ago
+        15 years ago
       </th>
       <th>
-        10_years_ago
+        10 years ago
       </th>
       <th>
-        5_years_ago
+        5 years ago
       </th>
       <th>
-        4_years_ago
+        4 years ago
       </th>
       <th>
-        3_years_ago
+        3 years ago
       </th>
       <th>
-        2_years_ago
+        2 years ago
       </th>
       <th>
-        1_year_ago
+        1 year ago
       </th>
       <th>
-        ytd
+        YTD
       </th>
       <th>
-        rolling_6_months_ago
+        rolling 6 months ago
       </th>
       <th>
-        rolling_3_months_ago
+        rolling 3 months ago
       </th>
     </tr>
   </thead>
@@ -20154,6 +21342,402 @@ td.num.negative span {
       </td>
       <td class="num">
         1.01%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Modified Dietz Return (MDR)
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total Returns
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Annualized Returns
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        4.20%
+      </td>
+      <td class="num">
+        -6.63%
+      </td>
+      <td class="num">
+        7.26%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        4.20%
+      </td>
+      <td class="num">
+        -11.68%
+      </td>
+      <td class="num">
+        7.26%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        5.05%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Cumulative Returns
+      </th>
+      <th>
+        15 years ago
+      </th>
+      <th>
+        10 years ago
+      </th>
+      <th>
+        5 years ago
+      </th>
+      <th>
+        4 years ago
+      </th>
+      <th>
+        3 years ago
+      </th>
+      <th>
+        2 years ago
+      </th>
+      <th>
+        1 year ago
+      </th>
+      <th>
+        YTD
+      </th>
+      <th>
+        rolling 6 months ago
+      </th>
+      <th>
+        rolling 3 months ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        7.88%
+      </td>
+      <td class="num">
+        5.83%
+      </td>
+      <td class="num">
+        7.26%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        4.98%
+      </td>
+      <td class="num">
+        3.43%
+      </td>
+      <td class="num">
+        7.26%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+      <td class="num">
+        2.90%
+      </td>
+      <td class="num">
+        2.41%
       </td>
       <td class="num">
         0.00%
@@ -20425,8 +22009,15 @@ td.num.negative span {
       <th data-sort="num">
         Yield
       </th>
-      <th data-sort="num">
+      <th data-sort="num"
+          title="Internal Rate of Return"
+      >
         IRR
+      </th>
+      <th data-sort="num"
+          title="Modified Dietz Return"
+      >
+        MDR
       </th>
     </tr>
   </thead>
@@ -20495,6 +22086,13 @@ td.num.negative span {
           2.74 %
         </span>
       </td>
+      <td class="num positive"
+          data-sort-value="0.07878441029336741"
+      >
+        <span class="num">
+          7.88 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20560,6 +22158,13 @@ td.num.negative span {
           -0.05 %
         </span>
       </td>
+      <td class="num negative"
+          data-sort-value="-0.0013893132718531078"
+      >
+        <span class="num">
+          -0.14 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20622,6 +22227,13 @@ td.num.negative span {
           7.76 %
         </span>
       </td>
+      <td class="num positive"
+          data-sort-value="0.2976940035925787"
+      >
+        <span class="num">
+          29.77 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20682,6 +22294,13 @@ td.num.negative span {
       >
         <span class="num">
           4.27 %
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.15868250840857492"
+      >
+        <span class="num">
+          15.87 %
         </span>
       </td>
     </tr>
@@ -20749,6 +22368,13 @@ td.num.negative span {
           5.46 %
         </span>
       </td>
+      <td class="num positive"
+          data-sort-value="0.15165268539025908"
+      >
+        <span class="num">
+          15.17 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20812,6 +22438,13 @@ td.num.negative span {
       >
         <span class="num">
           4.18 %
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.1216401956115529"
+      >
+        <span class="num">
+          12.16 %
         </span>
       </td>
     </tr>
@@ -20879,6 +22512,13 @@ td.num.negative span {
           156.17 %
         </span>
       </td>
+      <td class="num positive"
+          data-sort-value="0.5727554179566564"
+      >
+        <span class="num">
+          57.28 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20944,6 +22584,13 @@ td.num.negative span {
           156.17 %
         </span>
       </td>
+      <td class="num positive"
+          data-sort-value="0.5727554179566564"
+      >
+        <span class="num">
+          57.28 %
+        </span>
+      </td>
     </tr>
     <tr>
       <td>
@@ -20998,6 +22645,13 @@ td.num.negative span {
       >
         <span class="num">
           -45.69 %
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.0"
+      >
+        <span class="num">
+          0.00 %
         </span>
       </td>
     </tr>
@@ -21060,6 +22714,13 @@ td.num.negative span {
       >
         <span class="num">
           -100.00 %
+        </span>
+      </td>
+      <td class="num negative"
+          data-sort-value="-0.4090909090909091"
+      >
+        <span class="num">
+          -40.91 %
         </span>
       </td>
     </tr>
@@ -21125,6 +22786,13 @@ td.num.negative span {
       >
         <span class="num">
           79.96 %
+        </span>
+      </td>
+      <td class="num positive"
+          data-sort-value="0.34017226362140723"
+      >
+        <span class="num">
+          34.02 %
         </span>
       </td>
     </tr>
@@ -32533,13 +34201,13 @@ td.num.negative span {
   </div>
 </div>
 <h3>
-  Internal Rate of Returns
+  Internal Rate of Return (IRR)
 </h3>
 <table>
   <thead>
     <tr>
       <th>
-        Total
+        Total Returns
       </th>
       <th>
         Ex-Div
@@ -32567,7 +34235,7 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Annualized Returns
       </th>
       <th>
         2008
@@ -32785,37 +34453,37 @@ td.num.negative span {
   <thead>
     <tr>
       <th>
-        Return
+        Cumulative Returns
       </th>
       <th>
-        15_years_ago
+        15 years ago
       </th>
       <th>
-        10_years_ago
+        10 years ago
       </th>
       <th>
-        5_years_ago
+        5 years ago
       </th>
       <th>
-        4_years_ago
+        4 years ago
       </th>
       <th>
-        3_years_ago
+        3 years ago
       </th>
       <th>
-        2_years_ago
+        2 years ago
       </th>
       <th>
-        1_year_ago
+        1 year ago
       </th>
       <th>
-        ytd
+        YTD
       </th>
       <th>
-        rolling_6_months_ago
+        rolling 6 months ago
       </th>
       <th>
-        rolling_3_months_ago
+        rolling 3 months ago
       </th>
     </tr>
   </thead>
@@ -32911,6 +34579,402 @@ td.num.negative span {
       </td>
       <td class="num">
         0.87%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h3>
+  Modified Dietz Return (MDR)
+</h3>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Total Returns
+      </th>
+      <th>
+        Ex-Div
+      </th>
+      <th>
+        Div
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Annualized Returns
+      </th>
+      <th>
+        2008
+      </th>
+      <th>
+        2009
+      </th>
+      <th>
+        2010
+      </th>
+      <th>
+        2011
+      </th>
+      <th>
+        2012
+      </th>
+      <th>
+        2013
+      </th>
+      <th>
+        2014
+      </th>
+      <th>
+        2015
+      </th>
+      <th>
+        2016
+      </th>
+      <th>
+        2017
+      </th>
+      <th>
+        2018
+      </th>
+      <th>
+        2019
+      </th>
+      <th>
+        2020
+      </th>
+      <th>
+        2021
+      </th>
+      <th>
+        2022
+      </th>
+      <th>
+        2023
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.97%
+      </td>
+      <td class="num">
+        13.98%
+      </td>
+      <td class="num">
+        -0.49%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.97%
+      </td>
+      <td class="num">
+        11.23%
+      </td>
+      <td class="num">
+        -0.49%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        2.75%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Cumulative Returns
+      </th>
+      <th>
+        15 years ago
+      </th>
+      <th>
+        10 years ago
+      </th>
+      <th>
+        5 years ago
+      </th>
+      <th>
+        4 years ago
+      </th>
+      <th>
+        3 years ago
+      </th>
+      <th>
+        2 years ago
+      </th>
+      <th>
+        1 year ago
+      </th>
+      <th>
+        YTD
+      </th>
+      <th>
+        rolling 6 months ago
+      </th>
+      <th>
+        rolling 3 months ago
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Total
+      </td>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        12.16%
+      </td>
+      <td class="num">
+        10.20%
+      </td>
+      <td class="num">
+        -0.49%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ex-div
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        9.66%
+      </td>
+      <td class="num">
+        8.04%
+      </td>
+      <td class="num">
+        -0.49%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+      <td class="num">
+        0.00%
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Div
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+      <td class="num">
+        2.50%
+      </td>
+      <td class="num">
+        2.16%
       </td>
       <td class="num">
         0.00%
