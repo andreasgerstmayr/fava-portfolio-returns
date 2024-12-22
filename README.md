@@ -4,8 +4,12 @@
 
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to calculate the portfolio returns.
 
-[![Overview](frontend/tests/e2e/__image_snapshots__/report_overview.png)](frontend/tests/e2e/__image_snapshots__/report_overview.png)
-[![Report](frontend/tests/e2e/__image_snapshots__/report_vht.png)](frontend/tests/e2e/__image_snapshots__/report_vht.png)
+[![Portfolio](frontend/tests/e2e/__image_snapshots__/portfolio.png)](frontend/tests/e2e/__image_snapshots__/portfolio.png)
+[![Performance](frontend/tests/e2e/__image_snapshots__/performance.png)](frontend/tests/e2e/__image_snapshots__/performance.png)
+[![Returns](frontend/tests/e2e/__image_snapshots__/returns.png)](frontend/tests/e2e/__image_snapshots__/returns.png)
+[![Dividends](frontend/tests/e2e/__image_snapshots__/dividends.png)](frontend/tests/e2e/__image_snapshots__/dividends.png)
+[![Cash Flows](frontend/tests/e2e/__image_snapshots__/cash_flows.png)](frontend/tests/e2e/__image_snapshots__/cash_flows.png)
+[![Groups](frontend/tests/e2e/__image_snapshots__/groups.png)](frontend/tests/e2e/__image_snapshots__/groups.png)
 
 ## Installation
 ```
@@ -28,11 +32,7 @@ Enable this plugin in Fava by adding the following lines to your ledger:
 ## Building from Source
 Run `make build-js` to compile the frontend. The compiled and bundled code will be placed in `src/fava_portfolio_returns/FavaPortfolioReturns.js`.
 
-You can run `make watch-js` to automatically rebuild the frontend for any changes.
-
-## Contributing
-The goal of this Fava extension is to display beangrow reports in the browser.
-Please implement calculation changes or additions in the [beangrow](https://github.com/beancount/beangrow) repository, and any user interface changes in this repository.
+Run `make dev` to start a development server and automatically rebuild the frontend for any changes.
 
 ## Related Projects
 * [Fava Portfolio Summary](https://github.com/PhracturedBlue/fava-portfolio-summary)

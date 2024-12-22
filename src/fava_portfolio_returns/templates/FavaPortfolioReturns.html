@@ -1,8 +1,2 @@
 <style type="text/css">{% include "style.css" %}</style>
-
-{% set group = request.args.get('group') %}
-{% if not group %}
-  {% include '_overview.html' %}
-{% else %}
-  {% include '_report.html' %}
-{% endif %}
+<div id="favaPortfolioReturnsApp"></div>

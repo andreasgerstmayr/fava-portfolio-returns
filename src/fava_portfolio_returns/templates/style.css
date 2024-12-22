@@ -1,20 +1,3 @@
-td.num.positive span {
-    color: #3daf46;
-}
-td.num.negative span {
-    color: #af3d3d;
-}
-
-#pnl-chart,
-#cumvalue-chart,
-#cashflow-chart {
-    margin-bottom: 40px;
-}
-.chart {
-    height: 400px;
-}
-.chart-settings {
-    width: 1471px;
-    padding-right: 150px;
-    text-align: right;
+.headerline .active {
+    color: #333;
 }

@@ -5,6 +5,7 @@
 * Options
 
 option "operating_currency" "USD"
+option "operating_currency" "EUR"
 plugin "beancount.plugins.implicit_prices"
 
 1980-05-12 custom "fava-option" "language" "en"
