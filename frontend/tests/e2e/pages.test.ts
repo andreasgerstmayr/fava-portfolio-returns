@@ -36,7 +36,7 @@ describe("PNG Snapshot Tests", () => {
       await page.waitForNetworkIdle();
 
       const screenshot = await page.screenshot({ fullPage: true });
-      expect(screenshot).toMatchImageSnapshot({ customSnapshotIdentifier });
+      expect(Buffer.from(screenshot)).toMatchImageSnapshot({ customSnapshotIdentifier });
     },
     10000,
   );

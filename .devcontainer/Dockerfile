@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 RUN apt-get update && apt-get install -y \
-      zsh git make curl \
+      zsh git make \
       npm
 
 # chromium dependencies
