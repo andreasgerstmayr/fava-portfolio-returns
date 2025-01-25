@@ -58,28 +58,28 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
-    <div class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+  <div class="MuiStack-root css-11tl7xq">
+    <div class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-65tdxr"
          style="width: 600px;"
     >
-      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-17lzde0-MuiFormLabel-root-MuiInputLabel-root"
+      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-sf8hzu"
                data-shrink="true"
                for=":r0:"
                id=":r0:-label"
         >
           Investments Filter
         </label>
-        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1yo5bjb-MuiInputBase-root-MuiOutlinedInput-root">
-          <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-3wez20-MuiButtonBase-root-MuiChip-root"
+        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1w8wau4">
+          <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-1hi8qj6"
                tabindex="-1"
                role="button"
                data-tag-index="0"
           >
-            <span class="MuiChip-label MuiChip-labelMedium css-16cgrcw-MuiChip-label">
+            <span class="MuiChip-label MuiChip-labelMedium css-qbwvub">
               VHT
             </span>
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-1umw9bq-MuiSvgIcon-root"
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-q7mezt"
                  focusable="false"
                  aria-hidden="true"
                  viewbox="0 0 24 24"
@@ -93,7 +93,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
                  autocomplete="off"
                  id=":r0:"
                  type="text"
-                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qve9l1-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-fvgl9b"
                  aria-autocomplete="list"
                  aria-expanded="false"
                  autocapitalize="none"
@@ -101,15 +101,15 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
                  role="combobox"
                  value
           >
-          <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-1x7n7v0-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-clearIndicator"
+          <div class="MuiAutocomplete-endAdornment css-iuka1o">
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-1o3l9i0"
                     tabindex="-1"
                     type="button"
                     id=":r6:"
                     aria-label="Clear"
                     title="Clear"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-vh810p"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -119,14 +119,14 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
                 </path>
               </svg>
             </button>
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                     tabindex="-1"
                     type="button"
                     id=":r2:"
                     aria-label="Open"
                     title="Open"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -138,7 +138,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
             </button>
           </div>
           <fieldset aria-hidden="true"
-                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                    class="MuiOutlinedInput-notchedOutline css-5v2ak0"
           >
             <legend class="css-w1u3ce">
               <span>
@@ -150,9 +150,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       </div>
     </div>
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -160,7 +160,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -168,7 +168,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -176,7 +176,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -184,7 +184,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -192,7 +192,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -200,7 +200,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -211,9 +211,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
     </div>
     <div class="MuiBox-root css-0">
       <div role="group"
-           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
       >
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="USD"
@@ -221,7 +221,7 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
         >
           USD
         </button>
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="EUR"
@@ -232,10 +232,10 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
       </div>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Cash Flows
           </h3>
@@ -540,9 +540,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
         </div>
       </div>
     </div>
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             List of Cash Flows
           </h3>
@@ -758,24 +758,24 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
-    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+  <div class="MuiStack-root css-11tl7xq">
+    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-65tdxr"
          style="width: 600px;"
     >
-      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-dgtwmp-MuiFormLabel-root-MuiInputLabel-root"
+      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-184gmo6"
                data-shrink="false"
                for=":r0:"
                id=":r0:-label"
         >
           Investments Filter
         </label>
-        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1pfc31t-MuiInputBase-root-MuiOutlinedInput-root">
+        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1bh00q9">
           <input aria-invalid="false"
                  autocomplete="off"
                  id=":r0:"
                  type="text"
-                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1dune0f-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qwdxx6"
                  aria-autocomplete="list"
                  aria-expanded="false"
                  autocapitalize="none"
@@ -783,15 +783,15 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
                  role="combobox"
                  value
           >
-          <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+          <div class="MuiAutocomplete-endAdornment css-iuka1o">
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                     tabindex="-1"
                     type="button"
                     id=":r2:"
                     aria-label="Open"
                     title="Open"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -803,7 +803,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
             </button>
           </div>
           <fieldset aria-hidden="true"
-                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                    class="MuiOutlinedInput-notchedOutline css-5v2ak0"
           >
             <legend class="css-81qg8w">
               <span>
@@ -815,9 +815,9 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       </div>
     </div>
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -825,7 +825,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -833,7 +833,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -841,7 +841,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -849,7 +849,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -857,7 +857,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -865,7 +865,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -876,9 +876,9 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
     </div>
     <div class="MuiBox-root css-0">
       <div role="group"
-           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
       >
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="USD"
@@ -886,7 +886,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
         >
           USD
         </button>
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="EUR"
@@ -897,29 +897,29 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
       </div>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Dividends
           </h3>
-          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-x4wzul-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root">
+          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-k1k4qs">
             <div tabindex="0"
                  role="combobox"
                  aria-expanded="false"
                  aria-haspopup="listbox"
-                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-si86to-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-uxvpzc"
             >
               monthly
             </div>
             <input aria-invalid="false"
                    aria-hidden="true"
                    tabindex="-1"
-                   class="MuiSelect-nativeInput css-j0riat-MuiSelect-nativeInput"
+                   class="MuiSelect-nativeInput css-147e5lo"
                    value="0"
             >
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-lohd6h-MuiSvgIcon-root-MuiSelect-icon"
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1l3b12y"
                  focusable="false"
                  aria-hidden="true"
                  viewbox="0 0 24 24"
@@ -929,7 +929,7 @@ exports[`HTML Snapshot Tests Dividends 1`] = `
               </path>
             </svg>
             <fieldset aria-hidden="true"
-                      class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                      class="MuiOutlinedInput-notchedOutline css-5v2ak0"
             >
               <legend class="css-w4cd9x">
                 <span class="notranslate"
@@ -1516,11 +1516,11 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
+  <div class="MuiStack-root css-11tl7xq">
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -1528,7 +1528,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -1536,7 +1536,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -1544,7 +1544,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -1552,7 +1552,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -1560,7 +1560,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -1568,7 +1568,7 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -1578,10 +1578,10 @@ exports[`HTML Snapshot Tests Groups 1`] = `
       </button>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Groups
           </h3>
@@ -2213,24 +2213,24 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
-    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+  <div class="MuiStack-root css-11tl7xq">
+    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-65tdxr"
          style="width: 600px;"
     >
-      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-dgtwmp-MuiFormLabel-root-MuiInputLabel-root"
+      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-184gmo6"
                data-shrink="false"
                for=":r0:"
                id=":r0:-label"
         >
           Investments Filter
         </label>
-        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1pfc31t-MuiInputBase-root-MuiOutlinedInput-root">
+        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1bh00q9">
           <input aria-invalid="false"
                  autocomplete="off"
                  id=":r0:"
                  type="text"
-                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1dune0f-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qwdxx6"
                  aria-autocomplete="list"
                  aria-expanded="false"
                  autocapitalize="none"
@@ -2238,15 +2238,15 @@ exports[`HTML Snapshot Tests Performance 1`] = `
                  role="combobox"
                  value
           >
-          <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+          <div class="MuiAutocomplete-endAdornment css-iuka1o">
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                     tabindex="-1"
                     type="button"
                     id=":r2:"
                     aria-label="Open"
                     title="Open"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -2258,7 +2258,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
             </button>
           </div>
           <fieldset aria-hidden="true"
-                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                    class="MuiOutlinedInput-notchedOutline css-5v2ak0"
           >
             <legend class="css-81qg8w">
               <span>
@@ -2270,9 +2270,9 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       </div>
     </div>
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -2280,7 +2280,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -2288,7 +2288,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -2296,7 +2296,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -2304,7 +2304,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -2312,7 +2312,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -2320,7 +2320,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -2331,9 +2331,9 @@ exports[`HTML Snapshot Tests Performance 1`] = `
     </div>
     <div class="MuiBox-root css-0">
       <div role="group"
-           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
       >
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="USD"
@@ -2341,7 +2341,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
         >
           USD
         </button>
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="EUR"
@@ -2352,29 +2352,29 @@ exports[`HTML Snapshot Tests Performance 1`] = `
       </div>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Performance
           </h3>
-          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-x4wzul-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root">
+          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-k1k4qs">
             <div tabindex="0"
                  role="combobox"
                  aria-expanded="false"
                  aria-haspopup="listbox"
-                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-si86to-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-uxvpzc"
             >
               Returns
             </div>
             <input aria-invalid="false"
                    aria-hidden="true"
                    tabindex="-1"
-                   class="MuiSelect-nativeInput css-j0riat-MuiSelect-nativeInput"
+                   class="MuiSelect-nativeInput css-147e5lo"
                    value="simple"
             >
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-lohd6h-MuiSvgIcon-root-MuiSelect-icon"
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1l3b12y"
                  focusable="false"
                  aria-hidden="true"
                  viewbox="0 0 24 24"
@@ -2384,7 +2384,7 @@ exports[`HTML Snapshot Tests Performance 1`] = `
               </path>
             </svg>
             <fieldset aria-hidden="true"
-                      class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                      class="MuiOutlinedInput-notchedOutline css-5v2ak0"
             >
               <legend class="css-w4cd9x">
                 <span class="notranslate"
@@ -2789,27 +2789,27 @@ Return compares the cost value with the market value.
           </div>
         </div>
         <div class="MuiBox-root css-5flwkf">
-          <div class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+          <div class="MuiAutocomplete-root MuiAutocomplete-hasClearIcon MuiAutocomplete-hasPopupIcon css-65tdxr"
                style="width: 600px;"
           >
-            <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-              <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-17lzde0-MuiFormLabel-root-MuiInputLabel-root"
+            <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+              <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-sf8hzu"
                      data-shrink="true"
                      for=":r4:"
                      id=":r4:-label"
               >
                 Compare with
               </label>
-              <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1yo5bjb-MuiInputBase-root-MuiOutlinedInput-root">
-                <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-3wez20-MuiButtonBase-root-MuiChip-root"
+              <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedStart MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1w8wau4">
+                <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-1hi8qj6"
                      tabindex="-1"
                      role="button"
                      data-tag-index="0"
                 >
-                  <span class="MuiChip-label MuiChip-labelMedium css-16cgrcw-MuiChip-label">
+                  <span class="MuiChip-label MuiChip-labelMedium css-qbwvub">
                     VHT
                   </span>
-                  <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-1umw9bq-MuiSvgIcon-root"
+                  <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-q7mezt"
                        focusable="false"
                        aria-hidden="true"
                        viewbox="0 0 24 24"
@@ -2819,15 +2819,15 @@ Return compares the cost value with the market value.
                     </path>
                   </svg>
                 </div>
-                <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-3wez20-MuiButtonBase-root-MuiChip-root"
+                <div class="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-deletable MuiChip-deletableColorDefault MuiChip-outlinedDefault MuiAutocomplete-tag MuiAutocomplete-tagSizeMedium css-1hi8qj6"
                      tabindex="-1"
                      role="button"
                      data-tag-index="1"
                 >
-                  <span class="MuiChip-label MuiChip-labelMedium css-16cgrcw-MuiChip-label">
+                  <span class="MuiChip-label MuiChip-labelMedium css-qbwvub">
                     GLD
                   </span>
-                  <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-1umw9bq-MuiSvgIcon-root"
+                  <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiChip-deleteIcon MuiChip-deleteIconMedium MuiChip-deleteIconColorDefault MuiChip-deleteIconOutlinedColorDefault css-q7mezt"
                        focusable="false"
                        aria-hidden="true"
                        viewbox="0 0 24 24"
@@ -2841,7 +2841,7 @@ Return compares the cost value with the market value.
                        autocomplete="off"
                        id=":r4:"
                        type="text"
-                       class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qve9l1-MuiInputBase-input-MuiOutlinedInput-input"
+                       class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-fvgl9b"
                        aria-autocomplete="list"
                        aria-expanded="false"
                        autocapitalize="none"
@@ -2849,15 +2849,15 @@ Return compares the cost value with the market value.
                        role="combobox"
                        value
                 >
-                <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-                  <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-1x7n7v0-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-clearIndicator"
+                <div class="MuiAutocomplete-endAdornment css-iuka1o">
+                  <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-clearIndicator css-1o3l9i0"
                           tabindex="-1"
                           type="button"
                           id=":r6:"
                           aria-label="Clear"
                           title="Clear"
                   >
-                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-vh810p"
                          focusable="false"
                          aria-hidden="true"
                          viewbox="0 0 24 24"
@@ -2867,14 +2867,14 @@ Return compares the cost value with the market value.
                       </path>
                     </svg>
                   </button>
-                  <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                  <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                           tabindex="-1"
                           type="button"
                           id=":r7:"
                           aria-label="Open"
                           title="Open"
                   >
-                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                          focusable="false"
                          aria-hidden="true"
                          viewbox="0 0 24 24"
@@ -2886,7 +2886,7 @@ Return compares the cost value with the market value.
                   </button>
                 </div>
                 <fieldset aria-hidden="true"
-                          class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                          class="MuiOutlinedInput-notchedOutline css-5v2ak0"
                 >
                   <legend class="css-w1u3ce">
                     <span>
@@ -2967,24 +2967,24 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
-    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+  <div class="MuiStack-root css-11tl7xq">
+    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-65tdxr"
          style="width: 600px;"
     >
-      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-dgtwmp-MuiFormLabel-root-MuiInputLabel-root"
+      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-184gmo6"
                data-shrink="false"
                for=":r0:"
                id=":r0:-label"
         >
           Investments Filter
         </label>
-        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1pfc31t-MuiInputBase-root-MuiOutlinedInput-root">
+        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1bh00q9">
           <input aria-invalid="false"
                  autocomplete="off"
                  id=":r0:"
                  type="text"
-                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1dune0f-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qwdxx6"
                  aria-autocomplete="list"
                  aria-expanded="false"
                  autocapitalize="none"
@@ -2992,15 +2992,15 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
                  role="combobox"
                  value
           >
-          <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+          <div class="MuiAutocomplete-endAdornment css-iuka1o">
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                     tabindex="-1"
                     type="button"
                     id=":r2:"
                     aria-label="Open"
                     title="Open"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -3012,7 +3012,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
             </button>
           </div>
           <fieldset aria-hidden="true"
-                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                    class="MuiOutlinedInput-notchedOutline css-5v2ak0"
           >
             <legend class="css-81qg8w">
               <span>
@@ -3024,9 +3024,9 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       </div>
     </div>
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -3034,7 +3034,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -3042,7 +3042,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -3050,7 +3050,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -3058,7 +3058,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -3066,7 +3066,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -3074,7 +3074,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -3085,9 +3085,9 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
     </div>
     <div class="MuiBox-root css-0">
       <div role="group"
-           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
       >
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="USD"
@@ -3095,7 +3095,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
         >
           USD
         </button>
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="EUR"
@@ -3106,29 +3106,29 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
       </div>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-lnubbs-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-1fz6yqw">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Performance
           </h3>
-          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-x4wzul-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root">
+          <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-k1k4qs">
             <div tabindex="0"
                  role="combobox"
                  aria-expanded="false"
                  aria-haspopup="listbox"
-                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-si86to-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-uxvpzc"
             >
               Performance
             </div>
             <input aria-invalid="false"
                    aria-hidden="true"
                    tabindex="-1"
-                   class="MuiSelect-nativeInput css-j0riat-MuiSelect-nativeInput"
+                   class="MuiSelect-nativeInput css-147e5lo"
                    value="0"
             >
-            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-lohd6h-MuiSvgIcon-root-MuiSelect-icon"
+            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1l3b12y"
                  focusable="false"
                  aria-hidden="true"
                  viewbox="0 0 24 24"
@@ -3138,7 +3138,7 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
               </path>
             </svg>
             <fieldset aria-hidden="true"
-                      class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                      class="MuiOutlinedInput-notchedOutline css-5v2ak0"
             >
               <legend class="css-w4cd9x">
                 <span class="notranslate"
@@ -3398,8 +3398,8 @@ exports[`HTML Snapshot Tests Portfolio 1`] = `
           </div>
         </div>
       </div>
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Allocation
           </h3>
@@ -3534,24 +3534,24 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       </a>
     </h3>
   </div>
-  <div class="MuiStack-root css-geqxio-MuiStack-root">
-    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-o5oj2-MuiAutocomplete-root"
+  <div class="MuiStack-root css-11tl7xq">
+    <div class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-65tdxr"
          style="width: 600px;"
     >
-      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-cmpglg-MuiFormControl-root-MuiTextField-root">
-        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-dgtwmp-MuiFormLabel-root-MuiInputLabel-root"
+      <div class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-1vbfw84">
+        <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-184gmo6"
                data-shrink="false"
                for=":r0:"
                id=":r0:-label"
         >
           Investments Filter
         </label>
-        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1pfc31t-MuiInputBase-root-MuiOutlinedInput-root">
+        <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1bh00q9">
           <input aria-invalid="false"
                  autocomplete="off"
                  id=":r0:"
                  type="text"
-                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1dune0f-MuiInputBase-input-MuiOutlinedInput-input"
+                 class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-qwdxx6"
                  aria-autocomplete="list"
                  aria-expanded="false"
                  autocapitalize="none"
@@ -3559,15 +3559,15 @@ exports[`HTML Snapshot Tests Returns 1`] = `
                  role="combobox"
                  value
           >
-          <div class="MuiAutocomplete-endAdornment css-1uhhrmm-MuiAutocomplete-endAdornment">
-            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-2y136s-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+          <div class="MuiAutocomplete-endAdornment css-iuka1o">
+            <button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-amwtx2"
                     tabindex="-1"
                     type="button"
                     id=":r2:"
                     aria-label="Open"
                     title="Open"
             >
-              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
+              <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q7mezt"
                    focusable="false"
                    aria-hidden="true"
                    viewbox="0 0 24 24"
@@ -3579,7 +3579,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
             </button>
           </div>
           <fieldset aria-hidden="true"
-                    class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                    class="MuiOutlinedInput-notchedOutline css-5v2ak0"
           >
             <legend class="css-81qg8w">
               <span>
@@ -3591,9 +3591,9 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       </div>
     </div>
     <div role="group"
-         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+         class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
     >
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3M"
@@ -3601,7 +3601,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         3M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="6M"
@@ -3609,7 +3609,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         6M
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="YTD"
@@ -3617,7 +3617,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         YTD
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="1Y"
@@ -3625,7 +3625,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         1Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="3Y"
@@ -3633,7 +3633,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         3Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-middleButton css-1o3j151"
               tabindex="0"
               type="button"
               value="5Y"
@@ -3641,7 +3641,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       >
         5Y
       </button>
-      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+      <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
               tabindex="0"
               type="button"
               value="MAX"
@@ -3652,9 +3652,9 @@ exports[`HTML Snapshot Tests Returns 1`] = `
     </div>
     <div class="MuiBox-root css-0">
       <div role="group"
-           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-1qb8o-MuiToggleButtonGroup-root"
+           class="MuiToggleButtonGroup-root MuiToggleButtonGroup-horizontal css-utyww8"
       >
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-firstButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="USD"
@@ -3662,7 +3662,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
         >
           USD
         </button>
-        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-nc7ria-MuiButtonBase-root-MuiToggleButton-root"
+        <button class="MuiButtonBase-root MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal MuiToggleButtonGroup-lastButton css-1o3j151"
                 tabindex="0"
                 type="button"
                 value="EUR"
@@ -3673,24 +3673,24 @@ exports[`HTML Snapshot Tests Returns 1`] = `
       </div>
     </div>
   </div>
-  <div class="MuiStack-root css-jhlyxk-MuiStack-root">
-    <div class="MuiStack-root css-1akdl0s-MuiStack-root">
-      <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-x4wzul-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root">
+  <div class="MuiStack-root css-1hh2x4m">
+    <div class="MuiStack-root css-1x7htas">
+      <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-sizeSmall MuiSelect-root css-k1k4qs">
         <div tabindex="0"
              role="combobox"
              aria-expanded="false"
              aria-haspopup="listbox"
-             class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-si86to-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+             class="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-uxvpzc"
         >
           Internal Rate of Returns
         </div>
         <input aria-invalid="false"
                aria-hidden="true"
                tabindex="-1"
-               class="MuiSelect-nativeInput css-j0riat-MuiSelect-nativeInput"
+               class="MuiSelect-nativeInput css-147e5lo"
                value="irr"
         >
-        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-lohd6h-MuiSvgIcon-root-MuiSelect-icon"
+        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-1l3b12y"
              focusable="false"
              aria-hidden="true"
              viewbox="0 0 24 24"
@@ -3700,7 +3700,7 @@ exports[`HTML Snapshot Tests Returns 1`] = `
           </path>
         </svg>
         <fieldset aria-hidden="true"
-                  class="MuiOutlinedInput-notchedOutline css-1ll44ll-MuiOutlinedInput-notchedOutline"
+                  class="MuiOutlinedInput-notchedOutline css-5v2ak0"
         >
           <legend class="css-w4cd9x">
             <span class="notranslate"
@@ -3712,9 +3712,9 @@ exports[`HTML Snapshot Tests Returns 1`] = `
         </fieldset>
       </div>
     </div>
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Monthly Returns
           </h3>
@@ -5612,9 +5612,9 @@ This method is recommended when you are in control of the cash flows.
         </div>
       </div>
     </div>
-    <div class="MuiStack-root css-9zy1jg-MuiStack-root">
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+    <div class="MuiStack-root css-x8w9ls">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Yearly Returns
           </h3>
@@ -5935,8 +5935,8 @@ This method is recommended when you are in control of the cash flows.
           </div>
         </div>
       </div>
-      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-16ymtjf-MuiPaper-root-MuiCard-root">
-        <div class="MuiStack-root css-17em4y2-MuiStack-root">
+      <div class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root css-15j64it">
+        <div class="MuiStack-root css-1c1plk">
           <h3>
             Returns over Periods
           </h3>

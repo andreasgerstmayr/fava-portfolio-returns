@@ -4,8 +4,11 @@ module.exports = {
             width: 1680,
             height: 1000,
         },
-        headless: process.env.HEADLESS !== "false",
+        headless: true,
         // chrome sandbox does not work inside container
         args: ["--no-sandbox"],
+
+        // debug
+        // dumpio: true,
     },
 };
