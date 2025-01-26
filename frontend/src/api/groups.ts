@@ -16,6 +16,7 @@ interface Group {
   returnsPct: number;
   returnsPctAnnualized: number;
   irr: number;
+  mdm: number;
   twr: number;
 }
 

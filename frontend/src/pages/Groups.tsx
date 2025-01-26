@@ -51,6 +51,7 @@ export function GroupsTable() {
           <th data-sort="num">Returns</th>
           <th data-sort="num">Yield</th>
           <th data-sort="num">IRR</th>
+          <th data-sort="num">MDM</th>
           <th data-sort="num">TWR</th>
         </tr>
       </thead>
@@ -87,21 +88,28 @@ export function GroupsTable() {
             <td
               className="num"
               style={{ color: group.returnsPct >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-              data-sort-value={group.returns}
+              data-sort-value={group.returnsPct}
             >
               {percentFormatter(group.returnsPct)}
             </td>
             <td
               className="num"
               style={{ color: group.irr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-              data-sort-value={group.returns}
+              data-sort-value={group.irr}
             >
               {percentFormatter(group.irr)}
             </td>
             <td
               className="num"
+              style={{ color: group.mdm >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
+              data-sort-value={group.mdm}
+            >
+              {percentFormatter(group.mdm)}
+            </td>
+            <td
+              className="num"
               style={{ color: group.twr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-              data-sort-value={group.returns}
+              data-sort-value={group.twr}
             >
               {percentFormatter(group.twr)}
             </td>

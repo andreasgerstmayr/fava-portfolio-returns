@@ -9,13 +9,19 @@ const tests = [
     url: "/extension/FavaPortfolioReturns/?time=2021-2022#/performance?compareInvestments=c:VHT_c:GLD",
   },
   { name: "Returns", url: "/extension/FavaPortfolioReturns/#/returns" },
+  { name: "Returns (MDM)", url: "/extension/FavaPortfolioReturns/#/returns?method=mdm" },
+  { name: "Returns (TWR)", url: "/extension/FavaPortfolioReturns/#/returns?method=twr" },
   { name: "Dividends", url: "/extension/FavaPortfolioReturns/#/dividends" },
   { name: "Cash Flows", url: "/extension/FavaPortfolioReturns/#/cash_flows?investments=c:VHT" },
   { name: "Groups", url: "/extension/FavaPortfolioReturns/#/groups" },
 ];
 
 function customSnapshotIdentifier(p: { currentTestName: string }) {
-  return p.currentTestName.replace("PNG Snapshot Tests ", "").replaceAll(" ", "_").toLowerCase();
+  return p.currentTestName
+    .replace("PNG Snapshot Tests ", "")
+    .replaceAll(/[^a-zA-Z ]/g, "")
+    .replaceAll(" ", "_")
+    .toLowerCase();
 }
 
 expect.extend({ toMatchImageSnapshot });

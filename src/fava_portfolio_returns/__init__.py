@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import NamedTuple, Optional
 
 from beangrow.investments import AccountData
+from beangrow.returns import Pricer
 from fava.context import g
 from fava.ext import FavaExtensionBase, extension_endpoint
 from fava.helpers import FavaAPIError
@@ -39,7 +40,9 @@ from fava_portfolio_returns.core.intervals import (
 )
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.core.utils import get_cash_flows_time_range
+from fava_portfolio_returns.returns.base import ReturnsBase
 from fava_portfolio_returns.returns.irr import IRR
+from fava_portfolio_returns.returns.mdm import ModifiedDietzMethod
 from fava_portfolio_returns.returns.simple import SimpleReturns
 from fava_portfolio_returns.returns.twr import TWR
 
@@ -172,6 +175,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
         irr = IRR().single(
             pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
         )
+        mdm = ModifiedDietzMethod().single(
+            pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+        )
         twr = TWR().single(
             pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
         )
@@ -185,6 +191,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 "returnsPct": returns_pct,
                 "returnsPctAnnualized": returns_pct_annualized,
                 "irr": irr,
+                "mdm": mdm,
                 "twr": twr,
             },
         }
@@ -250,6 +257,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
                 pricer, account_data_list, target_currency, toolbar_ctx.end_date
             )
             irr = IRR().single(pricer, account_data_list, target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date)
+            mdm = ModifiedDietzMethod().single(
+                pricer, account_data_list, target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+            )
             twr = TWR().single(pricer, account_data_list, target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date)
             group_performances.append(
                 {
@@ -263,11 +273,100 @@ class FavaPortfolioReturns(FavaExtensionBase):
                     "returnsPct": returns_pct,
                     "returnsPctAnnualized": returns_pct_annualized,
                     "irr": irr,
+                    "mdm": mdm,
                     "twr": twr,
                 }
             )
 
         return {"groups": group_performances}
+
+    def get_series(
+        self, pricer: Pricer, account_data_list: list[AccountData], toolbar_ctx: ToolbarContext, series_name: str
+    ):
+        if series_name == "portfolio_market_values":
+            return portfolio_market_values(
+                pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+            )
+        elif series_name == "portfolio_cost_values":
+            return portfolio_cost_values(
+                pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+            )
+        elif m := re.match(r"^cash_flows_(div|exdiv)$", series_name):
+            dividends = m.group(1) == "div"
+            return cash_flows_list(
+                pricer,
+                account_data_list,
+                toolbar_ctx.target_currency,
+                toolbar_ctx.start_date,
+                toolbar_ctx.end_date,
+                dividends,
+            )
+        elif series_name == "cash_flows_cumulative":
+            return cash_flows_cumulative(
+                pricer,
+                account_data_list,
+                toolbar_ctx.target_currency,
+                toolbar_ctx.start_date,
+                toolbar_ctx.end_date,
+            )
+        elif series_name == "portfolio_returns":
+            return SimpleReturns().series(
+                pricer,
+                account_data_list,
+                toolbar_ctx.target_currency,
+                toolbar_ctx.start_date,
+                toolbar_ctx.end_date,
+                percent=False,
+            )
+        elif m := re.match(r"^returns_(simple|irr|mdm|twr)_(series|heatmap|yearly|periods)$", series_name):
+            method, interval = m.groups()
+
+            fn: ReturnsBase
+            if method == "simple":
+                fn = SimpleReturns()
+            elif method == "irr":
+                fn = IRR()
+            elif method == "mdm":
+                fn = ModifiedDietzMethod()
+            elif method == "twr":
+                fn = TWR()
+            else:
+                raise FavaAPIError(f"Invalid method {method}")
+
+            if interval == "series":
+                return fn.series(
+                    pricer,
+                    account_data_list,
+                    toolbar_ctx.target_currency,
+                    toolbar_ctx.start_date,
+                    toolbar_ctx.end_date,
+                )
+
+            cf_start, _ = get_cash_flows_time_range(account_data_list)
+            if interval == "heatmap":
+                # skip time before first cash flow
+                start_date = max(cf_start, toolbar_ctx.start_date) if cf_start else toolbar_ctx.start_date
+                intervals = intervals_heatmap(start_date.year, toolbar_ctx.end_date.year)
+            elif interval == "yearly":
+                intervals = intervals_yearly(toolbar_ctx.end_date)
+            elif interval == "periods":
+                # the 'MAX' interval should start at the first cash flow, not at the date range selection
+                # use toolbar_ctx.start_date in case cf_start is None (no cash flow found)
+                intervals = intervals_periods(cf_start or toolbar_ctx.start_date, toolbar_ctx.end_date)
+            else:
+                raise FavaAPIError(f"Invalid interval {interval}")
+
+            return fn.intervals(
+                pricer,
+                account_data_list,
+                toolbar_ctx.target_currency,
+                intervals,
+            )
+        elif m := re.match(r"^price_(.+)$", series_name):
+            currency = m.group(1)
+            return get_prices(pricer, toolbar_ctx.target_currency, currency)
+        else:
+            raise FavaAPIError(f"Invalid series name {series_name}")
 
     @extension_endpoint("series")  # type: ignore
     @api_response
@@ -282,86 +381,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         series = {}
         for series_name in requested_series:
-            if series_name == "portfolio_market_values":
-                series[series_name] = portfolio_market_values(
-                    pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
-                )
-            elif series_name == "portfolio_cost_values":
-                series[series_name] = portfolio_cost_values(
-                    pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
-                )
-            elif m := re.match(r"^cash_flows_(div|exdiv)$", series_name):
-                dividends = m.group(1) == "div"
-                series[series_name] = cash_flows_list(
-                    pricer,
-                    account_data_list,
-                    toolbar_ctx.target_currency,
-                    toolbar_ctx.start_date,
-                    toolbar_ctx.end_date,
-                    dividends,
-                )
-            elif series_name == "cash_flows_cumulative":
-                series[series_name] = cash_flows_cumulative(
-                    pricer,
-                    account_data_list,
-                    toolbar_ctx.target_currency,
-                    toolbar_ctx.start_date,
-                    toolbar_ctx.end_date,
-                )
-            elif series_name == "portfolio_returns":
-                series[series_name] = SimpleReturns().series(
-                    pricer,
-                    account_data_list,
-                    toolbar_ctx.target_currency,
-                    toolbar_ctx.start_date,
-                    toolbar_ctx.end_date,
-                    percent=False,
-                )
-            elif m := re.match(r"^returns_(simple|irr|twr)_(series|heatmap|yearly|periods)$", series_name):
-                method, interval = m.groups()
-
-                if method == "simple":
-                    fn = SimpleReturns()
-                elif method == "irr":
-                    fn = IRR()
-                elif method == "twr":
-                    fn = TWR()
-                else:
-                    raise FavaAPIError(f"Invalid method {method}")
-
-                if interval == "series":
-                    series[series_name] = fn.series(
-                        pricer,
-                        account_data_list,
-                        toolbar_ctx.target_currency,
-                        toolbar_ctx.start_date,
-                        toolbar_ctx.end_date,
-                    )
-                else:
-                    cf_start, _ = get_cash_flows_time_range(account_data_list)
-                    if interval == "heatmap":
-                        # skip time before first cash flow
-                        start_date = max(cf_start, toolbar_ctx.start_date) if cf_start else toolbar_ctx.start_date
-                        intervals = intervals_heatmap(start_date.year, toolbar_ctx.end_date.year)
-                    elif interval == "yearly":
-                        intervals = intervals_yearly(toolbar_ctx.end_date)
-                    elif interval == "periods":
-                        # the 'MAX' interval should start at the first cash flow, not at the date range selection
-                        # use toolbar_ctx.start_date in case cf_start is None (no cash flow found)
-                        intervals = intervals_periods(cf_start or toolbar_ctx.start_date, toolbar_ctx.end_date)
-                    else:
-                        raise FavaAPIError(f"Invalid interval {interval}")
-
-                    series[series_name] = fn.intervals(
-                        pricer,
-                        account_data_list,
-                        toolbar_ctx.target_currency,
-                        intervals,
-                    )
-            elif m := re.match(r"^price_(.+)$", series_name):
-                currency = m.group(1)
-                series[series_name] = get_prices(pricer, toolbar_ctx.target_currency, currency)
-            else:
-                raise FavaAPIError(f"Invalid series name {series_name}")
+            series[series_name] = self.get_series(pricer, account_data_list, toolbar_ctx, series_name)
 
         return {"series": series}
