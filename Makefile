@@ -34,7 +34,7 @@ test-js-update:
 test-py:
 	uv run pytest
 
-test: test-js test-py
+test: test-py test-js
 
 ## Utils
 run:

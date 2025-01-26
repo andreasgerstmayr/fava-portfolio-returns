@@ -8,7 +8,7 @@ import { useToolbarContext } from "./Header/ToolbarProvider";
 export interface InvestmentOption {
   type: "Account" | "Group" | "Currency";
   id: string;
-  /** text next to checkbox and search text */
+  /** text next to checkbox, and search text */
   label: string;
   chipLabel: string;
 }

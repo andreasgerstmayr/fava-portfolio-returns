@@ -15,7 +15,7 @@ export interface SeriesResponse {
 }
 
 export function useSeries(request: SeriesRequest): UseQueryResult<SeriesResponse> {
-  const params = new URLSearchParams(location.search);
+  const params = new URLSearchParams(location.search); // keep Fava's filters like ?time=...
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   params.set("series", request.series.join(","));
@@ -29,7 +29,7 @@ export function useSeries(request: SeriesRequest): UseQueryResult<SeriesResponse
 
 export function useMultiSeries(requests: SeriesRequest[]) {
   const urls = requests.map((request) => {
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(location.search); // keep Fava's filters like ?time=...
     params.set("investments", request.investmentFilter.join(","));
     params.set("currency", request.targetCurrency);
     params.set("series", request.series.join(","));

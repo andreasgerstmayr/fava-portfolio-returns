@@ -27,8 +27,6 @@ export interface ConfigResponse {
     currencies: Currency[];
   };
   operatingCurrencies: string[];
-  /** Fava date range */
-  dateRange: string;
 }
 
 export function useConfig() {

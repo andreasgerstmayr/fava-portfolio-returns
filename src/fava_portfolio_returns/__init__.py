@@ -1,6 +1,6 @@
 #
 # Copyright 2021-2022 Martin Blais <blais@furius.ca> and beangrow contributors
-# Copyright 2024 Andreas Gerstmayr <andreas@gerstmayr.me>
+# Copyright 2025 Andreas Gerstmayr <andreas@gerstmayr.me>
 #
 # The following code is a derivative work of the code from the beangrow project,
 # which is licensed GPLv2. This code therefore is also licensed under the terms
@@ -151,7 +151,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {
             "investments": self.portfolio.investment_groups,
             "operatingCurrencies": operating_currencies,
-            "dateRange": g.filtered.date_range,
         }
 
     @extension_endpoint("allocation")  # type: ignore

@@ -6,11 +6,11 @@ interface DashboardProps {
   children?: React.ReactNode;
 }
 export function Dashboard({ children }: DashboardProps) {
-  // remove 1.5em padding from <article>
   return (
     <Stack
       sx={{
         flexDirection: "column",
+        // remove 1.5em padding from <article>
         mx: "-1.5em",
         marginBottom: "-1.5em",
         padding: "1.5em",
