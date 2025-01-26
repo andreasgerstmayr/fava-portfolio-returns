@@ -4,9 +4,9 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import NamedTuple
 
-import beangrow.returns as returnslib
 from beancount.core.number import ZERO
 from beangrow.investments import AccountData
+from beangrow.returns import Pricer, truncate_and_merge_cash_flows
 
 from fava_portfolio_returns.core.utils import (
     compute_balance_at,
@@ -23,7 +23,7 @@ class TWR(ReturnsBase):
 
     def single(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         start_date: datetime.date,
@@ -34,7 +34,7 @@ class TWR(ReturnsBase):
 
     def series(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         start_date: datetime.date,
@@ -52,13 +52,13 @@ class Subperiod(NamedTuple):
 
 
 def _get_subperiods(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     account_data_list: list[AccountData],
     target_currency: str,
     start_date: datetime.date,
     end_date: datetime.date,
 ):
-    cash_flows = returnslib.truncate_and_merge_cash_flows(pricer, account_data_list, start_date, end_date)
+    cash_flows = truncate_and_merge_cash_flows(pricer, account_data_list, start_date, end_date)
     cash_flows = convert_cash_flows_to_currency(pricer, target_currency, cash_flows)
     market_values: dict[datetime.date, Decimal] = {}
 

@@ -4,12 +4,12 @@ import typing
 from collections import defaultdict
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beancount.core import convert, data
 from beancount.core.data import Transaction
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
 from beangrow.investments import AccountData, Cat
+from beangrow.returns import Pricer, compute_portfolio_values
 
 from fava_portfolio_returns.api.cash_flows import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import (
@@ -23,7 +23,7 @@ from fava_portfolio_returns.returns.returns import compute_annualized_returns, c
 
 
 def portfolio_allocation(
-    pricer: returnslib.Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
+    pricer: Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
 ):
     market_values: dict[tuple, Decimal] = defaultdict(Decimal)
     for account in account_data_list:
@@ -46,7 +46,7 @@ def portfolio_allocation(
 
 
 def portolio_summary(
-    pricer: returnslib.Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
+    pricer: Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
 ):
     cash_in = ZERO  # all incoming cash in target currency
     cash_out = ZERO  # all outgoing cash in target currency
@@ -83,14 +83,14 @@ def portolio_summary(
 
 
 def portfolio_market_values(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     account_data_list: list[AccountData],
     target_currency: str,
     start_date: datetime.date,
     end_date: datetime.date,
 ):
     transactions = data.sorted([txn for ad in account_data_list for txn in ad.transactions])
-    value_dates, value_values = returnslib.compute_portfolio_values(pricer.price_map, target_currency, transactions)
+    value_dates, value_values = compute_portfolio_values(pricer.price_map, target_currency, transactions)
     series = list(zip(value_dates, value_values))
 
     cf_start, _ = get_cash_flows_time_range(account_data_list)
@@ -103,7 +103,7 @@ def portfolio_market_values(
 
 
 def portfolio_cost_values(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     account_data_list: list[AccountData],
     target_currency: str,
     start_date: datetime.date,

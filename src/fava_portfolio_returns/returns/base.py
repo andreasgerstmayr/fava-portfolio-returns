@@ -2,15 +2,15 @@ import abc
 import datetime
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beangrow.investments import AccountData
 from beangrow.reports import Interval
+from beangrow.returns import Pricer
 
 
 class ReturnsBase(abc.ABC):
     def single(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         start_date: datetime.date,
@@ -20,7 +20,7 @@ class ReturnsBase(abc.ABC):
 
     def series(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         start_date: datetime.date,
@@ -30,7 +30,7 @@ class ReturnsBase(abc.ABC):
 
     def intervals(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         intervals: list[Interval],

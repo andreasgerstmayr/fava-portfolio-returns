@@ -2,8 +2,8 @@ import datetime
 from collections import defaultdict
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beangrow.investments import AccountData
+from beangrow.returns import Pricer
 
 from fava_portfolio_returns.api.cash_flows import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.portfolio import InvestmentGroups
@@ -13,7 +13,7 @@ Date = datetime.date
 
 
 def get_dividends(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     investment_groups: InvestmentGroups,
     account_data_list: list[AccountData],
     target_currency: str,

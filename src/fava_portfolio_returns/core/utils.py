@@ -2,12 +2,12 @@ import datetime
 from collections import defaultdict
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beancount.core import convert
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
 from beancount.core.position import Position
 from beangrow.investments import AccountData, CashFlow, Cat
+from beangrow.returns import Pricer
 from fava.helpers import FavaAPIError
 
 
@@ -19,7 +19,7 @@ class CurrencyConversionException(FavaAPIError):
         )
 
 
-def get_cost_value_of_inventory(pricer: returnslib.Pricer, target_currency: str, balance: Inventory) -> Decimal:
+def get_cost_value_of_inventory(pricer: Pricer, target_currency: str, balance: Inventory) -> Decimal:
     cost_balance = balance.reduce(convert.get_cost)
     target_ccy_balance = cost_balance.reduce(convert.convert_position, target_currency, pricer.price_map)
     pos: Position | None = target_ccy_balance.get_only_position()
@@ -29,7 +29,7 @@ def get_cost_value_of_inventory(pricer: returnslib.Pricer, target_currency: str,
 
 
 def get_market_value_of_inventory(
-    pricer: returnslib.Pricer, target_currency: str, balance: Inventory, date: datetime.date
+    pricer: Pricer, target_currency: str, balance: Inventory, date: datetime.date
 ) -> Decimal:
     # get market value in the cost currency of the positions
     value_balance = balance.reduce(convert.get_value, pricer.price_map, date)
@@ -41,9 +41,7 @@ def get_market_value_of_inventory(
     return pos.units.number if pos and pos.units.number is not None else ZERO
 
 
-def convert_cash_flows_to_currency(
-    pricer: returnslib.Pricer, target_currency: str, flows: list[CashFlow]
-) -> list[CashFlow]:
+def convert_cash_flows_to_currency(pricer: Pricer, target_currency: str, flows: list[CashFlow]) -> list[CashFlow]:
     target_flows = []
     for flow in flows:
         target_amt = pricer.convert_amount(flow.amount, target_currency, flow.date)

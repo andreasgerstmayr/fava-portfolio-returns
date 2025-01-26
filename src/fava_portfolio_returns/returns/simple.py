@@ -2,8 +2,8 @@ import datetime
 from collections import defaultdict
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beangrow.investments import AccountData
+from beangrow.returns import Pricer
 
 from fava_portfolio_returns.api.cash_flows import cash_flows_cumulative
 from fava_portfolio_returns.api.portfolio import portfolio_cost_values, portfolio_market_values
@@ -16,7 +16,7 @@ class SimpleReturns(ReturnsBase):
 
     def series(
         self,
-        pricer: returnslib.Pricer,
+        pricer: Pricer,
         account_data_list: list[AccountData],
         target_currency: str,
         start_date: datetime.date,

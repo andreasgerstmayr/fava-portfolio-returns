@@ -1,9 +1,9 @@
 import datetime
 from decimal import Decimal
 
-import beangrow.returns as returnslib
 from beancount.core.number import ZERO
 from beangrow.investments import AccountData
+from beangrow.returns import Pricer
 
 from fava_portfolio_returns.core.utils import (
     convert_cash_flows_to_currency,
@@ -14,7 +14,7 @@ from fava_portfolio_returns.core.utils import (
 
 
 def cash_flows_list(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     account_data_list: list[AccountData],
     target_currency: str,
     start_date: datetime.date,
@@ -48,7 +48,7 @@ def cash_flows_table(
 
 
 def cash_flows_cumulative(
-    pricer: returnslib.Pricer,
+    pricer: Pricer,
     account_data_list: list[AccountData],
     target_currency: str,
     start_date: datetime.date,
