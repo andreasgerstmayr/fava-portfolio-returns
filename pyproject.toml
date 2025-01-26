@@ -7,8 +7,7 @@ authors = [
 ]
 dependencies = [
     "fava>=1.30",
-    "beangrow>=1.0.0",
-    "protobuf<3.21",
+    "beangrow>=1.0.1",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"
@@ -27,7 +26,8 @@ dev = [
     "pylint>=3.1.0",
     "pytest>=8.3.3",
     "ruff>=0.8.1",
-    "types-python-dateutil>=2",
+    "types-protobuf>=5.29.1.20241207",
+    "types-python-dateutil>=2.9.0.20241206",
     "types-PyYAML>=6",
 ]
 
@@ -55,7 +55,8 @@ disable = [
     "too-many-statements",
 ]
 
-[tool.mypy]
+[[tool.mypy.overrides]]
+module = "beangrow.*"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
