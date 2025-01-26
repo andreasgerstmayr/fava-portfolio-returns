@@ -8,6 +8,12 @@ export const ReturnsMethods = {
       "Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.\n" +
       "This method is recommended when you are in control of the cash flows.",
   },
+  mdm: {
+    label: "Modified Dietz Method",
+    help:
+      "Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows.\n" +
+      "This method is recommended when you are in control of the cash flows.",
+  },
   twr: {
     label: "Time-Weighted Rate of Return",
     help:

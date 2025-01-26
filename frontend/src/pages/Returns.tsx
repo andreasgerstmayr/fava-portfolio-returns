@@ -8,7 +8,7 @@ import { Loading } from "../components/Loading";
 import { ReturnsMethods, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { NEGATIVE_NUMBER_COLOR, POSITIVE_NUMBER_COLOR } from "../components/style";
 
-const ReturnsMethodEnum = createEnumParam(["irr", "twr"]);
+const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
 
 export function Returns() {
@@ -17,7 +17,7 @@ export function Returns() {
   return (
     <Dashboard>
       <DashboardRow sx={{ justifyContent: "flex-end" }}>
-        <ReturnsMethodSelection options={["irr", "twr"]} method={method} setMethod={setMethod} />
+        <ReturnsMethodSelection options={["irr", "mdm", "twr"]} method={method} setMethod={setMethod} />
       </DashboardRow>
       <DashboardRow>
         <Panel title="Monthly Returns" help={ReturnsMethods[method].help}>

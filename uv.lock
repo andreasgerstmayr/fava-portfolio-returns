@@ -397,7 +397,6 @@ wheels = [
 
 [[package]]
 name = "fava-portfolio-returns"
-version = "0.1.dev60+g0195de4.d20250126"
 source = { editable = "." }
 dependencies = [
     { name = "beangrow" },
