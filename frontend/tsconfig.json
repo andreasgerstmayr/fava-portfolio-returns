@@ -1,6 +1,10 @@
 {
     "compilerOptions": {
         "target": "es2022",
-        "moduleResolution": "Node"
+        "moduleResolution": "node",
+        "jsx": "react-jsx",
+        "strict": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true
     }
 }

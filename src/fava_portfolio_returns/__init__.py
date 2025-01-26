@@ -1,6 +1,6 @@
 #
 # Copyright 2021-2022 Martin Blais <blais@furius.ca> and beangrow contributors
-# Copyright 2022 Andreas Gerstmayr <andreas@gerstmayr.me>
+# Copyright 2024 Andreas Gerstmayr <andreas@gerstmayr.me>
 #
 # The following code is a derivative work of the code from the beangrow project,
 # which is licensed GPLv2. This code therefore is also licensed under the terms
@@ -8,38 +8,77 @@
 #
 
 import datetime
-from decimal import Decimal
-from collections import namedtuple, defaultdict
-from typing import Any, List, Dict, Optional, Tuple
-import numpy as np
-from beancount.core import data, getters, prices, convert  # type: ignore
-from beancount.core.number import ZERO  # type: ignore
-from beancount.core.inventory import Inventory  # type: ignore
-from beancount.core.amount import Amount  # type: ignore
-from beangrow import investments  # type: ignore
-import beangrow.config as configlib  # type: ignore
-from beangrow.investments import CashFlow  # type: ignore
-import beangrow.returns as returnslib  # type: ignore
-from beangrow.reports import (  # type: ignore
-    Table,
-    compute_returns_table,
-    get_calendar_intervals,
-    get_cumulative_intervals,
-    get_accounts_table,
-)
-from fava.ext import FavaExtensionBase
-from fava.helpers import FavaAPIError
+import functools
+import logging
+import os
+import re
+import traceback
+from datetime import date
+from pathlib import Path
+from typing import NamedTuple, Optional
+
+from beangrow.investments import AccountData
 from fava.context import g
+from fava.ext import FavaExtensionBase, extension_endpoint
+from fava.helpers import FavaAPIError
+from flask import request
 
-ExtConfig = namedtuple("ExtConfig", ["beangrow_config_path", "beangrow_debug_dir"])
+from fava_portfolio_returns.api.cash_flows import cash_flows_cumulative, cash_flows_list, cash_flows_table
+from fava_portfolio_returns.api.dividends import get_dividends
+from fava_portfolio_returns.api.portfolio import (
+    portfolio_allocation,
+    portfolio_cost_values,
+    portfolio_market_values,
+    portolio_summary,
+)
+from fava_portfolio_returns.api.prices import get_prices
+from fava_portfolio_returns.core.intervals import (
+    intervals_heatmap,
+    intervals_periods,
+    intervals_yearly,
+    iterate_months,
+    iterate_years,
+)
+from fava_portfolio_returns.core.portfolio import Portfolio
+from fava_portfolio_returns.core.utils import get_cash_flows_time_range
+from fava_portfolio_returns.returns.irr import IRR
+from fava_portfolio_returns.returns.simple import SimpleReturns
+from fava_portfolio_returns.returns.twr import TWR
+
+LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
+logging.basicConfig(level=LOGLEVEL)
 
 
-class CurrencyConversionException(FavaAPIError):
-    def __init__(self, source, target, date):
-        super().__init__(
-            f"Could not convert {source} to {target} at {date}."
-            " Please add additional price directives to the ledger to support this conversion."
-        )
+class ExtConfig(NamedTuple):
+    beangrow_config_path: Path
+    beangrow_debug_dir: Optional[str]
+
+
+class ToolbarContext(NamedTuple):
+    investment_filter: list[str]
+    """target currency"""
+    target_currency: str
+    """start date (inclusive)"""
+    start_date: date
+    """end date (inclusive)"""
+    end_date: date
+
+
+def api_response(func):
+    """return {success: true, data: ...} or {success: false, error: ...}"""
+
+    @functools.wraps(func)
+    def decorator(*args, **kwargs):
+        try:
+            data = func(*args, **kwargs)
+            return {"success": True, "data": data}
+        except FavaAPIError as e:
+            return {"success": False, "error": e.message}, 500
+        except Exception as e:  # pylint: disable=broad-exception-caught
+            traceback.print_exception(e)
+            return {"success": False, "error": str(e)}, 500
+
+    return decorator
 
 
 class FavaPortfolioReturns(FavaExtensionBase):
@@ -53,362 +92,282 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
         return ExtConfig(
-            beangrow_config_path=self.ledger.join_path(
-                cfg.get("beangrow_config", "beangrow.pbtxt")
-            ),
+            beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
             beangrow_debug_dir=beangrow_debug_dir,
         )
 
-    def extract(
-        self, end_date
-    ) -> Tuple[
-        returnslib.Pricer, Dict, Dict[investments.Account, investments.AccountData]
-    ]:
+    @functools.cached_property
+    def portfolio(self):
         ext_config = self.read_ext_config()
-        entries = self.ledger.all_entries
-        accounts = getters.get_accounts(entries)
-        dcontext = self.ledger.options["dcontext"]
-
-        price_map = prices.build_price_map(entries)
-        pricer = returnslib.Pricer(price_map)
-
-        try:
-            beangrow_config = configlib.read_config(
-                ext_config.beangrow_config_path, None, accounts
-            )
-        except Exception as ex:
-            raise FavaAPIError(
-                f"Cannot read beangrow configuration file {ext_config.beangrow_config_path}: {ex}"
-            ) from ex
-
-        # Extract data from the ledger.
-        account_data_map = investments.extract(
-            entries,
-            dcontext,
-            beangrow_config,
-            end_date,
-            False,
-            ext_config.beangrow_debug_dir,
+        return Portfolio(
+            self.ledger.all_entries,
+            self.ledger.options,
+            ext_config.beangrow_config_path,
+            beangrow_debug_dir=ext_config.beangrow_debug_dir,
         )
 
-        return (
-            pricer,
-            beangrow_config.groups.group,  # pylint: disable=no-member
-            account_data_map,
+    def extract_filtered(self, toolbar_ctx: ToolbarContext):
+        return self.portfolio.pricer, self.portfolio.filter_account_data_list(toolbar_ctx.investment_filter)
+
+    def get_toolbar_ctx(self):
+        sel_investments = list(filter(None, request.args.get("investments", "").split(",")))
+
+        operating_currencies = self.ledger.options["operating_currency"]
+        if len(operating_currencies) == 0:
+            raise FavaAPIError("no operating currency specified in the ledger")
+        currency = request.args.get("currency", operating_currencies[0])
+
+        # pylint: disable=protected-access
+        start_date = g.filtered._date_first
+        # pylint: disable=protected-access
+        end_date = g.filtered._date_last - datetime.timedelta(days=1)
+
+        return ToolbarContext(
+            investment_filter=sel_investments,
+            target_currency=currency,
+            start_date=start_date,
+            end_date=end_date,
         )
 
     @staticmethod
-    def get_target_currency(adlist: List[investments.AccountData]) -> str:
-        cost_currencies = set(ad.cost_currency for ad in adlist)
+    def get_target_currency(account_data_list: list[AccountData]) -> str:
+        cost_currencies = set(ad.cost_currency for ad in account_data_list)
         if len(cost_currencies) != 1:
             curr = ", ".join(cost_currencies)
-            accs = ", ".join([ad.account for ad in adlist])
+            accs = ", ".join([ad.account for ad in account_data_list])
             raise FavaAPIError(
                 f"Found multiple cost currencies {curr} for accounts {accs}."
                 " Please specify a single currency for the group in the beangrow configuration file."
             )
         return cost_currencies.pop()
 
-    @staticmethod
-    def get_flows_in_target_currency(
-        pricer: returnslib.Pricer, flows: List[CashFlow], target_currency: str
-    ) -> List[CashFlow]:
-        target_flows = []
-        for flow in flows:
-            target_amt = pricer.convert_amount(flow.amount, target_currency, flow.date)
-            if target_amt.currency != target_currency:
-                raise CurrencyConversionException(
-                    target_amt.currency, target_currency, flow.date
-                )
+    @extension_endpoint("config")  # type: ignore
+    @api_response
+    def api_config(self):
+        operating_currencies = self.ledger.options["operating_currency"]
+        if len(operating_currencies) == 0:
+            raise FavaAPIError("no operating currency specified in the ledger")
 
-            target_flow = flow._replace(amount=target_amt)
-            target_flows.append(target_flow)
-        return target_flows
+        return {
+            "investments": self.portfolio.investment_groups,
+            "operatingCurrencies": operating_currencies,
+            "dateRange": g.filtered.date_range,
+        }
 
-    @staticmethod
-    def get_only_amount(inventory: Inventory) -> Optional[Amount]:
-        pos = inventory.get_only_position()
-        return pos.units if pos else None
+    @extension_endpoint("allocation")  # type: ignore
+    @api_response
+    def api_allocation(self):
+        toolbar_ctx = self.get_toolbar_ctx()
+        pricer, account_data_list = self.extract_filtered(toolbar_ctx)
 
-    def calculate_group_performance(
-        self,
-        pricer: returnslib.Pricer,
-        adlist: List[investments.AccountData],
-        start_date: datetime.date,
-        end_date: datetime.date,
-        target_currency: Optional[str] = None,
-    ):
-        if not target_currency:
-            target_currency = self.get_target_currency(adlist)
+        allocation = portfolio_allocation(pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.end_date)
 
-        units_balance = Inventory()  # all commodities of this group
-        cash_in_balance = Inventory()  # all incoming flows in target currency
-        cash_out_balance = Inventory()  # all outgoing flows in target currency
+        return {
+            "allocation": allocation,
+        }
 
-        for account_data in adlist:
-            flows_target_ccy = self.get_flows_in_target_currency(
-                pricer, account_data.cash_flows, target_currency
-            )
-            for flow in flows_target_ccy:
-                if flow.amount.number >= 0:
-                    cash_out_balance.add_amount(flow.amount)
-                else:
-                    cash_in_balance.add_amount(-flow.amount)
-            units_balance.add_inventory(account_data.balance.reduce(convert.get_units))
+    @extension_endpoint("summary")  # type: ignore
+    @api_response
+    def api_summary(self):
+        toolbar_ctx = self.get_toolbar_ctx()
+        pricer, account_data_list = self.extract_filtered(toolbar_ctx)
 
-        cash_in = self.get_only_amount(cash_in_balance)
-        cash_out = self.get_only_amount(cash_out_balance)
-
-        # Ref. https://github.com/beancount/beangrow/blob/7dd642b10a66c10ec807d9eb50fd58dc26635ba2/beangrow/returns.py#L228
-        value_balance = units_balance.reduce(
-            convert.get_value, pricer.price_map, end_date
+        _units, cash_in, cash_out, market_value, returns, returns_pct, returns_pct_annualized = portolio_summary(
+            pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.end_date
         )
-        market_value_balance = value_balance.reduce(
-            convert.convert_position, target_currency, pricer.price_map, end_date
+        irr = IRR().single(
+            pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
         )
-        market_value = self.get_only_amount(market_value_balance)
-
-        if market_value and market_value.currency != target_currency:
-            raise CurrencyConversionException(
-                market_value.currency, target_currency, end_date
-            )
-
-        returns_balance = market_value_balance + cash_out_balance + -cash_in_balance
-        returns = self.get_only_amount(returns_balance)
-        returns_pct = (
-            returns.number / cash_in.number
-            if returns is not None and cash_in is not None
-            else 0
-        )
-
-        truncated_cash_flows = returnslib.truncate_and_merge_cash_flows(
-            pricer, adlist, start_date, end_date
-        )
-        irr = returnslib.compute_returns(
-            truncated_cash_flows, pricer, target_currency, end_date
+        twr = TWR().single(
+            pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
         )
 
         return {
-            "units": units_balance,
-            "cash_in": cash_in,
-            "cash_out": cash_out,
-            "market_value": market_value,
-            "returns": returns,
-            "returns_pct": returns_pct,
-            "irr": irr.total,
+            "summary": {
+                "cashIn": cash_in,
+                "cashOut": cash_out,
+                "marketValue": market_value,
+                "returns": returns,
+                "returnsPct": returns_pct,
+                "returnsPctAnnualized": returns_pct_annualized,
+                "irr": irr,
+                "twr": twr,
+            },
         }
 
-    def overview(self):
-        # pylint: disable=protected-access
-        start_date = g.filtered._date_first
-        # pylint: disable=protected-access
-        end_date = g.filtered._date_last - datetime.timedelta(days=1)
-        pricer, groups, account_data_map = self.extract(end_date)
+    @extension_endpoint("dividends")  # type: ignore
+    @api_response
+    def api_dividends(self):
+        toolbar_ctx = self.get_toolbar_ctx()
+        pricer, account_data_list = self.extract_filtered(toolbar_ctx)
+        interval = request.args.get("interval", "monthly")
+
+        cf_start, cf_end = get_cash_flows_time_range(account_data_list, only_dividends=True)
+        start_date = max(cf_start, toolbar_ctx.start_date) if cf_start else toolbar_ctx.start_date
+        end_date = min(cf_end, toolbar_ctx.end_date) if cf_end else toolbar_ctx.end_date
+
+        if interval == "monthly":
+            intervals = [f"{i.month}/{i.year}" for i in iterate_months(start_date, end_date)]
+        else:
+            intervals = [f"{i}" for i in iterate_years(start_date, end_date)]
+
+        return {
+            "intervals": intervals,
+            "dividends": get_dividends(
+                pricer,
+                self.portfolio.investment_groups,
+                account_data_list,
+                toolbar_ctx.target_currency,
+                toolbar_ctx.start_date,
+                toolbar_ctx.end_date,
+                interval,
+            ),
+        }
+
+    @extension_endpoint("cash_flows")  # type: ignore
+    @api_response
+    def api_cash_flows(self):
+        toolbar_ctx = self.get_toolbar_ctx()
+        _pricer, account_data_list = self.extract_filtered(toolbar_ctx)
+
+        return {
+            "cashFlows": cash_flows_table(account_data_list, toolbar_ctx.start_date, toolbar_ctx.end_date),
+        }
+
+    @extension_endpoint("groups")  # type: ignore
+    @api_response
+    def api_groups(self):
+        config = self.portfolio.beangrow_cfg
+        pricer = self.portfolio.pricer
+        account_data_map = self.portfolio.account_data_map
+        toolbar_ctx = self.get_toolbar_ctx()
 
         group_performances = []
-        for group in groups:
-            adlist = [
-                account_data_map[name]
-                for name in group.investment
-                if name in account_data_map
-            ]
-            if not adlist:
+        for group in config.groups.group:  # pylint: disable=no-member
+            account_data_list = [account_data_map[name] for name in group.investment if name in account_data_map]
+            if not account_data_list:
                 continue
 
-            performance = self.calculate_group_performance(
-                pricer, adlist, start_date, end_date, group.currency
+            target_currency = group.currency
+            if not target_currency:
+                target_currency = self.get_target_currency(account_data_list)
+
+            units, cash_in, cash_out, market_value, returns, returns_pct, returns_pct_annualized = portolio_summary(
+                pricer, account_data_list, target_currency, toolbar_ctx.end_date
             )
-            group_performances.append({"name": group.name, **performance})
+            irr = IRR().single(pricer, account_data_list, target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date)
+            twr = TWR().single(pricer, account_data_list, target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date)
+            group_performances.append(
+                {
+                    "name": group.name,
+                    "currency": target_currency,
+                    "units": [pos.units for pos in units],
+                    "cashIn": cash_in,
+                    "cashOut": cash_out,
+                    "marketValue": market_value,
+                    "returns": returns,
+                    "returnsPct": returns_pct,
+                    "returnsPctAnnualized": returns_pct_annualized,
+                    "irr": irr,
+                    "twr": twr,
+                }
+            )
 
-        return group_performances
+        return {"groups": group_performances}
 
-    def create_plots(
-        self,
-        pricer: returnslib.Pricer,
-        target_currency: str,
-        flows: List[investments.CashFlow],
-        transactions: data.Entries,
-        returns_rate: float,
-    ) -> Dict[str, Any]:
-        # Convert flows to target currency
-        flows_target_ccy = self.get_flows_in_target_currency(
-            pricer, flows, target_currency
-        )
+    @extension_endpoint("series")  # type: ignore
+    @api_response
+    def api_series(self):
+        """
+        a generic endpoint to return one or multiple series (a list of x,y tuples)
+        for the given investments and start and end date
+        """
+        toolbar_ctx = self.get_toolbar_ctx()
+        pricer, account_data_list = self.extract_filtered(toolbar_ctx)
+        requested_series = list(filter(None, request.args.get("series", "").split(",")))
 
-        # Group flows by date and accumulate div/exdiv flows.
-        flows_by_date = defaultdict(list)
-        flows_div_by_date: Dict[datetime.date, Decimal] = defaultdict(lambda: ZERO)
-        flows_ex_div_by_date: Dict[datetime.date, Decimal] = defaultdict(lambda: ZERO)
-        for flow in flows_target_ccy:
-            flows_by_date[flow.date].append(flow)
-            if flow.is_dividend:
-                flows_div_by_date[flow.date] += flow.amount.number
-            else:
-                flows_ex_div_by_date[flow.date] += flow.amount.number
+        series = {}
+        for series_name in requested_series:
+            if series_name == "portfolio_market_values":
+                series[series_name] = portfolio_market_values(
+                    pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+                )
+            elif series_name == "portfolio_cost_values":
+                series[series_name] = portfolio_cost_values(
+                    pricer, account_data_list, toolbar_ctx.target_currency, toolbar_ctx.start_date, toolbar_ctx.end_date
+                )
+            elif m := re.match(r"^cash_flows_(div|exdiv)$", series_name):
+                dividends = m.group(1) == "div"
+                series[series_name] = cash_flows_list(
+                    pricer,
+                    account_data_list,
+                    toolbar_ctx.target_currency,
+                    toolbar_ctx.start_date,
+                    toolbar_ctx.end_date,
+                    dividends,
+                )
+            elif series_name == "cash_flows_cumulative":
+                series[series_name] = cash_flows_cumulative(
+                    pricer,
+                    account_data_list,
+                    toolbar_ctx.target_currency,
+                    toolbar_ctx.start_date,
+                    toolbar_ctx.end_date,
+                )
+            elif series_name == "portfolio_returns":
+                series[series_name] = SimpleReturns().series(
+                    pricer,
+                    account_data_list,
+                    toolbar_ctx.target_currency,
+                    toolbar_ctx.start_date,
+                    toolbar_ctx.end_date,
+                    percent=False,
+                )
+            elif m := re.match(r"^returns_(simple|irr|twr)_(series|heatmap|yearly|periods)$", series_name):
+                method, interval = m.groups()
 
-        # Render cash flows.
-        cashflows_plot = {
-            "div": list(flows_div_by_date.items()),
-            "exdiv": list(flows_ex_div_by_date.items()),
-        }
+                if method == "simple":
+                    fn = SimpleReturns()
+                elif method == "irr":
+                    fn = IRR()
+                elif method == "twr":
+                    fn = TWR()
+                else:
+                    raise FavaAPIError(f"Invalid method {method}")
 
-        # Render cumulative cash flows, with returns growth.
-        cumvalue_plot = {}
-        dates = [f.date for f in flows_target_ccy]
-        if dates:
-            date_min = dates[0] - datetime.timedelta(days=1)
-            date_max = dates[-1]
-            num_days = (date_max - date_min).days
-            dates_all = [dates[0] + datetime.timedelta(days=x) for x in range(num_days)]
-            gamounts = np.zeros(num_days)
-            amounts = np.zeros(num_days)
-            rate = (1 + returns_rate) ** (1.0 / 365)
-            for flow in flows_target_ccy:
-                remaining_days = (date_max - flow.date).days
-                amt = -float(flow.amount.number)
-                if remaining_days > 0:
-                    gflow = amt * (rate ** np.arange(0, remaining_days))
-                    gamounts[-remaining_days:] = np.add(
-                        gamounts[-remaining_days:],
-                        gflow,
-                        out=gamounts[-remaining_days:],
-                        casting="unsafe",
+                if interval == "series":
+                    series[series_name] = fn.series(
+                        pricer,
+                        account_data_list,
+                        toolbar_ctx.target_currency,
+                        toolbar_ctx.start_date,
+                        toolbar_ctx.end_date,
                     )
-                    amounts[-remaining_days:] += amt
                 else:
-                    gamounts[-1] += amt
-                    amounts[-1] += amt
+                    cf_start, _ = get_cash_flows_time_range(account_data_list)
+                    if interval == "heatmap":
+                        # skip time before first cash flow
+                        start_date = max(cf_start, toolbar_ctx.start_date) if cf_start else toolbar_ctx.start_date
+                        intervals = intervals_heatmap(start_date.year, toolbar_ctx.end_date.year)
+                    elif interval == "yearly":
+                        intervals = intervals_yearly(toolbar_ctx.end_date)
+                    elif interval == "periods":
+                        # the 'MAX' interval should start at the first cash flow, not at the date range selection
+                        # use toolbar_ctx.start_date in case cf_start is None (no cash flow found)
+                        intervals = intervals_periods(cf_start or toolbar_ctx.start_date, toolbar_ctx.end_date)
+                    else:
+                        raise FavaAPIError(f"Invalid interval {interval}")
 
-            cumvalue_plot["gamounts"] = list(zip(dates_all, gamounts))
-            cumvalue_plot["amounts"] = list(zip(dates_all, amounts))
+                    series[series_name] = fn.intervals(
+                        pricer,
+                        account_data_list,
+                        toolbar_ctx.target_currency,
+                        intervals,
+                    )
+            elif m := re.match(r"^price_(.+)$", series_name):
+                currency = m.group(1)
+                series[series_name] = get_prices(pricer, toolbar_ctx.target_currency, currency)
+            else:
+                raise FavaAPIError(f"Invalid series name {series_name}")
 
-        # Overlay value of assets over time.
-        value_dates, value_values = returnslib.compute_portfolio_values(
-            pricer.price_map, target_currency, transactions
-        )
-        market_values = [
-            (date, value)
-            for date, value in zip(value_dates, value_values)
-            if dates[0] <= date <= dates[-1]
-        ]
-        cumvalue_plot["value"] = market_values
-
-        # Render PnL plot
-        pnl_plot: Dict[str, list] = {"value": [], "value_pct": []}
-        pnl_dates = dates + [date for date, _ in market_values]
-        market_values_idx = 0
-        cash_in = ZERO
-        cash_out = ZERO
-
-        for date in sorted(set(pnl_dates)):
-            while (
-                market_values_idx + 1 < len(market_values)
-                and market_values[market_values_idx + 1][0] <= date
-            ):
-                market_values_idx += 1
-
-            is_closed = False
-            for flow in flows_by_date.get(date, []):
-                if flow.amount.number >= 0:
-                    cash_out += flow.amount.number
-                else:
-                    cash_in += -flow.amount.number
-
-                if flow.source == "close":
-                    is_closed = True
-
-            # beangrow truncates (virtually sells) all investments on the last day,
-            # therefore we set the market value of the investment to 0
-            market_value = market_values[market_values_idx][1] if not is_closed else 0
-            returns = market_value + cash_out - cash_in
-            pnl_plot["value"].append([date, returns])
-            pnl_plot["value_pct"].append(
-                [date, returns / cash_in if cash_in != ZERO else ZERO]
-            )
-
-        return {
-            "cashflows": cashflows_plot,
-            "cumvalue": cumvalue_plot,
-            "pnl": pnl_plot,
-            "min_date": dates[0] if dates else None,
-            "max_date": dates[-1] if dates else None,
-        }
-
-    def generate_report(
-        self,
-        pricer: returnslib.Pricer,
-        account_data: List[investments.AccountData],
-        start_date: datetime.date,
-        end_date: datetime.date,
-        target_currency: Optional[str] = None,
-    ):
-        if not target_currency:
-            target_currency = self.get_target_currency(account_data)
-
-        # cash flows
-        cash_flows = returnslib.truncate_and_merge_cash_flows(
-            pricer, account_data, start_date, end_date
-        )
-        returns = returnslib.compute_returns(
-            cash_flows, pricer, target_currency, end_date
-        )
-        transactions = data.sorted(
-            [txn for ad in account_data for txn in ad.transactions]
-        )
-
-        # cumulative value plot
-        plots = self.create_plots(
-            pricer, target_currency, cash_flows, transactions, returns.total
-        )
-
-        # returns
-        total_returns_tbl = Table(
-            ["Total", "Ex-Div", "Div"], [[returns.total, returns.exdiv, returns.div]]
-        )
-        calendar_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_calendar_intervals(end_date)
-        )
-        cumulative_returns_tbl = compute_returns_table(
-            pricer, target_currency, account_data, get_cumulative_intervals(end_date)
-        )
-
-        # accounts
-        accounts_tbl = get_accounts_table(account_data)
-
-        # cash flows
-        cashflows_tbl = investments.cash_flows_to_table(cash_flows)
-
-        return {
-            "target_currency": target_currency,
-            "plots": plots,
-            "total_returns": total_returns_tbl,
-            "calendar_returns": calendar_returns_tbl,
-            "cumulative_returns": cumulative_returns_tbl,
-            "accounts": accounts_tbl,
-            "cashflows": cashflows_tbl,
-        }
-
-    def report(self, group_name):
-        # pylint: disable=protected-access
-        start_date = g.filtered._date_first
-        # pylint: disable=protected-access
-        end_date = g.filtered._date_last - datetime.timedelta(days=1)
-        pricer, groups, account_data_map = self.extract(end_date)
-
-        for group in groups:
-            if group.name == group_name:
-                break
-        else:
-            raise FavaAPIError("Group not found")
-
-        adlist = [
-            account_data_map[name]
-            for name in group.investment
-            if name in account_data_map
-        ]
-        if not adlist:
-            raise FavaAPIError("No transactions found in the specified time period")
-
-        return self.generate_report(
-            pricer, adlist, start_date, end_date, group.currency
-        )
+        return {"series": series}
