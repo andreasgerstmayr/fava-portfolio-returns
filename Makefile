@@ -41,7 +41,7 @@ run:
 	cd example; uv run fava example.beancount
 
 dev:
-	cd frontend; npx concurrently --names fava,esbuild "cd ../example; PYTHONUNBUFFERED=1 LOGLEVEL=debug uv run fava --debug example.beancount" "npm:watch"
+	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 uv run fava --debug example.beancount" "cd frontend; npm run watch"
 
 beangrow:
 	cd example; uv run beangrow-returns example.beancount beangrow.pbtxt reports

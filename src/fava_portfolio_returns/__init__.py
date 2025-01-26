@@ -9,8 +9,6 @@
 
 import datetime
 import functools
-import logging
-import os
 import re
 import traceback
 from datetime import date
@@ -44,9 +42,6 @@ from fava_portfolio_returns.core.utils import get_cash_flows_time_range
 from fava_portfolio_returns.returns.irr import IRR
 from fava_portfolio_returns.returns.simple import SimpleReturns
 from fava_portfolio_returns.returns.twr import TWR
-
-LOGLEVEL = os.environ.get("LOGLEVEL", "INFO").upper()
-logging.basicConfig(level=LOGLEVEL)
 
 
 class ExtConfig(NamedTuple):

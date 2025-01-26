@@ -25,21 +25,17 @@ describe("PNG Snapshot Tests", () => {
     await page.setUserAgent("puppeteer-png");
   });
 
-  it.each(tests)(
-    "$name",
-    async ({ url }) => {
-      await page.goto(`${BASE_URL}${url}`);
-      await page.evaluate(() => {
-        // full page screenshot doesn't work due to sticky sidebar
-        document.body.style.height = "inherit";
-      });
-      await page.waitForNetworkIdle();
+  it.each(tests)("$name", async ({ url }) => {
+    await page.goto(`${BASE_URL}${url}`);
+    await page.evaluate(() => {
+      // full page screenshot doesn't work due to sticky sidebar
+      document.body.style.height = "inherit";
+    });
+    await page.waitForNetworkIdle();
 
-      const screenshot = await page.screenshot({ fullPage: true });
-      expect(Buffer.from(screenshot)).toMatchImageSnapshot({ customSnapshotIdentifier });
-    },
-    10000,
-  );
+    const screenshot = await page.screenshot({ fullPage: true });
+    expect(Buffer.from(screenshot)).toMatchImageSnapshot({ customSnapshotIdentifier });
+  });
 });
 
 describe("HTML Snapshot Tests", () => {
@@ -47,18 +43,14 @@ describe("HTML Snapshot Tests", () => {
     await page.setUserAgent("puppeteer-html");
   });
 
-  it.each(tests)(
-    "$name",
-    async ({ url }) => {
-      await page.goto(`${BASE_URL}${url}`);
-      await page.waitForNetworkIdle();
+  it.each(tests)("$name", async ({ url }) => {
+    await page.goto(`${BASE_URL}${url}`);
+    await page.waitForNetworkIdle();
 
-      let html = await page.$eval("article", (element) => element.innerHTML);
-      // remove nondeterministic rendering
-      html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
-      html = html.replaceAll(/zr[0-9]+-[a-z][0-9]+/g, "zrX-cY");
-      expect(html).toMatchSnapshot();
-    },
-    10000,
-  );
+    let html = await page.$eval("article", (element) => element.innerHTML);
+    // remove nondeterministic rendering
+    html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
+    html = html.replaceAll(/zr[0-9]+-[a-z][0-9]+/g, "zrX-cY");
+    expect(html).toMatchSnapshot();
+  });
 });
