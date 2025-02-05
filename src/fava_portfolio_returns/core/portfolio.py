@@ -134,7 +134,9 @@ def group_investments(config, account_data_map: dict[str, AccountData]):
     for account in account_data_map.values():
         if account.currency not in currencies:
             currencies[account.currency] = InvestmentCurrency(
-                id=f"c:{account.currency}", currency=account.currency, name=account.commodity.meta["name"]
+                id=f"c:{account.currency}",
+                currency=account.currency,
+                name=account.commodity.meta.get("name", account.commodity.currency),
             )
     currencies_list = sorted(currencies.values(), key=lambda x: x.id)
 
