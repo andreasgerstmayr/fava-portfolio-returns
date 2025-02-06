@@ -61,9 +61,11 @@ def portolio_summary(
             cash_in -= flow.amount.number
 
     balance = compute_balance_at(account_data_list, end_date)
-    balance = balance.reduce(convert.get_units)
-
     market_value = get_market_value_of_inventory(pricer, target_currency, balance, end_date)
+    # reduce to units (i.e. removing cost attribute) after calculating market value, because convert.get_value() only works with positions held at cost
+    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency), instead of CORP -> EUR.
+    # see https://github.com/andreasgerstmayr/fava-portfolio-returns/issues/53
+    balance = balance.reduce(convert.get_units)  # sums 1 CORP {} + 2 CORP {} => 3 CORP
 
     returns_abs = (market_value + cash_out) - cash_in
     if market_value == ZERO:
