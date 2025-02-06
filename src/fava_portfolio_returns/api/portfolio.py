@@ -27,7 +27,7 @@ def portfolio_allocation(
 ):
     market_values: dict[tuple, Decimal] = defaultdict(Decimal)
     for account in account_data_list:
-        commodity = account.commodity.meta["name"]
+        commodity = account.commodity.meta.get("name", account.commodity.currency)
         currency = account.currency
         market_value = get_market_value_of_inventory(pricer, target_currency, account.balance, end_date)
         market_values[(currency, commodity)] += market_value
