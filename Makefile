@@ -66,3 +66,19 @@ ci:
 	make test
 	make format
 	git diff --exit-code
+
+## Container
+container-run:
+	docker build -t fava-portfolio-returns -f Dockerfile.test .
+	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns
+
+container-stop:
+	docker rm -f fava-portfolio-returns-test
+
+container-test: container-run
+	docker exec fava-portfolio-returns-test make test
+	make container-stop
+
+container-test-js-update: container-run
+	docker exec fava-portfolio-returns-test make test-js-update
+	make container-stop
