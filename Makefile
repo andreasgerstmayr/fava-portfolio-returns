@@ -34,6 +34,11 @@ test-js-update:
 test-py:
 	uv run pytest
 
+test-py-coverage:
+	uv run coverage run -m pytest
+	uv run coverage html
+	flatpak run org.chromium.Chromium htmlcov/index.html
+
 test: test-py test-js
 
 ## Utils
@@ -42,6 +47,9 @@ run:
 
 dev:
 	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 uv run fava --debug example.beancount" "cd frontend; npm run watch"
+
+dev-debug:
+	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 LOGLEVEL=DEBUG uv run fava --debug example.beancount" "cd frontend; npm run watch"
 
 beangrow:
 	cd example; uv run beangrow-returns example.beancount beangrow.pbtxt reports
@@ -57,7 +65,7 @@ format:
 	cd frontend; npx prettier -w ../src/fava_portfolio_returns/templates/*.css
 	-uv run ruff check --fix
 	uv run ruff format .
-	find example -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;
+	find example src/fava_portfolio_returns/test/ledger -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;
 
 ci:
 	make lint
@@ -68,7 +76,7 @@ ci:
 	git diff --exit-code
 
 ## Container
-container-run:
+container-run: container-stop
 	docker build -t fava-portfolio-returns -f Dockerfile.test .
 	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns
 
@@ -81,4 +89,6 @@ container-test: container-run
 
 container-test-js-update: container-run
 	docker exec fava-portfolio-returns-test make test-js-update
+	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__snapshots__ ./frontend/tests/e2e
+	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__image_snapshots__ ./frontend/tests/e2e
 	make container-stop

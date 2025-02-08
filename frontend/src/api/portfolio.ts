@@ -1,27 +1,34 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchJSON } from "./api";
 
-interface AllocationRequest {
+interface PortfolioRequest {
   investmentFilter: string[];
   targetCurrency: string;
 }
 
-export interface AllocationResponse {
+export interface PortfolioResponse {
+  chart: {
+    date: string;
+    market: number;
+    cost: number;
+    cash: number;
+  }[];
+  performance: [string, number][];
   allocation: {
-    commodity: string;
+    name: string;
     currency: string;
     marketValue: number;
   }[];
 }
 
-export function useAllocation(request: AllocationRequest): UseQueryResult<AllocationResponse> {
+export function usePortfolio(request: PortfolioRequest): UseQueryResult<PortfolioResponse> {
   const params = new URLSearchParams(location.search);
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
-  const url = `allocation?${params}`;
+  const url = `portfolio?${params}`;
 
   return useQuery({
     queryKey: [url],
-    queryFn: () => fetchJSON<AllocationResponse>(url),
+    queryFn: () => fetchJSON<PortfolioResponse>(url),
   });
 }

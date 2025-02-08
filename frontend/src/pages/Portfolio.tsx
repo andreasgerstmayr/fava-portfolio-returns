@@ -1,33 +1,34 @@
 import { Alert } from "@mui/material";
-import { useAllocation } from "../api/allocation";
-import { useSeries } from "../api/series";
-import { useSummary } from "../api/summary";
+import { usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import {
+  getCurrencyFormatter,
+  getIntegerCurrencyFormatter,
   NEGATIVE_NUMBER_COLOR,
   NEGATIVE_TREND_COLOR,
   POSITIVE_NUMBER_COLOR,
   POSITIVE_TREND_COLOR,
-} from "../components/style";
+  timestampToDate,
+} from "../components/format";
 
 export function Portfolio() {
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup labels={["Performance", "Portfolio Value"]}>
+        <PanelGroup param="chart" labels={["Performance", "Portfolio Value"]}>
           <Panel
             title="Performance"
-            help="The performance chart shows the profit and loss of the portfolio."
+            help="The performance chart shows the gain or loss of the portfolio."
             sx={{ flex: 2 }}
           >
             <PerformanceChart />
           </Panel>
           <Panel
             title="Portfolio Value"
-            help="The portfolio value chart compares the invested capital with the portfolio value."
+            help="The portfolio value chart compares the portfolio value with the invested capital, including dividends and fees."
             sx={{ flex: 2 }}
           >
             <PortfolioValueChart />
@@ -43,10 +44,9 @@ export function Portfolio() {
 
 function PerformanceChart() {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSeries({
+  const { isPending, error, data } = usePortfolio({
     investmentFilter,
     targetCurrency,
-    series: ["portfolio_returns"],
   });
 
   if (isPending) {
@@ -56,25 +56,15 @@ function PerformanceChart() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-  }).format;
-  const signedCurrencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-    signDisplay: "exceptZero",
-  }).format;
-
-  const series = data.series["portfolio_returns"];
+  const series = data.performance;
   const firstValue = series.length > 0 ? series[0][1] : 0;
   const lastValue = series.length > 0 ? series[series.length - 1][1] : 0;
-  const color = lastValue >= firstValue ? POSITIVE_TREND_COLOR : NEGATIVE_TREND_COLOR;
-
+  const trendColor = lastValue >= firstValue ? POSITIVE_TREND_COLOR : NEGATIVE_TREND_COLOR;
+  const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: signedCurrencyFormatter,
+      valueFormatter: currencyFormatter,
     },
     grid: {
       left: 100,
@@ -82,6 +72,11 @@ function PerformanceChart() {
     },
     xAxis: {
       type: "time",
+      axisPointer: {
+        label: {
+          formatter: ({ value }: { value: number }) => timestampToDate(value),
+        },
+      },
     },
     yAxis: {
       type: "value",
@@ -95,10 +90,10 @@ function PerformanceChart() {
       showSymbol: false,
       data: series,
       lineStyle: {
-        color: color(),
+        color: trendColor(),
       },
       itemStyle: {
-        color: color(),
+        color: trendColor(),
       },
       areaStyle: {
         color: {
@@ -110,11 +105,11 @@ function PerformanceChart() {
           colorStops: [
             {
               offset: 0,
-              color: color(0.2),
+              color: trendColor(0.2),
             },
             {
               offset: 1,
-              color: color(0),
+              color: trendColor(0),
             },
           ],
         },
@@ -127,10 +122,9 @@ function PerformanceChart() {
 
 function PortfolioValueChart() {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSeries({
+  const { isPending, error, data } = usePortfolio({
     investmentFilter,
     targetCurrency,
-    series: ["portfolio_market_values", "cash_flows_cumulative"],
   });
 
   if (isPending) {
@@ -140,45 +134,28 @@ function PortfolioValueChart() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-  }).format;
-
-  const marketValues = data.series["portfolio_market_values"];
-  const cashFlowsValues = data.series["cash_flows_cumulative"];
-
+  const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option = {
     tooltip: {
       trigger: "axis",
-      formatter: (chart: echarts.ECharts, params: { value: string[] }[]) => {
-        const axisDate = params[0].value[0];
-
-        function findSeriesValue(series: [string, number][]) {
-          let i = -1;
-          while (i + 1 < series.length && series[i + 1][0] <= axisDate) {
-            i++;
-          }
-          return i >= 0 ? series[i][1] : undefined;
-        }
+      formatter: (params: { value: { date: string; market: number; cash: number }; marker: string }[]) => {
         function marker(color: string) {
           return `<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${color};"></span>`;
         }
-        function valueFmt(value: number | undefined, style?: string) {
-          return `<span style="float: right; margin-left:15px; font-weight: bold; ${style || ""}">${value === undefined ? "" : currencyFormatter(value)}</span>`;
+        function valueFmt(value: number, style?: string) {
+          return `<span style="float: right; margin-left:15px; font-weight: bold; ${style ?? ""}">${currencyFormatter(value)}</span>`;
         }
 
-        const marketValue = findSeriesValue(marketValues);
-        const cashFlowsValue = findSeriesValue(cashFlowsValues);
-        const difference =
-          marketValue !== undefined && cashFlowsValue !== undefined ? marketValue - cashFlowsValue : undefined;
-        const diffColor = difference === undefined || difference >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR;
+        // note: array order matches 'series' option order!
+        const [valueSeries, capitalSeries] = params;
+        const value = valueSeries.value;
+        const difference = value.market - value.cash;
+        const diffColor = difference >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR;
 
-        // note: sync seriesIndex and description with series option!
         return (
-          `${axisDate}<br>` +
-          `${marker(chart.getVisual({ seriesIndex: 0 }, "color") as string)} Portfolio Value ${valueFmt(marketValue)}<br>` +
-          `${marker(chart.getVisual({ seriesIndex: 1 }, "color") as string)} Invested Capital ${valueFmt(cashFlowsValue)}<br>` +
+          `${value.date}<br>` +
+          `${valueSeries.marker} Portfolio Value ${valueFmt(value.market)}<br>` +
+          `${capitalSeries.marker} Invested Capital ${valueFmt(value.cash)}<br>` +
           `${marker("#ccc")} Difference ${valueFmt(difference, `color: ${diffColor}`)}`
         );
       },
@@ -199,19 +176,22 @@ function PortfolioValueChart() {
         formatter: currencyFormatter,
       },
     },
+    dataset: {
+      source: data.chart,
+    },
     series: [
       {
         type: "line",
         name: "Portfolio Value",
         showSymbol: false,
-        data: marketValues,
+        dimensions: ["date", "market"],
       },
       {
         type: "line",
         name: "Invested Capital",
         showSymbol: false,
+        dimensions: ["date", "cash"],
         step: "end", // increase invested capital at date of cash flow, do not interpolate
-        data: cashFlowsValues,
         lineStyle: {
           type: "dotted",
         },
@@ -224,7 +204,7 @@ function PortfolioValueChart() {
 
 function AllocationChart() {
   const { investmentFilter, setInvestmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useAllocation({ investmentFilter, targetCurrency });
+  const { isPending, error, data } = usePortfolio({ investmentFilter, targetCurrency });
 
   if (isPending) {
     return <Loading />;
@@ -233,12 +213,7 @@ function AllocationChart() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-    maximumFractionDigits: 0,
-  }).format;
-
+  const currencyFormatter = getIntegerCurrencyFormatter(targetCurrency);
   const option = {
     series: [
       {
@@ -274,7 +249,7 @@ function AllocationChart() {
         labelLine: {
           show: false,
         },
-        data: data.allocation.map((i) => ({ name: i.commodity, currency: i.currency, value: i.marketValue })),
+        data: data.allocation.map((i) => ({ name: i.name, currency: i.currency, value: i.marketValue })),
       },
     ],
     onClick: (params: { data: { currency: string } }) => {
@@ -288,84 +263,5 @@ function AllocationChart() {
       <p>&nbsp;</p>
       <EChart height="400px" option={option} />
     </>
-  );
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function SummaryTable() {
-  const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSummary({ investmentFilter, targetCurrency });
-
-  if (isPending) {
-    return <Loading />;
-  }
-  if (error) {
-    return <Alert severity="error">{error.message}</Alert>;
-  }
-
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-  }).format;
-
-  const percentFormatter = new Intl.NumberFormat(undefined, {
-    style: "percent",
-    maximumFractionDigits: 2,
-  }).format;
-
-  const summary = data.summary;
-
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Market Value</td>
-          <td className="num">{currencyFormatter(summary.marketValue)}</td>
-        </tr>
-        <tr>
-          <td>Cash In</td>
-          <td className="num">{currencyFormatter(summary.cashIn)}</td>
-        </tr>
-        <tr>
-          <td>Cash Out</td>
-          <td className="num">{currencyFormatter(summary.cashOut)}</td>
-        </tr>
-        <tr>
-          <td title="Market Value + Cash Out - Cash In">Returns</td>
-          <td className="num" style={{ color: summary.returns >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-            {currencyFormatter(summary.returns)}
-          </td>
-        </tr>
-        <tr>
-          <td title="(Market Value - Invested Capital) / Invested Capital">Returns pct</td>
-          <td
-            className="num"
-            style={{ color: summary.returnsPct >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-          >
-            {percentFormatter(summary.returnsPct)}
-            <br />
-            p.a. {percentFormatter(summary.returnsPctAnnualized)}
-          </td>
-        </tr>
-        <tr>
-          <td>IRR</td>
-          <td className="num" style={{ color: summary.irr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-            {percentFormatter(summary.irr)}
-          </td>
-        </tr>
-        <tr>
-          <td>TWR</td>
-          <td className="num" style={{ color: summary.twr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-            {percentFormatter(summary.twr)}
-          </td>
-        </tr>
-      </tbody>
-    </table>
   );
 }

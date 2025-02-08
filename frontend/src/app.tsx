@@ -4,8 +4,10 @@ import { createRoot } from "react-dom/client";
 import { createHashRouter, Navigate, RouterProvider } from "react-router";
 import { CashFlows } from "./pages/CashFlows";
 import { Dividends } from "./pages/Dividends";
-import { Groups } from "./pages/Groups";
+import { Help } from "./pages/Help";
+import { Groups, Investments } from "./pages/Investments";
 import { Layout } from "./pages/Layout";
+import { MissingPrices } from "./pages/MissingPrices";
 import { Performance } from "./pages/Performance";
 import { Portfolio } from "./pages/Portfolio";
 import { Returns } from "./pages/Returns";
@@ -39,6 +41,21 @@ const router = createHashRouter([
       {
         path: "/groups",
         element: <Groups />,
+        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
+      },
+      {
+        path: "/investments",
+        element: <Investments />,
+        handle: { showInvestmentsSelection: false },
+      },
+      {
+        path: "/missing_prices",
+        element: <MissingPrices />,
+        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
+      },
+      {
+        path: "/help",
+        element: <Help />,
         handle: { showInvestmentsSelection: false, showCurrencySelection: false },
       },
     ],

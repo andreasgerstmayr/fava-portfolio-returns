@@ -3,13 +3,15 @@ from decimal import Decimal
 from beancount.core.number import ZERO
 
 
-def compute_returns(initial_value: Decimal, final_value: Decimal):
-    return (final_value - initial_value) / initial_value if initial_value != ZERO else ZERO
+def compute_returns(initial_value: Decimal, final_value: Decimal) -> float:
+    if initial_value == ZERO:
+        return 0.0
+    return float((final_value - initial_value) / initial_value)
 
 
-def compute_annualized_returns(returns: Decimal, years: Decimal):
+def annualize_returns(returns: float, years: float) -> float:
     if years == 0:
-        return 0
+        return 0.0
 
     base = 1 + returns
     exp = 1 / years
