@@ -55,7 +55,7 @@ class Portfolio:
 
     pricer: Pricer
     beangrow_cfg: Any
-    account_data_map: dict[Account, AccountData]
+    account_data_map: dict[Account, AccountData]  # list of investments defined in beangrow config
     investment_groups: InvestmentGroups
 
     def __init__(
@@ -78,7 +78,6 @@ class Portfolio:
         self.account_data_map = beangrow.investments.extract(
             entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir
         )
-        self.account_data_list = list(self.account_data_map.values())
         self.investment_groups = group_investments(self.beangrow_cfg, self.account_data_map)
 
     def filter(self, investment_filter: list[str], target_currency: Optional[str]):
@@ -249,6 +248,9 @@ def group_investments(config, account_data_map: dict[str, AccountData]):
 
     currencies: dict[str, InvestmentCurrency] = {}
     for account in account_data_map.values():
+        if not account.currency:
+            raise ValueError(f"Invalid beangrow config: Investment '{account.account}' has no currency defined.")
+
         if account.currency not in currencies:
             currencies[account.currency] = InvestmentCurrency(
                 id=f"c:{account.currency}",
