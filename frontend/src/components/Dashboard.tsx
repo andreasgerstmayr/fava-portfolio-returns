@@ -1,5 +1,5 @@
 import { Card, MenuItem, Select, Stack, SxProps, Theme } from "@mui/material";
-import React, { useId } from "react";
+import React from "react";
 import { NumberParam, useQueryParam, withDefault } from "use-query-params";
 
 interface DashboardProps {
@@ -53,15 +53,15 @@ export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
 }
 
 interface PanelGroupProps {
+  param: string;
   labels: string[];
   children: React.ReactElement<PanelProps>[];
 }
 
 const ActivePanelParam = withDefault(NumberParam, 0);
 
-export function PanelGroup({ labels, children }: PanelGroupProps) {
-  const id = useId();
-  const [activePanelIdx, setActivePanelIdx] = useQueryParam(`panel_${id.replaceAll(":", "")}`, ActivePanelParam);
+export function PanelGroup({ param, labels, children }: PanelGroupProps) {
+  const [activePanelIdx, setActivePanelIdx] = useQueryParam(param, ActivePanelParam);
   const activePanel = children[activePanelIdx];
 
   const select = (

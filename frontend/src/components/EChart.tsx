@@ -25,14 +25,6 @@ export function EChart({ width, height, option }: EChartProps) {
       delete option.onClick;
     }
 
-    // hack to get chart instance in callback
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tooltipFormatter = (option as any).tooltip?.formatter;
-    if (tooltipFormatter) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (option as any).tooltip.formatter = (params: any) => tooltipFormatter(chart, params);
-    }
-
     // disable animations during e2e tests
     if (window.navigator.userAgent.includes("puppeteer")) {
       option.animation = false;

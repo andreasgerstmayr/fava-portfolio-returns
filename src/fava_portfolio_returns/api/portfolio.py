@@ -1,141 +1,136 @@
 import datetime
 import itertools
-import typing
 from collections import defaultdict
 from decimal import Decimal
+from typing import NamedTuple
 
-from beancount.core import convert, data
-from beancount.core.data import Transaction
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
-from beangrow.investments import AccountData, Cat
-from beangrow.returns import Pricer, compute_portfolio_values
+from beangrow.investments import Cat
+from beangrow.investments import produce_cash_flows_general
 
-from fava_portfolio_returns.api.cash_flows import convert_cash_flows_to_currency
-from fava_portfolio_returns.core.utils import (
-    compute_balance_at,
-    get_cash_flows_time_range,
-    get_cost_value_of_inventory,
-    get_market_value_of_inventory,
-    merge_cash_flows,
-)
-from fava_portfolio_returns.returns.returns import compute_annualized_returns, compute_returns
+from fava_portfolio_returns.core.portfolio import FilteredPortfolio
+from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
+from fava_portfolio_returns.core.utils import cost_value_of_inv
+from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
+from fava_portfolio_returns.core.utils import get_prices
+from fava_portfolio_returns.core.utils import inv_to_currency
+from fava_portfolio_returns.core.utils import market_value_of_inv
 
 
-def portfolio_allocation(
-    pricer: Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
-):
-    market_values: dict[tuple, Decimal] = defaultdict(Decimal)
-    for account in account_data_list:
-        commodity = account.commodity.meta.get("name", account.commodity.currency)
-        currency = account.currency
-        market_value = get_market_value_of_inventory(pricer, target_currency, account.balance, end_date)
-        market_values[(currency, commodity)] += market_value
+def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
+    market_value_by_currency: dict[str, Decimal] = defaultdict(Decimal)
+    for account_data in p.account_data_list:
+        fp = FilteredPortfolio(p.portfolio, [account_data], p.target_currency)
+        balance = fp.balance_at(end_date)
+        market_value = market_value_of_inv(fp.pricer, fp.target_currency, balance, end_date)
+        market_value_by_currency[account_data.currency] += market_value
 
-    allocation = [
+    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investment_groups.currencies}
+    return [
         {
+            "name": currency_name_by_currency[currency],
             "currency": currency,
-            "commodity": commodity,
             "marketValue": market_value,
         }
-        for (currency, commodity), market_value in market_values.items()
+        for currency, market_value in sorted(market_value_by_currency.items(), key=lambda x: x[1], reverse=True)
     ]
-    allocation.sort(key=lambda x: x["marketValue"], reverse=True)
-
-    return allocation
 
 
-def portolio_summary(
-    pricer: Pricer, account_data_list: list[AccountData], target_currency: str, end_date: datetime.date
-):
+def portfolio_cash(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> tuple[Decimal, Decimal]:
     cash_in = ZERO  # all incoming cash in target currency
     cash_out = ZERO  # all outgoing cash in target currency
 
-    cash_flows = merge_cash_flows(account_data_list)
-    cash_flows = [flow for flow in cash_flows if flow.date <= end_date]
-    cash_flows = convert_cash_flows_to_currency(pricer, target_currency, cash_flows)
+    cash_flows = p.cash_flows()
+    cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
+    cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
     for flow in cash_flows:
         if flow.amount.number >= 0:
             cash_out += flow.amount.number
         else:
             cash_in -= flow.amount.number
 
-    balance = compute_balance_at(account_data_list, end_date)
-    market_value = get_market_value_of_inventory(pricer, target_currency, balance, end_date)
-    # reduce to units (i.e. removing cost attribute) after calculating market value, because convert.get_value() only works with positions held at cost
-    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency), instead of CORP -> EUR.
-    # see https://github.com/andreasgerstmayr/fava-portfolio-returns/issues/53
-    balance = balance.reduce(convert.get_units)  # sums 1 CORP {} + 2 CORP {} => 3 CORP
-
-    returns_abs = (market_value + cash_out) - cash_in
-    if market_value == ZERO:
-        # commodity got sold
-        returns_pct = compute_returns(cash_in, cash_out)
-    else:
-        returns_pct = compute_returns(cash_in - cash_out, market_value)
-
-    dates = [flow.date for flow in cash_flows]
-    if dates:
-        years = Decimal((max(dates) - min(dates)).days + 1) / 365
-        returns_pct_annualized = compute_annualized_returns(returns_pct, years)
-    else:
-        returns_pct_annualized = 0
-
-    return balance, cash_in, cash_out, market_value, returns_abs, returns_pct, returns_pct_annualized
+    return cash_in, cash_out
 
 
-def portfolio_market_values(
-    pricer: Pricer,
-    account_data_list: list[AccountData],
-    target_currency: str,
+class PortfolioValue(NamedTuple):
+    date: datetime.date
+    # market value
+    market: Decimal
+    # cost value (excl. fees)
+    cost: Decimal
+    # cumulative value of cash flows, i.e. cost value incl. fees
+    cash: Decimal
+
+
+def portfolio_values(
+    p: FilteredPortfolio,
     start_date: datetime.date,
     end_date: datetime.date,
-):
-    transactions = data.sorted([txn for ad in account_data_list for txn in ad.transactions])
-    value_dates, value_values = compute_portfolio_values(pricer.price_map, target_currency, transactions)
-    series = list(zip(value_dates, value_values))
+) -> list[PortfolioValue]:
+    """returns (date,market,cost,cash) for all price and volume changes"""
+    transactions = [txn for ad in p.account_data_list for txn in ad.transactions if txn.date <= end_date]
 
-    cf_start, _ = get_cash_flows_time_range(account_data_list)
-    # before the first cash flow, the market value is always 0. skip these items.
-    # do not skip items after the last cash flow
-    start_date = max(start_date, cf_start) if cf_start else start_date
-    series = [(date, value) for date, value in series if start_date <= date <= end_date]
+    # Infer the list of required prices.
+    currency_pairs: set[tuple[str, str]] = set()
+    for entry in transactions:
+        for posting in entry.postings:
+            if posting.meta["category"] is Cat.ASSET and posting.cost:
+                # ex. (CORP, USD)
+                currency_pairs.add((posting.units.currency, posting.cost.currency))
 
-    return series
+    def first(x):
+        return x[0]
 
+    # Get dates of transactions and price directives
+    entry_dates = sorted(
+        itertools.chain(
+            ((date, None) for pair in currency_pairs for date, _ in get_prices(p.pricer, pair) if date <= end_date),
+            ((entry.date, entry) for entry in transactions),  # already filtered above
+        ),
+        key=first,
+    )
 
-def portfolio_cost_values(
-    pricer: Pricer,
-    account_data_list: list[AccountData],
-    target_currency: str,
-    start_date: datetime.date,
-    end_date: datetime.date,
-):
-    series: list[tuple[datetime.date, Decimal]] = []
-    initial_balance = Inventory()  # balance before start_date
+    # Skip price dates before first purchase of commodity (first transaction)
+    for i, entry_date in enumerate(entry_dates):
+        if entry_date[1] is not None:
+            entry_dates = entry_dates[i:]
+            break
+
+    # Get first date of series, either before or on start_date.
+    first_date = None
+    for i, entry_date in enumerate(entry_dates):
+        # if the next entry is still before or at start date, continue...
+        if i + 1 < len(entry_dates) and entry_dates[i + 1][0] <= start_date:
+            continue
+
+        first_date = entry_date[0]
+        break
+    if not first_date:
+        # This can only happen if entry_dates is empty.
+        return []
+
+    # Iterate computing the balance.
+    values: list[PortfolioValue] = []
     balance = Inventory()
-
-    # sort transactions by date before using groupby()
-    # ignore transactions after end_date
-    _transactions = data.sorted([txn for ad in account_data_list for txn in ad.transactions if txn.date <= end_date])
-    transactions = typing.cast(list[Transaction], _transactions)
-
-    for date, group in itertools.groupby(transactions, key=lambda x: x.date):
-        # iterate over transactions on the same day
-        for entry in group:
+    cf_balance = Inventory()
+    for date, group in itertools.groupby(entry_dates, key=first):
+        # Update balances.
+        for _, entry in group:
+            if entry is None:
+                continue
             for posting in entry.postings:
-                if posting.meta and posting.meta["category"] is Cat.ASSET:
+                if posting.meta["category"] is Cat.ASSET:
                     balance.add_position(posting)
-                    if date < start_date:
-                        initial_balance.add_position(posting)
+            for flow in produce_cash_flows_general(entry, ""):
+                cf_balance.add_amount(flow.amount)
 
-        if date >= start_date:
-            value = get_cost_value_of_inventory(pricer, target_currency, balance)
-            series.append((date, value))
+        if date >= first_date:
+            # Clamp start_date in case we cut off data at the beginning.
+            clamp_date = max(date, start_date)
+            market = market_value_of_inv(p.pricer, p.target_currency, balance, clamp_date)
+            cost = cost_value_of_inv(p.pricer, p.target_currency, balance)
+            cash = -inv_to_currency(p.pricer, p.target_currency, cf_balance)  # sum of cash flows
+            values.append(PortfolioValue(date=clamp_date, market=market, cost=cost, cash=cash))
 
-    # insert the cumulative balance before start_date (if any)
-    if not initial_balance.is_empty():
-        value = get_cost_value_of_inventory(pricer, target_currency, initial_balance)
-        series.insert(0, (start_date, value))
-
-    return series
+    return values

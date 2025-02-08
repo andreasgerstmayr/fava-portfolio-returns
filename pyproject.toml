@@ -22,6 +22,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "coverage>=7.6.10",
     "mypy>=1.9.0",
     "pylint>=3.1.0",
     "pytest>=8.3.3",
@@ -42,12 +43,14 @@ packages = ["src/fava_portfolio_returns"]
 
 [tool.pylint.'messages control']
 disable = [
+    "broad-exception-raised",
     "duplicate-code",
     "missing-module-docstring",
     "missing-class-docstring",
     "missing-function-docstring",
     "no-else-return",
     "line-too-long",
+    "too-few-public-methods",
     "too-many-arguments",
     "too-many-positional-arguments",
     "too-many-locals",
@@ -68,3 +71,6 @@ line-length = 120
 
 [tool.ruff.lint]
 extend-select = ["I"]
+
+[tool.ruff.lint.isort]
+force-single-line = true

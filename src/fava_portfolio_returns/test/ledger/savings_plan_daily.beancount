@@ -1,0 +1,34 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/savings_plan_daily.beancount
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {100 USD}
+  Assets:Cash
+
+2020-01-02 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {101 USD}
+  Assets:Cash
+
+2020-01-03 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {102 USD}
+  Assets:Cash
+
+2020-01-04 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {103 USD}
+  Assets:Cash
+
+; IRR on 2020-01-02:
+; 100 USD invested for 2 days + 101 USD invested for 1 day = 202 USD
+; 100*(1+x)^(2/365) + 101*(1+x)^(1/365) = 202
+
+; IRR on 2020-01-03:
+; 100 USD invested for 3 days + 101 USD invested for 2 days + 102 USD invested for 1 day = 306 USD
+; 100*(1+x)^(3/365) + 101*(1+x)^(2/365) + 102*(1+x)^(1/365) = 306
+
+; IRR on 2020-01-04:
+; 100*(1+x)^(4/365) + 101*(1+x)^(3/365) + 102*(1+x)^(2/365) + 103*(1+x)^(1/365) = 412

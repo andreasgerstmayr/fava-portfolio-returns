@@ -1,0 +1,99 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/example_stock.beancount
+option "operating_currency" "USD"
+option "booking_method" "FIFO"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORP
+  name: "Example Stock"
+
+2020-01-01 * "Opening Balance"
+  Assets:Cash                                         630 USD
+  Equity:Opening-Balances
+
+2020-02-01 * "Buy 100 CORP"
+  Assets:Cash                                        -110 USD
+  Assets:CORP                                         100 CORP {1 USD}
+  Expenses:Fees                                        10 USD
+
+; 2020-02-01
+; 100 CORP (cost: 100 USD, worth: 100 USD)
+; spent: 110 USD
+
+2020-03-15 * "Buy 100 CORP"
+  Assets:Cash                                        -210 USD
+  Assets:CORP                                         100 CORP {2 USD}
+  Expenses:Fees                                        10 USD
+
+; 2020-03-15
+; 200 CORP (cost: 300 USD, worth: 400 USD)
+; spent: 320 USD
+; yield: 25%
+
+2020-05-01 * "Buy 100 CORP"
+  Assets:Cash                                        -310 USD
+  Assets:CORP                                         100 CORP {3 USD}
+  Expenses:Fees                                        10 USD
+
+; 2020-05-01
+; 300 CORP (cost: 600 USD, worth: 900 USD)
+; spent: 630 USD
+
+2020-05-10 price CORP                                   2 USD
+
+; 2020-05-10
+; 300 CORP (cost: 600 USD, worth: 600 USD)
+; spent: 630 USD
+
+2020-06-01 * "Sell 50 CORP"
+  Assets:Cash                                          90 USD ; 50 x 2 USD - 10 USD fees
+  Assets:CORP                                         -50 CORP {} ; 50 CORP bought at 1 USD
+  Income:PnL                                          -50 USD
+  Expenses:Fees                                        10 USD
+
+; 2020-06-01
+; 250 CORP (cost: 500 USD on avg, worth: 500 USD)
+; spent: 630 USD, received: 90 USD
+
+2020-07-01 price CORP                                   3 USD
+
+; 2020-07-01
+; 250 CORP (cost: 500 USD on avg, worth: 750 USD)
+; spent: 630 USD, received: 90 USD
+
+2020-07-01 balance Assets:Cash                       90.0 USD
+2020-07-01 balance Assets:CORP                        250 CORP
+
+2020-07-10 * "Dividend"
+  Assets:Cash                                          20 USD
+  Income:CORP:Dividend                                -30 USD
+  Expenses:Fees                                        10 USD
+
+; 2020-07-11
+; 250 CORP (cost: 500 USD on avg, worth: 750 USD)
+; spent: 630 USD, received: 110 USD
+
+2020-07-11 balance Assets:Cash                        110 USD
+
+2020-08-01 * "Sell 250 CORP"
+  Assets:Cash                                         740 USD ; 250 x 3 USD - 10 USD fees
+  Assets:CORP                                        -250 CORP {} ; 50 CORP @ 1 USD + 100 @ 2 USD + 100 @ 3 USD
+  Income:PnL                                         -200 USD
+  Expenses:Fees                                        10 USD
+
+2020-08-01 price CORP                                   3 USD
+
+; 2020-08-01
+; 0 CORP
+; spent: 630 USD, received: 860 USD, gains: 230 USD
+
+; date         market     cost     cash    gains   returns
+; 2020-02-01   100.00   100.00   110.00   -10.00    -9.09%
+; 2020-03-15   400.00   300.00   320.00    80.00    25.00%
+; 2020-05-01   900.00   600.00   630.00   270.00    42.86%
+; 2020-05-10   600.00   600.00   630.00   -30.00    -4.76%
+; 2020-06-01   500.00   550.00   540.00   -40.00    -7.41%
+; 2020-07-01   750.00   550.00   540.00   210.00    38.89%
+; 2020-07-10   750.00   550.00   520.00   230.00    44.23%
+; 2020-08-01     0.00     0.00  -220.00   220.00  -100.00%

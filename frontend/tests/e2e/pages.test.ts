@@ -1,19 +1,18 @@
 import { toMatchImageSnapshot } from "jest-image-snapshot";
 import "jest-puppeteer";
 
-const BASE_URL = "http://127.0.0.1:5000/beancount";
+const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
 const tests = [
-  { name: "Portfolio", url: "/extension/FavaPortfolioReturns/" },
-  {
-    name: "Performance",
-    url: "/extension/FavaPortfolioReturns/?time=2021-2022#/performance?compareInvestments=c:VHT_c:GLD",
-  },
-  { name: "Returns", url: "/extension/FavaPortfolioReturns/#/returns" },
-  { name: "Returns (MDM)", url: "/extension/FavaPortfolioReturns/#/returns?method=mdm" },
-  { name: "Returns (TWR)", url: "/extension/FavaPortfolioReturns/#/returns?method=twr" },
-  { name: "Dividends", url: "/extension/FavaPortfolioReturns/#/dividends" },
-  { name: "Cash Flows", url: "/extension/FavaPortfolioReturns/#/cash_flows?investments=c:VHT" },
-  { name: "Groups", url: "/extension/FavaPortfolioReturns/#/groups" },
+  { name: "Portfolio", url: "" },
+  { name: "Performance", url: "#/performance?compareWith=c:VHT_c:GLD" },
+  { name: "Performance (TWR)", url: "#/performance?investments=g:Gold&method=twr&compareWith=c:GLD" },
+  { name: "Returns", url: "#/returns" },
+  { name: "Returns (MDM)", url: "#/returns?method=mdm" },
+  { name: "Returns (TWR)", url: "#/returns?method=twr" },
+  { name: "Dividends", url: "#/dividends" },
+  { name: "Cash Flows", url: "#/cash_flows?investments=c:VHT" },
+  { name: "Groups", url: "#/groups" },
+  { name: "Investments", url: "#/investments" },
 ];
 
 function customSnapshotIdentifier(p: { currentTestName: string }) {

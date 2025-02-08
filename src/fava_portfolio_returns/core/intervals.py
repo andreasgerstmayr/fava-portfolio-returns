@@ -1,4 +1,5 @@
 import datetime
+from typing import Literal
 from typing import NamedTuple
 
 from beangrow.reports import Interval
@@ -67,7 +68,25 @@ def iterate_months(start_date: datetime.date, end_date: datetime.date) -> list[M
 
 
 def iterate_years(start_date: datetime.date, end_date: datetime.date) -> list[int]:
-    """iterate through months"""
+    """iterate through years"""
     year = start_date.year
     last_year = end_date.year
     return list(range(year, last_year + 1))
+
+
+def interval_label(interval: Literal["monthly", "yearly"]):
+    if interval == "monthly":
+        return lambda x: f"{x.year}-{x.month:02}"
+    elif interval == "yearly":
+        return lambda x: f"{x.year}"
+    else:
+        raise ValueError(f"Invalid interval {interval}")
+
+
+def interval_labels(interval: Literal["monthly", "yearly"], start_date: datetime.date, end_date: datetime.date):
+    if interval == "monthly":
+        return [f"{m.year}-{m.month:02}" for m in iterate_months(start_date, end_date)]
+    elif interval == "yearly":
+        return [f"{year}" for year in iterate_years(start_date, end_date)]
+    else:
+        raise ValueError(f"Invalid interval {interval}")

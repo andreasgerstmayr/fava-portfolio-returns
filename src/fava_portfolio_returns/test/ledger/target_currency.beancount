@@ -1,0 +1,18 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/target_currency.beancount
+option "operating_currency" "USD"
+option "operating_currency" "EUR"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity EUR
+2020-01-01 commodity CORP
+
+2020-02-01 price CORP                                   1 USD
+2020-02-01 price EUR                                    2 USD
+
+2020-02-01 * "Buy 100 CORP"
+  Assets:Cash                                     -100.00 USD
+  Assets:CORP                                         100 CORP {1 USD}
+
+2020-03-01 price CORP                                   2 USD

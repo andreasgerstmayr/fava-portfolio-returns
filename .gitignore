@@ -8,3 +8,9 @@ wheels/
 
 # venv
 .venv
+
+# pytest coverage
+.coverage
+
+# beangrow report
+example/reports

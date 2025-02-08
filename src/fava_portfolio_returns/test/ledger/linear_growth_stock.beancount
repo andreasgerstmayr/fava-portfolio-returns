@@ -1,0 +1,30 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/linear_growth_stock.beancount
+; linear growth with additional purchase in middle
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {10 USD}
+  Assets:Cash
+
+2020-02-01 price CORP                                  15 USD
+2020-03-01 price CORP                                  20 USD
+
+2020-04-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {25 USD}
+  Assets:Cash
+
+2020-05-01 price CORP                                  30 USD
+2020-06-01 price CORP                                  35 USD
+
+; date         market     cost     cash    gains   returns
+; 2020-01-01    10.00    10.00    10.00     0.00     0.00%
+; 2020-02-01    15.00    10.00    10.00     5.00    50.00%
+; 2020-03-01    20.00    10.00    10.00    10.00   100.00%
+; 2020-04-01    50.00    35.00    35.00    15.00    42.86%
+; 2020-05-01    60.00    35.00    35.00    25.00    71.43%
+; 2020-06-01    70.00    35.00    35.00    35.00   100.00%

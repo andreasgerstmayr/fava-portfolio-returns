@@ -1,40 +1,54 @@
 import datetime
+from collections import defaultdict
+from dataclasses import dataclass
 from decimal import Decimal
+from typing import Literal
 
 from beancount.core.number import ZERO
-from beangrow.investments import AccountData
-from beangrow.returns import Pricer
 
-from fava_portfolio_returns.core.utils import (
-    convert_cash_flows_to_currency,
-    filter_cash_flows_by_date,
-    group_cash_flows_by_date,
-    merge_cash_flows,
-)
+from fava_portfolio_returns.core.intervals import interval_label
+from fava_portfolio_returns.core.portfolio import FilteredPortfolio
+from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
+from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
 
 
-def cash_flows_list(
-    pricer: Pricer,
-    account_data_list: list[AccountData],
-    target_currency: str,
-    start_date: datetime.date,
-    end_date: datetime.date,
-    dividends: bool,
+@dataclass
+class CashFlowChartValue:
+    date: str
+    div: Decimal
+    exdiv: Decimal
+
+
+def cash_flows_chart(
+    p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, interval: Literal["monthly", "yearly"]
 ):
-    cash_flows = merge_cash_flows(account_data_list)
+    cash_flows = p.cash_flows()
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
-    cash_flows = [flow for flow in cash_flows if flow.is_dividend == dividends]
-    cash_flows = convert_cash_flows_to_currency(pricer, target_currency, cash_flows)
-    return group_cash_flows_by_date(cash_flows)
+    cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
+
+    labelfn = interval_label(interval)
+    chart: dict[str, CashFlowChartValue] = {}
+    for flow in cash_flows:
+        label = labelfn(flow.date)
+        if label not in chart:
+            chart[label] = CashFlowChartValue(date=label, div=ZERO, exdiv=ZERO)
+
+        if flow.is_dividend:
+            chart[label].div += flow.amount.number
+        else:
+            chart[label].exdiv += flow.amount.number
+
+    # only required if echarts axis is set to 'category' instead of 'time'
+    # for label in interval_labels(interval, start_date, end_date):
+    #    if label not in chart:
+    #        chart[label] = CashFlowChartValue(date=label, div=ZERO, exdiv=ZERO)
+    return sorted(chart.values(), key=lambda x: x.date)
 
 
-def cash_flows_table(
-    account_data_list: list[AccountData],
-    start_date: datetime.date,
-    end_date: datetime.date,
-):
-    cash_flows = merge_cash_flows(account_data_list)
+def cash_flows_table(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
+    cash_flows = p.cash_flows()
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
+    cash_flows = sorted(cash_flows, key=lambda x: x.date, reverse=True)
     return [
         {
             "date": flow.date,
@@ -47,29 +61,34 @@ def cash_flows_table(
     ]
 
 
-def cash_flows_cumulative(
-    pricer: Pricer,
-    account_data_list: list[AccountData],
-    target_currency: str,
+def dividends_chart(
+    p: FilteredPortfolio,
     start_date: datetime.date,
     end_date: datetime.date,
+    interval: Literal["monthly", "yearly"],
 ):
-    cash_flows = merge_cash_flows(account_data_list)
-    cash_flows = convert_cash_flows_to_currency(pricer, target_currency, cash_flows)
-    cash_flows_grouped = group_cash_flows_by_date(cash_flows)
+    cash_flows = p.cash_flows()
+    cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
+    cash_flows = [flow for flow in cash_flows if flow.is_dividend]
+    cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
 
-    series: list[tuple[datetime.date, Decimal]] = []
-    initial_value = ZERO  # cumulative value before start_date
-    cumulative_value = ZERO
-    for date, cost_value in cash_flows_grouped:
-        cumulative_value += -cost_value
-        if date < start_date:
-            initial_value += -cost_value
-        if start_date <= date <= end_date:
-            series.append((date, cumulative_value))
+    currency_by_account = {acc.assetAccount: acc.currency for acc in p.portfolio.investment_groups.accounts}
+    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investment_groups.currencies}
 
-    # add cumulative value before start_date
-    if initial_value != ZERO:
-        series.insert(0, (start_date, initial_value))
+    labelfn = interval_label(interval)
+    chart: dict[str, dict[str, str | Decimal]] = {}
+    for flow in cash_flows:
+        label = labelfn(flow.date)
+        currency = currency_by_account[flow.account]
+        currency_name = currency_name_by_currency[currency]
 
-    return series
+        if label not in chart:
+            chart[label] = defaultdict(Decimal)
+            chart[label]["date"] = label
+        chart[label][currency_name] += flow.amount.number
+
+    # only required if echarts axis is set to 'category' instead of 'time'
+    # for label in interval_labels(interval, start_date, end_date):
+    #    if label not in chart:
+    #        chart[label] = {"date": label}
+    return sorted(chart.values(), key=lambda x: x["date"])

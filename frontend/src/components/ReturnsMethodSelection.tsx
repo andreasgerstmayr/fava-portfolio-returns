@@ -1,25 +1,17 @@
 import { MenuItem, Select } from "@mui/material";
 
 export const ReturnsMethods = {
-  simple: { label: "Returns", help: "Return compares the cost value with the market value." },
+  simple: { label: "Returns" },
   irr: {
-    label: "Internal Rate of Returns",
-    help:
-      "Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.\n" +
-      "This method is recommended when you are in control of the cash flows.",
+    label: "Internal Rate of Return",
   },
   mdm: {
     label: "Modified Dietz Method",
-    help:
-      "Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows.\n" +
-      "This method is recommended when you are in control of the cash flows.",
   },
   twr: {
     label: "Time-Weighted Rate of Return",
-    help:
-      "Time-Weighted Return (TWR) eliminates the effects of cash flows.\n" +
-      "This method is recommended for comparing two funds or portfolios.",
   },
+  monetary: { label: "Monetary Returns" },
 };
 
 export type ReturnsMethod = keyof typeof ReturnsMethods;

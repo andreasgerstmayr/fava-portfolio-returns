@@ -1,0 +1,34 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/savings_plan.beancount
+; monthly savings plan with linear growth
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {10 USD}
+  Assets:Cash
+
+2020-02-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {15 USD}
+  Assets:Cash
+
+2020-03-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {20 USD}
+  Assets:Cash
+
+2020-04-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {25 USD}
+  Assets:Cash
+
+; date         market     cost     cash    gains   returns
+; 2020-01-01    10.00    10.00    10.00     0.00     0.00%
+; 2020-02-01    30.00    25.00    25.00     5.00    20.00%
+; 2020-03-01    60.00    45.00    45.00    15.00    33.33%
+; 2020-04-01   100.00    70.00    70.00    30.00    42.86%
+;
+; IRR:
+; 10 USD invested for 4 months + 15 USD invested for 3 months + 20 USD invested for 2 months + 25 USD invested for 1 month = 100 USD
+; 10*(1+x)^(4*30/365) + 15*(1+x)^(3*30/365) + 20*(1+x)^(2*30/365) + 25*(1+x)^(1*30/365) = 100

@@ -4,12 +4,13 @@ import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashbo
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
+import { getCurrencyFormatter } from "../components/format";
 
 export function Dividends() {
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup labels={["monthly", "yearly"]}>
+        <PanelGroup param="interval" labels={["monthly", "yearly"]}>
           <Panel title="Dividends">
             <DividendsChart interval="monthly" />
           </Panel>
@@ -41,11 +42,13 @@ function DividendsChart({ interval }: DividendsChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-  }).format;
+  const names = new Set(data.chart.flatMap((v) => Object.keys(v)));
+  names.delete("date");
+  if (names.size === 0) {
+    return <Alert severity="info">No dividends in this time frame.</Alert>;
+  }
 
+  const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option = {
     tooltip: {
       valueFormatter: currencyFormatter,
@@ -54,8 +57,7 @@ function DividendsChart({ interval }: DividendsChartProps) {
       bottom: 0,
     },
     xAxis: {
-      type: "category",
-      data: data.intervals,
+      type: "time",
     },
     yAxis: {
       type: "value",
@@ -63,10 +65,14 @@ function DividendsChart({ interval }: DividendsChartProps) {
         formatter: currencyFormatter,
       },
     },
-    series: Object.entries(data.dividends).map(([name, dividends]) => ({
+    dataset: {
+      source: data.chart,
+    },
+    series: [...names].map((name) => ({
       type: "bar",
       name: name,
-      data: data.intervals.map((i) => dividends[i]),
+      dimensions: ["date", name],
+      barMinWidth: 4,
       barMaxWidth: 20,
       stack: "dividends",
     })),
