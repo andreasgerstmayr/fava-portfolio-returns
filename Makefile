@@ -77,8 +77,8 @@ ci:
 
 ## Container
 container-run: container-stop
-	docker build -t fava-portfolio-returns -f Dockerfile.test .
-	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns
+	docker build -t fava-portfolio-returns-test -f Dockerfile.test .
+	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns-test
 
 container-stop:
 	docker rm -f fava-portfolio-returns-test
