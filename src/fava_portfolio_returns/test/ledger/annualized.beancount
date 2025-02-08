@@ -1,0 +1,15 @@
+; uv run fava --debug src/fava_portfolio_returns/test/ledger/annualized.beancount
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Buy 1 CORP"
+  Assets:CORP                                           1 CORP {10 USD}
+  Assets:Cash
+
+2022-01-01 price CORP                                  15 USD
+
+; 10 USD to 15 USD in 2 years = 50% total returns = 70% p.a.

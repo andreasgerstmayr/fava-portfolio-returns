@@ -1,14 +1,19 @@
 import { Alert } from "@mui/material";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
-import { useSeries } from "../api/series";
+import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { ReturnsMethods, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import { NEGATIVE_NUMBER_COLOR, POSITIVE_NUMBER_COLOR } from "../components/style";
+import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
+import {
+  getIntegerCurrencyFormatter,
+  NEGATIVE_NUMBER_COLOR,
+  percentFormatter,
+  POSITIVE_NUMBER_COLOR,
+} from "../components/format";
 
-const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr"]);
+const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
 
 export function Returns() {
@@ -17,19 +22,19 @@ export function Returns() {
   return (
     <Dashboard>
       <DashboardRow sx={{ justifyContent: "flex-end" }}>
-        <ReturnsMethodSelection options={["irr", "mdm", "twr"]} method={method} setMethod={setMethod} />
+        <ReturnsMethodSelection options={["irr", "mdm", "twr", "monetary"]} method={method} setMethod={setMethod} />
       </DashboardRow>
       <DashboardRow>
-        <Panel title="Monthly Returns" help={ReturnsMethods[method].help}>
-          <ReturnsHeatmapChart seriesName={`returns_${method}_heatmap`} />
+        <Panel title="Monthly Returns">
+          <ReturnsHeatmapChart method={method} />
         </Panel>
       </DashboardRow>
       <DashboardRow>
         <Panel title="Yearly Returns">
-          <ReturnsBarChart seriesName={`returns_${method}_yearly`} />
+          <ReturnsBarChart method={method} interval="yearly" />
         </Panel>
         <Panel title="Returns over Periods">
-          <ReturnsBarChart seriesName={`returns_${method}_periods`} />
+          <ReturnsBarChart method={method} interval="periods" />
         </Panel>
       </DashboardRow>
     </Dashboard>
@@ -37,15 +42,16 @@ export function Returns() {
 }
 
 interface ReturnsHeatmapChartProps {
-  seriesName: string;
+  method: ReturnsMethod;
 }
 
-function ReturnsHeatmapChart({ seriesName }: ReturnsHeatmapChartProps) {
+function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSeries({
+  const { isPending, error, data } = useReturns({
     investmentFilter,
     targetCurrency,
-    series: [seriesName],
+    method,
+    interval: "heatmap",
   });
 
   if (isPending) {
@@ -55,19 +61,14 @@ function ReturnsHeatmapChart({ seriesName }: ReturnsHeatmapChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const percentFormatter = new Intl.NumberFormat(undefined, {
-    style: "percent",
-    maximumFractionDigits: 2,
-    signDisplay: "exceptZero",
-  }).format;
+  const max = Math.max(...data.returns.map(([_date, val]) => Math.abs(val)));
+  const maxRounded = Math.round(max * 100) / 100;
+  const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
-
-  const series = data.series[seriesName];
-
   const option = {
     tooltip: {
       position: "top",
-      valueFormatter: percentFormatter,
+      valueFormatter,
     },
     grid: {
       bottom: "100", // space for visualMap
@@ -85,8 +86,8 @@ function ReturnsHeatmapChart({ seriesName }: ReturnsHeatmapChartProps) {
       },
     },
     visualMap: {
-      min: -0.15,
-      max: 0.15,
+      min: -maxRounded,
+      max: maxRounded,
       calculable: true, // show handles
       orient: "horizontal",
       left: "center",
@@ -95,23 +96,26 @@ function ReturnsHeatmapChart({ seriesName }: ReturnsHeatmapChartProps) {
       inRange: {
         color: [NEGATIVE_NUMBER_COLOR, "#fff", POSITIVE_NUMBER_COLOR],
       },
-      formatter: percentFormatter,
+      formatter: valueFormatter,
     },
     series: [
       {
         type: "heatmap",
-        data: series.map(([label, value]) => {
+        data: data.returns.map(([label, value]) => {
           if (!label.includes("-")) {
             return ["Entire Year", label, value];
           }
 
           const [year, month] = label.split("-");
           const monthLocale = monthFormatter(new Date(parseInt(year), parseInt(month) - 1, 1));
-          return [monthLocale, year, value];
+
+          // workaround to display -0.0000001 as 0 instead of -0
+          const valueRounded = Math.round((value + Number.EPSILON) * 10000) / 10000 + 0;
+          return [monthLocale, year, valueRounded];
         }),
         label: {
           show: true,
-          formatter: (params: { data: [string, string, number] }) => percentFormatter(params.data[2]),
+          formatter: (params: { data: [string, string, number] }) => valueFormatter(params.data[2]),
         },
         emphasis: {
           itemStyle: {
@@ -123,22 +127,24 @@ function ReturnsHeatmapChart({ seriesName }: ReturnsHeatmapChartProps) {
     ],
   };
 
-  const numRows = series.filter(([label]) => !label.includes("-")).length;
+  const numRows = data.returns.filter(([label]) => !label.includes("-")).length;
   const chartHeightPx = 170 + numRows * 40;
 
   return <EChart height={`${chartHeightPx}px`} option={option} />;
 }
 
 interface ReturnsBarChartProps {
-  seriesName: string;
+  method: ReturnsMethod;
+  interval: "yearly" | "periods";
 }
 
-function ReturnsBarChart({ seriesName }: ReturnsBarChartProps) {
+function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSeries({
+  const { isPending, error, data } = useReturns({
     investmentFilter,
     targetCurrency,
-    series: [seriesName],
+    method,
+    interval,
   });
 
   if (isPending) {
@@ -148,18 +154,11 @@ function ReturnsBarChart({ seriesName }: ReturnsBarChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const percentFormatter = new Intl.NumberFormat(undefined, {
-    style: "percent",
-    maximumFractionDigits: 2,
-    signDisplay: "exceptZero",
-  }).format;
-
-  const series = data.series[seriesName];
-
+  const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
   const option = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: percentFormatter,
+      valueFormatter,
     },
     xAxis: {
       type: "category",
@@ -167,14 +166,14 @@ function ReturnsBarChart({ seriesName }: ReturnsBarChartProps) {
     yAxis: {
       type: "value",
       axisLabel: {
-        formatter: percentFormatter,
+        formatter: valueFormatter,
       },
     },
     series: [
       {
         type: "bar",
         name: "Returns",
-        data: series,
+        data: data.returns,
         itemStyle: {
           color: (params: { data: [string, number] }) =>
             params.data[1] >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR,

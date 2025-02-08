@@ -1,21 +1,29 @@
 import { Alert } from "@mui/material";
 import { useCashFlows } from "../api/cash_flows";
-import { useSeries } from "../api/series";
-import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
+import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
+import { getCurrencyFormatter, numberFormatter, timestampToMonth, timestampToYear } from "../components/format";
 
 export function CashFlows() {
   return (
     <Dashboard>
       <DashboardRow>
-        <Panel
-          title="Cash Flows"
-          help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
-        >
-          <CashFlowsChart />
-        </Panel>
+        <PanelGroup param="interval" labels={["monthly", "yearly"]}>
+          <Panel
+            title="Cash Flows"
+            help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
+          >
+            <CashFlowsChart interval="monthly" />
+          </Panel>
+          <Panel
+            title="Cash Flows"
+            help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
+          >
+            <CashFlowsChart interval="yearly" />
+          </Panel>
+        </PanelGroup>
       </DashboardRow>
       <DashboardRow>
         <Panel title="List of Cash Flows">
@@ -26,13 +34,12 @@ export function CashFlows() {
   );
 }
 
-function CashFlowsChart() {
+interface CashFlowsChartProps {
+  interval: "monthly" | "yearly";
+}
+function CashFlowsChart({ interval }: CashFlowsChartProps) {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useSeries({
-    investmentFilter,
-    targetCurrency,
-    series: ["cash_flows_exdiv", "cash_flows_div"],
-  });
+  const { isPending, error, data } = useCashFlows({ investmentFilter, targetCurrency, interval });
 
   if (isPending) {
     return <Loading />;
@@ -41,14 +48,11 @@ function CashFlowsChart() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const currencyFormatter = new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency: targetCurrency,
-  }).format;
+  if (data.table.length === 0) {
+    return <Alert severity="info">No cash flows in this time frame.</Alert>;
+  }
 
-  const cashFlowsExDiv = data.series["cash_flows_exdiv"];
-  const cashFlowsDiv = data.series["cash_flows_div"];
-
+  const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option = {
     tooltip: {
       trigger: "axis",
@@ -59,6 +63,12 @@ function CashFlowsChart() {
     },
     xAxis: {
       type: "time",
+      axisPointer: {
+        label: {
+          formatter: ({ value }: { value: number }) =>
+            interval === "monthly" ? timestampToMonth(value) : timestampToYear(value),
+        },
+      },
     },
     yAxis: {
       type: "value",
@@ -66,11 +76,14 @@ function CashFlowsChart() {
         formatter: currencyFormatter,
       },
     },
+    dataset: {
+      source: data.chart,
+    },
     series: [
       {
         type: "bar",
         name: "Cash flows excl. dividends",
-        data: cashFlowsExDiv,
+        dimensions: ["date", "exdiv"],
         barMinWidth: 4,
         barMaxWidth: 20,
         stack: "flows",
@@ -78,7 +91,7 @@ function CashFlowsChart() {
       {
         type: "bar",
         name: "Dividends",
-        data: cashFlowsDiv,
+        dimensions: ["date", "div"],
         barMinWidth: 4,
         barMaxWidth: 20,
         stack: "flows",
@@ -91,7 +104,7 @@ function CashFlowsChart() {
 
 function CashFlowsTable() {
   const { investmentFilter, targetCurrency } = useToolbarContext();
-  const { isPending, error, data } = useCashFlows({ investmentFilter, targetCurrency });
+  const { isPending, error, data } = useCashFlows({ investmentFilter, targetCurrency, interval: "monthly" });
 
   if (isPending) {
     return <Loading />;
@@ -100,10 +113,9 @@ function CashFlowsTable() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const numberFormatter = new Intl.NumberFormat(undefined, {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format;
+  if (data.table.length === 0) {
+    return <Alert severity="info">No cash flows in this time frame.</Alert>;
+  }
 
   return (
     <table>
@@ -117,7 +129,7 @@ function CashFlowsTable() {
         </tr>
       </thead>
       <tbody>
-        {data.cashFlows.map((flow, i) => (
+        {data.table.map((flow, i) => (
           <tr key={i}>
             <td>{flow.date}</td>
             <td className="num">

@@ -1,42 +1,23 @@
 import abc
 import datetime
-from decimal import Decimal
 
-from beangrow.investments import AccountData
 from beangrow.reports import Interval
-from beangrow.returns import Pricer
+
+from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 
 
 class ReturnsBase(abc.ABC):
-    def single(
-        self,
-        pricer: Pricer,
-        account_data_list: list[AccountData],
-        target_currency: str,
-        start_date: datetime.date,
-        end_date: datetime.date,
-    ) -> Decimal:
+    def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:
         raise NotImplementedError("single() is not implemented for this method of calculating portfolio returns")
 
     def series(
-        self,
-        pricer: Pricer,
-        account_data_list: list[AccountData],
-        target_currency: str,
-        start_date: datetime.date,
-        end_date: datetime.date,
-    ):
+        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date
+    ) -> list[tuple[datetime.date, float]]:
         raise NotImplementedError("series() is not implemented for this method of calculating portfolio returns")
 
-    def intervals(
-        self,
-        pricer: Pricer,
-        account_data_list: list[AccountData],
-        target_currency: str,
-        intervals: list[Interval],
-    ):
+    def intervals(self, p: FilteredPortfolio, intervals: list[Interval]) -> list[tuple[str, float]]:
         ret = []
         for interval_name, date_start, date_end in intervals:
-            returns = self.single(pricer, account_data_list, target_currency, date_start, date_end)
-            ret.append([interval_name, returns])
+            returns = self.single(p, date_start, date_end)
+            ret.append((interval_name, returns))
         return ret

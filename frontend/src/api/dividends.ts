@@ -9,7 +9,7 @@ interface DividendsRequest {
 
 export interface DividendsResponse {
   intervals: string[];
-  dividends: Record<string, Record<string, number>>;
+  chart: Record<string, string | number>[];
 }
 
 export function useDividends(request: DividendsRequest): UseQueryResult<DividendsResponse> {

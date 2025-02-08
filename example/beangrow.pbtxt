@@ -24,22 +24,6 @@ investments {
     cash_accounts: "Assets:US:ETrade:Cash"
   }
   investment {
-    currency: "CORP"
-    asset_account: "Assets:US:ETrade:CORP"
-    dividend_accounts: "Income:US:ETrade:CORP:Dividend"
-    cash_accounts: "Assets:US:ETrade:Cash"
-  }
-  investment {
-    currency: "CORPEUR"
-    asset_account: "Assets:US:ETrade:CORPEUR"
-    cash_accounts: "Assets:US:ETrade:CashEUR"
-  }
-  investment {
-    currency: "CORPSPL"
-    asset_account: "Assets:US:ETrade:CORPSPL"
-    cash_accounts: "Assets:US:ETrade:Cash"
-  }
-  investment {
     currency: "RGAGX"
     asset_account: "Assets:US:Vanguard:RGAGX"
     cash_accounts: "Assets:US:Vanguard:Cash"
@@ -74,28 +58,5 @@ groups {
   group {
     name: "Vanguard Health Care ETF"
     investment: "Assets:US:ETrade:VHT"
-  }
-  group {
-    name: "CORP"
-    investment: "Assets:US:ETrade:CORP"
-  }
-  group {
-    name: "CORP (converted to EUR)"
-    investment: "Assets:US:ETrade:CORP"
-    currency: "EUR"
-  }
-  group {
-    name: "CORPEUR"
-    investment: "Assets:US:ETrade:CORPEUR"
-  }
-  group {
-    name: "CORPSPL"
-    investment: "Assets:US:ETrade:CORPSPL"
-  }
-  group {
-    name: "CORP (all)"
-    investment: "Assets:US:ETrade:CORP"
-    investment: "Assets:US:ETrade:CORPEUR"
-    currency: "USD"
   }
 }

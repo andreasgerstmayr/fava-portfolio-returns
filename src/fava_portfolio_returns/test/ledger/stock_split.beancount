@@ -1,0 +1,20 @@
+option "operating_currency" "USD"
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+
+2020-01-01 commodity CORPSPL
+
+2020-01-01 * "Buy 50 CORPSPL"
+  Assets:US:ETrade:Cash                           -110.00 USD
+  Assets:US:ETrade:CORPSPL                             50 CORPSPL {1.00 USD}
+  Expenses:Financial:Fees
+
+2020-02-01 * "CORPSPL Stock split 10:1"
+  Assets:US:ETrade:CORPSPL                            -50 CORPSPL {}
+  Assets:US:ETrade:CORPSPL                            500 CORPSPL {0.10 USD}
+
+2020-03-01 price CORPSPL                             0.10 USD
+
+2020-04-01 balance Assets:US:ETrade:Cash             0.00 USD
+2020-04-01 balance Assets:US:ETrade:CORPSPL           500 CORPSPL
