@@ -4764,86 +4764,6 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
               >
               </rect>
               <g>
-                <path d="M144.4 190l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 146.6667l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 103.3333l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M233.2615 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M322.1231 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M410.9846 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M499.8462 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M588.7077 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M677.5692 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M766.4308 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M855.2923 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M944.1538 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1033.0154 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1121.8769 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1210.7385 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
                 <path d="M144.5 190L144.5 60"
                       fill="none"
                       stroke="#6E7079"
@@ -5089,55 +5009,55 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                   Dec
                 </text>
                 <path d="M144.15 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(211,237,213)"
+                      fill="rgb(61,175,70)"
                 >
                 </path>
                 <path d="M233.0115 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,253,251)"
-                >
-                </path>
-                <path d="M321.8731 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(253,254,253)"
-                >
-                </path>
-                <path d="M410.7346 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(226,243,227)"
-                >
-                </path>
-                <path d="M499.5962 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(255,255,255)"
-                >
-                </path>
-                <path d="M588.4577 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,246,246)"
-                >
-                </path>
-                <path d="M677.3192 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(253,250,250)"
-                >
-                </path>
-                <path d="M766.1808 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(229,244,230)"
-                >
-                </path>
-                <path d="M855.0423 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(243,227,227)"
-                >
-                </path>
-                <path d="M943.9038 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
                       fill="rgb(235,247,236)"
                 >
                 </path>
-                <path d="M1032.7654 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(246,251,246)"
+                <path d="M321.8731 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(247,252,247)"
                 >
                 </path>
-                <path d="M1121.6269 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                <path d="M410.7346 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(124,201,130)"
+                >
+                </path>
+                <path d="M499.5962 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(255,254,254)"
+                >
+                </path>
+                <path d="M588.4577 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(238,214,214)"
+                >
+                </path>
+                <path d="M677.3192 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
                       fill="rgb(246,234,234)"
                 >
                 </path>
+                <path d="M766.1808 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(137,206,142)"
+                >
+                </path>
+                <path d="M855.0423 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(203,128,128)"
+                >
+                </path>
+                <path d="M943.9038 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(166,218,170)"
+                >
+                </path>
+                <path d="M1032.7654 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(212,237,214)"
+                >
+                </path>
+                <path d="M1121.6269 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
+                      fill="rgb(216,160,160)"
+                >
+                </path>
                 <path d="M1210.4885 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(241,249,242)"
+                      fill="rgb(192,229,195)"
                 >
                 </path>
                 <path d="M144.15 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
@@ -5145,63 +5065,63 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                 >
                 </path>
                 <path d="M233.0115 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(253,251,251)"
+                      fill="rgb(248,238,238)"
                 >
                 </path>
                 <path d="M321.8731 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(236,247,237)"
+                      fill="rgb(169,220,173)"
                 >
                 </path>
                 <path d="M410.7346 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(242,250,243)"
+                      fill="rgb(199,232,201)"
                 >
                 </path>
                 <path d="M499.5962 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(242,250,243)"
+                      fill="rgb(198,231,200)"
                 >
                 </path>
                 <path d="M588.4577 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(245,251,246)"
+                      fill="rgb(210,237,212)"
                 >
                 </path>
                 <path d="M677.3192 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(217,239,218)"
+                      fill="rgb(82,184,90)"
                 >
                 </path>
                 <path d="M766.1808 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(225,243,226)"
+                      fill="rgb(120,199,126)"
                 >
                 </path>
                 <path d="M855.0423 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(219,240,220)"
+                      fill="rgb(91,187,99)"
                 >
                 </path>
                 <path d="M943.9038 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(252,247,247)"
+                      fill="rgb(241,220,220)"
                 >
                 </path>
                 <path d="M1032.7654 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(250,253,251)"
+                      fill="rgb(235,247,236)"
                 >
                 </path>
                 <path d="M1121.6269 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,246,246)"
+                      fill="rgb(239,216,216)"
                 >
                 </path>
                 <path d="M1210.4885 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(223,242,224)"
+                      fill="rgb(110,195,117)"
                 >
                 </path>
                 <path d="M144.15 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(247,252,247)"
+                      fill="rgb(217,239,219)"
                 >
                 </path>
                 <path d="M233.0115 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(254,252,252)"
+                      fill="rgb(249,241,241)"
                 >
                 </path>
                 <path d="M321.8731 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(244,250,244)"
+                      fill="rgb(204,234,206)"
                 >
                 </path>
                 <path d="M410.7346 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
@@ -5556,7 +5476,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                 >
                   0%
                 </text>
-                <path d="M-20.501 -42.6006l438.8369 0l0 50.6006l-438.8369 0Z"
+                <path d="M-16.6836 -42.6006l431.2021 0l0 50.6006l-431.2021 0Z"
                       transform="translate(523.0825 282)"
                       fill="rgb(0,0,0)"
                       fill-opacity="0"
@@ -5572,7 +5492,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                       fill="#333"
                       style="font-size: 12px; font-family: sans-serif;"
                 >
-                  -18%
+                  -4%
                 </text>
                 <text dominant-baseline="central"
                       text-anchor="middle"
@@ -5582,7 +5502,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                       fill="#333"
                       style="font-size: 12px; font-family: sans-serif;"
                 >
-                  18%
+                  4%
                 </text>
                 <g clip-path="url(#zrX-cY)">
                   <path d="M0 0L20 0L20 400L0 400Z"
@@ -6261,7 +6181,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                   >
                   </stop>
                   <stop offset="55.00000000000001%"
-                        stop-color="rgb(236,247,237)"
+                        stop-color="rgb(236,247,236)"
                   >
                   </stop>
                   <stop offset="56.00000000000001%"
@@ -6341,7 +6261,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                   >
                   </stop>
                   <stop offset="75%"
-                        stop-color="rgb(158,215,162)"
+                        stop-color="rgb(158,215,163)"
                   >
                   </stop>
                   <stop offset="76%"
@@ -6381,7 +6301,7 @@ exports[`HTML Snapshot Tests Returns (MDM) 1`] = `
                   >
                   </stop>
                   <stop offset="85%"
-                        stop-color="rgb(119,199,126)"
+                        stop-color="rgb(119,199,125)"
                   >
                   </stop>
                   <stop offset="86%"
@@ -7389,86 +7309,6 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
               >
               </rect>
               <g>
-                <path d="M144.4 190l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 146.6667l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 103.3333l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M233.2615 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M322.1231 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M410.9846 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M499.8462 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M588.7077 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M677.5692 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M766.4308 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M855.2923 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M944.1538 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1033.0154 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1121.8769 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1210.7385 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
                 <path d="M144.5 190L144.5 60"
                       fill="none"
                       stroke="#6E7079"
@@ -7714,19 +7554,19 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                   Dec
                 </text>
                 <path d="M144.15 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(194,230,197)"
+                      fill="rgb(61,175,70)"
                 >
                 </path>
                 <path d="M233.0115 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(250,253,250)"
+                      fill="rgb(232,246,233)"
                 >
                 </path>
                 <path d="M321.8731 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(254,255,254)"
+                      fill="rgb(250,253,250)"
                 >
                 </path>
                 <path d="M410.7346 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(227,244,228)"
+                      fill="rgb(130,203,136)"
                 >
                 </path>
                 <path d="M499.5962 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
@@ -7734,35 +7574,35 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                 >
                 </path>
                 <path d="M588.4577 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,246,246)"
+                      fill="rgb(238,214,214)"
                 >
                 </path>
                 <path d="M677.3192 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(253,250,250)"
+                      fill="rgb(245,230,230)"
                 >
                 </path>
                 <path d="M766.1808 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(228,244,229)"
+                      fill="rgb(132,204,138)"
                 >
                 </path>
                 <path d="M855.0423 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(243,227,227)"
+                      fill="rgb(202,127,127)"
                 >
                 </path>
                 <path d="M943.9038 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(235,247,236)"
+                      fill="rgb(166,218,170)"
                 >
                 </path>
                 <path d="M1032.7654 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(245,251,246)"
+                      fill="rgb(211,237,213)"
                 >
                 </path>
                 <path d="M1121.6269 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(246,234,234)"
+                      fill="rgb(216,160,160)"
                 >
                 </path>
                 <path d="M1210.4885 146.4167l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(241,249,242)"
+                      fill="rgb(192,229,195)"
                 >
                 </path>
                 <path d="M144.15 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
@@ -7770,63 +7610,63 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                 >
                 </path>
                 <path d="M233.0115 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(253,251,251)"
+                      fill="rgb(248,238,238)"
                 >
                 </path>
                 <path d="M321.8731 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(236,247,237)"
+                      fill="rgb(170,220,174)"
                 >
                 </path>
                 <path d="M410.7346 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(242,250,243)"
+                      fill="rgb(198,232,201)"
                 >
                 </path>
                 <path d="M499.5962 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(242,250,243)"
+                      fill="rgb(197,231,200)"
                 >
                 </path>
                 <path d="M588.4577 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(245,251,245)"
+                      fill="rgb(209,236,211)"
                 >
                 </path>
                 <path d="M677.3192 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(216,239,218)"
+                      fill="rgb(78,182,87)"
                 >
                 </path>
                 <path d="M766.1808 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(224,242,226)"
+                      fill="rgb(116,198,122)"
                 >
                 </path>
                 <path d="M855.0423 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(218,240,220)"
+                      fill="rgb(91,187,98)"
                 >
                 </path>
                 <path d="M943.9038 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,246,246)"
+                      fill="rgb(239,217,217)"
                 >
                 </path>
                 <path d="M1032.7654 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,253,251)"
+                      fill="rgb(235,247,236)"
                 >
                 </path>
                 <path d="M1121.6269 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(251,246,246)"
+                      fill="rgb(239,216,216)"
                 >
                 </path>
                 <path d="M1210.4885 103.0833l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(223,242,224)"
+                      fill="rgb(109,195,116)"
                 >
                 </path>
                 <path d="M144.15 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(247,252,247)"
+                      fill="rgb(218,240,220)"
                 >
                 </path>
                 <path d="M233.0115 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(254,252,252)"
+                      fill="rgb(249,241,241)"
                 >
                 </path>
                 <path d="M321.8731 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
-                      fill="rgb(244,250,244)"
+                      fill="rgb(204,234,206)"
                 >
                 </path>
                 <path d="M410.7346 59.75l89.3615 0l0 43.8333l-89.3615 0Z"
@@ -8181,7 +8021,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                 >
                   0%
                 </text>
-                <path d="M-20.501 -42.6006l438.8369 0l0 50.6006l-438.8369 0Z"
+                <path d="M-16.6836 -42.6006l431.2021 0l0 50.6006l-431.2021 0Z"
                       transform="translate(523.0825 282)"
                       fill="rgb(0,0,0)"
                       fill-opacity="0"
@@ -8197,7 +8037,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                       fill="#333"
                       style="font-size: 12px; font-family: sans-serif;"
                 >
-                  -18%
+                  -4%
                 </text>
                 <text dominant-baseline="central"
                       text-anchor="middle"
@@ -8207,7 +8047,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                       fill="#333"
                       style="font-size: 12px; font-family: sans-serif;"
                 >
-                  18%
+                  4%
                 </text>
                 <g clip-path="url(#zrX-cY)">
                   <path d="M0 0L20 0L20 400L0 400Z"
@@ -8886,7 +8726,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                   >
                   </stop>
                   <stop offset="55.00000000000001%"
-                        stop-color="rgb(236,247,237)"
+                        stop-color="rgb(236,247,236)"
                   >
                   </stop>
                   <stop offset="56.00000000000001%"
@@ -8966,7 +8806,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                   >
                   </stop>
                   <stop offset="75%"
-                        stop-color="rgb(158,215,162)"
+                        stop-color="rgb(158,215,163)"
                   >
                   </stop>
                   <stop offset="76%"
@@ -9006,7 +8846,7 @@ exports[`HTML Snapshot Tests Returns (TWR) 1`] = `
                   >
                   </stop>
                   <stop offset="85%"
-                        stop-color="rgb(119,199,126)"
+                        stop-color="rgb(119,199,125)"
                   >
                   </stop>
                   <stop offset="86%"
@@ -10027,86 +9867,6 @@ exports[`HTML Snapshot Tests Returns 1`] = `
               >
               </rect>
               <g>
-                <path d="M144.4 190l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 146.6667l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 103.3333l1155.2 0l0 -43.3333l-1155.2 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M144.4 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M233.2615 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M322.1231 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M410.9846 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M499.8462 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M588.7077 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M677.5692 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M766.4308 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M855.2923 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M944.1538 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1033.0154 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1121.8769 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(210,219,238)"
-                      fill-opacity="0.2"
-                >
-                </path>
-                <path d="M1210.7385 60l88.8615 0l0 130l-88.8615 0Z"
-                      fill="rgb(250,250,250)"
-                      fill-opacity="0.2"
-                >
-                </path>
                 <path d="M144.5 190L144.5 60"
                       fill="none"
                       stroke="#6E7079"
