@@ -1,4 +1,4 @@
-import { Card, MenuItem, Select, Stack, SxProps, Theme } from "@mui/material";
+import { Card, MenuItem, Select, Stack, SxProps, Theme, useTheme } from "@mui/material";
 import React from "react";
 import { NumberParam, useQueryParam, withDefault } from "use-query-params";
 
@@ -6,6 +6,7 @@ interface DashboardProps {
   children?: React.ReactNode;
 }
 export function Dashboard({ children }: DashboardProps) {
+  const theme = useTheme();
   return (
     <Stack
       sx={{
@@ -15,7 +16,7 @@ export function Dashboard({ children }: DashboardProps) {
         marginBottom: "-1.5em",
         padding: "1.5em",
         gap: 2,
-        backgroundColor: "#FAFBFB",
+        backgroundColor: theme.palette.mode === 'dark' ? undefined : "#FAFBFB"
       }}
     >
       {children}
