@@ -61,7 +61,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const max = Math.max(...data.returns.map(([_date, val]) => Math.abs(val)));
+  const max = Math.max(...data.returns.map(([label, val]) => (label.includes("-") ? Math.abs(val) : 0)));
   const maxRounded = Math.round(max * 100) / 100;
   const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
@@ -71,19 +71,13 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       valueFormatter,
     },
     grid: {
-      bottom: "100", // space for visualMap
+      bottom: 100, // space for visualMap
     },
     xAxis: {
       type: "category",
-      splitArea: {
-        show: true,
-      },
     },
     yAxis: {
       type: "category",
-      splitArea: {
-        show: true,
-      },
     },
     visualMap: {
       min: -maxRounded,
@@ -91,8 +85,8 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       calculable: true, // show handles
       orient: "horizontal",
       left: "center",
-      bottom: "0", // place visualMap at bottom of chart
-      itemHeight: "400", // width
+      bottom: 0, // place visualMap at bottom of chart
+      itemHeight: 400, // width
       inRange: {
         color: [NEGATIVE_NUMBER_COLOR, "#fff", POSITIVE_NUMBER_COLOR],
       },
