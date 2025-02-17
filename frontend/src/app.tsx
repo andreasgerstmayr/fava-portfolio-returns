@@ -65,7 +65,7 @@ const router = createHashRouter([
 const theme = createTheme({
   cssVariables: true,
   colorSchemes: {
-    dark: true
+    dark: true,
   },
   typography: {
     fontFamily: "",

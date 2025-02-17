@@ -71,7 +71,7 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
     setInvestments(value.map((i) => i.id));
   };
 
-  const chipBackgroundColor = theme.palette.mode === 'dark' ? 'background.default' : grey[100];
+  const chipBackgroundColor = theme.palette.mode === "dark" ? "background.default" : grey[100];
 
   return (
     <Autocomplete
@@ -113,7 +113,7 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
         })
       }
       style={{ width: 600 }}
-      renderInput={(params) => <TextField {...params} label={label} className="intestment-selection"/>}
+      renderInput={(params) => <TextField {...params} label={label} className="investment-selection" />}
     />
   );
 }

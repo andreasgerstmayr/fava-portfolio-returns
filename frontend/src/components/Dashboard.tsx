@@ -16,7 +16,7 @@ export function Dashboard({ children }: DashboardProps) {
         marginBottom: "-1.5em",
         padding: "1.5em",
         gap: 2,
-        backgroundColor: theme.palette.mode === 'dark' ? undefined : "#FAFBFB"
+        backgroundColor: theme.palette.mode === "dark" ? undefined : "#FAFBFB",
       }}
     >
       {children}
