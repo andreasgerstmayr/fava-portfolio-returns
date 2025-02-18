@@ -15,7 +15,11 @@ const tests = [
   { name: "Investments", mode: "light", url: "#/investments" },
   { name: "Portfolio (dark)", mode: "dark", url: "" },
   { name: "Performance (dark)", mode: "dark", url: "#/performance?compareWith=c:VHT_c:GLD" },
-  { name: "Performance (TWR) (dark)", mode: "dark", url: "#/performance?investments=g:Gold&method=twr&compareWith=c:GLD" },
+  {
+    name: "Performance (TWR) (dark)",
+    mode: "dark",
+    url: "#/performance?investments=g:Gold&method=twr&compareWith=c:GLD",
+  },
   { name: "Returns (dark)", mode: "dark", url: "#/returns" },
   { name: "Returns (MDM) (dark)", mode: "dark", url: "#/returns?method=mdm" },
   { name: "Returns (TWR) (dark)", mode: "dark", url: "#/returns?method=twr" },
@@ -41,9 +45,7 @@ describe("PNG Snapshot Tests", () => {
   });
 
   it.each(tests)("$name", async ({ mode, url }) => {
-    await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: mode },
-    ]);
+    await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: mode }]);
     await page.goto(`${BASE_URL}${url}`);
     await page.evaluate(() => {
       // full page screenshot doesn't work due to sticky sidebar
@@ -62,9 +64,7 @@ describe("HTML Snapshot Tests", () => {
   });
 
   it.each(tests)("$name", async ({ url, mode }) => {
-    await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: mode },
-    ]);
+    await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: mode }]);
     await page.goto(`${BASE_URL}${url}`);
     await page.waitForNetworkIdle();
 
