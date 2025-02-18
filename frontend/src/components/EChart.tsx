@@ -1,3 +1,4 @@
+import { useTheme } from "@mui/material/styles";
 import * as echarts from "echarts";
 import { CSSProperties, useEffect, useRef } from "react";
 
@@ -10,6 +11,8 @@ interface EChartProps {
 export function EChart({ width, height, option }: EChartProps) {
   const ref = useRef<HTMLDivElement>(null);
   const chartRef = useRef<echarts.ECharts>();
+  const theme = useTheme();
+  const themeMode = theme.palette.mode;
 
   useEffect(() => {
     if (chartRef.current) {
@@ -18,7 +21,8 @@ export function EChart({ width, height, option }: EChartProps) {
 
     // use SVG renderer during HTML e2e tests, to compare snapshots
     const renderer = window.navigator.userAgent === "puppeteer-html" ? "svg" : undefined;
-    const chart = echarts.init(ref.current, undefined, { renderer });
+    const echartsTheme = themeMode === "dark" ? "dark" : undefined;
+    const chart = echarts.init(ref.current, echartsTheme, { renderer });
     if (option.onClick) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       chart.on("click", (option as any).onClick);
@@ -30,9 +34,13 @@ export function EChart({ width, height, option }: EChartProps) {
       option.animation = false;
     }
 
+    if (themeMode == "dark" && option.backgroundColor === undefined) {
+      option.backgroundColor = "transparent";
+    }
+
     chart.setOption(option);
     chartRef.current = chart;
-  }, [option]);
+  }, [option, themeMode]);
 
   return <div ref={ref} style={{ width, height }}></div>;
 }

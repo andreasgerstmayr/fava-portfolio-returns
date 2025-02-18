@@ -1,3 +1,13 @@
 .headerline .active {
     color: #333;
 }
+
+@media (prefers-color-scheme: dark) {
+    .headerline .active {
+        color: var(--mui-palette-text-primary);
+    }
+
+    .investment-selection input {
+        background: none;
+    }
+}

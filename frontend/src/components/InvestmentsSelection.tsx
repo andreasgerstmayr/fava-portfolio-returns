@@ -1,6 +1,6 @@
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
-import { Autocomplete, Checkbox, Chip, SxProps, TextField } from "@mui/material";
+import { Autocomplete, Checkbox, Chip, SxProps, TextField, useTheme } from "@mui/material";
 import { amber, blue, grey, teal } from "@mui/material/colors";
 import { SyntheticEvent } from "react";
 import { useToolbarContext } from "./Header/ToolbarProvider";
@@ -23,6 +23,7 @@ interface InvestmentsSelectionProps {
 export function InvestmentsSelection(props: InvestmentsSelectionProps) {
   const { investments, setInvestments, types, label } = props;
   const { config } = useToolbarContext();
+  const theme = useTheme();
 
   const options: InvestmentOption[] = [];
   if (!types || types.includes("Group")) {
@@ -70,6 +71,8 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
     setInvestments(value.map((i) => i.id));
   };
 
+  const chipBackgroundColor = theme.palette.mode === "dark" ? "background.default" : grey[100];
+
   return (
     <Autocomplete
       multiple
@@ -103,14 +106,14 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
               key={option.id}
               label={option.chipLabel}
               variant="outlined"
-              sx={{ backgroundColor: grey[100], border: `1px solid ${investmentColors[option.type]}` }}
+              sx={{ backgroundColor: chipBackgroundColor, border: `1px solid ${investmentColors[option.type]}` }}
               {...tagProps}
             />
           );
         })
       }
       style={{ width: 600 }}
-      renderInput={(params) => <TextField {...params} label={label} />}
+      renderInput={(params) => <TextField {...params} label={label} className="investment-selection" />}
     />
   );
 }
