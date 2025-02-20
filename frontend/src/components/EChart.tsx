@@ -1,6 +1,7 @@
 import { useTheme } from "@mui/material/styles";
 import * as echarts from "echarts";
 import { CSSProperties, useEffect, useRef } from "react";
+import { useComponentWidthOf } from "./hooks";
 
 interface EChartProps {
   width?: CSSProperties["width"];
@@ -13,6 +14,9 @@ export function EChart({ width, height, option }: EChartProps) {
   const chartRef = useRef<echarts.ECharts>();
   const theme = useTheme();
   const themeMode = theme.palette.mode;
+
+  /// Get the width of the parent div to resize dynamically
+  const parentDivWidth = useComponentWidthOf(ref);
 
   useEffect(() => {
     if (chartRef.current) {
@@ -39,8 +43,16 @@ export function EChart({ width, height, option }: EChartProps) {
     }
 
     chart.setOption(option);
+    chart.resize();
     chartRef.current = chart;
   }, [option, themeMode]);
+
+  // Resize dynamically
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.resize();
+    }
+  }, [parentDivWidth]);
 
   return <div ref={ref} style={{ width, height }}></div>;
 }
