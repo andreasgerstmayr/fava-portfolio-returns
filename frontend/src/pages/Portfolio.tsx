@@ -56,7 +56,7 @@ function PerformanceChart() {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const series = data.performance;
+  const series = data.performanceChart;
   const firstValue = series.length > 0 ? series[0][1] : 0;
   const lastValue = series.length > 0 ? series[series.length - 1][1] : 0;
   const trendColor = lastValue >= firstValue ? POSITIVE_TREND_COLOR : NEGATIVE_TREND_COLOR;
@@ -177,7 +177,7 @@ function PortfolioValueChart() {
       },
     },
     dataset: {
-      source: data.chart,
+      source: data.valueChart,
     },
     series: [
       {

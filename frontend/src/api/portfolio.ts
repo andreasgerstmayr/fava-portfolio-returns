@@ -7,13 +7,13 @@ interface PortfolioRequest {
 }
 
 export interface PortfolioResponse {
-  chart: {
+  valueChart: {
     date: string;
     market: number;
     cost: number;
     cash: number;
   }[];
-  performance: [string, number][];
+  performanceChart: [string, number][];
   allocation: {
     name: string;
     currency: string;

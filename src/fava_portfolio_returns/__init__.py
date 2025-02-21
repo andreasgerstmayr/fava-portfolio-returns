@@ -141,13 +141,13 @@ class FavaPortfolioReturns(FavaExtensionBase):
         toolbar_ctx = self.get_toolbar_ctx()
         p = self.get_filtered_portfolio(toolbar_ctx)
 
-        chart = portfolio_values(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
-        performance = MonetaryReturns().series(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
+        value_chart = portfolio_values(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
+        performance_chart = MonetaryReturns().series(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
         allocation = portfolio_allocation(p, toolbar_ctx.end_date)
 
         return {
-            "chart": chart,
-            "performance": performance,
+            "valueChart": value_chart,
+            "performanceChart": performance_chart,
             "allocation": allocation,
         }
 

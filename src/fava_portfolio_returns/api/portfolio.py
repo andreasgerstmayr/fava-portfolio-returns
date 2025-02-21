@@ -34,6 +34,7 @@ def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
             "marketValue": market_value,
         }
         for currency, market_value in sorted(market_value_by_currency.items(), key=lambda x: x[1], reverse=True)
+        if market_value > ZERO
     ]
 
 
