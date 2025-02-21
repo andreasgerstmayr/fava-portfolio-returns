@@ -3247,6 +3247,24 @@ exports[`HTML Snapshot Tests Groups (dark) 1`] = `
             </tr>
           </tbody>
         </table>
+        <div class="MuiFormGroup-root css-1ytbthu">
+          <label class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-ovwibz">
+            <span class="MuiSwitch-root MuiSwitch-sizeMedium css-bnbzk8">
+              <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1qiw127">
+                <input class="PrivateSwitchBase-input MuiSwitch-input css-j8yymo"
+                       type="checkbox"
+                >
+                <span class="MuiSwitch-thumb css-1k5cbmd">
+                </span>
+              </span>
+              <span class="MuiSwitch-track css-11pcc8d">
+              </span>
+            </span>
+            <span class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-mpcmsk">
+              Include liquidated investments
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -3739,6 +3757,24 @@ exports[`HTML Snapshot Tests Groups 1`] = `
             </tr>
           </tbody>
         </table>
+        <div class="MuiFormGroup-root css-1ytbthu">
+          <label class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-ovwibz">
+            <span class="MuiSwitch-root MuiSwitch-sizeMedium css-bnbzk8">
+              <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1qiw127">
+                <input class="PrivateSwitchBase-input MuiSwitch-input css-j8yymo"
+                       type="checkbox"
+                >
+                <span class="MuiSwitch-thumb css-1k5cbmd">
+                </span>
+              </span>
+              <span class="MuiSwitch-track css-11pcc8d">
+              </span>
+            </span>
+            <span class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-mpcmsk">
+              Include liquidated investments
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -4253,6 +4289,24 @@ exports[`HTML Snapshot Tests Investments (dark) 1`] = `
             </tr>
           </tbody>
         </table>
+        <div class="MuiFormGroup-root css-1ytbthu">
+          <label class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-ovwibz">
+            <span class="MuiSwitch-root MuiSwitch-sizeMedium css-bnbzk8">
+              <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1qiw127">
+                <input class="PrivateSwitchBase-input MuiSwitch-input css-j8yymo"
+                       type="checkbox"
+                >
+                <span class="MuiSwitch-thumb css-1k5cbmd">
+                </span>
+              </span>
+              <span class="MuiSwitch-track css-11pcc8d">
+              </span>
+            </span>
+            <span class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-mpcmsk">
+              Include liquidated investments
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
@@ -4767,6 +4821,24 @@ exports[`HTML Snapshot Tests Investments 1`] = `
             </tr>
           </tbody>
         </table>
+        <div class="MuiFormGroup-root css-1ytbthu">
+          <label class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-ovwibz">
+            <span class="MuiSwitch-root MuiSwitch-sizeMedium css-bnbzk8">
+              <span class="MuiButtonBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary PrivateSwitchBase-root MuiSwitch-switchBase MuiSwitch-colorPrimary css-1qiw127">
+                <input class="PrivateSwitchBase-input MuiSwitch-input css-j8yymo"
+                       type="checkbox"
+                >
+                <span class="MuiSwitch-thumb css-1k5cbmd">
+                </span>
+              </span>
+              <span class="MuiSwitch-track css-11pcc8d">
+              </span>
+            </span>
+            <span class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-mpcmsk">
+              Include liquidated investments
+            </span>
+          </label>
+        </div>
       </div>
     </div>
   </div>
