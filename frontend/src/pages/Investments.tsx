@@ -1,6 +1,13 @@
-import { Alert } from "@mui/material";
+import { Alert, FormControlLabel, FormGroup, Switch } from "@mui/material";
 import { Link } from "react-router";
-import { createEnumParam, StringParam, useQueryParams, withDefault } from "use-query-params";
+import {
+  BooleanParam,
+  createEnumParam,
+  StringParam,
+  useQueryParam,
+  useQueryParams,
+  withDefault,
+} from "use-query-params";
 import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import {
@@ -53,6 +60,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
     sortColumn: SortColumnParam,
     sortOrder: SortOrderParam,
   });
+  const [includeLiquidated, setIncludeLiquidated] = useQueryParam("liquidated", BooleanParam);
 
   const handleSortChange = (column: SortableKeys) => {
     if (sort.sortColumn === column) {
@@ -77,7 +85,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
     );
   }
 
-  const investments = data.investments.toSorted((a, b) => {
+  let investments = data.investments.toSorted((a, b) => {
     const x = a[sort.sortColumn as SortableKeys];
     const y = b[sort.sortColumn as SortableKeys];
 
@@ -90,8 +98,12 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
       return x < y ? 1 : -1;
     }
   });
+  if (!includeLiquidated) {
+    investments = investments.filter((i) => i.marketValue > 0);
+  }
   const percentFormatter = fixedPercentFormatter;
-  return (
+
+  const table = (
     <table>
       <thead>
         <tr>
@@ -203,5 +215,17 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
         ))}
       </tbody>
     </table>
+  );
+
+  return (
+    <>
+      {table}
+      <FormGroup>
+        <FormControlLabel
+          control={<Switch value={includeLiquidated} onChange={(_, value) => setIncludeLiquidated(value)} />}
+          label="Include liquidated investments"
+        />
+      </FormGroup>
+    </>
   );
 }
