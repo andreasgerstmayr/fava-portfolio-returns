@@ -126,6 +126,7 @@ function CashFlowsTable() {
           <th>Dividend</th>
           <th>Source</th>
           <th>Investment</th>
+          <th>Transaction</th>
         </tr>
       </thead>
       <tbody>
@@ -138,6 +139,7 @@ function CashFlowsTable() {
             <td>{flow.isDividend ? "yes" : "no"}</td>
             <td>{flow.source}</td>
             <td>{flow.account}</td>
+            <td>{flow.transaction}</td>
           </tr>
         ))}
       </tbody>

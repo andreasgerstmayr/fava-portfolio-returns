@@ -31,6 +31,7 @@ class TestCashFlows(unittest.TestCase):
                 "isDividend": False,
                 "source": "cash",
                 "account": "Assets:CORP",
+                "transaction": "Buy 1 CORP",
             },
             {
                 "date": datetime.date(2020, 1, 1),
@@ -38,6 +39,7 @@ class TestCashFlows(unittest.TestCase):
                 "isDividend": False,
                 "source": "cash",
                 "account": "Assets:CORP",
+                "transaction": "Buy 1 CORP",
             },
         ]
 

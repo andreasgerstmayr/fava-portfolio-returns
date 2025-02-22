@@ -56,6 +56,9 @@ def cash_flows_table(p: FilteredPortfolio, start_date: datetime.date, end_date: 
             "isDividend": flow.is_dividend,
             "source": flow.source,
             "account": flow.account,
+            "transaction": f"{flow.transaction.payee or ''} {flow.transaction.narration or ''}".strip()
+            if flow.transaction
+            else "",
         }
         for flow in cash_flows
     ]

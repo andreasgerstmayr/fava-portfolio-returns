@@ -16,6 +16,7 @@ class TWR(ReturnsBase):
     Time-Weighted Rate of Return
 
     Time-Weighted Return (TWR) eliminates the effects of cash flows.
+    TWR includes all dividends and fees, i.e. the price of stock X won't match the TWR of a portfolio with a savings plan for X.
     """
 
     def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:

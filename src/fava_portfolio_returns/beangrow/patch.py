@@ -1,24 +1,68 @@
-# source: https://github.com/beancount/beangrow/blob/master/beangrow/returns.py
-__copyright__ = "Copyright (C) 2020  Martin Blais"
-__license__ = "GNU GPLv2"
+# monkey patching of unreleased beangrow features
+# mypy: ignore-errors
 
 import datetime
+import typing
 from typing import List
 from typing import Optional
 
+import beangrow.investments
+import beangrow.returns
+from beancount.core import convert
+from beancount.core import data
+from beancount.core.amount import Amount
 from beangrow.investments import AccountData
-from beangrow.investments import CashFlow
+from beangrow.investments import Cat
 from beangrow.investments import compute_balance_at
-from beangrow.returns import Pricer
 
+# Basic type aliases.
+Account = str
 Date = datetime.date
+
 ONE_DAY = datetime.timedelta(days=1)
 
+# https://github.com/beancount/beangrow/pull/42
+CashFlow = typing.NamedTuple(
+    "CashFlow",
+    [
+        ("date", Date),
+        ("amount", Amount),  # The amount of the cashflow.
+        ("is_dividend", bool),  # True if the flow is a dividend.
+        ("source", str),  # Source of this cash flow.
+        ("account", Account),  # Asset account for which this was generated.
+        ("transaction", Optional[data.Transaction]),  # Source transaction of this cash flow.
+    ],
+)
+beangrow.investments.CashFlow = CashFlow
 
-# includes https://github.com/beancount/beangrow/pull/41
-# TODO: remove once beangrow 1.0.2 is released
+
+def produce_cash_flows_general(entry: data.Directive, account: Account) -> List[CashFlow]:
+    """Produce cash flows using a generalized rule."""
+    has_dividend = any(posting.meta["category"] == Cat.DIVIDEND for posting in entry.postings)
+    flows = []
+    for posting in entry.postings:
+        category = posting.meta["category"]
+        if category == Cat.CASH:
+            assert not posting.cost
+            cf = CashFlow(entry.date, convert.get_weight(posting), has_dividend, "cash", account, entry)
+            posting.meta["flow"] = cf
+            flows.append(cf)
+
+        elif category == Cat.OTHERASSET:
+            # If the account deposits other assets, count this as an outflow.
+            cf = CashFlow(entry.date, convert.get_weight(posting), False, "other", account, entry)
+            posting.meta["flow"] = cf
+            flows.append(cf)
+
+    return flows
+
+
+beangrow.investments.produce_cash_flows_general = produce_cash_flows_general
+
+
+# https://github.com/beancount/beangrow/pull/41
 def truncate_cash_flows(  # noqa: C901
-    pricer: Pricer,
+    pricer: beangrow.returns.Pricer,
     account_data: AccountData,
     date_start: Optional[Date],
     date_end: Optional[Date],
@@ -42,6 +86,7 @@ def truncate_cash_flows(  # noqa: C901
                         False,  # noqa: FBT003
                         "open",
                         account_data.account,
+                        None,
                     )
                 )
 
@@ -61,6 +106,7 @@ def truncate_cash_flows(  # noqa: C901
                         False,  # noqa: FBT003
                         "close",
                         account_data.account,
+                        None,
                     )
                 )
 
@@ -84,15 +130,4 @@ def truncate_cash_flows(  # noqa: C901
     return cash_flows
 
 
-def truncate_and_merge_cash_flows(
-    pricer: Pricer,
-    account_data_list: List[AccountData],
-    date_start: Optional[Date],
-    date_end: Optional[Date],
-) -> List[CashFlow]:
-    """Truncate and merge the cash flows for given list of account data."""
-    cash_flows = []
-    for ad in account_data_list:
-        cash_flows.extend(truncate_cash_flows(pricer, ad, date_start, date_end))
-    cash_flows.sort(key=lambda item: item[0])
-    return cash_flows
+beangrow.returns.truncate_cash_flows = truncate_cash_flows

@@ -21,6 +21,10 @@ class SimpleReturns(ReturnsBase):
     def series(
         self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date
     ) -> list[tuple[datetime.date, float]]:
-        """compare market value with cost value on every price or volume change"""
+        """
+        compare market value with cost value on every price or volume change
+
+        Do not use cash value here, because cash value could be negative (e.g. sold stock with a loss).
+        """
         values = portfolio_values(p, start_date, end_date)
         return [(value.date, compute_returns(value.cost, value.market)) for value in values]
