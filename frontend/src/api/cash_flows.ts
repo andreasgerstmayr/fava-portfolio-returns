@@ -13,6 +13,7 @@ interface CashFlow {
   isDividend: boolean;
   source: string;
   account: string;
+  transaction: string;
 }
 
 export interface CashFlowsResponse {

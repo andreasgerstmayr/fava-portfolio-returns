@@ -626,6 +626,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               <th>
                 Investment
               </th>
+              <th>
+                Transaction
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -645,6 +648,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               <td>
                 Assets:US:ETrade:VHT
               </td>
+              <td>
+                Buy shares of VHT
+              </td>
             </tr>
             <tr>
               <td>
@@ -661,6 +667,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               </td>
               <td>
                 Assets:US:ETrade:VHT
+              </td>
+              <td>
+                Buy shares of VHT
               </td>
             </tr>
             <tr>
@@ -679,6 +688,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               <td>
                 Assets:US:ETrade:VHT
               </td>
+              <td>
+                Sell shares of VHT
+              </td>
             </tr>
             <tr>
               <td>
@@ -695,6 +707,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               </td>
               <td>
                 Assets:US:ETrade:VHT
+              </td>
+              <td>
+                Dividends on portfolio
               </td>
             </tr>
             <tr>
@@ -713,6 +728,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               <td>
                 Assets:US:ETrade:VHT
               </td>
+              <td>
+                Buy shares of VHT
+              </td>
             </tr>
             <tr>
               <td>
@@ -730,6 +748,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               <td>
                 Assets:US:ETrade:VHT
               </td>
+              <td>
+                Buy shares of VHT
+              </td>
             </tr>
             <tr>
               <td>
@@ -746,6 +767,9 @@ exports[`HTML Snapshot Tests Cash Flows 1`] = `
               </td>
               <td>
                 Assets:US:ETrade:VHT
+              </td>
+              <td>
+                Buy shares of VHT
               </td>
             </tr>
           </tbody>

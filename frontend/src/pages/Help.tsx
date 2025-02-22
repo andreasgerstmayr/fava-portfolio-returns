@@ -6,9 +6,9 @@ export function Help() {
 
       <h3>Returns</h3>
       <p>
-        Returns compares the market value with the invested capital. In the Performance chart, the difference between
-        the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable
-        with the performance of other groups or commodities.
+        Returns compares the market value with the cost value. In the Performance chart, the difference between the
+        market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable
+        with the performance of other groups and commodities.
       </p>
 
       <h3>Monetary Returns</h3>
