@@ -15,7 +15,7 @@ export function MissingPrices() {
   }
 
   if (data.missingPrices.length === 0) {
-    return <Alert severity="info">All required prices are available in the leadger.</Alert>;
+    return <Alert severity="info">All required prices are available in the ledger.</Alert>;
   }
 
   const handleCommandsDblClick = (e: MouseEvent<HTMLPreElement>) => {
