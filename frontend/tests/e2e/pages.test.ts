@@ -1,7 +1,7 @@
 import { toMatchImageSnapshot } from "jest-image-snapshot";
 import "jest-puppeteer";
 
-const BASE_URL = "http://host.docker.internal:5000/beancount/extension/FavaPortfolioReturns/";
+const BASE_URL = "http://localhost:5000/beancount/extension/FavaPortfolioReturns/";
 const tests = [
   { name: "Portfolio", url: "" },
   { name: "Performance", url: "#/performance?compareWith=c:VHT_c:GLD" },

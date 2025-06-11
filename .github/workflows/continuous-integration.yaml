@@ -18,7 +18,7 @@ jobs:
       uses: astral-sh/setup-uv@v5
 
     - name: Start browser
-      run: make start-browser
+      run: docker run -d --name fava-portfolio-returns-test-browser --net=host ghcr.io/browserless/chromium
 
     - name: Install dependencies
       run: make deps
