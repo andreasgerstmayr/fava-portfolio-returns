@@ -12,9 +12,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Build and run dev container task
-        uses: devcontainers/ci@v0.3
-        with:
-          runCmd: make ci
+    - name: Start browser
+      run: make start-browser
+
+    - name: Install dependencies
+      run: make deps
+
+    - name: Start browser
+      run: make test

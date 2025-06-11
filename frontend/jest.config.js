@@ -6,4 +6,5 @@ module.exports = {
         "^.+.tsx?$": ["ts-jest", {}],
     },
     testTimeout: 10000,
+    maxWorkers: 1,
 };

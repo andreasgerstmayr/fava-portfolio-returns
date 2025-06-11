@@ -2,7 +2,7 @@ default: run
 
 ## Dependencies
 deps-js:
-	cd frontend; npm install && npx puppeteer browsers install chrome
+	cd frontend; npm install
 
 deps-js-update:
 	cd frontend; npx npm-check-updates -i
@@ -21,9 +21,6 @@ build-js:
 	cd frontend; npm run build
 
 build: build-js
-
-watch-js:
-	cd frontend; npm run watch
 
 test-js:
 	cd frontend; LANG=en npm run test
@@ -46,7 +43,7 @@ run:
 	cd example; uv run fava example.beancount
 
 dev:
-	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 uv run fava --debug example.beancount" "cd frontend; npm run watch"
+	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 uv run fava --debug --host 0.0.0.0 example.beancount" "cd frontend; npm run watch"
 
 dev-debug:
 	npx concurrently --names fava,esbuild "cd example; PYTHONUNBUFFERED=1 LOGLEVEL=DEBUG uv run fava --debug example.beancount" "cd frontend; npm run watch"
@@ -76,19 +73,8 @@ ci:
 	git diff --exit-code
 
 ## Container
-container-run: container-stop
-	docker build -t fava-portfolio-returns-test -f Dockerfile.test .
-	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns-test
+start-browser: stop-browser
+	docker run -d --name fava-portfolio-returns-test-browser -p 127.0.0.1:3000:3000 ghcr.io/browserless/chromium
 
-container-stop:
-	docker rm -f fava-portfolio-returns-test
-
-container-test: container-run
-	docker exec fava-portfolio-returns-test make test
-	make container-stop
-
-container-test-js-update: container-run
-	docker exec fava-portfolio-returns-test make test-js-update
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__snapshots__ ./frontend/tests/e2e
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__image_snapshots__ ./frontend/tests/e2e
-	make container-stop
+stop-browser:
+	docker rm -f fava-portfolio-returns-test-browser
