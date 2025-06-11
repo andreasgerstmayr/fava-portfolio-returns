@@ -23,5 +23,8 @@ jobs:
     - name: Install dependencies
       run: make deps
 
-    - name: Start browser
+    - name: Start Fava
+      run: make run &
+
+    - name: Run tests
       run: make test
