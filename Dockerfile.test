@@ -18,7 +18,6 @@ RUN --mount=type=bind,source=frontend/package.json,target=frontend/package.json 
     --mount=type=cache,target=/root/.npm \
     cd frontend && npm ci
 
-
 COPY . .
 RUN make build
 CMD ["make", "run"]

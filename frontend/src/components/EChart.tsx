@@ -23,7 +23,6 @@ export function EChart({ width, height, option }: EChartProps) {
       echarts.dispose(chartRef.current);
     }
 
-    // use SVG renderer during HTML e2e tests, to compare snapshots
     const echartsTheme = themeMode === "dark" ? "dark" : undefined;
     const chart = echarts.init(ref.current, echartsTheme);
     if (option.onClick) {
