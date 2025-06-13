@@ -19,7 +19,11 @@ test.describe("PNG Snapshot Tests", () => {
     pages.forEach(({ name, url }) => {
       test(name, async ({ page }) => {
         await page.goto(`${BASE_URL}${url}`);
-        await expect(page).toHaveScreenshot();
+        await page.evaluate(() => {
+          // full page screenshot doesn't work due to sticky sidebar
+          document.body.style.height = "inherit";
+        });
+        await expect(page).toHaveScreenshot({ fullPage: true });
       });
     });
   });
@@ -29,7 +33,11 @@ test.describe("PNG Snapshot Tests", () => {
     pages.forEach(({ name, url }) => {
       test(name, async ({ page }) => {
         await page.goto(`${BASE_URL}${url}`);
-        await expect(page).toHaveScreenshot();
+        await page.evaluate(() => {
+          // full page screenshot doesn't work due to sticky sidebar
+          document.body.style.height = "inherit";
+        });
+        await expect(page).toHaveScreenshot({ fullPage: true });
       });
     });
   });
