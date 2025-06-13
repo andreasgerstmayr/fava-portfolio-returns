@@ -1,5 +1,4 @@
-import { toMatchImageSnapshot } from "jest-image-snapshot";
-import "jest-puppeteer";
+import { expect, test } from "@playwright/test";
 
 const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
 const tests = [
@@ -15,68 +14,33 @@ const tests = [
   { name: "Investments", url: "#/investments" },
 ];
 
-function customSnapshotIdentifier(p: { currentTestName: string }) {
-  let name = p.currentTestName
-    .replace(/PNG Snapshot Tests (Light|Dark) Theme /, "")
-    .replaceAll(/[^a-zA-Z ]/g, "")
-    .replaceAll(" ", "_")
-    .toLowerCase();
-  if (p.currentTestName.includes("Dark")) {
-    name += "_dark";
-  }
-  return name;
-}
-
-expect.extend({ toMatchImageSnapshot });
-
-describe("PNG Snapshot Tests", () => {
-  beforeAll(async () => {
-    await page.setUserAgent("puppeteer-png");
-  });
-
-  describe("Light Theme", () => {
-    it.each(tests)("$name", async ({ url }) => {
-      await page.goto(`${BASE_URL}${url}`);
-      await page.evaluate(() => {
-        // full page screenshot doesn't work due to sticky sidebar
-        document.body.style.height = "inherit";
+test.describe("PNG Snapshot Tests", () => {
+  test.describe("Light Theme", () => {
+    tests.forEach(({ name, url }) => {
+      test(name, async ({ page }) => {
+        await page.goto(`${BASE_URL}${url}`);
+        await expect(page).toHaveScreenshot();
       });
-      await page.waitForNetworkIdle();
-
-      const screenshot = await page.screenshot({ fullPage: true });
-      expect(Buffer.from(screenshot)).toMatchImageSnapshot({ customSnapshotIdentifier });
     });
   });
 
-  describe("Dark Theme", () => {
-    it.each(tests)("$name", async ({ url }) => {
-      await page.emulateMediaFeatures([{ name: "prefers-color-scheme", value: "dark" }]);
-      await page.goto(`${BASE_URL}${url}`);
-      await page.evaluate(() => {
-        // full page screenshot doesn't work due to sticky sidebar
-        document.body.style.height = "inherit";
-      });
-      await page.waitForNetworkIdle();
+  test.describe("Dark Theme", () => {
+    test.use({ colorScheme: "dark" });
 
-      const screenshot = await page.screenshot({ fullPage: true });
-      expect(Buffer.from(screenshot)).toMatchImageSnapshot({ customSnapshotIdentifier });
+    tests.forEach(({ name, url }) => {
+      test(name, async ({ page }) => {
+        await page.goto(`${BASE_URL}${url}`);
+        await expect(page).toHaveScreenshot();
+      });
     });
   });
 });
 
-describe("HTML Snapshot Tests", () => {
-  beforeAll(async () => {
-    await page.setUserAgent("puppeteer-html");
-  });
-
-  it.each(tests)("$name", async ({ url }) => {
-    await page.goto(`${BASE_URL}${url}`);
-    await page.waitForNetworkIdle();
-
-    let html = await page.$eval("article", (element) => element.innerHTML);
-    // remove nondeterministic rendering
-    html = html.replaceAll(/_echarts_instance_="ec_[0-9]+"/g, "");
-    html = html.replaceAll(/zr[0-9]+-[a-z][0-9]+/g, "zrX-cY");
-    expect(html).toMatchSnapshot();
+test.describe("HTML Snapshot Tests", () => {
+  tests.forEach(({ name, url }) => {
+    test(name, async ({ page }) => {
+      await page.goto(`${BASE_URL}${url}`);
+      await expect(page.locator("body")).toMatchAriaSnapshot();
+    });
   });
 });

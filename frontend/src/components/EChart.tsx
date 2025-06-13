@@ -24,18 +24,12 @@ export function EChart({ width, height, option }: EChartProps) {
     }
 
     // use SVG renderer during HTML e2e tests, to compare snapshots
-    const renderer = window.navigator.userAgent === "puppeteer-html" ? "svg" : undefined;
     const echartsTheme = themeMode === "dark" ? "dark" : undefined;
-    const chart = echarts.init(ref.current, echartsTheme, { renderer });
+    const chart = echarts.init(ref.current, echartsTheme);
     if (option.onClick) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       chart.on("click", (option as any).onClick);
       delete option.onClick;
-    }
-
-    // disable animations during e2e tests
-    if (window.navigator.userAgent.includes("puppeteer")) {
-      option.animation = false;
     }
 
     if (themeMode == "dark" && option.backgroundColor === undefined) {

@@ -36,7 +36,7 @@ if loglevel := os.environ.get("LOGLEVEL"):
 
 class ExtConfig(NamedTuple):
     beangrow_config_path: Path
-    beangrow_debug_dir: Optional[str]
+    beangrow_debug_dir: Optional[Path]
 
 
 class ToolbarContext(NamedTuple):
