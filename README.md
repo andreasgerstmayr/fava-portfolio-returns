@@ -1,15 +1,14 @@
 # Fava Portfolio Returns
 [![Continuous Integration](https://github.com/andreasgerstmayr/fava-portfolio-returns/actions/workflows/continuous-integration.yaml/badge.svg)](https://github.com/andreasgerstmayr/fava-portfolio-returns/actions/workflows/continuous-integration.yaml)
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/andreasgerstmayr/fava-portfolio-returns)
 
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to categorize transactions and calculate the portfolio returns of a beancount ledger.
 
-[![Portfolio](frontend/tests/e2e/__image_snapshots__/portfolio.png)](frontend/tests/e2e/__image_snapshots__/portfolio.png)
-[![Performance](frontend/tests/e2e/__image_snapshots__/performance.png)](frontend/tests/e2e/__image_snapshots__/performance.png)
-[![Returns](frontend/tests/e2e/__image_snapshots__/returns.png)](frontend/tests/e2e/__image_snapshots__/returns.png)
-[![Dividends](frontend/tests/e2e/__image_snapshots__/dividends.png)](frontend/tests/e2e/__image_snapshots__/dividends.png)
-[![Cash Flows](frontend/tests/e2e/__image_snapshots__/cash_flows.png)](frontend/tests/e2e/__image_snapshots__/cash_flows.png)
-[![Groups](frontend/tests/e2e/__image_snapshots__/groups.png)](frontend/tests/e2e/__image_snapshots__/groups.png)
+[![Portfolio](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png)
+[![Performance](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png)
+[![Returns](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png)
+[![Dividends](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png)
+[![Cash Flows](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png)
+[![Groups](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png)](frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png)
 
 ## Installation
 ```

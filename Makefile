@@ -2,7 +2,7 @@ default: run
 
 ## Dependencies
 deps-js:
-	cd frontend; npm install && npx puppeteer browsers install chrome
+	cd frontend; npm install
 
 deps-js-update:
 	cd frontend; npx npm-check-updates -i
@@ -22,14 +22,11 @@ build-js:
 
 build: build-js
 
-watch-js:
-	cd frontend; npm run watch
-
 test-js:
 	cd frontend; LANG=en npm run test
 
 test-js-update:
-	cd frontend; LANG=en npm run test -- -u
+	cd frontend; LANG=en npm run test -- --update-snapshots
 
 test-py:
 	uv run pytest
@@ -67,18 +64,11 @@ format:
 	uv run ruff format .
 	find example src/fava_portfolio_returns/test/ledger -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;
 
-ci:
-	make lint
-	make build
-	make run &
-	make test
-	make format
-	git diff --exit-code
-
 ## Container
 container-run: container-stop
 	docker build -t fava-portfolio-returns-test -f Dockerfile.test .
 	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns-test
+	docker exec fava-portfolio-returns-test curl --retry 10 --retry-connrefused --silent --output /dev/null http://127.0.0.1:5000
 
 container-stop:
 	docker rm -f fava-portfolio-returns-test
@@ -89,6 +79,5 @@ container-test: container-run
 
 container-test-js-update: container-run
 	docker exec fava-portfolio-returns-test make test-js-update
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__snapshots__ ./frontend/tests/e2e
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/__image_snapshots__ ./frontend/tests/e2e
+	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/pages.test.ts-snapshots ./frontend/tests/e2e
 	make container-stop
