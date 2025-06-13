@@ -3,13 +3,13 @@
     "scripts": {
         "build": "esbuild src/extension.ts --bundle --format=esm --outfile=../src/fava_portfolio_returns/FavaPortfolioReturns.js --minify",
         "watch": "esbuild src/extension.ts --bundle --format=esm --outfile=../src/fava_portfolio_returns/FavaPortfolioReturns.js --watch",
-        "test": "jest",
+        "test": "playwright test",
         "lint": "eslint .",
         "lint:fix": "eslint --fix ."
     },
     "devDependencies": {
-        "@types/jest": "^29.5.14",
-        "@types/jest-image-snapshot": "^6.4.0",
+        "@playwright/test": "^1.53.0",
+        "@types/node": "^24.0.1",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
         "@typescript-eslint/eslint-plugin": "^8.23.0",
@@ -20,14 +20,8 @@
         "eslint-plugin-prettier": "^5.2.3",
         "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-react-hooks": "^5.1.0",
-        "jest": "^29.7.0",
-        "jest-image-snapshot": "^6.4.0",
-        "jest-puppeteer": "^11.0.0",
-        "jest-serializer-html": "^7.1.0",
         "prettier": "^3.4.2",
         "prettier-plugin-organize-imports": "^4.1.0",
-        "puppeteer": "^24.2.0",
-        "ts-jest": "^29.2.5",
         "typescript": "^5.7.3"
     },
     "dependencies": {

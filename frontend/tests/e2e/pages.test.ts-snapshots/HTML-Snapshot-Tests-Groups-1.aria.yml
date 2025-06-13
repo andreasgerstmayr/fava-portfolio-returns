@@ -1,0 +1,188 @@
+- banner:
+  - img
+  - heading "Beancount›Portfolio Returns" [level=1]:
+    - strong: ›Portfolio Returns
+  - combobox "Time"
+  - combobox "Account"
+  - combobox "Filter by tag, payee, ..."
+- complementary:
+  - list:
+    - listitem:
+      - link "Income Statement":
+        - /url: /beancount/income_statement/
+    - listitem:
+      - link "Balance Sheet":
+        - /url: /beancount/balance_sheet/
+    - listitem:
+      - link "Trial Balance":
+        - /url: /beancount/trial_balance/
+    - listitem:
+      - link "Journal":
+        - /url: /beancount/journal/
+    - listitem:
+      - link "Query":
+        - /url: /beancount/query/
+    - listitem:
+      - combobox "Go to account"
+  - list:
+    - listitem:
+      - link "Holdings":
+        - /url: /beancount/holdings/
+    - listitem:
+      - link "Commodities":
+        - /url: /beancount/commodities/
+    - listitem:
+      - link "Documents":
+        - /url: /beancount/documents/
+    - listitem:
+      - link "Events":
+        - /url: /beancount/events/
+    - listitem:
+      - link "Statistics":
+        - /url: /beancount/statistics/
+  - list:
+    - listitem:
+      - link "Editor":
+        - /url: /beancount/editor/
+      - link "+":
+        - /url: "#add-transaction"
+    - listitem:
+      - link "Import":
+        - /url: /beancount/import/
+      - link "⬇":
+        - /url: "#export"
+    - listitem:
+      - link "Options":
+        - /url: /beancount/options/
+    - listitem:
+      - link "Help":
+        - /url: /beancount/help/
+  - list:
+    - listitem:
+      - link "Portfolio Returns":
+        - /url: /beancount/extension/FavaPortfolioReturns/
+- article:
+  - heading "Portfolio" [level=3]:
+    - link "Portfolio":
+      - /url: "#/portfolio"
+  - heading "Performance" [level=3]:
+    - link "Performance":
+      - /url: "#/performance"
+  - heading "Returns" [level=3]:
+    - link "Returns":
+      - /url: "#/returns"
+  - heading "Dividends" [level=3]:
+    - link "Dividends":
+      - /url: "#/dividends"
+  - heading "Cash Flows" [level=3]:
+    - link "Cash Flows":
+      - /url: "#/cash_flows"
+  - heading "Groups" [level=3]:
+    - link "Groups":
+      - /url: "#/groups"
+  - heading "Investments" [level=3]:
+    - link "Investments":
+      - /url: "#/investments"
+  - heading "Missing Prices" [level=3]:
+    - link "Missing Prices":
+      - /url: "#/missing_prices"
+  - heading "Help" [level=3]:
+    - link "Help":
+      - /url: "#/help"
+  - group:
+    - button /[\d,.]+[bkmBKM]+/
+    - button /[\d,.]+[bkmBKM]+/
+    - button "YTD"
+    - button "1Y"
+    - button "3Y"
+    - button "5Y"
+    - button "MAX" [pressed]
+  - heading "Groups" [level=3]
+  - paragraph: Lists the groups defined in the beangrow configuration file.
+  - table:
+    - rowgroup:
+      - row "Name Units Cash In Cash Out Market Value Gains IRR MDM TWR":
+        - cell "Name"
+        - cell "Units"
+        - cell "Cash In"
+        - cell "Cash Out"
+        - cell "Market Value"
+        - cell "Gains"
+        - cell "IRR"
+        - cell "MDM"
+        - cell "TWR"
+    - rowgroup:
+      - row /American Funds Growth Fund of America \d+\.\d+ RGAGX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - cell "American Funds Growth Fund of America":
+          - link "American Funds Growth Fund of America":
+            - /url: "#/portfolio?investments=g%3AAmerican+Funds+Growth+Fund+of+America&currency=USD"
+        - cell /\d+\.\d+ RGAGX/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+      - row /Gold \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - cell "Gold":
+          - link "Gold":
+            - /url: "#/portfolio?investments=g%3AGold&currency=USD"
+        - cell /\d+\.\d+ GLD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+ USD/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+      - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - cell "Vanguard FTSE Developed Markets ETF":
+          - link "Vanguard FTSE Developed Markets ETF":
+            - /url: "#/portfolio?investments=g%3AVanguard+FTSE+Developed+Markets+ETF&currency=USD"
+        - cell /\d+\.\d+ VEA/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+ USD/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+      - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - cell "Vanguard Health Care ETF":
+          - link "Vanguard Health Care ETF":
+            - /url: "#/portfolio?investments=g%3AVanguard+Health+Care+ETF&currency=USD"
+        - cell /\d+\.\d+ VHT/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+ USD/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - cell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
+          - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
+            - /url: "#/portfolio?investments=g%3AVanguard+Total+Bond+Market+Index+Fund+Institutional+Plus+Shares&currency=USD"
+        - cell /\d+\.\d+ VBMPX/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+        - cell /\d+\.\d+%/
+      - row /iShares Core S&P Total U\.S\. Stock Market ETF \d+\.\d+ ITOT \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD -\d+\.\d+% -\d+\.\d+% -\d+\.\d+%/:
+        - cell "iShares Core S&P Total U.S. Stock Market ETF":
+          - link "iShares Core S&P Total U.S. Stock Market ETF":
+            - /url: "#/portfolio?investments=g%3AiShares+Core+S%26P+Total+U.S.+Stock+Market+ETF&currency=USD"
+        - cell /\d+\.\d+ ITOT/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /\d+\.\d+ USD/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell /-\d+\.\d+ USD/
+        - cell /-\d+\.\d+%/
+        - cell /-\d+\.\d+%/
+        - cell /-\d+\.\d+%/
+  - checkbox "Include liquidated investments"
+  - text: Include liquidated investments

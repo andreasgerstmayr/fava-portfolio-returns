@@ -1,0 +1,169 @@
+- banner:
+  - img
+  - heading "Beancount›Portfolio Returns" [level=1]:
+    - strong: ›Portfolio Returns
+  - combobox "Time"
+  - combobox "Account"
+  - combobox "Filter by tag, payee, ..."
+- complementary:
+  - list:
+    - listitem:
+      - link "Income Statement":
+        - /url: /beancount/income_statement/
+    - listitem:
+      - link "Balance Sheet":
+        - /url: /beancount/balance_sheet/
+    - listitem:
+      - link "Trial Balance":
+        - /url: /beancount/trial_balance/
+    - listitem:
+      - link "Journal":
+        - /url: /beancount/journal/
+    - listitem:
+      - link "Query":
+        - /url: /beancount/query/
+    - listitem:
+      - combobox "Go to account"
+  - list:
+    - listitem:
+      - link "Holdings":
+        - /url: /beancount/holdings/
+    - listitem:
+      - link "Commodities":
+        - /url: /beancount/commodities/
+    - listitem:
+      - link "Documents":
+        - /url: /beancount/documents/
+    - listitem:
+      - link "Events":
+        - /url: /beancount/events/
+    - listitem:
+      - link "Statistics":
+        - /url: /beancount/statistics/
+  - list:
+    - listitem:
+      - link "Editor":
+        - /url: /beancount/editor/
+      - link "+":
+        - /url: "#add-transaction"
+    - listitem:
+      - link "Import":
+        - /url: /beancount/import/
+      - link "⬇":
+        - /url: "#export"
+    - listitem:
+      - link "Options":
+        - /url: /beancount/options/
+    - listitem:
+      - link "Help":
+        - /url: /beancount/help/
+  - list:
+    - listitem:
+      - link "Portfolio Returns":
+        - /url: /beancount/extension/FavaPortfolioReturns/
+- article:
+  - heading "Portfolio" [level=3]:
+    - link "Portfolio":
+      - /url: "#/portfolio?investments=c%3AVHT"
+  - heading "Performance" [level=3]:
+    - link "Performance":
+      - /url: "#/performance?investments=c%3AVHT"
+  - heading "Returns" [level=3]:
+    - link "Returns":
+      - /url: "#/returns?investments=c%3AVHT"
+  - heading "Dividends" [level=3]:
+    - link "Dividends":
+      - /url: "#/dividends?investments=c%3AVHT"
+  - heading "Cash Flows" [level=3]:
+    - link "Cash Flows":
+      - /url: "#/cash_flows?investments=c%3AVHT"
+  - heading "Groups" [level=3]:
+    - link "Groups":
+      - /url: "#/groups"
+  - heading "Investments" [level=3]:
+    - link "Investments":
+      - /url: "#/investments"
+  - heading "Missing Prices" [level=3]:
+    - link "Missing Prices":
+      - /url: "#/missing_prices"
+  - heading "Help" [level=3]:
+    - link "Help":
+      - /url: "#/help"
+  - text: Investments Filter
+  - button "VHT"
+  - combobox "Investments Filter"
+  - button "Open"
+  - group:
+    - button /[\d,.]+[bkmBKM]+/
+    - button /[\d,.]+[bkmBKM]+/
+    - button "YTD"
+    - button "1Y"
+    - button "3Y"
+    - button "5Y"
+    - button "MAX" [pressed]
+  - group:
+    - button "USD" [pressed]
+    - button "EUR"
+  - heading "Cash Flows" [level=3]
+  - combobox: monthly
+  - paragraph: The cash flow chart shows all incoming and outgoing cashflows of an investment.
+  - heading "List of Cash Flows" [level=3]
+  - table:
+    - rowgroup:
+      - row "Date Amount Dividend Source Investment Transaction":
+        - cell "Date"
+        - cell "Amount"
+        - cell "Dividend"
+        - cell "Source"
+        - cell "Investment"
+        - cell "Transaction"
+    - rowgroup:
+      - row /\d+-\d+-\d+ -\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /-\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Buy shares of VHT"
+      - row /\d+-\d+-\d+ -\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /-\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Buy shares of VHT"
+      - row /\d+-\d+-\d+ \d+,\d+\.\d+ USD no cash Assets:US:ETrade:VHT Sell shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /\d+,\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Sell shares of VHT"
+      - row /\d+-\d+-\d+ \d+\.\d+ USD yes cash Assets:US:ETrade:VHT Dividends on portfolio/:
+        - cell /\d+-\d+-\d+/
+        - cell /\d+\.\d+ USD/
+        - cell "yes"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Dividends on portfolio"
+      - row /\d+-\d+-\d+ -\d+,\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /-\d+,\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Buy shares of VHT"
+      - row /\d+-\d+-\d+ -\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /-\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Buy shares of VHT"
+      - row /\d+-\d+-\d+ -\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
+        - cell /\d+-\d+-\d+/
+        - cell /-\d+\.\d+ USD/
+        - cell "no"
+        - cell "cash"
+        - cell "Assets:US:ETrade:VHT"
+        - cell "Buy shares of VHT"
