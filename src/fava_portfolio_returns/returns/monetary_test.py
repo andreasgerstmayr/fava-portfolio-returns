@@ -1,3 +1,4 @@
+import datetime
 import unittest
 
 from fava_portfolio_returns.core.intervals import intervals_heatmap
@@ -8,7 +9,7 @@ from fava_portfolio_returns.test.test import load_portfolio_file
 class TestMonetaryReturns(unittest.TestCase):
     def test_heatmap_linear_growth_stock(self):
         p = load_portfolio_file("linear_growth_stock")
-        intervals = intervals_heatmap(2020, 2020)
+        intervals = intervals_heatmap(datetime.date(2020, 1, 1), datetime.date(2020, 12, 31))
         returns = MonetaryReturns().intervals(p, intervals)
         assert returns == [
             ("2020", 35.0),
@@ -29,7 +30,7 @@ class TestMonetaryReturns(unittest.TestCase):
 
     def test_heatmap_example_stock(self):
         p = load_portfolio_file("example_stock")
-        intervals = intervals_heatmap(2020, 2020)
+        intervals = intervals_heatmap(datetime.date(2020, 1, 1), datetime.date(2020, 12, 31))
         returns = MonetaryReturns().intervals(p, intervals)
         assert returns == [
             ("2020", 220.0),

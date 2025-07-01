@@ -8,28 +8,31 @@ from dateutil.relativedelta import relativedelta
 ONE_DAY = datetime.timedelta(days=1)
 
 
-def intervals_heatmap(start_year: int, end_year: int) -> list[Interval]:
-    """return all yearly and monthly intervals between start_year and end_year"""
+def intervals_heatmap(start_date: datetime.date, end_date: datetime.date) -> list[Interval]:
+    """return all yearly and monthly intervals between start_date and end_date, clipped by end_date"""
     intervals = []
-    for year in range(start_year, end_year + 1):
-        intervals.append((f"{year}", datetime.date(year, 1, 1), datetime.date(year, 12, 31)))
+    for year in range(start_date.year, end_date.year + 1):
+        intervals.append((f"{year}", datetime.date(year, 1, 1), min(end_date, datetime.date(year, 12, 31))))
         for month in range(1, 13):
-            next_month = datetime.date(year, month + 1, 1) if month < 12 else datetime.date(year + 1, 1, 1)
-            intervals.append((f"{year}-{month:02}", datetime.date(year, month, 1), next_month - ONE_DAY))
+            month_start = datetime.date(year, month, 1)
+            month_end = (datetime.date(year, month + 1, 1) if month < 12 else datetime.date(year + 1, 1, 1)) - ONE_DAY
+            if month_start <= end_date <= month_end:
+                month_end = end_date
+            intervals.append((f"{year}-{month:02}", month_start, month_end))
     return intervals
 
 
-def intervals_yearly(end_date: datetime.date) -> list[Interval]:
+def intervals_yearly(start_date: datetime.date, end_date: datetime.date) -> list[Interval]:
     intervals = [
         (str(year), datetime.date(year, 1, 1), datetime.date(year, 12, 31))
-        for year in range(end_date.year - 15, end_date.year)
+        for year in range(start_date.year, end_date.year)
     ]
     intervals.append((str(end_date.year), datetime.date(end_date.year, 1, 1), end_date))
     return intervals
 
 
 def intervals_periods(start_date: datetime.date, end_date: datetime.date) -> list[Interval]:
-    return [
+    periods = [
         ("3M", end_date - relativedelta(months=3), end_date),
         ("6M", end_date - relativedelta(months=6), end_date),
         ("YTD", datetime.date(end_date.year, 1, 1), end_date),
@@ -42,6 +45,7 @@ def intervals_periods(start_date: datetime.date, end_date: datetime.date) -> lis
         ("15Y", datetime.date(end_date.year - 15, 1, 1), end_date),
         ("MAX", start_date, end_date),
     ]
+    return [(label, start, end) for (label, start, end) in periods if start >= start_date]
 
 
 class MonthInterval(NamedTuple):

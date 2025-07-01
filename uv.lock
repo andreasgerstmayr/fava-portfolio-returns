@@ -490,7 +490,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "beangrow", specifier = "==1.0.1" },
-    { name = "fava", specifier = ">=1.30" },
+    { name = "fava", specifier = ">=1.30.3" },
 ]
 
 [package.metadata.requires-dev]
