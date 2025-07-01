@@ -8,7 +8,9 @@ from pathlib import Path
 from typing import NamedTuple
 from typing import Optional
 
-from beancount.core import data
+from fava.beans.abc import Directive
+from fava.beans.abc import Price
+from fava.beans.abc import Transaction
 from fava.context import g
 from fava.ext import FavaExtensionBase
 from fava.ext import extension_endpoint
@@ -88,15 +90,15 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_debug_dir=beangrow_debug_dir,
         )
 
-    def get_ledger_duration(self, entries: list[data.Directive]):
+    def get_ledger_duration(self, entries: list[Directive]):
         date_first = None
         date_last = None
         for entry in entries:
-            if isinstance(entry, data.Transaction):
+            if isinstance(entry, Transaction):
                 date_first = entry.date
                 break
         for entry in reversed(entries):
-            if isinstance(entry, (data.Transaction, data.Price)):
+            if isinstance(entry, (Transaction, Price)):
                 date_last = entry.date
                 break
         if not date_first or not date_last:
