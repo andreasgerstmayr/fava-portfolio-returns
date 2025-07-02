@@ -4,7 +4,7 @@ from pathlib import Path
 
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.returns.irr import IRR
-from fava_portfolio_returns.test.test import approx3
+from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP, approx3, load_portfolio_str
 from fava_portfolio_returns.test.test import load_portfolio_file
 
 
@@ -43,3 +43,38 @@ class TestIRR(unittest.TestCase):
         assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 1, 2)) == approx3(2.351)
         assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 1, 3)) == approx3(5.064)
         assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 1, 4)) == approx3(7.578)
+
+    def test_stock(self):
+        p = load_portfolio_str(
+            """
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+
+2020-01-01 commodity CORP
+  name: "Example Stock"
+
+2020-01-01 * "Buy 100 CORP @ 1 USD"
+  Assets:Cash                           -107.50 USD
+  Assets:CORP                               100 CORP {1 USD}
+  Expenses:Fees                             7.5 USD
+
+2020-12-31 price CORP 1.5 USD
+            """,
+            BEANGROW_CONFIG_CORP,
+        )
+
+        # IRR: 107.50 USD invested for 1 day = 100 USD
+        # 107.5*(1+x)^(1/365) = 100
+        assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 1, 1)) == approx3(-0.999)
+
+        # IRR: 107.50 USD invested for 31 days = 100 USD
+        # 107.5*(1+x)^(31/365) = 100
+        assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 1, 31)) == approx3(-0.573)
+
+        # IRR: 107.50 USD invested for 364 days = 100 USD
+        # 107.5*(1+x)^(364/365) = 100
+        assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 12, 30)) == approx3(-0.069)
+
+        # IRR: 107.50 USD invested for 1 year = 150 USD
+        # 107.5*(1+x)^(365/365) = 150
+        assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 12, 31)) == approx3(0.395)
