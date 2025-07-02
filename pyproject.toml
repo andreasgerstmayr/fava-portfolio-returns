@@ -6,7 +6,7 @@ authors = [
     { name = "Andreas Gerstmayr", email = "andreas@gerstmayr.me" }
 ]
 dependencies = [
-    "fava>=1.30",
+    "fava>=1.30.3",
     "beangrow==1.0.1",
 ]
 readme = "README.md"

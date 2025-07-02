@@ -74,7 +74,7 @@ container-stop:
 	docker rm -f fava-portfolio-returns-test
 
 container-test: container-run
-	docker exec fava-portfolio-returns-test make test
+	docker exec fava-portfolio-returns-test make test || (rm -rf ./frontend/test-results && docker cp fava-portfolio-returns-test:/usr/src/app/frontend/test-results ./frontend && exit 1)
 	make container-stop
 
 container-test-js-update: container-run

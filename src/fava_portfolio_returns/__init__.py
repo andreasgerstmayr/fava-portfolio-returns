@@ -8,6 +8,9 @@ from pathlib import Path
 from typing import NamedTuple
 from typing import Optional
 
+from fava.beans.abc import Directive
+from fava.beans.abc import Price
+from fava.beans.abc import Transaction
 from fava.context import g
 from fava.ext import FavaExtensionBase
 from fava.ext import extension_endpoint
@@ -43,9 +46,9 @@ class ToolbarContext(NamedTuple):
     investment_filter: list[str]
     """target currency"""
     target_currency: str
-    """start date (inclusive)"""
+    """start date of the current date filter, or first transaction date of the ledger (inclusive)"""
     start_date: date
-    """end date (inclusive)"""
+    """end date of the current date filter, or last transaction date of the ledger (inclusive)"""
     end_date: date
 
 
@@ -87,6 +90,21 @@ class FavaPortfolioReturns(FavaExtensionBase):
             beangrow_debug_dir=beangrow_debug_dir,
         )
 
+    def get_ledger_duration(self, entries: list[Directive]):
+        date_first = None
+        date_last = None
+        for entry in entries:
+            if isinstance(entry, Transaction):
+                date_first = entry.date
+                break
+        for entry in reversed(entries):
+            if isinstance(entry, (Transaction, Price)):
+                date_last = entry.date
+                break
+        if not date_first or not date_last:
+            raise FavaAPIError("no transaction found")
+        return (date_first, date_last)
+
     def get_toolbar_ctx(self):
         sel_investments = list(filter(None, request.args.get("investments", "").split(",")))
 
@@ -95,16 +113,37 @@ class FavaPortfolioReturns(FavaExtensionBase):
             raise FavaAPIError("No operating currency specified in the ledger")
         currency = request.args.get("currency", operating_currencies[0])
 
-        # pylint: disable=protected-access
-        start_date = g.filtered._date_first
-        # pylint: disable=protected-access
-        end_date = g.filtered._date_last - datetime.timedelta(days=1)
+        if g.filtered.date_range:
+            filter_first = g.filtered.date_range.begin
+            filter_last = g.filtered.date_range.end - datetime.timedelta(days=1)
+            # Use filtered ledger here, as another filter (e.g. tag filter) could be applied.
+            ledger_date_first, ledger_date_last = self.get_ledger_duration(g.filtered.entries_with_all_prices)
+
+            # Adjust the dates in case the date filter is set to e.g. 2023-2024,
+            # however the ledger only contains data up to summer 2024.
+            # Without this, a wrong number of days between start_date and end_date is calculated.
+
+            # First, check if there is an overlap between ledger and filter dates
+            if filter_last < ledger_date_first or filter_first > ledger_date_last:
+                # If there is no overlap of ledger and filter dates, leave them as-is.
+                # For example filter: 2020-2021, but ledger data goes from 2022-2023.
+                # Using min/max here would give from max(2020,2022) until min(2021,2023) = from 2022 until 2021, which is invalid.
+                date_first = filter_first
+                date_last = filter_last
+            else:
+                # If there is overlap between ledger and filter dates, use min/max
+                date_first = max(filter_first, ledger_date_first)
+                date_last = min(filter_last, ledger_date_last)
+        else:
+            # No time filter applied.
+            # Use filtered ledger here, as another filter (e.g. tag filter) could be applied.
+            date_first, date_last = self.get_ledger_duration(g.filtered.entries_with_all_prices)
 
         return ToolbarContext(
             investment_filter=sel_investments,
             target_currency=currency,
-            start_date=start_date,
-            end_date=end_date,
+            start_date=date_first,
+            end_date=date_last,
         )
 
     def get_portfolio(self):
@@ -176,18 +215,18 @@ class FavaPortfolioReturns(FavaExtensionBase):
             raise FavaAPIError(f"Invalid method {method}")
 
         cash_flows = p.cash_flows()
-        cf_start = cash_flows[0].date if cash_flows else None
+        if cash_flows and toolbar_ctx.start_date <= cash_flows[0].date <= toolbar_ctx.end_date:
+            # skip time before first cash flow
+            start_date = cash_flows[0].date
+        else:
+            start_date = toolbar_ctx.start_date
 
         if interval == "heatmap":
-            # skip time before first cash flow in case start_date is before cf_start
-            start_date = max(cf_start, toolbar_ctx.start_date) if cf_start else toolbar_ctx.start_date
-            intervals = intervals_heatmap(start_date.year, toolbar_ctx.end_date.year)
+            intervals = intervals_heatmap(start_date, toolbar_ctx.end_date)
         elif interval == "yearly":
-            intervals = intervals_yearly(toolbar_ctx.end_date)
+            intervals = intervals_yearly(start_date, toolbar_ctx.end_date)
         elif interval == "periods":
-            # start_date is only used for the 'MAX' interval, which should start at the first cash flow, not at the date range selection
-            # use toolbar_ctx.start_date in case cf_start is None (no cash flow found)
-            intervals = intervals_periods(cf_start or toolbar_ctx.start_date, toolbar_ctx.end_date)
+            intervals = intervals_periods(start_date, toolbar_ctx.end_date)
         else:
             raise FavaAPIError(f"Invalid interval {interval}")
 
