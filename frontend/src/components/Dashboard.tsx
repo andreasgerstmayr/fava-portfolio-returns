@@ -42,7 +42,7 @@ interface PanelProps {
 
 export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
   return (
-    <Card variant="outlined" sx={{ flex: 1, padding: 2, ...sx }}>
+    <Card variant="outlined" sx={{ flex: 1, padding: 2, overflow: "auto", ...sx }}>
       <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
         <h3>{title}</h3>
         {topRightElem}
