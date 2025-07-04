@@ -28,10 +28,12 @@ Enable this plugin in Fava by adding the following lines to your ledger:
 ## View Example Ledger
 `cd example; fava example.beancount`
 
-## Building from Source
-Run `make build-js` to compile the frontend. The compiled and bundled code will be placed in `src/fava_portfolio_returns/FavaPortfolioReturns.js`.
+## Contributing
+This plugin consists of a Python backend and a React frontend.
 
-Run `make dev` to start a development server and automatically rebuild the frontend for any changes.
+Install [uv](https://docs.astral.sh/uv/) and Node.js 22, run `make deps` to install the dependencies, and `make dev` to run the Fava dev server with auto-rebuild.
+
+Before submitting a PR, please run `make build` to build the frontend in production mode, and add the compiled frontend to the PR.
 
 ## Related Projects
 * [Fava Portfolio Summary](https://github.com/PhracturedBlue/fava-portfolio-summary)
