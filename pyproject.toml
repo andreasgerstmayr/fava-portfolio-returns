@@ -7,7 +7,7 @@ authors = [
 ]
 dependencies = [
     "fava>=1.30.3",
-    "beangrow==1.0.1",
+    "beangrow @ git+https://github.com/beancount/beangrow.git@bd1bf195648dda73c47af945a5191ec16b2ab557",
 ]
 readme = "README.md"
 requires-python = ">= 3.10"

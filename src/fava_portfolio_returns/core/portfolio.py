@@ -22,7 +22,6 @@ from fava.beans.types import BeancountOptions
 from fava.helpers import FavaAPIError
 from google.protobuf import text_format
 
-import fava_portfolio_returns.beangrow.patch  # noqa: F401
 from fava_portfolio_returns.core.utils import inv_to_currency
 
 
