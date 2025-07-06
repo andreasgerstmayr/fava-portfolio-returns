@@ -83,21 +83,15 @@ wheels = [
 [[package]]
 name = "beangrow"
 version = "1.0.1"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/beancount/beangrow.git?rev=bd1bf195648dda73c47af945a5191ec16b2ab557#bd1bf195648dda73c47af945a5191ec16b2ab557" }
 dependencies = [
     { name = "beancount" },
     { name = "beanprice" },
     { name = "matplotlib" },
-    { name = "matplotlib-stubs" },
     { name = "numpy" },
     { name = "pandas" },
-    { name = "pandas-stubs" },
     { name = "protobuf" },
     { name = "scipy" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5e/85/a4745287bc09e662cca071404d628eca6b65a4f077df3aff5ddec4af0297/beangrow-1.0.1.tar.gz", hash = "sha256:22fc0b9771e801cefc20ce1c3e3d856d6d6f0e5e50c91673cec72a6cc4a162b0", size = 31100, upload_time = "2025-01-26T20:22:49.916Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9f/6e/0389989b4d10ea993fe6f38e107c0e6e3fcbe4d91510b084a7160af75642/beangrow-1.0.1-py3-none-any.whl", hash = "sha256:fe97967515ce70f9b7d80db8d2cedba2a23d9d50a5ebcf9d12d5e3fe9403a941", size = 28844, upload_time = "2025-01-26T20:22:48.954Z" },
 ]
 
 [[package]]
@@ -489,7 +483,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "beangrow", specifier = "==1.0.1" },
+    { name = "beangrow", git = "https://github.com/beancount/beangrow.git?rev=bd1bf195648dda73c47af945a5191ec16b2ab557" },
     { name = "fava", specifier = ">=1.30.3" },
 ]
 
@@ -927,20 +921,6 @@ wheels = [
 ]
 
 [[package]]
-name = "matplotlib-stubs"
-version = "0.2.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "pandas" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/00/96/8a98bfb1b493c587b931fdbda961a885d3c36d12d94b4e3a9394dc2a3234/matplotlib_stubs-0.2.0.tar.gz", hash = "sha256:f4563b4465cc8a2f97303217caa8d830d2e253bc7f45c9041ac248ccf8d049a7", size = 77737, upload_time = "2023-09-19T07:39:03.999Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/f3/128859276b7d82147eccb7e10684e6ac8af557dab1abb57778062dfc0900/matplotlib_stubs-0.2.0-py3-none-any.whl", hash = "sha256:4758c4d05729440605f5b0618eb97711899a673bdf41a1a916a50f723b92db91", size = 116327, upload_time = "2023-09-19T07:39:06.423Z" },
-]
-
-[[package]]
 name = "mccabe"
 version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1093,19 +1073,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/15/aa/3fc3181d12b95da71f5c2537c3e3b3af6ab3a8c392ab41ebb766e0929bc6/pandas-2.3.0-cp313-cp313t-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:1a881bc1309f3fce34696d07b00f13335c41f5f5a8770a33b09ebe23261cfc67", size = 11966182, upload_time = "2025-06-05T03:27:47.652Z" },
     { url = "https://files.pythonhosted.org/packages/37/e7/e12f2d9b0a2c4a2cc86e2aabff7ccfd24f03e597d770abfa2acd313ee46b/pandas-2.3.0-cp313-cp313t-musllinux_1_2_aarch64.whl", hash = "sha256:e1991bbb96f4050b09b5f811253c4f3cf05ee89a589379aa36cd623f21a31d6f", size = 12547686, upload_time = "2025-06-06T00:00:26.142Z" },
     { url = "https://files.pythonhosted.org/packages/39/c2/646d2e93e0af70f4e5359d870a63584dacbc324b54d73e6b3267920ff117/pandas-2.3.0-cp313-cp313t-musllinux_1_2_x86_64.whl", hash = "sha256:bb3be958022198531eb7ec2008cfc78c5b1eed51af8600c6c5d9160d89d8d249", size = 13231847, upload_time = "2025-06-05T03:27:51.465Z" },
-]
-
-[[package]]
-name = "pandas-stubs"
-version = "2.2.3.250527"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "numpy" },
-    { name = "types-pytz" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5f/0d/5fe7f7f3596eb1c2526fea151e9470f86b379183d8b9debe44b2098651ca/pandas_stubs-2.2.3.250527.tar.gz", hash = "sha256:e2d694c4e72106055295ad143664e5c99e5815b07190d1ff85b73b13ff019e63", size = 106312, upload_time = "2025-05-27T15:24:29.716Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/ec/f8/46141ba8c9d7064dc5008bfb4a6ae5bd3c30e4c61c28b5c5ed485bf358ba/pandas_stubs-2.2.3.250527-py3-none-any.whl", hash = "sha256:cd0a49a95b8c5f944e605be711042a4dd8550e2c559b43d70ba2c4b524b66163", size = 159683, upload_time = "2025-05-27T15:24:28.4Z" },
 ]
 
 [[package]]
@@ -1646,15 +1613,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/ef/88/d65ed807393285204ab6e2801e5d11fbbea811adcaa979a2ed3b67a5ef41/types_python_dateutil-2.9.0.20250516.tar.gz", hash = "sha256:13e80d6c9c47df23ad773d54b2826bd52dbbb41be87c3f339381c1700ad21ee5", size = 13943, upload_time = "2025-05-16T03:06:58.385Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c5/3f/b0e8db149896005adc938a1e7f371d6d7e9eca4053a29b108978ed15e0c2/types_python_dateutil-2.9.0.20250516-py3-none-any.whl", hash = "sha256:2b2b3f57f9c6a61fba26a9c0ffb9ea5681c9b83e69cd897c6b5f668d9c0cab93", size = 14356, upload_time = "2025-05-16T03:06:57.249Z" },
-]
-
-[[package]]
-name = "types-pytz"
-version = "2025.2.0.20250516"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/bd/72/b0e711fd90409f5a76c75349055d3eb19992c110f0d2d6aabbd6cfbc14bf/types_pytz-2025.2.0.20250516.tar.gz", hash = "sha256:e1216306f8c0d5da6dafd6492e72eb080c9a166171fa80dd7a1990fd8be7a7b3", size = 10940, upload_time = "2025-05-16T03:07:01.91Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/c1/ba/e205cd11c1c7183b23c97e4bcd1de7bc0633e2e867601c32ecfc6ad42675/types_pytz-2025.2.0.20250516-py3-none-any.whl", hash = "sha256:e0e0c8a57e2791c19f718ed99ab2ba623856b11620cb6b637e5f62ce285a7451", size = 10136, upload_time = "2025-05-16T03:07:01.075Z" },
 ]
 
 [[package]]
