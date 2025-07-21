@@ -7,9 +7,7 @@ import { Loading } from "../components/Loading";
 import {
   getCurrencyFormatter,
   getIntegerCurrencyFormatter,
-  NEGATIVE_NUMBER_COLOR,
   NEGATIVE_TREND_COLOR,
-  POSITIVE_NUMBER_COLOR,
   POSITIVE_TREND_COLOR,
   timestampToDate,
 } from "../components/format";
@@ -21,14 +19,14 @@ export function Portfolio() {
         <PanelGroup param="chart" labels={["Performance", "Portfolio Value"]}>
           <Panel
             title="Performance"
-            help="The performance chart shows the gain or loss of the portfolio."
+            help="The performance chart shows the total profit and loss of the portfolio."
             sx={{ flex: 2 }}
           >
             <PerformanceChart />
           </Panel>
           <Panel
             title="Portfolio Value"
-            help="The portfolio value chart compares the portfolio value with the invested capital, including dividends and fees."
+            help="The portfolio value chart compares the market value with the cost value of the portfolio."
             sx={{ flex: 2 }}
           >
             <PortfolioValueChart />
@@ -86,7 +84,7 @@ function PerformanceChart() {
     },
     series: {
       type: "line",
-      name: "Performance",
+      name: "Total P/L",
       showSymbol: false,
       data: series,
       lineStyle: {
@@ -138,27 +136,7 @@ function PortfolioValueChart() {
   const option = {
     tooltip: {
       trigger: "axis",
-      formatter: (params: { value: { date: string; market: number; cash: number }; marker: string }[]) => {
-        function marker(color: string) {
-          return `<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:${color};"></span>`;
-        }
-        function valueFmt(value: number, style?: string) {
-          return `<span style="float: right; margin-left:15px; font-weight: bold; ${style ?? ""}">${currencyFormatter(value)}</span>`;
-        }
-
-        // note: array order matches 'series' option order!
-        const [valueSeries, capitalSeries] = params;
-        const value = valueSeries.value;
-        const difference = value.market - value.cash;
-        const diffColor = difference >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR;
-
-        return (
-          `${value.date}<br>` +
-          `${valueSeries.marker} Portfolio Value ${valueFmt(value.market)}<br>` +
-          `${capitalSeries.marker} Invested Capital ${valueFmt(value.cash)}<br>` +
-          `${marker("#ccc")} Difference ${valueFmt(difference, `color: ${diffColor}`)}`
-        );
-      },
+      valueFormatter: currencyFormatter,
     },
     legend: {
       bottom: 0,
@@ -169,6 +147,11 @@ function PortfolioValueChart() {
     },
     xAxis: {
       type: "time",
+      axisPointer: {
+        label: {
+          formatter: ({ value }: { value: number }) => timestampToDate(value),
+        },
+      },
     },
     yAxis: {
       type: "value",
@@ -182,15 +165,15 @@ function PortfolioValueChart() {
     series: [
       {
         type: "line",
-        name: "Portfolio Value",
+        name: "Market Value",
         showSymbol: false,
         dimensions: ["date", "market"],
       },
       {
         type: "line",
-        name: "Invested Capital",
+        name: "Cost Value",
         showSymbol: false,
-        dimensions: ["date", "cash"],
+        dimensions: ["date", "cost"],
         step: "end", // increase invested capital at date of cash flow, do not interpolate
         lineStyle: {
           type: "dotted",
