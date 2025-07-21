@@ -11,10 +11,11 @@ export interface Investment {
   name: string;
   currency: string;
   units: { number: number; currency: string }[];
-  cashIn: number;
-  cashOut: number;
+  costValue: number;
   marketValue: number;
-  gains: number;
+  totalPnl: number;
+  realizedPnl: number;
+  unrealizedPnl: number;
   irr: number;
   mdm: number;
   twr: number;

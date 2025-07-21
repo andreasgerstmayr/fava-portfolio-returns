@@ -17,10 +17,11 @@ class TestInvestments(unittest.TestCase):
             "units": [
                 Amount(D(2), "CORP"),
             ],
-            "cashIn": D("35"),
-            "cashOut": D("0"),
+            "costValue": D("35"),
             "marketValue": D("70"),
-            "gains": 35.0,
+            "totalPnl": D("35"),
+            "realizedPnl": D("0"),
+            "unrealizedPnl": D("35"),
             "irr": approx2(13.46),
             "mdm": approx2(1.71),
             "twr": 2.5,
@@ -33,10 +34,11 @@ class TestInvestments(unittest.TestCase):
             "units": [
                 Amount(D(1), "CORP"),
             ],
-            "cashIn": D("10"),
-            "cashOut": D("0"),
+            "costValue": D("10"),
             "marketValue": D("20"),
-            "gains": 10.0,
+            "totalPnl": D("10"),
+            "realizedPnl": D("0"),
+            "unrealizedPnl": D("10"),
             "irr": approx2(62.27),
             "mdm": approx2(0.98),
             "twr": 1.0,
@@ -50,10 +52,11 @@ class TestInvestments(unittest.TestCase):
             "units": [
                 Amount(D(100), "CORP"),
             ],
-            "cashIn": D("100"),
-            "cashOut": D("0"),
+            "costValue": D("100"),
             "marketValue": D("200"),
-            "gains": 100.0,
+            "totalPnl": D("100"),
+            "realizedPnl": D("0"),
+            "unrealizedPnl": D("100"),
             "irr": approx2(1.12),
             "mdm": approx2(0.99),
             "twr": 1.0,
@@ -66,11 +69,29 @@ class TestInvestments(unittest.TestCase):
             "units": [
                 Amount(D(100), "CORP"),
             ],
-            "cashIn": D("50"),  # half of USD
-            "cashOut": D("0"),
+            "costValue": D("50"),  # half of USD
             "marketValue": D("100"),  # half of USD
-            "gains": 50.0,  # half of USD
+            "totalPnl": D("50"),  # half of USD
+            "realizedPnl": D("0"),
+            "unrealizedPnl": D("50"),  # half of USD
             "irr": approx2(1.12),
             "mdm": approx2(0.99),
             "twr": 1.0,
+        }
+
+    def test_group_stats_realized(self):
+        p = load_portfolio_file("example_stock")
+        stats = group_stats(p, datetime.date(2020, 1, 1), datetime.date(2020, 7, 10))
+        assert stats == {
+            "units": [
+                Amount(D(250), "CORP"),
+            ],
+            "costValue": D("550"),
+            "marketValue": D("750"),
+            "totalPnl": D("230"),  # market value - cash
+            "realizedPnl": D("30"),  # total P/L - unrealized P/L
+            "unrealizedPnl": D("200"),  # market value - cost value
+            "irr": approx2(2.12),
+            "mdm": approx2(0.60),
+            "twr": approx2(1.82),
         }

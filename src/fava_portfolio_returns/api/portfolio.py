@@ -10,9 +10,7 @@ from beangrow.investments import Cat
 from beangrow.investments import produce_cash_flows_general
 
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
-from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import cost_value_of_inv
-from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
 from fava_portfolio_returns.core.utils import get_prices
 from fava_portfolio_returns.core.utils import inv_to_currency
 from fava_portfolio_returns.core.utils import market_value_of_inv
@@ -36,22 +34,6 @@ def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
         for currency, market_value in sorted(market_value_by_currency.items(), key=lambda x: x[1], reverse=True)
         if market_value > ZERO
     ]
-
-
-def portfolio_cash(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> tuple[Decimal, Decimal]:
-    cash_in = ZERO  # all incoming cash in target currency
-    cash_out = ZERO  # all outgoing cash in target currency
-
-    cash_flows = p.cash_flows()
-    cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
-    cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
-    for flow in cash_flows:
-        if flow.amount.number >= 0:
-            cash_out += flow.amount.number
-        else:
-            cash_in -= flow.amount.number
-
-    return cash_in, cash_out
 
 
 class PortfolioValue(NamedTuple):

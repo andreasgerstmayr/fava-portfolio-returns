@@ -103,68 +103,38 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
   }
   const percentFormatter = fixedPercentFormatter;
 
+  const sortParams = (column: SortableKeys) => ({
+    "data-sort": "", // required for fava to display sort icon
+    "data-order": sort.sortColumn === column ? sort.sortOrder : "", // required for fava to display sort icon direction
+    onClick: () => handleSortChange(column),
+  });
+
+  const numberColor = (x: number) => (x >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR);
+
   const table = (
     <table>
       <thead>
         <tr>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "name" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("name")}
-          >
-            Name
-          </th>
+          <th {...sortParams("name")}>Name</th>
           <th>Units</th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "cashIn" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("cashIn")}
-          >
-            Cash In
+          <th {...sortParams("costValue")}>Cost Value</th>
+          <th {...sortParams("marketValue")}>Market Value</th>
+          <th {...sortParams("realizedPnl")} title="Realized Profit and Loss">
+            Realized P/L
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "cashOut" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("cashOut")}
-          >
-            Cash Out
+          <th {...sortParams("unrealizedPnl")} title="Unrealized Profit and Loss">
+            Unrealized P/L
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "marketValue" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("marketValue")}
-          >
-            Market Value
+          <th {...sortParams("totalPnl")} title="Total Profit and Loss">
+            Total P/L
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "gains" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("gains")}
-          >
-            Gains
-          </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "irr" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("irr")}
-            title={ReturnsMethods.irr.label}
-          >
+          <th {...sortParams("irr")} title={ReturnsMethods.irr.label}>
             IRR
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "mdm" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("mdm")}
-            title={ReturnsMethods.mdm.label}
-          >
+          <th {...sortParams("mdm")} title={ReturnsMethods.mdm.label}>
             MDM
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "twr" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("twr")}
-            title={ReturnsMethods.twr.label}
-          >
+          <th {...sortParams("twr")} title={ReturnsMethods.twr.label}>
             TWR
           </th>
         </tr>
@@ -188,27 +158,28 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
               ))}
             </td>
             <td className="num">
-              {investment.cashIn != 0 && `${numberFormatter(investment.cashIn)} ${investment.currency}`}
-            </td>
-            <td className="num">
-              {investment.cashOut != 0 && `${numberFormatter(investment.cashOut)} ${investment.currency}`}
+              {investment.costValue != 0 && `${numberFormatter(investment.costValue)} ${investment.currency}`}
             </td>
             <td className="num">
               {investment.marketValue != 0 && `${numberFormatter(investment.marketValue)} ${investment.currency}`}
             </td>
-            <td
-              className="num"
-              style={{ color: investment.gains >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-            >
-              {numberFormatter(investment.gains)} {investment.currency}
+            <td className="num" style={{ color: numberColor(investment.realizedPnl) }}>
+              {Math.abs(investment.realizedPnl) >= 0.01 &&
+                `${numberFormatter(investment.realizedPnl)} ${investment.currency}`}
             </td>
-            <td className="num" style={{ color: investment.irr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
+            <td className="num" style={{ color: numberColor(investment.unrealizedPnl) }}>
+              {numberFormatter(investment.unrealizedPnl)} {investment.currency}
+            </td>
+            <td className="num" style={{ color: numberColor(investment.totalPnl) }}>
+              {numberFormatter(investment.totalPnl)} {investment.currency}
+            </td>
+            <td className="num" style={{ color: numberColor(investment.irr) }}>
               {percentFormatter(investment.irr)}
             </td>
-            <td className="num" style={{ color: investment.mdm >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
+            <td className="num" style={{ color: numberColor(investment.mdm) }}>
               {percentFormatter(investment.mdm)}
             </td>
-            <td className="num" style={{ color: investment.twr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
+            <td className="num" style={{ color: numberColor(investment.twr) }}>
               {percentFormatter(investment.twr)}
             </td>
           </tr>
