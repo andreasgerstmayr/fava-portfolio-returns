@@ -101,70 +101,47 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
   if (!includeLiquidated) {
     investments = investments.filter((i) => i.marketValue > 0);
   }
-  const percentFormatter = fixedPercentFormatter;
+
+  const sortParams = (column: SortableKeys) => ({
+    "data-sort": "", // required For fava to display sort icon
+    "data-order": sort.sortColumn === column ? sort.sortOrder : "", // required for Fava to display sort icon direction
+    onClick: () => handleSortChange(column),
+  });
+
+  // use green for gains and red for losses
+  const conditionalColor = (x: number) => (x >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR);
+
+  // cost value, market value and unrealized P/L will be zero once the investment is liquidated
+  // realized P/L is zero if investment was never sold
+  const nonZero = (x: number) => Math.abs(x) >= 0.01;
 
   const table = (
     <table>
       <thead>
         <tr>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "name" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("name")}
-          >
-            Name
-          </th>
+          <th {...sortParams("name")}>Name</th>
           <th>Units</th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "cashIn" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("cashIn")}
-          >
-            Cash In
+          <th {...sortParams("costValue")}>Cost Value</th>
+          <th {...sortParams("marketValue")}>Market Value</th>
+          <th {...sortParams("realizedPnl")} title="Realized Profit and Loss: P&L from sold assets">
+            Realized P/L
           </th>
           <th
-            data-sort=""
-            data-order={sort.sortColumn === "cashOut" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("cashOut")}
+            {...sortParams("unrealizedPnl")}
+            title="Unrealized Profit and Loss: P&L from open positions (excluding fees)"
           >
-            Cash Out
+            Unrealized P/L
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "marketValue" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("marketValue")}
-          >
-            Market Value
+          <th {...sortParams("totalPnl")} title="Total Profit and Loss">
+            Total P/L
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "gains" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("gains")}
-          >
-            Gains
-          </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "irr" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("irr")}
-            title={ReturnsMethods.irr.label}
-          >
+          <th {...sortParams("irr")} title={ReturnsMethods.irr.label}>
             IRR
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "mdm" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("mdm")}
-            title={ReturnsMethods.mdm.label}
-          >
+          <th {...sortParams("mdm")} title={ReturnsMethods.mdm.label}>
             MDM
           </th>
-          <th
-            data-sort=""
-            data-order={sort.sortColumn === "twr" ? sort.sortOrder : ""}
-            onClick={() => handleSortChange("twr")}
-            title={ReturnsMethods.twr.label}
-          >
+          <th {...sortParams("twr")} title={ReturnsMethods.twr.label}>
             TWR
           </th>
         </tr>
@@ -188,28 +165,29 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
               ))}
             </td>
             <td className="num">
-              {investment.cashIn != 0 && `${numberFormatter(investment.cashIn)} ${investment.currency}`}
+              {nonZero(investment.costValue) && `${numberFormatter(investment.costValue)} ${investment.currency}`}
             </td>
             <td className="num">
-              {investment.cashOut != 0 && `${numberFormatter(investment.cashOut)} ${investment.currency}`}
+              {nonZero(investment.marketValue) && `${numberFormatter(investment.marketValue)} ${investment.currency}`}
             </td>
-            <td className="num">
-              {investment.marketValue != 0 && `${numberFormatter(investment.marketValue)} ${investment.currency}`}
+            <td className="num" style={{ color: conditionalColor(investment.realizedPnl) }}>
+              {nonZero(investment.realizedPnl) && `${numberFormatter(investment.realizedPnl)} ${investment.currency}`}
             </td>
-            <td
-              className="num"
-              style={{ color: investment.gains >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}
-            >
-              {numberFormatter(investment.gains)} {investment.currency}
+            <td className="num" style={{ color: conditionalColor(investment.unrealizedPnl) }}>
+              {nonZero(investment.unrealizedPnl) &&
+                `${numberFormatter(investment.unrealizedPnl)} ${investment.currency}`}
             </td>
-            <td className="num" style={{ color: investment.irr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-              {percentFormatter(investment.irr)}
+            <td className="num" style={{ color: conditionalColor(investment.totalPnl) }}>
+              {numberFormatter(investment.totalPnl)} {investment.currency}
             </td>
-            <td className="num" style={{ color: investment.mdm >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-              {percentFormatter(investment.mdm)}
+            <td className="num" style={{ color: conditionalColor(investment.irr) }}>
+              {fixedPercentFormatter(investment.irr)}
             </td>
-            <td className="num" style={{ color: investment.twr >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR }}>
-              {percentFormatter(investment.twr)}
+            <td className="num" style={{ color: conditionalColor(investment.mdm) }}>
+              {fixedPercentFormatter(investment.mdm)}
+            </td>
+            <td className="num" style={{ color: conditionalColor(investment.twr) }}>
+              {fixedPercentFormatter(investment.twr)}
             </td>
           </tr>
         ))}

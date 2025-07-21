@@ -28,14 +28,14 @@ def cost_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory) 
 def market_value_of_inv(
     pricer: Pricer, target_currency: str, balance: Inventory, date: datetime.date, record=False
 ) -> Decimal:
-    # get market value in the cost currency of the positions
+    # first, get market value of all position in cost currency
     if record:
-        # record requested currency/date in pricer.required_prices
+        # record requested currency/date in pricer.required_prices (for "Missing Prices" page)
         value_balance = balance.reduce(pricer.get_value, date)
     else:
         value_balance = balance.reduce(convert.get_value, pricer.price_map, date)
 
-    # convert to target currency
+    # then convert to target currency
     return inv_to_currency(pricer, target_currency, value_balance)
 
 
