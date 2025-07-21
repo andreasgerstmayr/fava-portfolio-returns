@@ -126,7 +126,10 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
           <th {...sortParams("realizedPnl")} title="Realized Profit and Loss: P&L from sold assets">
             Realized P/L
           </th>
-          <th {...sortParams("unrealizedPnl")} title="Unrealized Profit and Loss: P&L from open positions (excluding fees)">
+          <th
+            {...sortParams("unrealizedPnl")}
+            title="Unrealized Profit and Loss: P&L from open positions (excluding fees)"
+          >
             Unrealized P/L
           </th>
           <th {...sortParams("totalPnl")} title="Total Profit and Loss">
