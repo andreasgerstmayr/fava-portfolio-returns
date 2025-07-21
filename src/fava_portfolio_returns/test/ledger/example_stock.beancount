@@ -1,4 +1,5 @@
 ; uv run fava --debug src/fava_portfolio_returns/test/ledger/example_stock.beancount
+option "title" "Example Stock"
 option "operating_currency" "USD"
 option "booking_method" "FIFO"
 plugin "beancount.plugins.auto_accounts"

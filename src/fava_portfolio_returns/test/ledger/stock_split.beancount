@@ -1,3 +1,4 @@
+option "title" "Stock Split"
 option "operating_currency" "USD"
 plugin "beancount.plugins.auto_accounts"
 plugin "beancount.plugins.implicit_prices"
