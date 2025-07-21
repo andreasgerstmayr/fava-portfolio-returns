@@ -1,4 +1,5 @@
 ; uv run fava --debug src/fava_portfolio_returns/test/ledger/savings_plan_daily.beancount
+option "title" "Savings Plan Daily"
 option "operating_currency" "USD"
 plugin "beancount.plugins.auto_accounts"
 plugin "beancount.plugins.implicit_prices"

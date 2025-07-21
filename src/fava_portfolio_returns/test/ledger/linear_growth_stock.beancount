@@ -1,5 +1,6 @@
 ; uv run fava --debug src/fava_portfolio_returns/test/ledger/linear_growth_stock.beancount
 ; linear growth with additional purchase in middle
+option "title" "Linear Growth Stock"
 option "operating_currency" "USD"
 plugin "beancount.plugins.auto_accounts"
 plugin "beancount.plugins.implicit_prices"

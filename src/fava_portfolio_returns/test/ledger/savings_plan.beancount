@@ -1,5 +1,6 @@
 ; uv run fava --debug src/fava_portfolio_returns/test/ledger/savings_plan.beancount
 ; monthly savings plan with linear growth
+option "title" "Savings Plan"
 option "operating_currency" "USD"
 plugin "beancount.plugins.auto_accounts"
 plugin "beancount.plugins.implicit_prices"
