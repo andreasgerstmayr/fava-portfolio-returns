@@ -65,6 +65,6 @@ def investments_group_by_currency(
         yield {
             "id": currency.id,
             "name": currency.name,
-            "currency": target_currency,
+            "currency": fp.target_currency,
             **group_stats(fp, start_date, end_date),
         }

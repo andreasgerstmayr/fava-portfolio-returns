@@ -168,14 +168,14 @@
         - cell /\d+\.\d+%/
         - cell /\d+\.\d+%/
         - cell /\d+\.\d+%/
-      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - cell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
           - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
             - /url: "#/portfolio?investments=c%3AVBMPX&currency=USD"
         - cell /\d+\.\d+ VBMPX/
         - cell /\d+,\d+\.\d+ USD/
         - cell /\d+,\d+\.\d+ USD/
-        - cell /-\d+\.\d+ USD/
+        - cell
         - cell /\d+,\d+\.\d+ USD/
         - cell /\d+,\d+\.\d+ USD/
         - cell /\d+\.\d+%/
