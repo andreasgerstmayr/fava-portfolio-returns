@@ -105,6 +105,6 @@
     - button "EUR"
   - heading "Performance" [level=3]
   - combobox: Performance
-  - paragraph: The performance chart shows the gain or loss of the portfolio.
+  - paragraph: The performance chart shows the total profit and loss of the portfolio.
   - heading "Allocation" [level=3]
   - paragraph
