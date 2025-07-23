@@ -62,10 +62,15 @@ const router = createHashRouter([
   },
 ]);
 
+const storedThemeSetting = document.documentElement.style.colorScheme;
+const isDarkMode =
+  storedThemeSetting == "dark" ||
+  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
+
 const theme = createTheme({
   cssVariables: true,
-  colorSchemes: {
-    dark: true,
+  palette: {
+    mode: isDarkMode ? "dark" : "light",
   },
   typography: {
     fontFamily: "",
