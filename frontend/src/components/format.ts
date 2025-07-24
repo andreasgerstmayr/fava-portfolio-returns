@@ -6,27 +6,45 @@ export const NEGATIVE_NUMBER_COLOR = "#af3d3d";
 export const POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opacity})`;
 export const NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
 
+type FormatterFunc = (x: number | bigint) => string;
+const identityFormatter: FormatterFunc = (x) => x.toString();
+
 export function getCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-  }).format;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+    }).format;
+  } catch (_) {
+    // currency code not found, return identity function
+    return identityFormatter;
+  }
 }
 
 export function getSignedCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-    signDisplay: "exceptZero",
-  }).format;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      signDisplay: "exceptZero",
+    }).format;
+  } catch (_) {
+    // currency code not found, return identity function
+    return identityFormatter;
+  }
 }
 
 export function getIntegerCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-  }).format;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format;
+  } catch (_) {
+    // currency code not found, return identity function
+    return identityFormatter;
+  }
 }
 
 export const numberFormatter = new Intl.NumberFormat(undefined, {
