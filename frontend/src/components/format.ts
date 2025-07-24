@@ -13,14 +13,6 @@ export function getCurrencyFormatter(currency: string) {
   }).format;
 }
 
-export function getSignedCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-    signDisplay: "exceptZero",
-  }).format;
-}
-
 export function getIntegerCurrencyFormatter(currency: string) {
   return new Intl.NumberFormat(undefined, {
     style: "currency",
