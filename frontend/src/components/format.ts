@@ -7,18 +7,31 @@ export const POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opac
 export const NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
 
 export function getCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-  }).format;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+    }).format;
+  } catch (_) {
+    // currency code not found
+    return (x: number | bigint) => `${x} ${currency}`;
+  }
 }
 
 export function getIntegerCurrencyFormatter(currency: string) {
-  return new Intl.NumberFormat(undefined, {
-    style: "currency",
-    currency,
-    maximumFractionDigits: 0,
-  }).format;
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format;
+  } catch (_) {
+    // currency code not found
+    const fmt = new Intl.NumberFormat(undefined, {
+      maximumFractionDigits: 0,
+    }).format;
+    return (x: number | bigint) => `${fmt(x)} ${currency}`;
+  }
 }
 
 export const numberFormatter = new Intl.NumberFormat(undefined, {
