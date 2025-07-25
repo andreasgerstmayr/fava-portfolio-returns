@@ -6,9 +6,6 @@ export const NEGATIVE_NUMBER_COLOR = "#af3d3d";
 export const POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opacity})`;
 export const NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
 
-type FormatterFunc = (x: number | bigint) => string;
-const identityFormatter: FormatterFunc = (x) => x.toString();
-
 export function getCurrencyFormatter(currency: string) {
   try {
     return new Intl.NumberFormat(undefined, {
@@ -16,21 +13,8 @@ export function getCurrencyFormatter(currency: string) {
       currency,
     }).format;
   } catch (_) {
-    // currency code not found, return identity function
-    return identityFormatter;
-  }
-}
-
-export function getSignedCurrencyFormatter(currency: string) {
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency,
-      signDisplay: "exceptZero",
-    }).format;
-  } catch (_) {
-    // currency code not found, return identity function
-    return identityFormatter;
+    // currency code not found
+    return (x: number | bigint) => `${x} ${currency}`;
   }
 }
 
@@ -42,8 +26,11 @@ export function getIntegerCurrencyFormatter(currency: string) {
       maximumFractionDigits: 0,
     }).format;
   } catch (_) {
-    // currency code not found, return identity function
-    return identityFormatter;
+    // currency code not found
+    const fmt = new Intl.NumberFormat(undefined, {
+      maximumFractionDigits: 0,
+    }).format;
+    return (x: number | bigint) => `${fmt(x)} ${currency}`;
   }
 }
 
