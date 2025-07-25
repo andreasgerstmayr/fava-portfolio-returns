@@ -1,7 +1,8 @@
 import { Alert, Box, CircularProgress } from "@mui/material";
 import { createContext, useContext } from "react";
-import { DelimitedArrayParam, StringParam, useQueryParam, withDefault } from "use-query-params";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
 import { ConfigResponse, useConfig } from "../../api/config";
+import { CommaArrayParam } from "../query_params";
 import { DateRangeKey, DateRanges } from "./DateRangeSelection";
 
 export interface ToolbarContextType {
@@ -15,7 +16,7 @@ export interface ToolbarContextType {
 }
 
 const ToolbarContext = createContext<ToolbarContextType | undefined>(undefined);
-const InvestmentsFilterParam = withDefault(DelimitedArrayParam, [] as string[]);
+const InvestmentsFilterParam = withDefault(CommaArrayParam, []);
 
 interface ToolbarProviderProps {
   children?: React.ReactNode;

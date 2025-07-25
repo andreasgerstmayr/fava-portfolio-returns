@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
 const pages = [
   { name: "Portfolio", url: "" },
-  { name: "Performance", url: "#/performance?compareWith=c:VHT_c:GLD" },
+  { name: "Performance", url: "#/performance?compareWith=c:VHT,c:GLD" },
   { name: "Performance (TWR)", url: "#/performance?investments=g:Gold&method=twr&compareWith=c:GLD" },
   { name: "Returns", url: "#/returns" },
   { name: "Returns (MDM)", url: "#/returns?method=mdm" },
