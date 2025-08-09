@@ -22,6 +22,7 @@ Enable this plugin in Fava by adding the following lines to your ledger:
 ```
 2010-01-01 custom "fava-extension" "fava_portfolio_returns" "{
   'beangrow_config': 'beangrow.pbtxt',
+  'swap_colors': False, # Set to True to use Chinese market color conventions (red=gains, green=losses)
 }"
 ```
 

@@ -14,3 +14,4 @@ wheels/
 
 # beangrow report
 example/reports
+.DS_Store
