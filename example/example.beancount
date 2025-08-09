@@ -11,6 +11,7 @@ plugin "beancount.plugins.implicit_prices"
 1980-05-12 custom "fava-option" "language" "en"
 1980-05-12 custom "fava-extension" "fava_portfolio_returns" "{
   'beangrow_config': 'beangrow.pbtxt',
+  'swap_colors': False,
   #'beangrow_debug_dir': 'debug',
 }"
 

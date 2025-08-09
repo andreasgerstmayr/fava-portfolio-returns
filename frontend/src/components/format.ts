@@ -1,10 +1,38 @@
-// colors from fava
-export const POSITIVE_NUMBER_COLOR = "#3daf46";
-export const NEGATIVE_NUMBER_COLOR = "#af3d3d";
+// Base colors from fava
+const BASE_POSITIVE_COLOR = "#3daf46";
+const BASE_NEGATIVE_COLOR = "#af3d3d";
+
+// Global configuration state
+let globalSwapColors = false;
+
+// Function to initialize color swapping based on config
+export function initializeColorSwapping(swapColors: boolean) {
+  globalSwapColors = swapColors;
+}
+
+// Dynamic color getters
+export const getPositiveColor = () => globalSwapColors ? BASE_NEGATIVE_COLOR : BASE_POSITIVE_COLOR;
+export const getNegativeColor = () => globalSwapColors ? BASE_POSITIVE_COLOR : BASE_NEGATIVE_COLOR;
+
+// For backwards compatibility - these will be initialized later
+export let POSITIVE_NUMBER_COLOR = BASE_POSITIVE_COLOR;
+export let NEGATIVE_NUMBER_COLOR = BASE_NEGATIVE_COLOR;
+
+// Update the exported constants when configuration changes
+export function updateColors() {
+  POSITIVE_NUMBER_COLOR = getPositiveColor();
+  NEGATIVE_NUMBER_COLOR = getNegativeColor();
+}
 
 // colors from https://mui.com/material-ui/getting-started/templates/dashboard/
-export const POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opacity})`;
-export const NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
+const BASE_POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opacity})`;
+const BASE_NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
+
+export const POSITIVE_TREND_COLOR = (opacity = 1) =>
+  globalSwapColors ? BASE_NEGATIVE_TREND_COLOR(opacity) : BASE_POSITIVE_TREND_COLOR(opacity);
+
+export const NEGATIVE_TREND_COLOR = (opacity = 1) =>
+  globalSwapColors ? BASE_POSITIVE_TREND_COLOR(opacity) : BASE_NEGATIVE_TREND_COLOR(opacity);
 
 export function getCurrencyFormatter(currency: string) {
   try {

@@ -27,6 +27,7 @@ export interface ConfigResponse {
     currencies: Currency[];
   };
   operatingCurrencies: string[];
+  swapColors: boolean;
 }
 
 export function useConfig() {
