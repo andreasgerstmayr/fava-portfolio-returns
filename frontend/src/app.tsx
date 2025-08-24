@@ -1,81 +1,8 @@
 import { createTheme, ThemeProvider } from "@mui/material";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
-import { createHashRouter, Navigate, RouterProvider } from "react-router";
-import { CashFlows } from "./pages/CashFlows";
-import { Dividends } from "./pages/Dividends";
-import { Help } from "./pages/Help";
-import { Groups, Investments } from "./pages/Investments";
-import { Layout } from "./pages/Layout";
-import { MissingPrices } from "./pages/MissingPrices";
-import { Performance } from "./pages/Performance";
-import { Portfolio } from "./pages/Portfolio";
-import { Returns } from "./pages/Returns";
-
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      { path: "/", element: <Navigate to="/portfolio" replace /> },
-      {
-        path: "/portfolio",
-        element: <Portfolio />,
-      },
-      {
-        path: "/performance",
-        element: <Performance />,
-      },
-      {
-        path: "/returns",
-        element: <Returns />,
-      },
-      {
-        path: "/dividends",
-        element: <Dividends />,
-      },
-      {
-        path: "/cash_flows",
-        element: <CashFlows />,
-      },
-      {
-        path: "/groups",
-        element: <Groups />,
-        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
-      },
-      {
-        path: "/investments",
-        element: <Investments />,
-        handle: { showInvestmentsSelection: false },
-      },
-      {
-        path: "/missing_prices",
-        element: <MissingPrices />,
-        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
-      },
-      {
-        path: "/help",
-        element: <Help />,
-        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
-      },
-    ],
-  },
-]);
-
-const storedThemeSetting = document.documentElement.style.colorScheme;
-const isDarkMode =
-  storedThemeSetting == "dark" ||
-  (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
-
-const theme = createTheme({
-  cssVariables: true,
-  palette: {
-    mode: isDarkMode ? "dark" : "light",
-  },
-  typography: {
-    fontFamily: "",
-  },
-});
+import { RouterProvider } from "react-router";
+import { router } from "./router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,10 +15,36 @@ const queryClient = new QueryClient({
 export function renderApp(container: Element) {
   const root = createRoot(container);
   root.render(
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <CustomThemeProvider>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    </ThemeProvider>,
+      </CustomThemeProvider>
+    </QueryClientProvider>,
   );
+}
+
+interface CustomThemeProviderProps {
+  children?: React.ReactNode;
+}
+
+function CustomThemeProvider(props: CustomThemeProviderProps) {
+  const { children } = props;
+  //const config = useConfig();
+
+  const storedThemeSetting = document.documentElement.style.colorScheme;
+  const isDarkMode =
+    storedThemeSetting == "dark" ||
+    (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
+
+  const theme = createTheme({
+    cssVariables: true,
+    palette: {
+      mode: isDarkMode ? "dark" : "light",
+    },
+    typography: {
+      fontFamily: "", // use default Fava font instead of MUI font
+    },
+  });
+
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
