@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
+import { PNLColorSchemeVariant } from "../theme";
 import { fetchJSON } from "./api";
-import { PNLColorSchemeVariant } from "../components/format";
 
 interface Account {
   id: string;
@@ -28,7 +28,7 @@ export interface ConfigResponse {
     currencies: Currency[];
   };
   operatingCurrencies: string[];
-  pnlColorScheme: PNLColorSchemeVariant;
+  pnlColorScheme?: PNLColorSchemeVariant;
 }
 
 export function useConfig() {

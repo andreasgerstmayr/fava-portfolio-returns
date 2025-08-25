@@ -1,4 +1,4 @@
-import { Alert } from "@mui/material";
+import { Alert, useTheme } from "@mui/material";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -7,7 +7,6 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
-import { usePnLColors } from "../components/hooks";
 
 const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
@@ -42,6 +41,7 @@ interface ReturnsHeatmapChartProps {
 }
 
 function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
+  const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useReturns({
     investmentFilter,
@@ -49,7 +49,6 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
     method,
     interval: "heatmap",
   });
-  const pnlColor = usePnLColors();
 
   if (isPending) {
     return <Loading />;
@@ -85,7 +84,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       bottom: 0, // place visualMap at bottom of chart
       itemHeight: 400, // width
       inRange: {
-        color: [pnlColor.loss, "#fff", pnlColor.profit],
+        color: [theme.pnl.loss, "#fff", theme.pnl.profit],
       },
       formatter: valueFormatter,
     },
@@ -130,6 +129,7 @@ interface ReturnsBarChartProps {
 }
 
 function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
+  const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useReturns({
     investmentFilter,
@@ -137,7 +137,6 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     method,
     interval,
   });
-  const pnlColor = usePnLColors();
 
   if (isPending) {
     return <Loading />;
@@ -167,7 +166,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
         name: "Returns",
         data: data.returns,
         itemStyle: {
-          color: (params: { data: [string, number] }) => (params.data[1] >= 0 ? pnlColor.profit : pnlColor.loss),
+          color: (params: { data: [string, number] }) => (params.data[1] >= 0 ? theme.pnl.profit : theme.pnl.loss),
         },
       },
     ],

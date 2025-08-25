@@ -40,7 +40,7 @@ if loglevel := os.environ.get("LOGLEVEL"):
 class ExtConfig(NamedTuple):
     beangrow_config_path: Path
     beangrow_debug_dir: Optional[Path]
-    pnl_color_scheme: str
+    pnl_color_scheme: Optional[str]
 
 
 class ToolbarContext(NamedTuple):
@@ -86,7 +86,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
-        pnl_color_scheme_value = cfg.get("pnl_color_scheme", "")
+        pnl_color_scheme_value = cfg.get("pnl_color_scheme", None)
 
         return ExtConfig(
             beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
@@ -177,7 +177,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {
             "investments": portfolio.investment_groups,
             "operatingCurrencies": operating_currencies,
-            "pnlColorScheme": ext_config.pnl_color_scheme,  # 保持前端 API 兼容性
+            "pnlColorScheme": ext_config.pnl_color_scheme,
         }
 
     @extension_endpoint("portfolio")

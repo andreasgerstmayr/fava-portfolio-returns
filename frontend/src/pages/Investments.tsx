@@ -1,4 +1,4 @@
-import { Alert, FormControlLabel, FormGroup, Switch } from "@mui/material";
+import { Alert, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
 import { Link } from "react-router";
 import {
   BooleanParam,
@@ -12,7 +12,6 @@ import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { fixedPercentFormatter, numberFormatter } from "../components/format";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
-import { usePnLColors } from "../components/hooks";
 import { Loading } from "../components/Loading";
 import { ReturnsMethods } from "../components/ReturnsMethodSelection";
 
@@ -50,6 +49,7 @@ const SortOrderParam = withDefault(SortOrderEnum, "asc" as const);
 type SortableKeys = Exclude<keyof Investment, "units">;
 
 export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
+  const theme = useTheme();
   const { targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
   const [sort, setSort] = useQueryParams({
@@ -57,7 +57,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
     sortOrder: SortOrderParam,
   });
   const [includeLiquidated, setIncludeLiquidated] = useQueryParam("liquidated", BooleanParam);
-  const pnlColor = usePnLColors();
+
   const handleSortChange = (column: SortableKeys) => {
     if (sort.sortColumn === column) {
       setSort({ sortOrder: sort.sortOrder === "asc" ? "desc" : "asc" });
@@ -105,7 +105,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
   });
 
   // use green for gains and red for losses
-  const conditionalColor = (x: number) => (x >= 0 ? pnlColor.profit : pnlColor.loss);
+  const conditionalColor = (x: number) => (x >= 0 ? theme.pnl.profit : theme.pnl.loss);
 
   // cost value, market value and unrealized P/L will be zero once the investment is liquidated
   // realized P/L is zero if investment was never sold
