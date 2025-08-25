@@ -6,12 +6,8 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import {
-  getIntegerCurrencyFormatter,
-  NEGATIVE_NUMBER_COLOR,
-  percentFormatter,
-  POSITIVE_NUMBER_COLOR,
-} from "../components/format";
+import { getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
+import { usePnLColors } from "../components/hooks";
 
 const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
@@ -53,6 +49,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
     method,
     interval: "heatmap",
   });
+  const pnlColor = usePnLColors();
 
   if (isPending) {
     return <Loading />;
@@ -88,7 +85,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       bottom: 0, // place visualMap at bottom of chart
       itemHeight: 400, // width
       inRange: {
-        color: [NEGATIVE_NUMBER_COLOR, "#fff", POSITIVE_NUMBER_COLOR],
+        color: [pnlColor.loss, "#fff", pnlColor.profit],
       },
       formatter: valueFormatter,
     },
@@ -140,6 +137,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     method,
     interval,
   });
+  const pnlColor = usePnLColors();
 
   if (isPending) {
     return <Loading />;
@@ -169,8 +167,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
         name: "Returns",
         data: data.returns,
         itemStyle: {
-          color: (params: { data: [string, number] }) =>
-            params.data[1] >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR,
+          color: (params: { data: [string, number] }) => (params.data[1] >= 0 ? pnlColor.profit : pnlColor.loss),
         },
       },
     ],

@@ -1,38 +1,38 @@
 // Base colors from fava
-const BASE_POSITIVE_COLOR = "#3daf46";
-const BASE_NEGATIVE_COLOR = "#af3d3d";
-
-// Global configuration state
-let globalSwapColors = false;
-
-// Function to initialize color swapping based on config
-export function initializeColorSwapping(swapColors: boolean) {
-  globalSwapColors = swapColors;
-}
-
-// Dynamic color getters
-export const getPositiveColor = () => globalSwapColors ? BASE_NEGATIVE_COLOR : BASE_POSITIVE_COLOR;
-export const getNegativeColor = () => globalSwapColors ? BASE_POSITIVE_COLOR : BASE_NEGATIVE_COLOR;
-
-// For backwards compatibility - these will be initialized later
-export let POSITIVE_NUMBER_COLOR = BASE_POSITIVE_COLOR;
-export let NEGATIVE_NUMBER_COLOR = BASE_NEGATIVE_COLOR;
-
-// Update the exported constants when configuration changes
-export function updateColors() {
-  POSITIVE_NUMBER_COLOR = getPositiveColor();
-  NEGATIVE_NUMBER_COLOR = getNegativeColor();
-}
+const BASE_RED = '#af3d3d'
+const BASE_GREEN = "#3daf46";
 
 // colors from https://mui.com/material-ui/getting-started/templates/dashboard/
-const BASE_POSITIVE_TREND_COLOR = (opacity = 1) => `hsla(120, 44%, 53%, ${opacity})`;
-const BASE_NEGATIVE_TREND_COLOR = (opacity = 1) => `hsla(0, 90%, 40%, ${opacity})`;
+const BASE_GREEN_TREND = `120, 44%, 53%`;
+const BASE_RED_TREND = `0, 90%, 40%`;
 
-export const POSITIVE_TREND_COLOR = (opacity = 1) =>
-  globalSwapColors ? BASE_NEGATIVE_TREND_COLOR(opacity) : BASE_POSITIVE_TREND_COLOR(opacity);
+export interface PNLColorScheme {
+  /** profit color */
+  profit: string
+  /** loss color */
+  loss: string
+  /** profit trend color */
+  profitTrend: string
+  /** loss trend color */
+  lossTrend: string
+}
 
-export const NEGATIVE_TREND_COLOR = (opacity = 1) =>
-  globalSwapColors ? BASE_POSITIVE_TREND_COLOR(opacity) : BASE_NEGATIVE_TREND_COLOR(opacity);
+export type PNLColorSchemeVariant = "green-red" |  "red-green"
+
+export const PNL_COLOR_SCHEME: Record<PNLColorSchemeVariant, PNLColorScheme> =  {
+  "green-red": {
+    profit: BASE_GREEN,
+    loss: BASE_RED,
+    profitTrend: BASE_GREEN_TREND,
+    lossTrend: BASE_RED_TREND,
+  },
+  "red-green": {
+    profit: BASE_RED,
+    loss: BASE_GREEN,
+    profitTrend: BASE_RED_TREND,
+    lossTrend: BASE_GREEN_TREND,
+  }
+}
 
 export function getCurrencyFormatter(currency: string) {
   try {

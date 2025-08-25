@@ -2,7 +2,6 @@ import { Alert, Box, CircularProgress } from "@mui/material";
 import { createContext, useContext } from "react";
 import { DelimitedArrayParam, StringParam, useQueryParam, withDefault } from "use-query-params";
 import { ConfigResponse, useConfig } from "../../api/config";
-import { initializeColorSwapping, updateColors } from "../format";
 import { DateRangeKey, DateRanges } from "./DateRangeSelection";
 
 export interface ToolbarContextType {
@@ -33,12 +32,6 @@ export function ToolbarProvider(props: ToolbarProviderProps) {
   const [_targetCurrency, _setTargetCurrency] = useQueryParam("currency", StringParam);
   const targetCurrency = _targetCurrency ?? config?.operatingCurrencies[0] ?? "USD";
   const setTargetCurrency = (c: string) => _setTargetCurrency(c !== config?.operatingCurrencies[0] ? c : undefined);
-
-  // Initialize color swapping when config changes
-  if (config?.swapColors) {
-    initializeColorSwapping(config.swapColors);
-    updateColors();
-  }
 
   if (isPending) {
     return (
