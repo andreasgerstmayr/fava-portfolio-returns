@@ -21,9 +21,26 @@ Please setup [beangrow](https://github.com/beancount/beangrow) first, using this
 Enable this plugin in Fava by adding the following lines to your ledger:
 ```
 2010-01-01 custom "fava-extension" "fava_portfolio_returns" "{
-  'beangrow_config': 'beangrow.pbtxt',
+  'beangrow_config': 'beangrow.pbtxt'
 }"
 ```
+
+## Configuration
+The plugin supports the following configuration options:
+```
+2010-01-01 custom "fava-extension" "fava_portfolio_returns" "{
+  'beangrow_config': 'beangrow.pbtxt',
+  'pnl_color_scheme': 'green-red',
+  'beangrow_debug_dir': 'path/to/debug/directory'
+}"
+```
+
+Available options for `pnl_color_scheme`:
+
+- `green-red`: Green for profits, red for losses
+- `red-green`: Red for profits, green for losses
+
+The default value is automatically selected based on the browser's locale: Chinese and Japanese regions use `red-green` by default, all other regions use `green-red`.
 
 ## View Example Ledger
 `cd example; fava example.beancount`

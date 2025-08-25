@@ -1,16 +1,10 @@
-import { Alert } from "@mui/material";
+import { Alert, useTheme } from "@mui/material";
 import { usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import {
-  getCurrencyFormatter,
-  getIntegerCurrencyFormatter,
-  NEGATIVE_TREND_COLOR,
-  POSITIVE_TREND_COLOR,
-  timestampToDate,
-} from "../components/format";
+import { getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
 
 export function Portfolio() {
   return (
@@ -41,6 +35,7 @@ export function Portfolio() {
 }
 
 function PerformanceChart() {
+  const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = usePortfolio({
     investmentFilter,
@@ -57,7 +52,7 @@ function PerformanceChart() {
   const series = data.performanceChart;
   const firstValue = series.length > 0 ? series[0][1] : 0;
   const lastValue = series.length > 0 ? series[series.length - 1][1] : 0;
-  const trendColor = lastValue >= firstValue ? POSITIVE_TREND_COLOR : NEGATIVE_TREND_COLOR;
+  const trendColor = lastValue >= firstValue ? theme.trend.positive : theme.trend.negative;
   const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option = {
     tooltip: {

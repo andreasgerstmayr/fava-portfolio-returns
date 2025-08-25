@@ -40,6 +40,7 @@ if loglevel := os.environ.get("LOGLEVEL"):
 class ExtConfig(NamedTuple):
     beangrow_config_path: Path
     beangrow_debug_dir: Optional[Path]
+    pnl_color_scheme: Optional[str]
 
 
 class ToolbarContext(NamedTuple):
@@ -85,9 +86,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
+        pnl_color_scheme_value = cfg.get("pnl_color_scheme", None)
+
         return ExtConfig(
             beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
             beangrow_debug_dir=beangrow_debug_dir,
+            pnl_color_scheme=pnl_color_scheme_value,
         )
 
     def get_ledger_duration(self, entries: list[Directive]):
@@ -164,6 +168,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
     @api_response
     def api_config(self):
         portfolio = self.get_portfolio()
+        ext_config = self.read_ext_config()
 
         operating_currencies = self.ledger.options["operating_currency"]
         if len(operating_currencies) == 0:
@@ -172,6 +177,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {
             "investments": portfolio.investment_groups,
             "operatingCurrencies": operating_currencies,
+            "pnlColorScheme": ext_config.pnl_color_scheme,
         }
 
     @extension_endpoint("portfolio")

@@ -1,4 +1,4 @@
-import { Alert } from "@mui/material";
+import { Alert, useTheme } from "@mui/material";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -6,12 +6,7 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import {
-  getIntegerCurrencyFormatter,
-  NEGATIVE_NUMBER_COLOR,
-  percentFormatter,
-  POSITIVE_NUMBER_COLOR,
-} from "../components/format";
+import { getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
 
 const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
@@ -46,6 +41,7 @@ interface ReturnsHeatmapChartProps {
 }
 
 function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
+  const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useReturns({
     investmentFilter,
@@ -88,7 +84,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       bottom: 0, // place visualMap at bottom of chart
       itemHeight: 400, // width
       inRange: {
-        color: [NEGATIVE_NUMBER_COLOR, "#fff", POSITIVE_NUMBER_COLOR],
+        color: [theme.pnl.loss, "#fff", theme.pnl.profit],
       },
       formatter: valueFormatter,
     },
@@ -133,6 +129,7 @@ interface ReturnsBarChartProps {
 }
 
 function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
+  const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useReturns({
     investmentFilter,
@@ -169,8 +166,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
         name: "Returns",
         data: data.returns,
         itemStyle: {
-          color: (params: { data: [string, number] }) =>
-            params.data[1] >= 0 ? POSITIVE_NUMBER_COLOR : NEGATIVE_NUMBER_COLOR,
+          color: (params: { data: [string, number] }) => (params.data[1] >= 0 ? theme.pnl.profit : theme.pnl.loss),
         },
       },
     ],
