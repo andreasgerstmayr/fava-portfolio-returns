@@ -47,7 +47,14 @@ function CustomThemeProvider(props: CustomThemeProviderProps) {
     storedThemeSetting == "dark" ||
     (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
 
-  const defaultPnLColor = "green-red";
+  const locale = new Intl.Locale(navigator.language);
+
+  /**
+   * Default pnl color scheme
+   *
+   * Use red-green color scheme for China region, green-red for other regions
+   */
+  const defaultPnLColor = (locale.region || "")?.toUpperCase() !== "CN" ? "green-red" : "red-green";
   const pnlColor: PNLColorSchemeVariant = config.data?.pnlColorScheme || defaultPnLColor;
 
   const theme = createTheme({
