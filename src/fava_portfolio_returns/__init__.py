@@ -40,7 +40,7 @@ if loglevel := os.environ.get("LOGLEVEL"):
 class ExtConfig(NamedTuple):
     beangrow_config_path: Path
     beangrow_debug_dir: Optional[Path]
-    swap_colors: bool
+    pnl_color_scheme: str
 
 
 class ToolbarContext(NamedTuple):
@@ -86,10 +86,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
+        pnl_color_scheme_value = cfg.get("pnl_color_scheme", "")
+
         return ExtConfig(
             beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
             beangrow_debug_dir=beangrow_debug_dir,
-            swap_colors=cfg.get("swap_colors", False),
+            pnl_color_scheme=pnl_color_scheme_value,
         )
 
     def get_ledger_duration(self, entries: list[Directive]):
@@ -175,7 +177,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {
             "investments": portfolio.investment_groups,
             "operatingCurrencies": operating_currencies,
-            "swapColors": ext_config.swap_colors,
+            "pnlColorScheme": ext_config.pnl_color_scheme,  # 保持前端 API 兼容性
         }
 
     @extension_endpoint("portfolio")

@@ -32,10 +32,10 @@ interface CustomThemeProviderProps {
 // extend Material-UI theme
 declare module "@mui/material/styles" {
   interface Theme {
-    "return-colors": PNLColorScheme;
+    "pnl-colors": PNLColorScheme;
   }
   interface ThemeOptions {
-    "return-colors"?: PNLColorScheme;
+    "pnl-colors"?: PNLColorScheme;
   }
 }
 
@@ -47,7 +47,9 @@ function CustomThemeProvider(props: CustomThemeProviderProps) {
     storedThemeSetting == "dark" ||
     (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
 
-  const pnlColor: PNLColorSchemeVariant = config.data?.swapColors ? "red-green" : "green-red";
+  const defaultPnLColor = "green-red";
+  const pnlColor: PNLColorSchemeVariant = config.data?.pnlColorScheme || defaultPnLColor;
+
   const theme = createTheme({
     cssVariables: true,
     palette: {
@@ -56,7 +58,7 @@ function CustomThemeProvider(props: CustomThemeProviderProps) {
     typography: {
       fontFamily: "", // use default Fava font instead of MUI font
     },
-    "return-colors": PNL_COLOR_SCHEME[pnlColor],
+    "pnl-colors": PNL_COLOR_SCHEME[pnlColor] || PNL_COLOR_SCHEME[defaultPnLColor],
   });
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

@@ -35,7 +35,7 @@ export function useComponentWidthOf(ref: RefObject<HTMLElement>) {
  */
 export function usePnLColors() {
   const theme = useTheme();
-  const {profit, loss, lossTrend ,profitTrend} = theme["return-colors"]
+  const {profit, loss, lossTrend ,profitTrend} = theme["pnl-colors"]
 
   return {
     profit,
