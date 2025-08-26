@@ -1,5 +1,5 @@
 import { Alert, Box } from "@mui/material";
-import { createEnumParam, DelimitedArrayParam, useQueryParam, withDefault } from "use-query-params";
+import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useCompare } from "../api/compare";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -8,10 +8,11 @@ import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
 import { ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { percentFormatter } from "../components/format";
+import { CommaArrayParam } from "../components/query_params";
 
 const ReturnsMethodEnum = createEnumParam(["simple", "twr"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "simple" as const);
-const InvestmentsParam = withDefault(DelimitedArrayParam, [] as string[]);
+const InvestmentsParam = withDefault(CommaArrayParam, []);
 
 export function Performance() {
   const [method, setMethod] = useQueryParam("method", ReturnsMethodParam);
