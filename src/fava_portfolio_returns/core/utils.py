@@ -20,9 +20,9 @@ class CurrencyConversionException(FavaAPIError):
         )
 
 
-def cost_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory) -> Decimal:
+def cost_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory, date: datetime.date) -> Decimal:
     cost_balance = balance.reduce(convert.get_cost)
-    return inv_to_currency(pricer, target_currency, cost_balance)
+    return inv_to_currency(pricer, target_currency, cost_balance, date)
 
 
 def market_value_of_inv(
@@ -36,7 +36,7 @@ def market_value_of_inv(
         value_balance = balance.reduce(convert.get_value, pricer.price_map, date)
 
     # then convert to target currency
-    return inv_to_currency(pricer, target_currency, value_balance)
+    return inv_to_currency(pricer, target_currency, value_balance, date)
 
 
 def inv_to_currency(
@@ -71,4 +71,7 @@ def get_prices(pricer: Pricer, pair: tuple[str, str]) -> list[tuple[datetime.dat
     """
     :param tuple pair:  (currency, target_currency), e.g. (CORP, USD)
     """
-    return prices.get_all_prices(pricer.price_map, pair)
+    try:
+        return prices.get_all_prices(pricer.price_map, pair)
+    except Exception:
+        raise ValueError(f"Missing prices for currency pair {pair}")
