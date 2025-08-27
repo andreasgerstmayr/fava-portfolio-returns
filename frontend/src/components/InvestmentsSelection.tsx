@@ -6,7 +6,7 @@ import { SyntheticEvent } from "react";
 import { useToolbarContext } from "./Header/ToolbarProvider";
 
 export interface InvestmentOption {
-  type: "Account" | "Group" | "Currency";
+  type: "Account" | "Group" | "Currency" | "InvestmentCurrency";
   id: string;
   /** text next to checkbox, and search text */
   label: string;
@@ -40,7 +40,20 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
   }
   if (!types || types.includes("Currency")) {
     options.push(
-      ...config.investments.currencies
+      ...config.ledgerCurrencies
+        .map((x) => ({
+          type: "Currency" as const,
+          id: x.id,
+          label: `${x.name} (${x.currency})`,
+          chipLabel: x.currency,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    );
+  }
+  if (!types || types.includes("InvestmentCurrency")) {
+    options.push(
+      ...config.ledgerCurrencies
+        .filter((x) => x.isInvestment)
         .map((x) => ({
           type: "Currency" as const,
           id: x.id,
@@ -138,10 +151,12 @@ const investmentAbbrs = {
   Account: "ACC",
   Group: "GRP",
   Currency: "CUR",
+  InvestmentCurrency: "CUR",
 };
 
 const investmentColors = {
   Account: blue[500],
   Group: teal[500],
   Currency: amber[500],
+  InvestmentCurrency: amber[500],
 };
