@@ -48,14 +48,43 @@ groups {
 }
 """
 
+BEANGROW_CONFIG_CORP_CASH_FLOWS = """
+investments {
+  investment {
+    currency: "CORP"
+    asset_account: "Assets:CORP:SingleCashFlow"
+    dividend_accounts: "Income:CORP:Dividend"
+    cash_accounts: "Assets:Cash"
+  }
+  investment {
+    currency: "CORP"
+    asset_account: "Assets:CORP:MultipleCashFlows"
+    dividend_accounts: "Income:CORP:Dividend"
+    cash_accounts: "Assets:Cash"
+  }
+}
+groups {
+  group {
+    name: "CORP single cash flow"
+    investment: "Assets:CORP:SingleCashFlow"
+  }
+  group {
+    name: "CORP multiple cash flows"
+    investment: "Assets:CORP:MultipleCashFlows"
+  }
+}
+"""
 
-def load_portfolio_str(beancount: str, beangrow: str, target_currency="USD") -> FilteredPortfolio:
+
+def load_portfolio_str(
+    beancount: str, beangrow: str, target_currency="USD", investment_filter=None
+) -> FilteredPortfolio:
     entries, errors, options_map = loader.load_string(beancount)
     if errors:
         raise ValueError(errors)
 
     p = Portfolio(entries, options_map, beangrow)
-    return p.filter([], target_currency)
+    return p.filter(investment_filter if investment_filter else [], target_currency)
 
 
 def load_portfolio_file(ledger_path: str | Path, target_currency="USD", investment_filter=[]) -> FilteredPortfolio:

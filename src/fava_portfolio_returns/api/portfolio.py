@@ -12,7 +12,6 @@ from fava_portfolio_returns._vendor.beangrow.investments import produce_cash_flo
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
 from fava_portfolio_returns.core.utils import get_prices
-from fava_portfolio_returns.core.utils import inv_to_currency
 from fava_portfolio_returns.core.utils import market_value_of_inv
 
 
@@ -67,6 +66,9 @@ def portfolio_values(
             ):
                 # ex. (CORP, USD)
                 currency_pairs.add((posting.units.currency, posting.cost.currency))
+                # also add data points for indirect conversion to target currency
+                if posting.cost.currency != p.target_currency:
+                    currency_pairs.add((posting.cost.currency, p.target_currency))
 
     def first(x):
         return x[0]
@@ -108,7 +110,7 @@ def portfolio_values(
     # Iterate computing the balance.
     values: list[PortfolioValue] = []
     balance = Inventory()
-    cf_balance = Inventory()
+    cf_balance_converted = Decimal(0.0)
     for date, group in itertools.groupby(entry_dates, key=first):
         # Update balances.
         for _, entry in group:
@@ -118,14 +120,18 @@ def portfolio_values(
                 if posting.meta and posting.meta["category"] is Cat.ASSET:
                     balance.add_position(posting)
             for flow in produce_cash_flows_general(entry, ""):
-                cf_balance.add_amount(flow.amount)
+                # Convert flow amount to the target_currency at the date of the flow
+                cash_amount_converted = p.pricer.convert_amount(flow.amount, p.target_currency, date)
+                if cash_amount_converted.currency != p.target_currency:
+                    raise ValueError(f"Can't convert {cash_amount_converted.currency} to {p.target_currency} at {date}")
+                cf_balance_converted += cash_amount_converted.number
 
         if date >= first_date:
             # Clamp start_date in case we cut off data at the beginning.
             clamp_date = max(date, start_date)
             market = market_value_of_inv(p.pricer, p.target_currency, balance, clamp_date)
-            cost = cost_value_of_inv(p.pricer, p.target_currency, balance)
-            cash = -inv_to_currency(p.pricer, p.target_currency, cf_balance)  # sum of cash flows
+            cost = cost_value_of_inv(p.pricer, p.target_currency, balance, clamp_date)
+            cash = -cf_balance_converted  # sum of cash flows
             values.append(PortfolioValue(date=clamp_date, market=market, cost=cost, cash=cash))
 
     return values
