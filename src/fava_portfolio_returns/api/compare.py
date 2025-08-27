@@ -49,6 +49,14 @@ def compare_chart(
             prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]
             price_series.append(DatedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
 
+    account_series: list[DatedSeries] = []
+    for account in p.portfolio.investment_groups.accounts:
+        if account.id in compare_with:
+            fp = p.portfolio.filter([account.id], p.target_currency)
+            account_series.append(
+                DatedSeries(name=f"(ACC) {account.assetAccount}", data=returns_method.series(fp, start_date, end_date))
+            )
+
     # find first common date
     common_date = None
     for date in sorted(group_series[0].dates):
@@ -69,6 +77,11 @@ def compare_chart(
             if date == common_date:
                 price_serie.data = price_serie.data[i:]
                 break
+    for account_serie in account_series:
+        for i, (date, _) in enumerate(account_serie.data):
+            if date == common_date:
+                account_serie.data = account_serie.data[i:]
+                break
 
     # compute performance relative to first data point
     series: list[Series] = []
@@ -80,5 +93,9 @@ def compare_chart(
         first_price = price_serie.data[0][1]
         performance = [(date, float(price / first_price - 1)) for date, price in price_serie.data]
         series.append(Series(name=price_serie.name, data=performance))
+    for account_serie in account_series:
+        first_return = account_serie.data[0][1]
+        performance = [(date, returns - first_return) for date, returns in account_serie.data]
+        series.append(Series(name=account_serie.name, data=performance))
 
     return series
