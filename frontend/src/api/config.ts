@@ -29,6 +29,7 @@ export interface ConfigResponse {
   };
   operatingCurrencies: string[];
   pnlColorScheme?: PNLColorSchemeVariant;
+  allCommodities: Currency[];
 }
 
 export function useConfig() {

@@ -49,6 +49,18 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
         }))
         .sort((a, b) => a.label.localeCompare(b.label)),
     );
+    const allCurrencyValues = new Set(config.investments.currencies.map((x) => x.currency));
+    options.push(
+      ...config.allCommodities
+        .filter((x) => !allCurrencyValues.has(x.currency))
+        .map((x) => ({
+          type: "Currency" as const,
+          id: x.id,
+          label: `${x.name} (${x.currency})`,
+          chipLabel: x.currency,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    );
   }
   if (!types || types.includes("Account")) {
     options.push(
