@@ -10,6 +10,7 @@ import beangrow.config as configlib
 import beangrow.investments
 from beancount.core import getters
 from beancount.core import prices
+from beancount.core.data import Commodity
 from beancount.core.data import Directive
 from beancount.core.inventory import Inventory
 from beangrow import config_pb2
@@ -57,6 +58,7 @@ class Portfolio:
     beangrow_cfg: Any
     account_data_map: dict[Account, AccountData]  # list of investments defined in beangrow config
     investment_groups: InvestmentGroups
+    all_commodities: list[InvestmentCurrency]
 
     def __init__(
         self,
@@ -79,6 +81,7 @@ class Portfolio:
             entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir
         )
         self.investment_groups = group_investments(self.beangrow_cfg, self.account_data_map)
+        self.all_commodities = get_ledger_commodities(entries)
 
     def filter(self, investment_filter: list[str], target_currency: Optional[str]):
         account_data_list = filter_investments(self.investment_groups, self.account_data_map, investment_filter)
@@ -287,3 +290,11 @@ def filter_investments(
         accounts.update(account_data_map.keys())
 
     return [account_data_map[account] for account in accounts]
+
+
+def get_ledger_commodities(entries: list[Directive]) -> list[InvestmentCurrency]:
+    return [
+        InvestmentCurrency(id=f"lc:{c.currency}", name=c.meta.get("name", c.currency), currency=c.currency)
+        for c in entries
+        if isinstance(c, Commodity)
+    ]
