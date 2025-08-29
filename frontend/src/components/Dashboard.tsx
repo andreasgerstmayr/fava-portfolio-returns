@@ -47,7 +47,7 @@ export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
         <h3>{title}</h3>
         {topRightElem}
       </Stack>
-      {help && <p style={{ whiteSpace: "pre-line" }}>{help}</p>}
+      {help && <p style={{ whiteSpace: "pre-line", maxWidth: "80%" }}>{help}</p>}
       {children}
     </Card>
   );
