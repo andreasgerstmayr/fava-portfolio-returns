@@ -83,7 +83,7 @@ export function InvestmentsSelection({
   return (
     <Autocomplete
       multiple
-      limitTags={2}
+      limitTags={4}
       disableCloseOnSelect
       value={option}
       onChange={handleChange}
@@ -119,7 +119,7 @@ export function InvestmentsSelection({
           );
         })
       }
-      style={{ width: 600 }}
+      style={{ width: 800 }}
       renderInput={(params) => <TextField {...params} label={label} />}
     />
   );

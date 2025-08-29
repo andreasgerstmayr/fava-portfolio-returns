@@ -105,7 +105,7 @@
     - button "EUR"
   - heading "Performance" [level=3]
   - combobox: Returns
-  - paragraph: The performance chart compares the relative performance of the currently selected investments with other groups and commodities.
+  - paragraph: The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.
   - text: Compare with
   - button "VHT"
   - button "GLD"
