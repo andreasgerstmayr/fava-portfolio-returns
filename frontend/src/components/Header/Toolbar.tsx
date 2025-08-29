@@ -12,7 +12,7 @@ export function Toolbar() {
   const showCurrencySelection = handle?.showCurrencySelection !== false;
 
   return (
-    <Stack sx={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", gap: 2, marginBottom: 2 }}>
+    <Stack sx={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", gap: 2, marginTop: 1.5 }}>
       {showInvestmentsSelection && <GlobalInvestmentsSelection />}
       <DateRangeSelection />
       {showCurrencySelection && (
