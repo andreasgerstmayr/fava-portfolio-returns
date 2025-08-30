@@ -178,6 +178,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             "investments": portfolio.investment_groups,
             "operatingCurrencies": operating_currencies,
             "pnlColorScheme": ext_config.pnl_color_scheme,
+            "ledgerCurrencies": list(portfolio.ledger_currencies.values()),
         }
 
     @extension_endpoint("portfolio")

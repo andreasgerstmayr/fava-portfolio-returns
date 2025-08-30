@@ -43,7 +43,7 @@ def compare_chart(
             )
 
     price_series: list[DatedSeries] = []
-    for currency in p.portfolio.investment_groups.currencies:
+    for currency in p.portfolio.ledger_currencies.values():
         if currency.id in compare_with:
             prices = get_prices(p.pricer, (currency.currency, p.target_currency))
             prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]

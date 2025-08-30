@@ -19,6 +19,7 @@ interface Currency {
   id: string;
   currency: string;
   name: string;
+  isInvestment: boolean;
 }
 
 export interface ConfigResponse {
@@ -29,6 +30,7 @@ export interface ConfigResponse {
   };
   operatingCurrencies: string[];
   pnlColorScheme?: PNLColorSchemeVariant;
+  ledgerCurrencies: Currency[];
 }
 
 export function useConfig() {
