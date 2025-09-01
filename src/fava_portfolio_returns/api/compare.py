@@ -10,6 +10,11 @@ from fava_portfolio_returns.returns.factory import RETURN_METHODS
 logger = logging.getLogger(__name__)
 
 
+class Series(NamedTuple):
+    name: str
+    data: list[tuple[datetime.date, float]]
+
+
 @dataclass
 class DatedSeries:
     name: str
@@ -21,10 +26,24 @@ class DatedSeries:
         self.data = data
         self.dates = frozenset(date for date, _ in data)
 
-
-class Series(NamedTuple):
-    name: str
-    data: list[tuple[datetime.date, float]]
+    def get_performance_starting_at_date(self, start_date: datetime.date, normalization_method: str) -> Series:
+        start_from = None
+        for i, (date, value) in enumerate(self.data):
+            if date == start_date:
+                first_value = value
+                start_from = i
+                break
+        performance = []
+        for date, value in self.data[start_from:]:
+            if normalization_method == "twr":
+                performance.append((date, (value + 1.0) / (first_value + 1.0) - 1.0))
+            elif normalization_method == "simple":
+                performance.append((date, value - first_value))
+            elif normalization_method == "price":
+                performance.append((date, value / first_value - 1.0))
+            else:
+                raise ValueError(f"Invalid normalization method '{normalization_method}'")
+        return Series(name=self.name, data=performance)
 
 
 def compare_chart(
@@ -32,7 +51,7 @@ def compare_chart(
 ):
     returns_method = RETURN_METHODS.get(method)
     if not returns_method:
-        raise ValueError(f"Invalid method {method}")
+        raise ValueError(f"Invalid method '{method}'")
 
     group_series: list[DatedSeries] = [DatedSeries(name="Returns", data=returns_method.series(p, start_date, end_date))]
     for group in p.portfolio.investment_groups.groups:
@@ -42,13 +61,6 @@ def compare_chart(
                 DatedSeries(name=f"(GRP) {group.name}", data=returns_method.series(fp, start_date, end_date))
             )
 
-    price_series: list[DatedSeries] = []
-    for currency in p.portfolio.investment_groups.currencies:
-        if currency.id in compare_with:
-            prices = get_prices(p.pricer, (currency.currency, p.target_currency))
-            prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]
-            price_series.append(DatedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
-
     account_series: list[DatedSeries] = []
     for account in p.portfolio.investment_groups.accounts:
         if account.id in compare_with:
@@ -57,45 +69,32 @@ def compare_chart(
                 DatedSeries(name=f"(ACC) {account.assetAccount}", data=returns_method.series(fp, start_date, end_date))
             )
 
+    price_series: list[DatedSeries] = []
+    for currency in p.portfolio.investment_groups.currencies:
+        if currency.id in compare_with:
+            prices = get_prices(p.pricer, (currency.currency, p.target_currency))
+            prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]
+            price_series.append(DatedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
+
     # find first common date
     common_date = None
     for date in sorted(group_series[0].dates):
-        if all(date in s.dates for s in group_series[1:]) and all(date in s.dates for s in price_series):
+        if (
+            all(date in s.dates for s in group_series[1:])
+            and all(date in s.dates for s in price_series)
+            and all(date in s.dates for s in account_series)
+        ):
             common_date = date
             break
     else:
         raise ValueError("No overlapping start date found for the selected series.")
 
-    # cut off data before common date
-    for group_serie in group_series:
-        for i, (date, _) in enumerate(group_serie.data):
-            if date == common_date:
-                group_serie.data = group_serie.data[i:]
-                break
-    for price_serie in price_series:
-        for i, (date, _) in enumerate(price_serie.data):
-            if date == common_date:
-                price_serie.data = price_serie.data[i:]
-                break
-    for account_serie in account_series:
-        for i, (date, _) in enumerate(account_serie.data):
-            if date == common_date:
-                account_serie.data = account_serie.data[i:]
-                break
-
-    # compute performance relative to first data point
     series: list[Series] = []
     for group_serie in group_series:
-        first_return = group_serie.data[0][1]
-        performance = [(date, returns - first_return) for date, returns in group_serie.data]
-        series.append(Series(name=group_serie.name, data=performance))
-    for price_serie in price_series:
-        first_price = price_serie.data[0][1]
-        performance = [(date, float(price / first_price - 1)) for date, price in price_serie.data]
-        series.append(Series(name=price_serie.name, data=performance))
+        series.append(group_serie.get_performance_starting_at_date(common_date, normalization_method=method))
     for account_serie in account_series:
-        first_return = account_serie.data[0][1]
-        performance = [(date, returns - first_return) for date, returns in account_serie.data]
-        series.append(Series(name=account_serie.name, data=performance))
+        series.append(account_serie.get_performance_starting_at_date(common_date, normalization_method=method))
+    for price_serie in price_series:
+        series.append(price_serie.get_performance_starting_at_date(common_date, normalization_method="price"))
 
     return series
