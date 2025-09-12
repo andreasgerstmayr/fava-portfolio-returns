@@ -32,6 +32,7 @@ export function Performance() {
             <InvestmentsSelection
               label="Compare with"
               types={["Group", "Account", "Currency"]}
+              includeAllCurrencies
               investments={investments}
               setInvestments={setInvestments}
             />

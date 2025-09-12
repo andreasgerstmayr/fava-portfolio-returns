@@ -75,8 +75,8 @@ def dividends_chart(
     cash_flows = [flow for flow in cash_flows if flow.is_dividend]
     cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
 
-    currency_by_account = {acc.assetAccount: acc.currency for acc in p.portfolio.investment_groups.accounts}
-    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investment_groups.currencies}
+    currency_by_account = {acc.assetAccount: acc.currency for acc in p.portfolio.investments_config.accounts}
+    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investments_config.currencies}
 
     labelfn = interval_label(interval)
     chart: dict[str, dict[str, str | Decimal]] = {}
