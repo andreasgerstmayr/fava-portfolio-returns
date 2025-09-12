@@ -80,7 +80,7 @@ class Portfolio:
         self.account_data_map = beangrow.investments.extract(
             entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir
         )
-        accounts = [
+        inv_accounts = [
             InvestmentAccount(
                 id=f"a:{investment.asset_account}",
                 currency=investment.currency,
@@ -95,7 +95,7 @@ class Portfolio:
             for group in self.beangrow_cfg.groups.group
         ]
         currencies = get_ledger_currencies(entries, self.account_data_map)
-        self.investments_config = InvestmentsConfig(accounts=accounts, groups=groups, currencies=currencies)
+        self.investments_config = InvestmentsConfig(accounts=inv_accounts, groups=groups, currencies=currencies)
 
     def filter(self, investment_filter: list[str], target_currency: Optional[str]):
         account_data_list = filter_investments(self.investments_config, self.account_data_map, investment_filter)
