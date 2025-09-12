@@ -31,7 +31,7 @@ export function Performance() {
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
             <InvestmentsSelection
               label="Compare with"
-              types={["Group", "Currency", "Account"]}
+              types={["Group", "Account", "Currency"]}
               investments={investments}
               setInvestments={setInvestments}
             />
