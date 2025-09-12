@@ -6,7 +6,7 @@ export function GlobalInvestmentsSelection() {
   return (
     <InvestmentsSelection
       label="Investments Filter"
-      types={["Group", "Account", "InvestmentCurrency"]}
+      types={["Group", "Account", "Currency"]}
       investments={selectedInvestments}
       setInvestments={setSelectedInvestments}
     />

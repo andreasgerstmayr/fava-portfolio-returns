@@ -45,7 +45,7 @@ def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datet
 
 
 def investments_group_by_group(p: Portfolio, start_date: datetime.date, end_date: datetime.date):
-    for group in p.investment_groups.groups:
+    for group in p.investments_config.groups:
         logger.debug("calculating stats for %s", group.name)
         fp = p.filter([group.id], group.currency)
         yield {
@@ -59,7 +59,7 @@ def investments_group_by_group(p: Portfolio, start_date: datetime.date, end_date
 def investments_group_by_currency(
     p: Portfolio, target_currency: str, start_date: datetime.date, end_date: datetime.date
 ):
-    for currency in p.investment_groups.currencies:
+    for currency in p.investments_config.currencies:
         logger.debug("calculating stats for %s", currency.name)
         fp = p.filter([currency.id], target_currency)
         yield {

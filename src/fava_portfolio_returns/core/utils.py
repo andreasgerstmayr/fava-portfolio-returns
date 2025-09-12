@@ -12,7 +12,7 @@ from fava.helpers import FavaAPIError
 
 
 class CurrencyConversionException(FavaAPIError):
-    def __init__(self, source: str, target: str, date: Optional[datetime.date]):
+    def __init__(self, source: str, target: str, date: Optional[datetime.date] = None):
         date = date or datetime.date.today()
         super().__init__(
             f"Could not convert {source} to {target} on {date}."
@@ -67,8 +67,11 @@ def filter_cash_flows_by_date(
     return [flow for flow in cash_flows if start_date <= flow.date <= end_date]
 
 
-def get_prices(pricer: Pricer, pair: tuple[str, str]) -> list[tuple[datetime.date, Decimal]]:
+def get_prices(pricer: Pricer, source: str, target: str) -> list[tuple[datetime.date, Decimal]]:
     """
     :param tuple pair:  (currency, target_currency), e.g. (CORP, USD)
     """
-    return prices.get_all_prices(pricer.price_map, pair)
+    try:
+        return prices.get_all_prices(pricer.price_map, (source, target))
+    except KeyError:
+        raise CurrencyConversionException(source=source, target=target)

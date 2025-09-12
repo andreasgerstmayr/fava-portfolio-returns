@@ -175,10 +175,9 @@ class FavaPortfolioReturns(FavaExtensionBase):
             raise FavaAPIError("no operating currency specified in the ledger")
 
         return {
-            "investments": portfolio.investment_groups,
+            "investmentsConfig": portfolio.investments_config,
             "operatingCurrencies": operating_currencies,
             "pnlColorScheme": ext_config.pnl_color_scheme,
-            "ledgerCurrencies": list(portfolio.ledger_currencies.values()),
         }
 
     @extension_endpoint("portfolio")

@@ -35,7 +35,7 @@ def compare_chart(
         raise ValueError(f"Invalid method {method}")
 
     group_series: list[DatedSeries] = [DatedSeries(name="Returns", data=returns_method.series(p, start_date, end_date))]
-    for group in p.portfolio.investment_groups.groups:
+    for group in p.portfolio.investments_config.groups:
         if group.id in compare_with:
             fp = p.portfolio.filter([group.id], p.target_currency)
             group_series.append(
@@ -43,14 +43,14 @@ def compare_chart(
             )
 
     price_series: list[DatedSeries] = []
-    for currency in p.portfolio.ledger_currencies.values():
+    for currency in p.portfolio.investments_config.currencies:
         if currency.id in compare_with:
-            prices = get_prices(p.pricer, (currency.currency, p.target_currency))
+            prices = get_prices(p.pricer, currency.currency, p.target_currency)
             prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]
             price_series.append(DatedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
 
     account_series: list[DatedSeries] = []
-    for account in p.portfolio.investment_groups.accounts:
+    for account in p.portfolio.investments_config.accounts:
         if account.id in compare_with:
             fp = p.portfolio.filter([account.id], p.target_currency)
             account_series.append(
