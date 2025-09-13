@@ -73,7 +73,7 @@ interface CustomThemeProviderProps {
 export function CustomThemeProvider(props: CustomThemeProviderProps) {
   const { children } = props;
   const { data: config } = useConfig();
-  const [themeName, setThemeName] = useState(() => getThemeName());
+  const [themeName, setThemeName] = useState(getThemeName);
 
   // re-evaluate theme if system theme changes
   useEffect(() => {
