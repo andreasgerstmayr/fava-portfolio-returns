@@ -96,7 +96,9 @@ export function CustomThemeProvider(props: CustomThemeProviderProps) {
 
   const theme = createTheme({
     cssVariables: true,
-    palette: { mode: themeName },
+    palette: {
+      mode: themeName,
+    },
     typography: {
       fontFamily: "", // use default Fava font instead of MUI font
     },
@@ -115,7 +117,7 @@ function getThemeName(): "light" | "dark" {
       return "dark";
     // use system theme
     default:
-      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 }
 
