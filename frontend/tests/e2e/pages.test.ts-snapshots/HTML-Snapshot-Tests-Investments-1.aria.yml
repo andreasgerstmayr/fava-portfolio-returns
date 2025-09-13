@@ -194,5 +194,5 @@
         - cell /-\d+\.\d+%/
         - cell /-\d+\.\d+%/
         - cell /-\d+\.\d+%/
-  - checkbox "Include liquidated investments"
+  - switch "Include liquidated investments"
   - text: Include liquidated investments

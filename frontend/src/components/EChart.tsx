@@ -11,7 +11,7 @@ interface EChartProps {
 
 export function EChart({ width, height, option }: EChartProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<echarts.ECharts>();
+  const chartRef = useRef<echarts.ECharts>(null);
   const theme = useTheme();
   const themeMode = theme.palette.mode;
 
