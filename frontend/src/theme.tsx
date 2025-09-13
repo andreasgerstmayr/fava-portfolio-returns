@@ -1,4 +1,5 @@
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useConfig } from "./api/config";
 
 // extend Material-UI theme
@@ -72,10 +73,20 @@ interface CustomThemeProviderProps {
 export function CustomThemeProvider(props: CustomThemeProviderProps) {
   const { children } = props;
   const { data: config } = useConfig();
-  const storedThemeSetting = document.documentElement.style.colorScheme;
-  const isDarkMode =
-    storedThemeSetting == "dark" ||
-    (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches && storedThemeSetting != "light");
+  const [themeName, setThemeName] = useState(getThemeName);
+
+  // re-evaluate theme if system theme changes
+  useEffect(() => {
+    function systemThemeChanged() {
+      setThemeName(getThemeName());
+    }
+
+    const matcher = window.matchMedia("(prefers-color-scheme: dark)");
+    matcher.addEventListener("change", systemThemeChanged);
+    return () => {
+      matcher.removeEventListener("change", systemThemeChanged);
+    };
+  }, []);
 
   const defaultPnLColor = getDefaultPnlColorScheme();
   const pnlColorScheme =
@@ -86,7 +97,7 @@ export function CustomThemeProvider(props: CustomThemeProviderProps) {
   const theme = createTheme({
     cssVariables: true,
     palette: {
-      mode: isDarkMode ? "dark" : "light",
+      mode: themeName,
     },
     typography: {
       fontFamily: "", // use default Fava font instead of MUI font
@@ -95,6 +106,19 @@ export function CustomThemeProvider(props: CustomThemeProviderProps) {
   });
 
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+}
+
+function getThemeName(): "light" | "dark" {
+  const favaThemeSetting = document.documentElement.style.colorScheme;
+  switch (favaThemeSetting) {
+    case "light":
+      return "light";
+    case "dark":
+      return "dark";
+    // use system theme
+    default:
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
 }
 
 /**
