@@ -5,10 +5,20 @@ investments {
     dividend_accounts: "Income:CORP:Dividend"
     cash_accounts: "Assets:Cash"
   }
+  investment {
+    currency: "CORN"
+    asset_account: "Assets:CORN"
+    dividend_accounts: "Income:CORN:Dividend"
+    cash_accounts: "Assets:Cash"
+  }
 }
 groups {
   group {
     name: "CORP"
     investment: "Assets:CORP"
+  }
+  group {
+    name: "CORN"
+    investment: "Assets:CORN"
   }
 }
