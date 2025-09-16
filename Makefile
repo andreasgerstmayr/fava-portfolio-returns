@@ -43,16 +43,20 @@ run:
 	cd example; uv run fava example.beancount
 
 dev:
-	npx concurrently --names fava,esbuild "PYTHONUNBUFFERED=1 uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" "cd frontend; npm run watch"
+	npx concurrently --names fava,esbuild \
+	  "PYTHONUNBUFFERED=1 uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" \
+	  "cd frontend; npm install; npm run watch"
 
 dev-debug:
-	npx concurrently --names fava,esbuild "PYTHONUNBUFFERED=1 LOGLEVEL=DEBUG uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" "cd frontend; npm run watch"
+	npx concurrently --names fava,esbuild \
+	  "PYTHONUNBUFFERED=1 LOGLEVEL=DEBUG uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" \
+	  "cd frontend; npm install; npm run watch"
 
 beangrow:
 	cd example; uv run beangrow-returns example.beancount beangrow.pbtxt reports
 
 lint:
-	cd frontend; npx tsc --noEmit
+	cd frontend; npm run type-check
 	cd frontend; npm run lint
 	uv run mypy src/fava_portfolio_returns
 	uv run pylint src/fava_portfolio_returns

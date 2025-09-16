@@ -16,19 +16,20 @@ export interface InvestmentOption {
 interface InvestmentsSelectionProps {
   label: string;
   types?: InvestmentOption["type"][];
+  includeAllCurrencies?: boolean;
   investments: string[];
   setInvestments: (x: string[]) => void;
 }
 
 export function InvestmentsSelection(props: InvestmentsSelectionProps) {
-  const { investments, setInvestments, types, label } = props;
+  const { label, types, includeAllCurrencies, investments, setInvestments } = props;
   const { config } = useToolbarContext();
   const theme = useTheme();
 
   const options: InvestmentOption[] = [];
   if (!types || types.includes("Group")) {
     options.push(
-      ...config.investments.groups
+      ...config.investmentsConfig.groups
         .map((x) => ({
           type: "Group" as const,
           id: x.id,
@@ -38,26 +39,27 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
         .sort((a, b) => a.label.localeCompare(b.label)),
     );
   }
-  if (!types || types.includes("Currency")) {
-    options.push(
-      ...config.investments.currencies
-        .map((x) => ({
-          type: "Currency" as const,
-          id: x.id,
-          label: `${x.name} (${x.currency})`,
-          chipLabel: x.currency,
-        }))
-        .sort((a, b) => a.label.localeCompare(b.label)),
-    );
-  }
   if (!types || types.includes("Account")) {
     options.push(
-      ...config.investments.accounts
+      ...config.investmentsConfig.accounts
         .map((x) => ({
           type: "Account" as const,
           id: x.id,
           label: x.assetAccount,
           chipLabel: x.assetAccount,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label)),
+    );
+  }
+  if (!types || types.includes("Currency")) {
+    options.push(
+      ...config.investmentsConfig.currencies
+        .filter((x) => x.isInvestment || includeAllCurrencies)
+        .map((x) => ({
+          type: "Currency" as const,
+          id: x.id,
+          label: `${x.name} (${x.currency})`,
+          chipLabel: x.currency,
         }))
         .sort((a, b) => a.label.localeCompare(b.label)),
     );

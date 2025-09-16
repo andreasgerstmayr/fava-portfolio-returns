@@ -24,7 +24,7 @@ def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
         market_value = market_value_of_inv(fp.pricer, fp.target_currency, balance, end_date)
         market_value_by_currency[account_data.currency] += market_value
 
-    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investment_groups.currencies}
+    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investments_config.currencies}
     return [
         {
             "name": currency_name_by_currency[currency],
@@ -68,7 +68,12 @@ def portfolio_values(
     # Get dates of transactions and price directives
     entry_dates = sorted(
         itertools.chain(
-            ((date, None) for pair in currency_pairs for date, _ in get_prices(p.pricer, pair) if date <= end_date),
+            (
+                (date, None)
+                for pair in currency_pairs
+                for date, _ in get_prices(p.pricer, pair[0], pair[1])
+                if date <= end_date
+            ),
             ((entry.date, entry) for entry in transactions),  # already filtered above
         ),
         key=first,

@@ -19,10 +19,11 @@ interface Currency {
   id: string;
   currency: string;
   name: string;
+  isInvestment: boolean;
 }
 
 export interface ConfigResponse {
-  investments: {
+  investmentsConfig: {
     accounts: Account[];
     groups: Group[];
     currencies: Currency[];

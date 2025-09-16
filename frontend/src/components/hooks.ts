@@ -1,7 +1,7 @@
 import { RefObject, useEffect, useState } from "react";
 
 /// A hook to get the component width of a Ref to a `HTMLElement`.
-export function useComponentWidthOf(ref: RefObject<HTMLElement>) {
+export function useComponentWidthOf(ref: RefObject<HTMLElement | null>) {
   // The state.
   const [parentWidth, setParentWidth] = useState(0);
   useEffect(() => {

@@ -4,9 +4,9 @@ import unittest
 from beancount.core.inventory import Inventory
 
 from fava_portfolio_returns.core.portfolio import InvestmentAccount
-from fava_portfolio_returns.core.portfolio import InvestmentCurrency
 from fava_portfolio_returns.core.portfolio import InvestmentGroup
-from fava_portfolio_returns.core.portfolio import InvestmentGroups
+from fava_portfolio_returns.core.portfolio import InvestmentsConfig
+from fava_portfolio_returns.core.portfolio import LedgerCurrency
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP
 from fava_portfolio_returns.test.test import load_portfolio_str
 
@@ -33,10 +33,10 @@ plugin "beancount.plugins.implicit_prices"
             """,
             BEANGROW_CONFIG_CORP,
         )
-        assert p.portfolio.investment_groups == InvestmentGroups(
+        assert p.portfolio.investments_config == InvestmentsConfig(
             accounts=[InvestmentAccount(id="a:Assets:CORP", currency="CORP", assetAccount="Assets:CORP")],
             groups=[InvestmentGroup(id="g:CORP", name="CORP", investments=["Assets:CORP"], currency="")],
-            currencies=[InvestmentCurrency(id="c:CORP", currency="CORP", name="Example Stock")],
+            currencies=[LedgerCurrency(id="c:CORP", currency="CORP", name="Example Stock", isInvestment=True)],
         )
 
     def test_balance_at(self):
