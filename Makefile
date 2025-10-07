@@ -45,12 +45,12 @@ run:
 dev:
 	npx concurrently --names fava,esbuild \
 	  "PYTHONUNBUFFERED=1 uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" \
-	  "cd frontend; npm install; npm run watch"
+	  "cd frontend; npm install && npm run watch"
 
 dev-debug:
 	npx concurrently --names fava,esbuild \
 	  "PYTHONUNBUFFERED=1 LOGLEVEL=DEBUG uv run fava --debug example/*.beancount src/fava_portfolio_returns/test/ledger/*.beancount" \
-	  "cd frontend; npm install; npm run watch"
+	  "cd frontend; npm install && npm run watch"
 
 beangrow:
 	cd example; uv run beangrow-returns example.beancount beangrow.pbtxt reports

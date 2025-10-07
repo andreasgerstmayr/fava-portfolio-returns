@@ -14,44 +14,44 @@ export const router = createHashRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { path: "/", element: <Navigate to="/portfolio" replace /> },
+      { index: true, element: <Navigate to="/portfolio" replace /> },
       {
-        path: "/portfolio",
+        path: "portfolio",
         element: <Portfolio />,
       },
       {
-        path: "/performance",
+        path: "performance",
         element: <Performance />,
       },
       {
-        path: "/returns",
+        path: "returns",
         element: <Returns />,
       },
       {
-        path: "/dividends",
+        path: "dividends",
         element: <Dividends />,
       },
       {
-        path: "/cash_flows",
+        path: "cash_flows",
         element: <CashFlows />,
       },
       {
-        path: "/groups",
+        path: "groups",
         element: <Groups />,
         handle: { showInvestmentsSelection: false, showCurrencySelection: false },
       },
       {
-        path: "/investments",
+        path: "investments",
         element: <Investments />,
         handle: { showInvestmentsSelection: false },
       },
       {
-        path: "/missing_prices",
+        path: "missing_prices",
         element: <MissingPrices />,
         handle: { showInvestmentsSelection: false, showCurrencySelection: false },
       },
       {
-        path: "/help",
+        path: "help",
         element: <Help />,
         handle: { showInvestmentsSelection: false, showCurrencySelection: false },
       },
