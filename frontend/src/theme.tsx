@@ -1,5 +1,4 @@
-import { createTheme, ThemeProvider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
 import { useConfig } from "./api/config";
 
 // extend Material-UI theme
@@ -73,20 +72,8 @@ interface CustomThemeProviderProps {
 export function CustomThemeProvider(props: CustomThemeProviderProps) {
   const { children } = props;
   const { data: config } = useConfig();
-  const [themeName, setThemeName] = useState(getThemeName);
-
-  // re-evaluate theme if system theme changes
-  useEffect(() => {
-    function systemThemeChanged() {
-      setThemeName(getThemeName());
-    }
-
-    const matcher = window.matchMedia("(prefers-color-scheme: dark)");
-    matcher.addEventListener("change", systemThemeChanged);
-    return () => {
-      matcher.removeEventListener("change", systemThemeChanged);
-    };
-  }, []);
+  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+  const themeName = getFavaThemeSetting() ?? (prefersDark ? "dark" : "light");
 
   const defaultPnLColor = getDefaultPnlColorScheme();
   const pnlColorScheme =
@@ -108,16 +95,15 @@ export function CustomThemeProvider(props: CustomThemeProviderProps) {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 
-function getThemeName(): "light" | "dark" {
+function getFavaThemeSetting(): "light" | "dark" | undefined {
   const favaThemeSetting = document.documentElement.style.colorScheme;
   switch (favaThemeSetting) {
     case "light":
       return "light";
     case "dark":
       return "dark";
-    // use system theme
     default:
-      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      return undefined;
   }
 }
 
