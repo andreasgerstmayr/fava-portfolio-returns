@@ -69,8 +69,7 @@ interface CustomThemeProviderProps {
   children?: React.ReactNode;
 }
 
-export function CustomThemeProvider(props: CustomThemeProviderProps) {
-  const { children } = props;
+export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
   const { data: config } = useConfig();
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
   const themeName = getFavaThemeSetting() ?? (prefersDark ? "dark" : "light");
