@@ -22,8 +22,7 @@ interface ToolbarProviderProps {
   children?: React.ReactNode;
 }
 
-export function ToolbarProvider(props: ToolbarProviderProps) {
-  const { children } = props;
+export function ToolbarProvider({ children }: ToolbarProviderProps) {
   const { isPending, error, data: config } = useConfig();
 
   const [_investmentFilter, _setInvestmentFilter] = useQueryParam("investments", InvestmentsFilterParam);

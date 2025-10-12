@@ -4,48 +4,44 @@ import { CSSProperties, useEffect, useRef } from "react";
 import { useComponentWidthOf } from "./hooks";
 
 interface EChartProps {
-  width?: CSSProperties["width"];
-  height?: CSSProperties["height"];
+  height: CSSProperties["height"];
   option: echarts.EChartsCoreOption;
 }
 
-export function EChart({ width, height, option }: EChartProps) {
+export function EChart({ height, option }: EChartProps) {
+  const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const chartRef = useRef<echarts.ECharts>(null);
-  const theme = useTheme();
-  const themeMode = theme.palette.mode;
-
-  /// Get the width of the parent div to resize dynamically
-  const parentDivWidth = useComponentWidthOf(ref);
+  const width = useComponentWidthOf(ref);
+  const echartsTheme = theme.palette.mode === "dark" ? "dark" : undefined;
 
   useEffect(() => {
     if (chartRef.current) {
       echarts.dispose(chartRef.current);
     }
 
-    const echartsTheme = themeMode === "dark" ? "dark" : undefined;
     const chart = echarts.init(ref.current, echartsTheme);
+
     if (option.onClick) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       chart.on("click", (option as any).onClick);
       delete option.onClick;
     }
 
-    if (themeMode == "dark" && option.backgroundColor === undefined) {
+    if (echartsTheme == "dark" && option.backgroundColor === undefined) {
       option.backgroundColor = "transparent";
     }
 
     chart.setOption(option);
-    chart.resize();
     chartRef.current = chart;
-  }, [option, themeMode]);
+  }, [option, echartsTheme]);
 
   // Resize dynamically
   useEffect(() => {
     if (chartRef.current) {
       chartRef.current.resize();
     }
-  }, [parentDivWidth]);
+  }, [width, height]);
 
-  return <div ref={ref} style={{ width, height }}></div>;
+  return <div ref={ref} style={{ height }}></div>;
 }
