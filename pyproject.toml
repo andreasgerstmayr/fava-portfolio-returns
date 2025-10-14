@@ -67,9 +67,8 @@ disable = [
     "too-many-return-statements",
 ]
 
-[[tool.mypy.overrides]]
-module = "beangrow.*"
-ignore_missing_imports = true
+[tool.mypy]
+exclude = "src/fava_portfolio_returns/_vendor"
 
 [tool.pytest.ini_options]
 filterwarnings = "ignore::DeprecationWarning"

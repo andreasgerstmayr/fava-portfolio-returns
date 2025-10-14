@@ -56,9 +56,15 @@ def portfolio_values(
 
     # Infer the list of required prices.
     currency_pairs: set[tuple[str, str]] = set()
-    for entry in transactions:
-        for posting in entry.postings:
-            if posting.meta["category"] is Cat.ASSET and posting.cost:
+    for transaction in transactions:
+        for posting in transaction.postings:
+            if (
+                posting.meta
+                and posting.meta["category"] is Cat.ASSET
+                and posting.cost
+                and posting.units
+                and posting.cost.currency
+            ):
                 # ex. (CORP, USD)
                 currency_pairs.add((posting.units.currency, posting.cost.currency))
 
@@ -108,7 +114,7 @@ def portfolio_values(
             if entry is None:
                 continue
             for posting in entry.postings:
-                if posting.meta["category"] is Cat.ASSET:
+                if posting.meta and posting.meta["category"] is Cat.ASSET:
                     balance.add_position(posting)
             for flow in produce_cash_flows_general(entry, ""):
                 cf_balance.add_amount(flow.amount)

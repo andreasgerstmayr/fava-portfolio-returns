@@ -73,16 +73,16 @@ class Portfolio:
 
         if isinstance(beangrow_config, Path):
             try:
-                self.beangrow_cfg = read_config(beangrow_config.as_posix(), [], accounts)
+                self.beangrow_cfg = read_config(beangrow_config.as_posix(), [], list(accounts))
             except Exception as ex:
                 raise FavaAPIError(
                     f"Cannot read beangrow configuration file {beangrow_config.as_posix()}: {ex}"
                 ) from ex
         else:
-            self.beangrow_cfg = read_config_from_string(beangrow_config, [], accounts)
+            self.beangrow_cfg = read_config_from_string(beangrow_config, [], list(accounts))
 
         self.account_data_map = extract(
-            entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir
+            entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir or ""
         )
         inv_accounts = [
             InvestmentAccount(
@@ -185,7 +185,7 @@ class FilteredPortfolio:
                 if entry.date > date:
                     break
                 for posting in entry.postings:
-                    if posting.meta["category"] is Cat.ASSET:
+                    if posting.meta and posting.meta["category"] is Cat.ASSET:
                         balance.add_position(posting)
         return balance
 
