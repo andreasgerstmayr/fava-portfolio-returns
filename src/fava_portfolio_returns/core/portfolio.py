@@ -6,21 +6,22 @@ from typing import Any
 from typing import NamedTuple
 from typing import Optional
 
-import beangrow.config as configlib
-import beangrow.investments
 from beancount.core import getters
 from beancount.core import prices
 from beancount.core.data import Commodity
 from beancount.core.data import Directive
 from beancount.core.inventory import Inventory
-from beangrow.investments import Account
-from beangrow.investments import AccountData
-from beangrow.investments import CashFlow
-from beangrow.investments import Cat
-from beangrow.returns import Pricer
 from fava.beans.types import BeancountOptions
 from fava.helpers import FavaAPIError
 
+from fava_portfolio_returns._vendor.beangrow.config import read_config
+from fava_portfolio_returns._vendor.beangrow.config import read_config_from_string
+from fava_portfolio_returns._vendor.beangrow.investments import Account
+from fava_portfolio_returns._vendor.beangrow.investments import AccountData
+from fava_portfolio_returns._vendor.beangrow.investments import CashFlow
+from fava_portfolio_returns._vendor.beangrow.investments import Cat
+from fava_portfolio_returns._vendor.beangrow.investments import extract
+from fava_portfolio_returns._vendor.beangrow.returns import Pricer
 from fava_portfolio_returns.core.utils import inv_to_currency
 
 
@@ -71,11 +72,16 @@ class Portfolio:
         self.pricer = Pricer(price_map)
 
         if isinstance(beangrow_config, Path):
-            self.beangrow_cfg = read_beangrow_config_from_file(beangrow_config.as_posix(), accounts)
+            try:
+                self.beangrow_cfg = read_config(beangrow_config.as_posix(), [], accounts)
+            except Exception as ex:
+                raise FavaAPIError(
+                    f"Cannot read beangrow configuration file {beangrow_config.as_posix()}: {ex}"
+                ) from ex
         else:
-            self.beangrow_cfg = configlib.read_config_from_string(beangrow_config, [], accounts)
+            self.beangrow_cfg = read_config_from_string(beangrow_config, [], accounts)
 
-        self.account_data_map = beangrow.investments.extract(
+        self.account_data_map = extract(
             entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir
         )
         inv_accounts = [
@@ -204,16 +210,6 @@ def get_target_currency(account_data_list: list[AccountData]) -> str:
             " Please specify a single currency for the group in the beangrow configuration file."
         )
     return cost_currencies.pop()
-
-
-def read_beangrow_config_from_file(config_filename: str, accounts: set[str]):
-    try:
-        with open(config_filename, "r", encoding="utf8") as infile:
-            config_string = infile.read()
-
-        return configlib.read_config_from_string(config_string, [], accounts)
-    except Exception as ex:
-        raise FavaAPIError(f"Cannot read beangrow configuration file {config_filename}: {ex}") from ex
 
 
 def filter_investments(

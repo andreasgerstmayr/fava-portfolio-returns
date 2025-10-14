@@ -1,0 +1,77 @@
+patch beangrow dependencies which are not required for fava-portfolio-returns
+
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/investments.py b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+index 00ea171..2954a16 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/investments.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+@@ -24,7 +24,7 @@ import re
+ import sys
+ import typing
+
+-import pandas
++#import pandas
+
+ from beancount.core import account as accountlib
+ from beancount.core import display_context
+@@ -516,7 +516,7 @@ def write_account_file(dcontext: display_context.DisplayContext,
+         fprint("\n\n")
+
+
+-def cash_flows_to_table(cash_flows: List[CashFlow]) -> pandas.DataFrame:
++def cash_flows_to_table(cash_flows: List[CashFlow]):
+     """Flatten a list of cash flows to an HTML table string."""
+     header = ["date", "amount", "currency", "is_dividend", "source", "investment", "transaction"]
+     rows = []
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/reports.py b/src/fava_portfolio_returns/_vendor/beangrow/reports.py
+index 5fb788e..ee6372f 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/reports.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/reports.py
+@@ -19,16 +19,16 @@ from functools import partial
+ from pathlib import Path
+ from typing import Any, Dict, List, Optional, Tuple
+
+-import matplotlib.dates as mdates
+-import matplotlib.pyplot as plt
++#import matplotlib.dates as mdates
++#import matplotlib.pyplot as plt
+ import numpy as np
+-import pandas as pd
++#import pandas as pd
+ from beancount.core import data, prices
+ from beancount.core.amount import Amount
+ from beancount.parser import printer
+ from dateutil.relativedelta import relativedelta
+-from matplotlib.axes import Axes
+-from pandas.plotting import register_matplotlib_converters
++#from matplotlib.axes import Axes
++#from pandas.plotting import register_matplotlib_converters
+
+ from beangrow import investments
+ from beangrow import returns as returnslib
+@@ -36,7 +36,7 @@ from beangrow.config_pb2 import Config, Group
+ from beangrow.investments import AccountData, CashFlow
+ from beangrow.returns import Pricer
+
+-register_matplotlib_converters()
++#register_matplotlib_converters()
+
+ # Basic type aliases.
+ Account = str
+@@ -352,7 +352,7 @@ def write_returns_debugfile(
+     return indexfile.name
+
+
+-def get_accounts_table(account_data: List[AccountData]) -> pd.DataFrame:
++def get_accounts_table(account_data: List[AccountData]):
+     """Build of table of per-account information."""
+     header = ["Investment", "Description", "Status"]
+     rows = []
+@@ -374,7 +374,7 @@ def get_accounts_table(account_data: List[AccountData]) -> pd.DataFrame:
+
+
+ def set_axis(
+-    ax_: Axes,
++    ax_,
+     date_min: Date,
+     date_max: Date,
+ ) -> None:

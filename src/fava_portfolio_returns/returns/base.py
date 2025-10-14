@@ -1,8 +1,7 @@
 import abc
 import datetime
 
-from beangrow.reports import Interval
-
+from fava_portfolio_returns._vendor.beangrow.reports import Interval
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 
 

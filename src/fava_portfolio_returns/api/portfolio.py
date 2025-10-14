@@ -6,9 +6,9 @@ from typing import NamedTuple
 
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
-from beangrow.investments import Cat
-from beangrow.investments import produce_cash_flows_general
 
+from fava_portfolio_returns._vendor.beangrow.investments import Cat
+from fava_portfolio_returns._vendor.beangrow.investments import produce_cash_flows_general
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
 from fava_portfolio_returns.core.utils import get_prices
