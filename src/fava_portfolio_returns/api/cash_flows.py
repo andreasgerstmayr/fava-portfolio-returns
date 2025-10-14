@@ -34,9 +34,9 @@ def cash_flows_chart(
             chart[label] = CashFlowChartValue(date=label, div=ZERO, exdiv=ZERO)
 
         if flow.is_dividend:
-            chart[label].div += flow.amount.number
+            chart[label].div += flow.amount.number or ZERO
         else:
-            chart[label].exdiv += flow.amount.number
+            chart[label].exdiv += flow.amount.number or ZERO
 
     # only required if echarts axis is set to 'category' instead of 'time'
     # for label in interval_labels(interval, start_date, end_date):
@@ -88,7 +88,7 @@ def dividends_chart(
         if label not in chart:
             chart[label] = defaultdict(Decimal)
             chart[label]["date"] = label
-        chart[label][currency_name] += flow.amount.number
+        chart[label][currency_name] += flow.amount.number  # type: ignore[operator]
 
     # only required if echarts axis is set to 'category' instead of 'time'
     # for label in interval_labels(interval, start_date, end_date):

@@ -27,7 +27,7 @@ class IRR(ReturnsBase):
             parts = []
             for flow in cash_flows:
                 years = (end_date - flow.date).days / 365
-                parts.append(f"{-flow.amount.number:.2f}*(1+x)^{years:.2f}")
+                parts.append(f"{-(flow.amount.number or 0):.2f}*(1+x)^{years:.2f}")
             logger.debug("Calculating IRR from %s to %s: %s = 0", start_date, end_date, " + ".join(parts))
 
         return compute_irr(cash_flows, p.pricer, p.target_currency, end_date + ONE_DAY)

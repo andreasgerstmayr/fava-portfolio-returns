@@ -1,0 +1,24 @@
+PR: https://github.com/beancount/beangrow/pull/49
+
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/investments.py b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+index e0105d4..fa0fec1 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/investments.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+@@ -98,7 +98,7 @@ AccountData = typing.NamedTuple("AccountData", [
+     ('open', data.Open),
+     ('close', data.Close),
+     ("cash_flows", List[CashFlow]),
+-    ('transactions', data.Entries),
++    ('transactions', List[data.Transaction]),
+     ('balance', Inventory),
+     ('catmap', Dict[Account, Cat]),
+ ])
+@@ -356,7 +356,7 @@ def handle_stock_exchange(entry: data.Directive, account: Account) -> List[CashF
+
+
+ def extract_transactions_for_account(entries: data.Entries,
+-                                     config: Investment) -> data.Entries:
++                                     config: Investment) -> List[data.Transaction]:
+     """Get the list of transactions affecting an investment account."""
+     match_accounts = set([config.asset_account])
+     match_accounts.update(config.dividend_accounts)
