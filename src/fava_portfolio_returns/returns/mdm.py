@@ -1,8 +1,7 @@
 import datetime
 
-from beangrow.returns import compute_dietz
-from beangrow.returns import truncate_and_merge_cash_flows
-
+from fava_portfolio_returns._vendor.beangrow.returns import compute_dietz
+from fava_portfolio_returns._vendor.beangrow.returns import truncate_and_merge_cash_flows
 from fava_portfolio_returns.api.cash_flows import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio

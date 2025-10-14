@@ -1,0 +1,2 @@
+# https://github.com/beancount/beangrow/pull/48
+beangrow @ git+https://github.com/beancount/beangrow.git@e27ace4865d93c9f24c4668034b814dded05621d

@@ -6,9 +6,10 @@ from beancount.core import convert
 from beancount.core import prices
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
-from beangrow.investments import CashFlow
-from beangrow.returns import Pricer
 from fava.helpers import FavaAPIError
+
+from fava_portfolio_returns._vendor.beangrow.investments import CashFlow
+from fava_portfolio_returns._vendor.beangrow.returns import Pricer
 
 
 class CurrencyConversionException(FavaAPIError):

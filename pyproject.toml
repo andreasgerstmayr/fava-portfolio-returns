@@ -2,16 +2,22 @@
 name = "fava-portfolio-returns"
 dynamic = ["version"]
 description = "fava-portfolio-returns shows portfolio returns in Fava"
+readme = "README.md"
+license = {text = "GPL-2.0"}
+license-files = [
+  "COPYING",
+  "src/fava_portfolio_returns/_vendor/**/COPYING",
+]
 authors = [
     { name = "Andreas Gerstmayr", email = "andreas@gerstmayr.me" }
 ]
+requires-python = ">= 3.10"
 dependencies = [
     "fava>=1.30.3",
-    "beangrow @ git+https://github.com/beancount/beangrow.git@bd1bf195648dda73c47af945a5191ec16b2ab557",
+    "protobuf>=5.29.3",
+    "numpy>=1.26.4",
+    "scipy>=1.13.1",
 ]
-readme = "README.md"
-requires-python = ">= 3.10"
-license = {text = "GPL-2.0"}
 
 [project.urls]
 Source = "https://github.com/andreasgerstmayr/fava-portfolio-returns"
@@ -24,12 +30,14 @@ build-backend = "hatchling.build"
 dev = [
     "coverage>=7.6.10",
     "mypy>=1.9.0",
+    "pip>=25.2",
     "pylint>=3.1.0",
     "pytest>=8.3.3",
     "ruff>=0.8.1",
     "types-protobuf>=5.29.1.20241207",
     "types-python-dateutil>=2.9.0.20241206",
     "types-PyYAML>=6",
+    "vendoring>=1.2.0",
 ]
 
 [tool.hatch.metadata]
@@ -68,9 +76,23 @@ filterwarnings = "ignore::DeprecationWarning"
 
 [tool.ruff]
 line-length = 120
+extend-exclude = ["src/fava_portfolio_returns/_vendor"]
 
 [tool.ruff.lint]
 extend-select = ["I"]
 
 [tool.ruff.lint.isort]
 force-single-line = true
+
+[tool.vendoring]
+destination = "src/fava_portfolio_returns/_vendor/"
+requirements = "src/fava_portfolio_returns/_vendor/vendor.txt"
+namespace = "fava_portfolio_returns._vendor"
+
+protected-files = ["vendor.txt"]
+patches-dir = "tools/vendoring/patches"
+
+[tool.vendoring.transformations]
+drop = [
+  "bin/",
+]

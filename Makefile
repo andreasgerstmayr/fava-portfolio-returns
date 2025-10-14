@@ -16,6 +16,9 @@ deps-py-update:
 
 deps: deps-js deps-py
 
+vendor:
+	uv run vendoring sync
+
 ## Build and Test
 build-js:
 	cd frontend; npm run build

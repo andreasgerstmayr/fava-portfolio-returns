@@ -2,8 +2,9 @@ import datetime
 from typing import Literal
 from typing import NamedTuple
 
-from beangrow.reports import Interval
 from dateutil.relativedelta import relativedelta
+
+from fava_portfolio_returns._vendor.beangrow.reports import Interval
 
 ONE_DAY = datetime.timedelta(days=1)
 
