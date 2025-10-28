@@ -25,12 +25,6 @@ build-js:
 
 build: build-js
 
-test-js:
-	cd frontend; LANG=en npm run test
-
-test-js-update:
-	cd frontend; LANG=en npm run test -- --update-snapshots
-
 test-py:
 	uv run pytest
 
@@ -38,6 +32,12 @@ test-py-coverage:
 	uv run coverage run -m pytest
 	uv run coverage html
 	flatpak run org.chromium.Chromium htmlcov/index.html
+
+test-js:
+	cd frontend; LANG=en npm run test
+
+test-js-update:
+	cd frontend; LANG=en npm run test -- --update-snapshots
 
 test: test-py test-js
 
@@ -66,7 +66,6 @@ lint:
 
 format:
 	-cd frontend; npm run lint:fix
-	cd frontend; npx prettier -w ../src/fava_portfolio_returns/templates/*.css
 	-uv run ruff check --fix
 	uv run ruff format .
 	find example src/fava_portfolio_returns/test/ledger -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;

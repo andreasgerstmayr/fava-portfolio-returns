@@ -3,9 +3,9 @@ import functools
 import logging
 import os
 import traceback
+from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
-from typing import NamedTuple
 from typing import Optional
 
 from fava.beans.abc import Directive
@@ -37,13 +37,15 @@ if loglevel := os.environ.get("LOGLEVEL"):
     logger.setLevel(loglevel.upper())
 
 
-class ExtConfig(NamedTuple):
+@dataclass(frozen=True)
+class ExtConfig:
     beangrow_config_path: Path
     beangrow_debug_dir: Optional[Path]
     pnl_color_scheme: Optional[str]
 
 
-class ToolbarContext(NamedTuple):
+@dataclass(frozen=True)
+class ToolbarContext:
     investment_filter: list[str]
     """target currency"""
     target_currency: str
@@ -94,21 +96,6 @@ class FavaPortfolioReturns(FavaExtensionBase):
             pnl_color_scheme=pnl_color_scheme_value,
         )
 
-    def get_ledger_duration(self, entries: list[Directive]):
-        date_first = None
-        date_last = None
-        for entry in entries:
-            if isinstance(entry, Transaction):
-                date_first = entry.date
-                break
-        for entry in reversed(entries):
-            if isinstance(entry, (Transaction, Price)):
-                date_last = entry.date
-                break
-        if not date_first or not date_last:
-            raise FavaAPIError("no transaction found")
-        return (date_first, date_last)
-
     def get_toolbar_ctx(self):
         sel_investments = list(filter(None, request.args.get("investments", "").split(",")))
 
@@ -121,27 +108,15 @@ class FavaPortfolioReturns(FavaExtensionBase):
             filter_first = g.filtered.date_range.begin
             filter_last = g.filtered.date_range.end - datetime.timedelta(days=1)
             # Use filtered ledger here, as another filter (e.g. tag filter) could be applied.
-            ledger_date_first, ledger_date_last = self.get_ledger_duration(g.filtered.entries_with_all_prices)
-
-            # Adjust the dates in case the date filter is set to e.g. 2023-2024,
-            # however the ledger only contains data up to summer 2024.
-            # Without this, a wrong number of days between start_date and end_date is calculated.
-
-            # First, check if there is an overlap between ledger and filter dates
-            if filter_last < ledger_date_first or filter_first > ledger_date_last:
-                # If there is no overlap of ledger and filter dates, leave them as-is.
-                # For example filter: 2020-2021, but ledger data goes from 2022-2023.
-                # Using min/max here would give from max(2020,2022) until min(2021,2023) = from 2022 until 2021, which is invalid.
-                date_first = filter_first
-                date_last = filter_last
-            else:
-                # If there is overlap between ledger and filter dates, use min/max
-                date_first = max(filter_first, ledger_date_first)
-                date_last = min(filter_last, ledger_date_last)
+            ledger_date_first, ledger_date_last = get_ledger_duration(g.filtered.entries_with_all_prices)
+            # Adjust the dates to align with ledger data.
+            date_first, date_last = clamp_to_ledger_range(
+                filter_first, filter_last, ledger_date_first, ledger_date_last
+            )
         else:
             # No time filter applied.
             # Use filtered ledger here, as another filter (e.g. tag filter) could be applied.
-            date_first, date_last = self.get_ledger_duration(g.filtered.entries_with_all_prices)
+            date_first, date_last = get_ledger_duration(g.filtered.entries_with_all_prices)
 
         return ToolbarContext(
             investment_filter=sel_investments,
@@ -291,3 +266,34 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         missing_prices, commands = p.get_missing_prices()
         return {"missingPrices": missing_prices, "commands": commands}
+
+
+def get_ledger_duration(entries: list[Directive]):
+    date_first = None
+    date_last = None
+    for entry in entries:
+        if isinstance(entry, Transaction):
+            date_first = entry.date
+            break
+    for entry in reversed(entries):
+        if isinstance(entry, (Transaction, Price)):
+            date_last = entry.date
+            break
+    if not date_first or not date_last:
+        raise FavaAPIError("no transaction found")
+    return (date_first, date_last)
+
+
+def clamp_to_ledger_range(filter_first: date, filter_last: date, ledger_first: date, ledger_last: date):
+    # Adjust the dates in case the date filter is set to e.g. 2023-2024, however the ledger only contains data up to summer 2024.
+    # Without this, all averages in the dashboard are off, because a wrong number of days between dateFirst and dateLast is calculated.
+    clamped_first = max(filter_first, ledger_first)
+    clamped_last = min(filter_last, ledger_last)
+
+    # If there is no overlap of ledger and filter dates, leave them as-is.
+    # For example filter: 2020-2021, but ledger data goes from 2022-2023.
+    # The clamped date gives us from max(2020,2022) until min(2021,2023) = from 2022 until 2021, which is invalid.
+    if clamped_first > clamped_last:
+        return filter_first, filter_last
+
+    return clamped_first, clamped_last

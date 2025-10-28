@@ -1,7 +1,0 @@
-.headerline .active {
-  color: light-dark(#333, var(--mui-palette-text-primary));
-}
-
-.investment-selection input {
-  background: none;
-}

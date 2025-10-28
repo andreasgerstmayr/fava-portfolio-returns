@@ -21,8 +21,13 @@ interface InvestmentsSelectionProps {
   setInvestments: (x: string[]) => void;
 }
 
-export function InvestmentsSelection(props: InvestmentsSelectionProps) {
-  const { label, types, includeAllCurrencies, investments, setInvestments } = props;
+export function InvestmentsSelection({
+  label,
+  types,
+  includeAllCurrencies,
+  investments,
+  setInvestments,
+}: InvestmentsSelectionProps) {
   const { config } = useToolbarContext();
   const theme = useTheme();
 
@@ -115,7 +120,7 @@ export function InvestmentsSelection(props: InvestmentsSelectionProps) {
         })
       }
       style={{ width: 600 }}
-      renderInput={(params) => <TextField {...params} label={label} className="investment-selection" />}
+      renderInput={(params) => <TextField {...params} label={label} />}
     />
   );
 }

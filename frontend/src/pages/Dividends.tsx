@@ -71,7 +71,8 @@ function DividendsChart({ interval }: DividendsChartProps) {
     series: [...names].map((name) => ({
       type: "bar",
       name: name,
-      dimensions: ["date", name],
+      encode: { x: "date", y: name },
+      dimensions: ["date", name], // required because not every row contains all investment names
       barMinWidth: 4,
       barMaxWidth: 20,
       stack: "dividends",

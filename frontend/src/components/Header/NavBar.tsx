@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import { NavLink } from "react-router";
 import { useToolbarContext } from "./ToolbarProvider";
 
@@ -12,7 +13,7 @@ export function NavBar() {
   }
 
   return (
-    <div className="headerline">
+    <Box className="headerline" sx={{ ".active": { color: "light-dark(hsl(0deg 0% 25%), hsl(0deg 0% 80%))" } }}>
       <h3>
         <NavLink to={`/portfolio?${toolbarParams}`}>Portfolio</NavLink>
       </h3>
@@ -40,6 +41,6 @@ export function NavBar() {
       <h3>
         <NavLink to={`/help`}>Help</NavLink>
       </h3>
-    </div>
+    </Box>
   );
 }

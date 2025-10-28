@@ -83,7 +83,7 @@ function CashFlowsChart({ interval }: CashFlowsChartProps) {
       {
         type: "bar",
         name: "Cash flows excl. dividends",
-        dimensions: ["date", "exdiv"],
+        encode: { x: "date", y: "exdiv" },
         barMinWidth: 4,
         barMaxWidth: 20,
         stack: "flows",
@@ -91,7 +91,7 @@ function CashFlowsChart({ interval }: CashFlowsChartProps) {
       {
         type: "bar",
         name: "Dividends",
-        dimensions: ["date", "div"],
+        encode: { x: "date", y: "div" },
         barMinWidth: 4,
         barMaxWidth: 20,
         stack: "flows",

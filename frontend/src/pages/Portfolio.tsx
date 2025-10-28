@@ -162,13 +162,13 @@ function PortfolioValueChart() {
         type: "line",
         name: "Market Value",
         showSymbol: false,
-        dimensions: ["date", "market"],
+        encode: { x: "date", y: "market" },
       },
       {
         type: "line",
         name: "Cost Value",
         showSymbol: false,
-        dimensions: ["date", "cost"],
+        encode: { x: "date", y: "cost" },
         step: "end", // increase invested capital at date of cash flow, do not interpolate
         lineStyle: {
           type: "dotted",
