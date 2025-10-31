@@ -102,97 +102,102 @@
     - button "EUR"
   - heading "Investments" [level=3]
   - paragraph: Lists the investments defined in the beangrow configuration file.
-  - table:
-    - rowgroup:
-      - row "Name Units Cost Value Market Value Realized P/L Unrealized P/L Total P/L IRR MDM TWR":
-        - cell "Name"
-        - cell "Units"
-        - cell "Cost Value"
-        - cell "Market Value"
-        - cell "Realized P/L"
-        - cell "Unrealized P/L"
-        - cell "Total P/L"
-        - cell "IRR"
-        - cell "MDM"
-        - cell "TWR"
+  - grid:
+    - row "Name Sort Units Cost Value Market Value Realized P/L Unrealized P/L Total P/L IRR MDM TWR":
+      - columnheader "Name Sort":
+        - button "Sort"
+      - columnheader "Units"
+      - columnheader "Cost Value"
+      - columnheader "Market Value"
+      - columnheader "Realized P/L"
+      - columnheader "Unrealized P/L"
+      - columnheader "Total P/L"
+      - columnheader "IRR"
+      - columnheader "MDM"
+      - columnheader "TWR"
     - rowgroup:
       - row /American Funds The Growth Fund of America Class R-6 \d+\.\d+ RGAGX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
-        - cell "American Funds The Growth Fund of America Class R-6":
+        - gridcell "American Funds The Growth Fund of America Class R-6":
           - link "American Funds The Growth Fund of America Class R-6":
             - /url: "#/portfolio?investments=c%3ARGAGX&currency=USD"
-        - cell /\d+\.\d+ RGAGX/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-      - row /SPDR Gold Trust \(ETF\) \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
-        - cell "SPDR Gold Trust (ETF)":
-          - link "SPDR Gold Trust (ETF)":
-            - /url: "#/portfolio?investments=c%3AGLD&currency=USD"
-        - cell /\d+\.\d+ GLD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-      - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
-        - cell "Vanguard FTSE Developed Markets ETF":
-          - link "Vanguard FTSE Developed Markets ETF":
-            - /url: "#/portfolio?investments=c%3AVEA&currency=USD"
-        - cell /\d+\.\d+ VEA/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-      - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
-        - cell "Vanguard Health Care ETF":
-          - link "Vanguard Health Care ETF":
-            - /url: "#/portfolio?investments=c%3AVHT&currency=USD"
-        - cell /\d+\.\d+ VHT/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
-        - cell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
-          - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
-            - /url: "#/portfolio?investments=c%3AVBMPX&currency=USD"
-        - cell /\d+\.\d+ VBMPX/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
-        - cell /\d+\.\d+%/
+        - gridcell /\d+\.\d+ RGAGX/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
       - row /iShares Core S&P Total U\.S\. Stock Market ETF \d+\.\d+ ITOT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD \d+\.\d+ USD -\d+\.\d+ USD -\d+\.\d+% -\d+\.\d+% -\d+\.\d+%/:
-        - cell "iShares Core S&P Total U.S. Stock Market ETF":
+        - gridcell "iShares Core S&P Total U.S. Stock Market ETF":
           - link "iShares Core S&P Total U.S. Stock Market ETF":
             - /url: "#/portfolio?investments=c%3AITOT&currency=USD"
-        - cell /\d+\.\d+ ITOT/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /\d+,\d+\.\d+ USD/
-        - cell /-\d+\.\d+ USD/
-        - cell /\d+\.\d+ USD/
-        - cell /-\d+\.\d+ USD/
-        - cell /-\d+\.\d+%/
-        - cell /-\d+\.\d+%/
-        - cell /-\d+\.\d+%/
+        - gridcell /\d+\.\d+ ITOT/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /-\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /-\d+\.\d+ USD/
+        - gridcell /-\d+\.\d+%/
+        - gridcell /-\d+\.\d+%/
+        - gridcell /-\d+\.\d+%/
+      - row /SPDR Gold Trust \(ETF\) \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell "SPDR Gold Trust (ETF)":
+          - link "SPDR Gold Trust (ETF)":
+            - /url: "#/portfolio?investments=c%3AGLD&currency=USD"
+        - gridcell /\d+\.\d+ GLD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+      - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell "Vanguard FTSE Developed Markets ETF":
+          - link "Vanguard FTSE Developed Markets ETF":
+            - /url: "#/portfolio?investments=c%3AVEA&currency=USD"
+        - gridcell /\d+\.\d+ VEA/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+      - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell "Vanguard Health Care ETF":
+          - link "Vanguard Health Care ETF":
+            - /url: "#/portfolio?investments=c%3AVHT&currency=USD"
+        - gridcell /\d+\.\d+ VHT/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+ USD/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
+          - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
+            - /url: "#/portfolio?investments=c%3AVBMPX&currency=USD"
+        - gridcell /\d+\.\d+ VBMPX/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+,\d+\.\d+ USD/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+        - gridcell /\d+\.\d+%/
+  - paragraph: "Rows per page:"
+  - 'combobox /Rows per page: \d+/'
+  - paragraph: 1–6 of 6
+  - button "Go to previous page" [disabled]
+  - button "Go to next page" [disabled]
   - switch "Include liquidated investments"
   - text: Include liquidated investments
