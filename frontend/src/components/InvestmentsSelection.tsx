@@ -89,10 +89,10 @@ export function InvestmentsSelection({
       onChange={handleChange}
       options={options}
       renderOption={(props, option, { selected }) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars, react/prop-types
-        const { key, ...otherProps } = props;
+        // eslint-disable-next-line react/prop-types
+        const { key, ...optionProps } = props;
         return (
-          <li key={option.id} {...otherProps}>
+          <li key={key} {...optionProps}>
             <Checkbox
               icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
               checkedIcon={<CheckBoxIcon fontSize="small" />}

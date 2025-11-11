@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchJSON } from "./api";
+import { Series } from "./returns";
 
 interface CompareRequest {
   investmentFilter: string[];
@@ -8,13 +9,13 @@ interface CompareRequest {
   compareWith: string[];
 }
 
-interface Serie {
+interface NamedSeries {
   name: string;
-  data: [string, number][];
+  data: Series;
 }
 
 export interface CompareResponse {
-  series: Serie[];
+  series: NamedSeries[];
 }
 
 export function useCompare(request: CompareRequest): UseQueryResult<CompareResponse> {

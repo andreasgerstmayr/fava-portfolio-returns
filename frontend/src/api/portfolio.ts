@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchJSON } from "./api";
+import { Series } from "./returns";
 
 interface PortfolioRequest {
   investmentFilter: string[];
@@ -13,7 +14,7 @@ export interface PortfolioResponse {
     cost: number;
     cash: number;
   }[];
-  performanceChart: [string, number][];
+  performanceChart: Series;
   allocation: {
     name: string;
     currency: string;

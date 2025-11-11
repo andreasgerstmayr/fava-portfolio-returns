@@ -1,49 +1,20 @@
 import datetime
+import itertools
 import logging
 from dataclasses import dataclass
-from typing import NamedTuple
 
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import get_prices
+from fava_portfolio_returns.returns.base import Series
 from fava_portfolio_returns.returns.factory import RETURN_METHODS
 
 logger = logging.getLogger(__name__)
 
 
-class Series(NamedTuple):
-    name: str
-    data: list[tuple[datetime.date, float]]
-
-
 @dataclass
-class DatedSeries:
+class NamedSeries:
     name: str
-    dates: frozenset[datetime.date]
-    data: list[tuple[datetime.date, float]]
-
-    def __init__(self, name, data):
-        self.name = name
-        self.data = data
-        self.dates = frozenset(date for date, _ in data)
-
-    def get_performance_starting_at_date(self, start_date: datetime.date, normalization_method: str) -> Series:
-        start_from = None
-        for i, (date, value) in enumerate(self.data):
-            if date == start_date:
-                first_value = value
-                start_from = i
-                break
-        performance = []
-        for date, value in self.data[start_from:]:
-            if normalization_method == "twr":
-                performance.append((date, (value + 1.0) / (first_value + 1.0) - 1.0))
-            elif normalization_method == "simple":
-                performance.append((date, value - first_value))
-            elif normalization_method == "price":
-                performance.append((date, value / first_value - 1.0))
-            else:
-                raise ValueError(f"Invalid normalization method '{normalization_method}'")
-        return Series(name=self.name, data=performance)
+    data: Series
 
 
 def compare_chart(
@@ -53,48 +24,54 @@ def compare_chart(
     if not returns_method:
         raise ValueError(f"Invalid method '{method}'")
 
-    group_series: list[DatedSeries] = [DatedSeries(name="Returns", data=returns_method.series(p, start_date, end_date))]
+    returns = returns_method.series(p, start_date, end_date)
+    returns_series: list[NamedSeries] = [NamedSeries(name="Returns", data=returns)]
+
     for group in p.portfolio.investments_config.groups:
         if group.id in compare_with:
             fp = p.portfolio.filter([group.id], p.target_currency)
-            group_series.append(
-                DatedSeries(name=f"(GRP) {group.name}", data=returns_method.series(fp, start_date, end_date))
-            )
+            returns = returns_method.series(fp, start_date, end_date)
+            returns_series.append(NamedSeries(name=f"(GRP) {group.name}", data=returns))
 
-    account_series: list[DatedSeries] = []
     for account in p.portfolio.investments_config.accounts:
         if account.id in compare_with:
             fp = p.portfolio.filter([account.id], p.target_currency)
-            account_series.append(
-                DatedSeries(name=f"(ACC) {account.assetAccount}", data=returns_method.series(fp, start_date, end_date))
-            )
+            returns = returns_method.series(fp, start_date, end_date)
+            returns_series.append(NamedSeries(name=f"(ACC) {account.assetAccount}", data=returns))
 
-    price_series: list[DatedSeries] = []
-    for currency in p.portfolio.investment_groups.currencies:
+    price_series: list[NamedSeries] = []
+    for currency in p.portfolio.investments_config.currencies:
         if currency.id in compare_with:
-            prices = get_prices(p.pricer, (currency.currency, p.target_currency))
+            prices = get_prices(p.pricer, currency.currency, p.target_currency)
             prices_filtered = [(date, float(value)) for date, value in prices if start_date <= date <= end_date]
-            price_series.append(DatedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
+            price_series.append(NamedSeries(name=f"{currency.name} ({currency.currency})", data=prices_filtered))
 
-    # find first common date
-    common_date = None
-    for date in sorted(group_series[0].dates):
-        if (
-            all(date in s.dates for s in group_series[1:])
-            and all(date in s.dates for s in price_series)
-            and all(date in s.dates for s in account_series)
-        ):
+    # Find first common date of all series, which will be used as the base when rebasing the chart.
+    all_dates = [frozenset(date for date, _ in serie.data) for serie in itertools.chain(returns_series, price_series)]
+    for date in sorted(all_dates[0]):
+        if all(date in dates for dates in all_dates[1:]):
             common_date = date
             break
     else:
         raise ValueError("No overlapping start date found for the selected series.")
 
-    series: list[Series] = []
-    for group_serie in group_series:
-        series.append(group_serie.get_performance_starting_at_date(common_date, normalization_method=method))
-    for account_serie in account_series:
-        series.append(account_serie.get_performance_starting_at_date(common_date, normalization_method=method))
-    for price_serie in price_series:
-        series.append(price_serie.get_performance_starting_at_date(common_date, normalization_method="price"))
-
+    # cut off data before common date and rebase chart (align all series to start with 0% returns)
+    series: list[NamedSeries] = []
+    for serie in returns_series:
+        cutoff = cutoff_series(serie.data, common_date)
+        first_value = cutoff[0][1]
+        rebased = returns_method.rebase(first_value, cutoff)
+        series.append(NamedSeries(name=serie.name, data=rebased))
+    for serie in price_series:
+        cutoff = cutoff_series(serie.data, common_date)
+        first_price = cutoff[0][1]
+        rebased = [(date, value / first_price - 1.0) for date, value in cutoff]
+        series.append(NamedSeries(name=serie.name, data=rebased))
     return series
+
+
+def cutoff_series(series: Series, start_date: datetime.date):
+    for i, (date, _) in enumerate(series):
+        if date == start_date:
+            return series[i:]
+    raise ValueError(f"Date {start_date} not found in series")

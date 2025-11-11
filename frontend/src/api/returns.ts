@@ -2,6 +2,8 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { ReturnsMethod } from "../components/ReturnsMethodSelection";
 import { fetchJSON } from "./api";
 
+export type Series = [string, number][];
+
 interface ReturnsRequest {
   investmentFilter: string[];
   targetCurrency: string;
@@ -10,7 +12,7 @@ interface ReturnsRequest {
 }
 
 export interface ReturnsResponse {
-  returns: [string, number][];
+  returns: Series;
 }
 
 export function useReturns(request: ReturnsRequest): UseQueryResult<ReturnsResponse> {

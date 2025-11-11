@@ -1,0 +1,24 @@
+investments {
+  investment {
+    currency: "CORP1"
+    asset_account: "Assets:CORP1"
+    dividend_accounts: "Income:CORP1:Dividend"
+    cash_accounts: "Assets:Cash"
+  }
+  investment {
+    currency: "CORP2"
+    asset_account: "Assets:CORP2"
+    dividend_accounts: "Income:CORP2:Dividend"
+    cash_accounts: "Assets:Cash"
+  }
+}
+groups {
+  group {
+    name: "CORP1"
+    investment: "Assets:CORP1"
+  }
+  group {
+    name: "CORP2"
+    investment: "Assets:CORP2"
+  }
+}

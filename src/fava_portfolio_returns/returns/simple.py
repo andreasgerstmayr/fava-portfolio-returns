@@ -4,6 +4,7 @@ import logging
 from fava_portfolio_returns.api.portfolio import portfolio_values
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.returns.base import ReturnsBase
+from fava_portfolio_returns.returns.base import Series
 from fava_portfolio_returns.returns.returns import compute_returns
 
 logger = logging.getLogger(__name__)
@@ -18,9 +19,7 @@ class SimpleReturns(ReturnsBase):
     * comparing market value with cash_in: deposit X, withdraw Y, comparing X with market value Z doesn't make sense
     """
 
-    def series(
-        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date
-    ) -> list[tuple[datetime.date, float]]:
+    def series(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> Series:
         """
         compare market value with cost value on every price or volume change
 
@@ -28,3 +27,8 @@ class SimpleReturns(ReturnsBase):
         """
         values = portfolio_values(p, start_date, end_date)
         return [(value.date, compute_returns(value.cost, value.market)) for value in values]
+
+    def rebase(self, base: float, series: Series) -> Series:
+        # the simple returns method computes cost vs market value for every day, i.e. it does not compound returns
+        # therefore, offset the entire chart by the base value
+        return [(date, value - base) for date, value in series]
