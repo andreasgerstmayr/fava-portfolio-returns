@@ -134,3 +134,38 @@ class TestCompare(unittest.TestCase):
                 ],
             ),
         ]
+
+    def test_portfolio_common_date_doesnt_change_twr(self):
+        # test to prevent wrong TWR calculation if some dates in the beginning of the series have to be omitted
+        # (if the common date is later than the first date)
+        p = load_portfolio_file("portfolio_vs_currency", investment_filter=["c:CORP"])
+        # common date is 2020-02-05 since CORN doesn't have earlier pricing or transactions
+        # presence of c:CORN in the filter changes the starting date from 2020-02-01 to 2020-02-05
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 3, 15), "twr", ["c:CORP", "c:CORN"])
+        # Note that TWR Returns of the portfolio and stock price should be identical because there were no fees or
+        # any other cash flows that would create the difference
+        assert series == [
+            Series(
+                name="Returns",
+                data=[
+                    (datetime.date(2020, 2, 5), 0.0),
+                    (datetime.date(2020, 2, 10), 0.25),
+                    (datetime.date(2020, 3, 1), approx2(0.67)),
+                ],
+            ),
+            Series(
+                name="CORN (CORN)",
+                data=[
+                    (datetime.date(2020, 2, 5), 0.0),
+                    (datetime.date(2020, 3, 10), 0.5),
+                ],
+            ),
+            Series(
+                name="CORP (CORP)",
+                data=[
+                    (datetime.date(2020, 2, 5), 0.0),
+                    (datetime.date(2020, 2, 10), 0.25),
+                    (datetime.date(2020, 3, 1), approx2(0.67)),
+                ],
+            ),
+        ]
