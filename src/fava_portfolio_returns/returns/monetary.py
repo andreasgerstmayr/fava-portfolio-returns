@@ -6,6 +6,7 @@ from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import market_value_of_inv
 from fava_portfolio_returns.returns.base import ReturnsBase
+from fava_portfolio_returns.returns.base import Series
 
 logger = logging.getLogger(__name__)
 
@@ -32,9 +33,7 @@ class MonetaryReturns(ReturnsBase):
         end_returns = end_market - end_cash
         return float(end_returns - start_returns)
 
-    def series(
-        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date
-    ) -> list[tuple[datetime.date, float]]:
+    def series(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> Series:
         """compare market value with invested capital on every price or volume change"""
         values = portfolio_values(p, start_date, end_date)
         return [(value.date, float(value.market - value.cash)) for value in values]

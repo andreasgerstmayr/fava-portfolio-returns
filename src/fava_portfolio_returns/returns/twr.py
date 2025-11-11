@@ -7,6 +7,7 @@ from fava_portfolio_returns.api.portfolio import PortfolioValue
 from fava_portfolio_returns.api.portfolio import portfolio_values
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.returns.base import ReturnsBase
+from fava_portfolio_returns.returns.base import Series
 
 logger = logging.getLogger(__name__)
 
@@ -23,15 +24,17 @@ class TWR(ReturnsBase):
         values = portfolio_values(p, start_date, end_date)
         return _twr(values)
 
-    def series(
-        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date
-    ) -> list[tuple[datetime.date, float]]:
+    def series(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> Series:
         values = portfolio_values(p, start_date, end_date)
         return _twr(values, save_intermediate=True)
 
+    def rebase(self, base: float, series: Series) -> Series:
+        # TWR compounds returns
+        return [(date, (value + 1.0) / (base + 1.0) - 1.0) for date, value in series]
+
 
 def _twr(values: list[PortfolioValue], save_intermediate=False):
-    twrs: list[tuple[datetime.date, float]] = []
+    twrs: Series = []
     if save_intermediate and values:
         twrs.append((values[0].date, 0.0))
 

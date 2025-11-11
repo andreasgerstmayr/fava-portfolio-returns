@@ -4,28 +4,30 @@ option "operating_currency" "USD"
 option "operating_currency" "EUR"
 plugin "beancount.plugins.auto_accounts"
 plugin "beancount.plugins.implicit_prices"
-2020-01-01 custom "fava-extension" "fava_portfolio_returns"
+2020-01-01 custom "fava-extension" "fava_portfolio_returns" "{
+  'beangrow_config': 'two_investments.pbtxt'
+}"
 
 2020-01-01 commodity EUR
-2020-01-01 commodity CORP
-2020-01-01 commodity CORN
+2020-01-01 commodity CORP1
+2020-01-01 commodity CORP2
 
-2020-02-01 price CORP                                   1 USD
+2020-02-01 price CORP1                                  1 USD
 2020-02-01 price EUR                                    2 USD
 
-2020-02-01 * "Buy 100 CORP"
+2020-02-01 * "Buy 100 CORP1"
   Assets:Cash                                     -100.00 USD
-  Assets:CORP                                         100 CORP {1 USD}
+  Assets:CORP1                                        100 CORP1 {1 USD}
 
-2020-02-05 price CORP                                 1.2 USD
+2020-02-05 price CORP1                                1.2 USD
 
-2020-02-05 * "Buy 100 CORN"
+2020-02-05 * "Buy 100 CORP2"
   Assets:Cash                                     -400.00 USD
-  Assets:CORN                                         100 CORN {4 USD}
+  Assets:CORP2                                        100 CORP2 {4 USD}
 
-2020-02-10 * "Buy 100 CORP"
+2020-02-10 * "Buy 100 CORP1"
   Assets:Cash                                     -150.00 USD
-  Assets:CORP                                         100 CORP {1.5 USD}
+  Assets:CORP1                                        100 CORP1 {1.5 USD}
 
-2020-03-01 price CORP                                   2 USD
-2020-03-10 price CORN                                   6 USD
+2020-03-01 price CORP1                                  2 USD
+2020-03-10 price CORP2                                  6 USD
