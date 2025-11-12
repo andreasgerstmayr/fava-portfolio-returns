@@ -71,8 +71,8 @@ class TestIntervals(unittest.TestCase):
             ("3M", datetime.date(2023, 3, 15), datetime.date(2023, 6, 15)),
             ("6M", datetime.date(2022, 12, 15), datetime.date(2023, 6, 15)),
             ("YTD", datetime.date(2023, 1, 1), datetime.date(2023, 6, 15)),
-            ("1Y", datetime.date(2022, 1, 1), datetime.date(2023, 6, 15)),
-            ("2Y", datetime.date(2021, 1, 1), datetime.date(2023, 6, 15)),
-            ("3Y", datetime.date(2020, 1, 1), datetime.date(2023, 6, 15)),
+            ("1Y", datetime.date(2022, 6, 15), datetime.date(2023, 6, 15)),
+            ("2Y", datetime.date(2021, 6, 15), datetime.date(2023, 6, 15)),
+            ("3Y", datetime.date(2020, 6, 15), datetime.date(2023, 6, 15)),
             ("MAX", datetime.date(2020, 1, 1), datetime.date(2023, 6, 15)),
         ]
