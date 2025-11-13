@@ -281,6 +281,7 @@ def get_ledger_duration(entries: list[Directive]):
             break
     if not date_first or not date_last:
         raise FavaAPIError("no transaction found")
+    date_last = min(date_last, date.today())
     return (date_first, date_last)
 
 
