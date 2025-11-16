@@ -1,5 +1,10 @@
 # Changelog
 
+## next
+* update table design
+* fix TWR calculation [#101](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/101) ([@Evernight](https://github.com/Evernight))
+* fix annual interval calculations [#119](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/119) ([@val3344](https://github.com/val3344))
+
 ## v2.1.0 (2025-10-14)
 * publish releases to [PyPI](https://pypi.org/project/fava-portfolio-returns/)
 

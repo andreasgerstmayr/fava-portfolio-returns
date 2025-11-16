@@ -76,11 +76,11 @@ def portfolio_values(
         itertools.chain(
             (
                 (date, None)
-                for pair in currency_pairs
-                for date, _ in get_prices(p.pricer, pair[0], pair[1])
+                for source, target in currency_pairs
+                for date, _ in get_prices(p.pricer, source, target)
                 if date <= end_date
             ),
-            ((entry.date, entry) for entry in transactions),  # already filtered above
+            ((txn.date, txn) for txn in transactions),  # already filtered above
         ),
         key=first,
     )
@@ -92,6 +92,7 @@ def portfolio_values(
             break
 
     # Get first date of series, either before or on start_date.
+    # Example: start_date=7; entry_dates=[2, 5, 9, 10]; first_date=5 (will be clamped to 7)
     first_date = None
     for i, entry_date in enumerate(entry_dates):
         # if the next entry is still before or at start date, continue...
