@@ -21,7 +21,7 @@ from fava_portfolio_returns._vendor.beangrow.investments import AccountData
 from fava_portfolio_returns._vendor.beangrow.investments import CashFlow
 from fava_portfolio_returns._vendor.beangrow.investments import Cat
 from fava_portfolio_returns._vendor.beangrow.investments import extract
-from fava_portfolio_returns._vendor.beangrow.returns import Pricer
+from fava_portfolio_returns.core.pricer import Pricer
 from fava_portfolio_returns.core.utils import inv_to_currency
 
 

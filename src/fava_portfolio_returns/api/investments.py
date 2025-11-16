@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
     balance = p.balance_at(end_date)
     cost_value = cost_value_of_inv(p.pricer, p.target_currency, balance)
-    market_value = market_value_of_inv(p.pricer, p.target_currency, balance, end_date, record=True)
+    market_value = market_value_of_inv(p.pricer, p.target_currency, balance, end_date)
     # reduce to units (i.e. removing cost attribute) after calculating market value, because convert.get_value() only works with positions held at cost
     # this will convert for example CORP -> USD (cost currency) -> EUR (target currency), instead of CORP -> EUR.
     # see https://github.com/andreasgerstmayr/fava-portfolio-returns/issues/53

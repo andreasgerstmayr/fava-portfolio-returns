@@ -20,13 +20,11 @@ class MonetaryReturns(ReturnsBase):
         # For example, January has a single price directive, and we want to get the returns for January.
         # We need to compare the values *before* January with values at the end of January.
         start_balance = p.balance_at(start_date - ONE_DAY)
-        start_market = market_value_of_inv(
-            p.pricer, p.target_currency, start_balance, start_date - ONE_DAY, record=True
-        )
+        start_market = market_value_of_inv(p.pricer, p.target_currency, start_balance, start_date - ONE_DAY)
         start_cash = p.cash_at(start_date - ONE_DAY)
 
         end_balance = p.balance_at(end_date)
-        end_market = market_value_of_inv(p.pricer, p.target_currency, end_balance, end_date, record=True)
+        end_market = market_value_of_inv(p.pricer, p.target_currency, end_balance, end_date)
         end_cash = p.cash_at(end_date)
 
         start_returns = start_market - start_cash
