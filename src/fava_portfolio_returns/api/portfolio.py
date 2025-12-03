@@ -122,8 +122,6 @@ def portfolio_values(
             for flow in produce_cash_flows_general(entry, ""):
                 # Convert flow amount to the target_currency at the date of the flow
                 cash_amount_converted = p.pricer.convert_amount(flow.amount, p.target_currency, date)
-                if cash_amount_converted.currency != p.target_currency:
-                    raise ValueError(f"Can't convert {cash_amount_converted.currency} to {p.target_currency} at {date}")
                 cf_balance_converted += cash_amount_converted.number
 
         if date >= first_date:
