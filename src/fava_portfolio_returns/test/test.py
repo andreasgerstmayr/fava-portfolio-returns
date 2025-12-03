@@ -76,15 +76,13 @@ groups {
 """
 
 
-def load_portfolio_str(
-    beancount: str, beangrow: str, target_currency="USD", investment_filter=None
-) -> FilteredPortfolio:
+def load_portfolio_str(beancount: str, beangrow: str, target_currency="USD", investment_filter=[]) -> FilteredPortfolio:
     entries, errors, options_map = loader.load_string(beancount)
     if errors:
         raise ValueError(errors)
 
     p = Portfolio(entries, options_map, beangrow)
-    return p.filter(investment_filter if investment_filter else [], target_currency)
+    return p.filter(investment_filter, target_currency)
 
 
 def load_portfolio_file(ledger_path: str | Path, target_currency="USD", investment_filter=[]) -> FilteredPortfolio:
