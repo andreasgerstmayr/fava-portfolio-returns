@@ -12,9 +12,11 @@ from fava_portfolio_returns.core.pricer import CurrencyConversionException
 from fava_portfolio_returns.core.pricer import Pricer
 
 
-def cost_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory) -> Decimal:
+def cost_value_of_inv(
+    pricer: Pricer, target_currency: str, balance: Inventory, date: Optional[datetime.date] = None
+) -> Decimal:
     cost_balance = balance.reduce(convert.get_cost)
-    return inv_to_currency(pricer, target_currency, cost_balance)
+    return inv_to_currency(pricer, target_currency, cost_balance, date)
 
 
 def market_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory, date: datetime.date) -> Decimal:
@@ -22,7 +24,7 @@ def market_value_of_inv(pricer: Pricer, target_currency: str, balance: Inventory
     value_balance = balance.reduce(pricer.get_value, date)
 
     # then convert to target currency
-    return inv_to_currency(pricer, target_currency, value_balance)
+    return inv_to_currency(pricer, target_currency, value_balance, date)
 
 
 def inv_to_currency(

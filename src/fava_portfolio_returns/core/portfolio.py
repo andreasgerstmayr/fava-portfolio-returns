@@ -197,7 +197,7 @@ class FilteredPortfolio:
                 if cash_flow.date > date:
                     break
                 balance.add_amount(cash_flow.amount)
-        return -inv_to_currency(self.pricer, self.target_currency, balance)
+        return -inv_to_currency(self.pricer, self.target_currency, balance, date)
 
 
 def get_target_currency(account_data_list: list[AccountData]) -> str:
