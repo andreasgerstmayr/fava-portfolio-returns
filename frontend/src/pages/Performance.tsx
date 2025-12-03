@@ -24,7 +24,7 @@ export function Performance() {
       <DashboardRow>
         <Panel
           title="Performance"
-          help={`The performance chart compares the relative performance of the currently selected investments with other groups and commodities.`}
+          help={`The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.`}
           topRightElem={<ReturnsMethodSelection options={["simple", "twr"]} method={method} setMethod={setMethod} />}
         >
           <PerformanceChart method={method} investments={investments} />
@@ -70,7 +70,7 @@ function PerformanceChart({ method, investments }: PerformanceChartProps) {
       valueFormatter: percentFormatter,
     },
     legend: {
-      bottom: 0,
+      top: 10,
     },
     grid: {
       left: 100,
@@ -84,6 +84,14 @@ function PerformanceChart({ method, investments }: PerformanceChartProps) {
         formatter: percentFormatter,
       },
     },
+    dataZoom: [
+      {
+        type: "slider",
+        handleLabel: {
+          show: true,
+        },
+      },
+    ],
     series: data.series.map((serie) => ({
       type: "line",
       showSymbol: false,
@@ -92,5 +100,5 @@ function PerformanceChart({ method, investments }: PerformanceChartProps) {
     })),
   };
 
-  return <EChart height="400px" option={option} />;
+  return <EChart height="500px" option={option} />;
 }
