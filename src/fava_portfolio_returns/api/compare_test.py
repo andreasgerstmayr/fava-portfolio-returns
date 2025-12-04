@@ -11,50 +11,40 @@ class TestCompare(unittest.TestCase):
     def test_savings_plan_simple(self):
         p = load_portfolio_file("savings_plan")
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "simple", ["c:CORP"])
-        assert series == [
-            NamedSeries(
-                name="Returns",
-                data=[
-                    (datetime.date(2020, 1, 1), 0.0),
-                    (datetime.date(2020, 2, 1), 0.2),
-                    (datetime.date(2020, 3, 1), approx2(0.33)),
-                    (datetime.date(2020, 4, 1), approx2(0.43)),
-                ],
-            ),
-            NamedSeries(
-                name="CORP (CORP)",
-                data=[
-                    (datetime.date(2020, 1, 1), 0.0),
-                    (datetime.date(2020, 2, 1), 0.5),
-                    (datetime.date(2020, 3, 1), 1),
-                    (datetime.date(2020, 4, 1), 1.5),
-                ],
-            ),
+        assert len(series) == 2
+        assert series[0].name == "Returns"
+        assert series[0].data == [
+            (datetime.date(2020, 1, 1), 0.0),
+            (datetime.date(2020, 2, 1), 0.2),
+            (datetime.date(2020, 3, 1), approx2(0.33)),
+            (datetime.date(2020, 4, 1), approx2(0.43)),
+        ]
+        assert series[1].name == "CORP (CORP)"
+        assert series[1].data == [
+            (datetime.date(2020, 1, 1), 0.0),
+            (datetime.date(2020, 2, 1), 0.5),
+            (datetime.date(2020, 3, 1), 1),
+            (datetime.date(2020, 4, 1), 1.5),
         ]
 
     def test_savings_plan_twr(self):
         p = load_portfolio_file("savings_plan")
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "twr", ["c:CORP"])
-        assert series == [
-            NamedSeries(
-                name="Returns",
-                data=[
-                    # TWR is identical to price series, because effects of cash flows are eliminated
-                    (datetime.date(2020, 1, 1), 0.0),
-                    (datetime.date(2020, 2, 1), 0.5),
-                    (datetime.date(2020, 3, 1), 1.0),
-                    (datetime.date(2020, 4, 1), 1.5),
-                ],
-            ),
-            NamedSeries(
-                name="CORP (CORP)",
-                data=[
-                    (datetime.date(2020, 1, 1), 0.0),
-                    (datetime.date(2020, 2, 1), 0.5),
-                    (datetime.date(2020, 3, 1), 1.0),
-                    (datetime.date(2020, 4, 1), 1.5),
-                ],
-            ),
+        assert len(series) == 2
+        assert series[0].name == "Returns"
+        assert series[0].data == [
+            # TWR is identical to price series, because effects of cash flows are eliminated
+            (datetime.date(2020, 1, 1), 0.0),
+            (datetime.date(2020, 2, 1), 0.5),
+            (datetime.date(2020, 3, 1), 1.0),
+            (datetime.date(2020, 4, 1), 1.5),
+        ]
+        assert series[1].name == "CORP (CORP)"
+        assert series[1].data == [
+            (datetime.date(2020, 1, 1), 0.0),
+            (datetime.date(2020, 2, 1), 0.5),
+            (datetime.date(2020, 3, 1), 1.0),
+            (datetime.date(2020, 4, 1), 1.5),
         ]
 
     def test_savings_plan_middle(self):
@@ -67,6 +57,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), approx2(0.09)),
                 ],
+                cash_flows=[("2020-03-01", -20.0), ("2020-04-01", -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -74,6 +65,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), 0.25),
                 ],
+                cash_flows=None,
             ),
         ]
 
@@ -87,10 +79,11 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 1, 1), 0.0),
                     (datetime.date(2020, 2, 1), 0.5),
                     (datetime.date(2020, 3, 1), 1.0),
-                    (datetime.date(2020, 4, 1), approx2(0.42)),  # returns dropped because of investment
-                    (datetime.date(2020, 5, 1), approx2(0.71)),
+                    (datetime.date(2020, 4, 1), 0.42857142857142855),  # returns dropped because of investment
+                    (datetime.date(2020, 5, 1), 0.7142857142857143),
                     (datetime.date(2020, 6, 1), 1.0),
                 ],
+                cash_flows=[("2020-01-01", -10.0), ("2020-04-01", -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -102,6 +95,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
+                cash_flows=None,
             ),
         ]
 
@@ -120,6 +114,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
+                cash_flows=[("2020-01-01", -10.0), ("2020-04-01", -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -131,6 +126,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
+                cash_flows=None,
             ),
         ]
 
@@ -149,16 +145,18 @@ class TestCompare(unittest.TestCase):
                 data=[
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 2, 10), 0.25),
-                    (datetime.date(2020, 3, 1), approx2(0.67)),
+                    (datetime.date(2020, 3, 1), 0.6666666666666667),
                 ],
+                cash_flows=[("2020-02-10", -150.0)],
             ),
             NamedSeries(
                 name="CORP1 (CORP1)",
                 data=[
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 2, 10), 0.25),
-                    (datetime.date(2020, 3, 1), approx2(0.67)),
+                    (datetime.date(2020, 3, 1), 0.6666666666666667),
                 ],
+                cash_flows=None,
             ),
             NamedSeries(
                 name="CORP2 (CORP2)",
@@ -166,5 +164,6 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 3, 10), 0.5),
                 ],
+                cash_flows=None,
             ),
         ]
