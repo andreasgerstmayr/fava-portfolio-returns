@@ -13,11 +13,14 @@ import { CommaArrayParam } from "../components/query_params";
 const ReturnsMethodEnum = createEnumParam(["simple", "twr"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "simple" as const);
 const InvestmentsParam = withDefault(CommaArrayParam, []);
+const SymbolScalingEnum = createEnumParam(["linear", "logarithmic"]);
+const SymbolScalingParam = withDefault(SymbolScalingEnum, "linear" as const);
 
 export function Performance() {
   const [method, setMethod] = useQueryParam("method", ReturnsMethodParam);
   const [_investments, setInvestments] = useQueryParam("compareWith", InvestmentsParam);
   const [showBuySellPoints, setShowBuySellPoints] = useQueryParam("buySellPoints", BooleanParam);
+  const [symbolScaling, setSymbolScaling] = useQueryParam("symbolScaling", SymbolScalingParam);
   const investments = _investments.filter((i) => i !== null) as string[];
 
   return (
@@ -28,14 +31,32 @@ export function Performance() {
           help={`The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.`}
           topRightElem={<ReturnsMethodSelection options={["simple", "twr"]} method={method} setMethod={setMethod} />}
         >
-          <PerformanceChart method={method} investments={investments} showBuySellPoints={!!showBuySellPoints} />
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
+          <PerformanceChart
+            method={method}
+            investments={investments}
+            showBuySellPoints={!!showBuySellPoints}
+            symbolScaling={symbolScaling}
+          />
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3, gap: 4 }}>
             <FormGroup>
               <FormControlLabel
                 control={<Switch checked={!!showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
                 label="Show Buy/Sell Points"
               />
             </FormGroup>
+            {showBuySellPoints && (
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={symbolScaling === "logarithmic"}
+                      onChange={(e, value) => setSymbolScaling(value ? "logarithmic" : "linear")}
+                    />
+                  }
+                  label="Logarithmic Scaling"
+                />
+              </FormGroup>
+            )}
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
             <InvestmentsSelection
@@ -56,9 +77,10 @@ interface PerformanceChartProps {
   method: string;
   investments: string[];
   showBuySellPoints: boolean;
+  symbolScaling: "linear" | "logarithmic";
 }
 
-function PerformanceChart({ method, investments, showBuySellPoints }: PerformanceChartProps) {
+function PerformanceChart({ method, investments, showBuySellPoints, symbolScaling }: PerformanceChartProps) {
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useCompare({
@@ -81,6 +103,7 @@ function PerformanceChart({ method, investments, showBuySellPoints }: Performanc
     portfolioValue: number,
     minAmount: number,
     maxAmount: number,
+    scalingMode: "linear" | "logarithmic" = "logarithmic",
   ): number => {
     const absAmount = Math.abs(amount);
 
@@ -89,10 +112,27 @@ function PerformanceChart({ method, investments, showBuySellPoints }: Performanc
       return 8; // Default to medium size
     }
 
-    // Calculate linear position between min and max (0 to 1)
-    const relativePosition = (absAmount - minAmount) / (maxAmount - minAmount);
+    let relativePosition: number;
 
-    // Map to pixel size range: 4px (smallest) to 16px (largest)
+    if (scalingMode === "logarithmic") {
+      // Prevent taking log of zero or negative numbers
+      if (absAmount <= 0 || minAmount <= 0) {
+        return 4; // Minimum size for non-positive amounts
+      }
+
+      // Use logarithmic scaling to compress range while maintaining relative proportions
+      const logMin = Math.log(minAmount);
+      const logMax = Math.log(maxAmount);
+      const logAmount = Math.log(absAmount);
+
+      // Calculate relative position in logarithmic space
+      relativePosition = (logAmount - logMin) / (logMax - logMin);
+    } else {
+      // Original linear scaling logic
+      relativePosition = (absAmount - minAmount) / (maxAmount - minAmount);
+    }
+
+    // Map to pixel size range: 4px (minimum) to 16px (maximum)
     const size = 4 + relativePosition * 12;
 
     // Ensure size is within bounds
@@ -100,7 +140,11 @@ function PerformanceChart({ method, investments, showBuySellPoints }: Performanc
   };
 
   // Generate mark point data
-  const generateMarkPoints = (cashFlows: [string, number][], seriesData: [string, number][]) => {
+  const generateMarkPoints = (
+    cashFlows: [string, number][],
+    seriesData: [string, number][],
+    scalingMode: "linear" | "logarithmic",
+  ) => {
     // Find minimum and maximum absolute amounts for relative scaling
     const absAmounts = cashFlows.map(([_, amount]) => Math.abs(amount));
     const minAmount = Math.min(...absAmounts);
@@ -131,7 +175,7 @@ function PerformanceChart({ method, investments, showBuySellPoints }: Performanc
 
       // Calculate relative size based on amount compared to min/max range
       const portfolioValue = closestYValue;
-      const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount);
+      const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
 
       // For ECharts time axis with type "time", we can use timestamp
       return {
@@ -185,7 +229,7 @@ function PerformanceChart({ method, investments, showBuySellPoints }: Performanc
       markPoint:
         showBuySellPoints && serie.cash_flows
           ? {
-              data: generateMarkPoints(serie.cash_flows, serie.data),
+              data: generateMarkPoints(serie.cash_flows, serie.data, symbolScaling),
               label: {
                 show: false,
               },
