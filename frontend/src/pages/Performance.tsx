@@ -150,47 +150,51 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
     const minAmount = Math.min(...absAmounts);
     const maxAmount = Math.max(...absAmounts);
 
-    // Convert series data to timestamp format for easier matching
-    const seriesDataWithTimestamps: [number, number][] = seriesData.map(([dateStr, value]) => {
+    // Create a map for fast date lookup - using the exact format from seriesData
+    const seriesDataMap = new Map<string, { value: number; originalDateStr: string }>();
+    for (const [dateStr, value] of seriesData) {
+      // Normalize to YYYY-MM-DD format for matching
       const date = new Date(dateStr);
-      return [date.getTime(), value];
-    });
+      const normalizedDateStr = date.toISOString().split("T")[0];
+      seriesDataMap.set(normalizedDateStr, { value, originalDateStr: dateStr });
+    }
 
-    return cashFlows.map(([dateStr, amount]) => {
-      // Convert cash flow date string to timestamp
-      const cashFlowDate = new Date(dateStr);
-      const cashFlowTimestamp = cashFlowDate.getTime();
+    return cashFlows
+      .map(([dateStr, amount]) => {
+        // Normalize cash flow date to YYYY-MM-DD format for matching
+        const cashFlowDate = new Date(dateStr);
+        const normalizedDateStr = cashFlowDate.toISOString().split("T")[0];
 
-      // Find the closest series data point
-      let closestYValue = 0;
-      let minDiff = Infinity;
+        // Find matching series data
+        const match = seriesDataMap.get(normalizedDateStr);
 
-      for (const [timestamp, yValue] of seriesDataWithTimestamps) {
-        const diff = Math.abs(timestamp - cashFlowTimestamp);
-        if (diff < minDiff) {
-          minDiff = diff;
-          closestYValue = yValue;
+        if (!match) {
+          // Skip this point if no matching series data exists
+          return null;
         }
-      }
 
-      // Calculate relative size based on amount compared to min/max range
-      const portfolioValue = closestYValue;
-      const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
+        // Use the exact same date string format as the series data for perfect alignment
+        const yValue = match.value;
 
-      // For ECharts time axis with type "time", we can use timestamp
-      return {
-        coord: [cashFlowTimestamp, closestYValue], // Display point on the line
-        value: amount,
-        symbol: "circle",
-        symbolSize: dynamicSize,
-        itemStyle: {
-          color: amount < 0 ? theme.pnl.profit : theme.pnl.loss,
-        },
-        label: {
-          show: false,
-        },
-      };
-    });
+        // Calculate relative size based on amount compared to min/max range
+        const portfolioValue = yValue;
+        const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
+
+        // Use the original date string from series data to ensure perfect alignment
+        return {
+          coord: [match.originalDateStr, yValue], // Use the same date string format as series data
+          value: amount,
+          symbol: "circle",
+          symbolSize: dynamicSize,
+          itemStyle: {
+            color: amount < 0 ? theme.pnl.profit : theme.pnl.loss,
+          },
+          label: {
+            show: false,
+          },
+        };
+      })
+      .filter((point): point is NonNullable<typeof point> => point !== null);
   };
 
   const option = {
