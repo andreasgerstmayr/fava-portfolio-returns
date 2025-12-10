@@ -24,7 +24,7 @@ import re
 import sys
 import typing
 
-#import pandas
+import pandas
 
 from beancount.core import account as accountlib
 from beancount.core import display_context
@@ -516,7 +516,7 @@ def write_account_file(dcontext: display_context.DisplayContext,
         fprint("\n\n")
 
 
-def cash_flows_to_table(cash_flows: List[CashFlow]):
+def cash_flows_to_table(cash_flows: List[CashFlow]) -> pandas.DataFrame:
     """Flatten a list of cash flows to an HTML table string."""
     header = ["date", "amount", "currency", "is_dividend", "source", "investment", "transaction"]
     rows = []
