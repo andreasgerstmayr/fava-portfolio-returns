@@ -22,13 +22,13 @@ from typing import Any, Dict, List, Optional, Tuple
 #import matplotlib.dates as mdates
 #import matplotlib.pyplot as plt
 import numpy as np
-#import pandas as pd
+import pandas as pd
 from beancount.core import data, prices
 from beancount.core.amount import Amount
 from beancount.parser import printer
 from dateutil.relativedelta import relativedelta
 #from matplotlib.axes import Axes
-#from pandas.plotting import register_matplotlib_converters
+from pandas.plotting import register_matplotlib_converters
 
 from fava_portfolio_returns._vendor.beangrow import investments
 from fava_portfolio_returns._vendor.beangrow import returns as returnslib
@@ -352,7 +352,7 @@ def write_returns_debugfile(
     return indexfile.name
 
 
-def get_accounts_table(account_data: List[AccountData]):
+def get_accounts_table(account_data: List[AccountData]) -> pd.DataFrame:
     """Build of table of per-account information."""
     header = ["Investment", "Description", "Status"]
     rows = []
