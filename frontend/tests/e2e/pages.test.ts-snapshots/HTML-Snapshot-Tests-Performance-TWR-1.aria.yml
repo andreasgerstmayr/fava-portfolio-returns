@@ -107,8 +107,9 @@
   - heading "Performance" [level=3]
   - combobox: Time-Weighted Rate of Return
   - paragraph: The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.
-  - switch "Show Buy/Sell Points"
-  - text: Show Buy/Sell Points Compare with
+  - text: Compare with
   - button "GLD"
   - combobox "Compare with"
   - button "Open"
+  - switch "Show Buy/Sell Points"
+  - text: Show Buy/Sell Points

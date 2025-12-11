@@ -57,7 +57,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), approx2(0.09)),
                 ],
-                cash_flows=[("2020-03-01", -20.0), ("2020-04-01", -25.0)],
+                cash_flows=[(datetime.date(2020, 3, 1), -20.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -79,11 +79,11 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 1, 1), 0.0),
                     (datetime.date(2020, 2, 1), 0.5),
                     (datetime.date(2020, 3, 1), 1.0),
-                    (datetime.date(2020, 4, 1), 0.42857142857142855),  # returns dropped because of investment
-                    (datetime.date(2020, 5, 1), 0.7142857142857143),
+                    (datetime.date(2020, 4, 1), approx2(0.42)),  # returns dropped because of investment
+                    (datetime.date(2020, 5, 1), approx2(0.71)),
                     (datetime.date(2020, 6, 1), 1.0),
                 ],
-                cash_flows=[("2020-01-01", -10.0), ("2020-04-01", -25.0)],
+                cash_flows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -114,7 +114,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
-                cash_flows=[("2020-01-01", -10.0), ("2020-04-01", -25.0)],
+                cash_flows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -145,16 +145,16 @@ class TestCompare(unittest.TestCase):
                 data=[
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 2, 10), 0.25),
-                    (datetime.date(2020, 3, 1), 0.6666666666666667),
+                    (datetime.date(2020, 3, 1), approx2(0.67)),
                 ],
-                cash_flows=[("2020-02-10", -150.0)],
+                cash_flows=[(datetime.date(2020, 2, 10), -150.0)],
             ),
             NamedSeries(
                 name="CORP1 (CORP1)",
                 data=[
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 2, 10), 0.25),
-                    (datetime.date(2020, 3, 1), 0.6666666666666667),
+                    (datetime.date(2020, 3, 1), approx2(0.67)),
                 ],
                 cash_flows=None,
             ),

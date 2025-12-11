@@ -1,4 +1,4 @@
-import { Alert, Box, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
+import { Alert, Box, FormControlLabel, FormGroup, Switch, Theme, useTheme } from "@mui/material";
 import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useCompare } from "../api/compare";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -37,6 +37,15 @@ export function Performance() {
             showBuySellPoints={!!showBuySellPoints}
             symbolScaling={symbolScaling}
           />
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
+            <InvestmentsSelection
+              label="Compare with"
+              types={["Group", "Account", "Currency"]}
+              includeAllCurrencies
+              investments={investments}
+              setInvestments={setInvestments}
+            />
+          </Box>
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3, gap: 4 }}>
             <FormGroup>
               <FormControlLabel
@@ -57,15 +66,6 @@ export function Performance() {
                 />
               </FormGroup>
             )}
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
-            <InvestmentsSelection
-              label="Compare with"
-              types={["Group", "Account", "Currency"]}
-              includeAllCurrencies
-              investments={investments}
-              setInvestments={setInvestments}
-            />
           </Box>
         </Panel>
       </DashboardRow>
@@ -96,106 +96,6 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
   if (error) {
     return <Alert severity="error">{error.message}</Alert>;
   }
-
-  // Calculate dynamic symbol size based on relative transaction amount
-  const calculateSymbolSize = (
-    amount: number,
-    portfolioValue: number,
-    minAmount: number,
-    maxAmount: number,
-    scalingMode: "linear" | "logarithmic" = "logarithmic",
-  ): number => {
-    const absAmount = Math.abs(amount);
-
-    // Handle edge case where all amounts are the same
-    if (maxAmount === minAmount) {
-      return 8; // Default to medium size
-    }
-
-    let relativePosition: number;
-
-    if (scalingMode === "logarithmic") {
-      // Prevent taking log of zero or negative numbers
-      if (absAmount <= 0 || minAmount <= 0) {
-        return 4; // Minimum size for non-positive amounts
-      }
-
-      // Use logarithmic scaling to compress range while maintaining relative proportions
-      const logMin = Math.log(minAmount);
-      const logMax = Math.log(maxAmount);
-      const logAmount = Math.log(absAmount);
-
-      // Calculate relative position in logarithmic space
-      relativePosition = (logAmount - logMin) / (logMax - logMin);
-    } else {
-      // Original linear scaling logic
-      relativePosition = (absAmount - minAmount) / (maxAmount - minAmount);
-    }
-
-    // Map to pixel size range: 4px (minimum) to 16px (maximum)
-    const size = 4 + relativePosition * 12;
-
-    // Ensure size is within bounds
-    return Math.min(Math.max(size, 4), 16);
-  };
-
-  // Generate mark point data
-  const generateMarkPoints = (
-    cashFlows: [string, number][],
-    seriesData: [string, number][],
-    scalingMode: "linear" | "logarithmic",
-  ) => {
-    // Find minimum and maximum absolute amounts for relative scaling
-    const absAmounts = cashFlows.map(([_, amount]) => Math.abs(amount));
-    const minAmount = Math.min(...absAmounts);
-    const maxAmount = Math.max(...absAmounts);
-
-    // Create a map for fast date lookup - using the exact format from seriesData
-    const seriesDataMap = new Map<string, { value: number; originalDateStr: string }>();
-    for (const [dateStr, value] of seriesData) {
-      // Normalize to YYYY-MM-DD format for matching
-      const date = new Date(dateStr);
-      const normalizedDateStr = date.toISOString().split("T")[0];
-      seriesDataMap.set(normalizedDateStr, { value, originalDateStr: dateStr });
-    }
-
-    return cashFlows
-      .map(([dateStr, amount]) => {
-        // Normalize cash flow date to YYYY-MM-DD format for matching
-        const cashFlowDate = new Date(dateStr);
-        const normalizedDateStr = cashFlowDate.toISOString().split("T")[0];
-
-        // Find matching series data
-        const match = seriesDataMap.get(normalizedDateStr);
-
-        if (!match) {
-          // Skip this point if no matching series data exists
-          return null;
-        }
-
-        // Use the exact same date string format as the series data for perfect alignment
-        const yValue = match.value;
-
-        // Calculate relative size based on amount compared to min/max range
-        const portfolioValue = yValue;
-        const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
-
-        // Use the original date string from series data to ensure perfect alignment
-        return {
-          coord: [match.originalDateStr, yValue], // Use the same date string format as series data
-          value: amount,
-          symbol: "circle",
-          symbolSize: dynamicSize,
-          itemStyle: {
-            color: amount < 0 ? theme.pnl.profit : theme.pnl.loss,
-          },
-          label: {
-            show: false,
-          },
-        };
-      })
-      .filter((point): point is NonNullable<typeof point> => point !== null);
-  };
 
   const option = {
     tooltip: {
@@ -233,7 +133,7 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
       markPoint:
         showBuySellPoints && serie.cash_flows
           ? {
-              data: generateMarkPoints(serie.cash_flows, serie.data, symbolScaling),
+              data: generateMarkPoints(serie.cash_flows, serie.data, symbolScaling, theme),
               label: {
                 show: false,
               },
@@ -243,4 +143,94 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
   };
 
   return <EChart height="500px" option={option} />;
+}
+
+// Calculate dynamic symbol size based on relative transaction amount
+function calculateSymbolSize(
+  amount: number,
+  portfolioValue: number,
+  minAmount: number,
+  maxAmount: number,
+  scalingMode: "linear" | "logarithmic" = "logarithmic",
+): number {
+  const absAmount = Math.abs(amount);
+
+  // Handle edge case where all amounts are the same
+  if (maxAmount === minAmount) {
+    return 8; // Default to medium size
+  }
+
+  let relativePosition: number;
+
+  if (scalingMode === "logarithmic") {
+    // Prevent taking log of zero or negative numbers
+    if (absAmount <= 0 || minAmount <= 0) {
+      return 4; // Minimum size for non-positive amounts
+    }
+
+    // Use logarithmic scaling to compress range while maintaining relative proportions
+    const logMin = Math.log(minAmount);
+    const logMax = Math.log(maxAmount);
+    const logAmount = Math.log(absAmount);
+
+    // Calculate relative position in logarithmic space
+    relativePosition = (logAmount - logMin) / (logMax - logMin);
+  } else {
+    // Original linear scaling logic
+    relativePosition = (absAmount - minAmount) / (maxAmount - minAmount);
+  }
+
+  // Map to pixel size range: 4px (minimum) to 16px (maximum)
+  const size = 4 + relativePosition * 12;
+
+  // Ensure size is within bounds
+  return Math.min(Math.max(size, 4), 16);
+}
+
+// Generate mark point data
+function generateMarkPoints(
+  cashFlows: [string, number][],
+  seriesData: [string, number][],
+  scalingMode: "linear" | "logarithmic",
+  theme: Theme,
+) {
+  // Find minimum and maximum absolute amounts for relative scaling
+  const absAmounts = cashFlows.map(([_, amount]) => Math.abs(amount));
+  const minAmount = Math.min(...absAmounts);
+  const maxAmount = Math.max(...absAmounts);
+
+  // Create a map for fast date lookup
+  const seriesDataMap = new Map<string, number>();
+  for (const [dateStr, value] of seriesData) {
+    seriesDataMap.set(dateStr, value);
+  }
+
+  return cashFlows
+    .map(([dateStr, amount]) => {
+      // Find matching series data
+      const yValue = seriesDataMap.get(dateStr);
+
+      if (!yValue) {
+        // Skip this point if no matching series data exists
+        return null;
+      }
+
+      // Calculate relative size based on amount compared to min/max range
+      const portfolioValue = yValue;
+      const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
+
+      return {
+        coord: [dateStr, yValue],
+        value: amount,
+        symbol: "circle",
+        symbolSize: dynamicSize,
+        itemStyle: {
+          color: amount < 0 ? theme.pnl.profit : theme.pnl.loss,
+        },
+        label: {
+          show: false,
+        },
+      };
+    })
+    .filter((point): point is NonNullable<typeof point> => point !== null);
 }

@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 class NamedSeries:
     name: str
     data: Series
-    cash_flows: list[tuple[str, float]] | None = None  # [(date, amount)], amount>0 for buy, <0 for sell
+    cash_flows: Series | None
 
 
 def get_series_cash_flows(fp: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
@@ -34,7 +34,7 @@ def get_series_cash_flows(fp: FilteredPortfolio, start_date: datetime.date, end_
         if not flow.is_dividend and flow.amount.number is not None:  # Exclude dividends and handle None values
             daily_flows[flow.date] += flow.amount.number
 
-    return [(date.isoformat(), float(amount)) for date, amount in sorted(daily_flows.items())]
+    return sorted(daily_flows.items(), key=lambda x: x[0])
 
 
 def compare_chart(
@@ -88,22 +88,23 @@ def compare_chart(
         cutoff = cutoff_series(serie.data, common_date)
         first_value = cutoff[0][1]
         rebased = returns_method.rebase(first_value, cutoff)
-        # Truncate cash flow data, keep only after common_date
-        cutoff_cash_flows = []
-        if serie.cash_flows:
-            for date_str, amount in serie.cash_flows:
-                flow_date = datetime.date.fromisoformat(date_str)
-                if flow_date >= common_date:
-                    cutoff_cash_flows.append((date_str, amount))
-        series.append(
-            NamedSeries(name=serie.name, data=rebased, cash_flows=cutoff_cash_flows if cutoff_cash_flows else None)
-        )
+        truncated_cash_flows = cutoff_cash_flows(serie.cash_flows, common_date) if serie.cash_flows else None
+        series.append(NamedSeries(name=serie.name, data=rebased, cash_flows=truncated_cash_flows))
     for serie in price_series:
         cutoff = cutoff_series(serie.data, common_date)
         first_price = cutoff[0][1]
         rebased = [(date, value / first_price - 1.0) for date, value in cutoff]
         series.append(NamedSeries(name=serie.name, data=rebased, cash_flows=None))
     return series
+
+
+def cutoff_cash_flows(cash_flows: Series, start_date: datetime.date):
+    """Truncate cash flow data, keep only after start_date"""
+    result = []
+    for flow_date, amount in cash_flows:
+        if flow_date >= start_date:
+            result.append((flow_date, amount))
+    return result if result else None
 
 
 def cutoff_series(series: Series, start_date: datetime.date):
