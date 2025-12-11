@@ -111,3 +111,5 @@
   - button "GLD"
   - combobox "Compare with"
   - button "Open"
+  - switch "Show Buy/Sell Points"
+  - text: Show Buy/Sell Points
