@@ -57,7 +57,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), approx2(0.09)),
                 ],
-                cash_flows=[(datetime.date(2020, 3, 1), -20.0), (datetime.date(2020, 4, 1), -25.0)],
+                cashFlows=[(datetime.date(2020, 3, 1), -20.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -65,7 +65,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), 0.25),
                 ],
-                cash_flows=None,
+                cashFlows=[],
             ),
         ]
 
@@ -83,7 +83,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), approx2(0.71)),
                     (datetime.date(2020, 6, 1), 1.0),
                 ],
-                cash_flows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
+                cashFlows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -95,7 +95,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
-                cash_flows=None,
+                cashFlows=[],
             ),
         ]
 
@@ -114,7 +114,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
-                cash_flows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
+                cashFlows=[(datetime.date(2020, 1, 1), -10.0), (datetime.date(2020, 4, 1), -25.0)],
             ),
             NamedSeries(
                 name="CORP (CORP)",
@@ -126,7 +126,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 5, 1), 2.0),
                     (datetime.date(2020, 6, 1), 2.5),
                 ],
-                cash_flows=None,
+                cashFlows=[],
             ),
         ]
 
@@ -147,7 +147,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 2, 10), 0.25),
                     (datetime.date(2020, 3, 1), approx2(0.67)),
                 ],
-                cash_flows=[(datetime.date(2020, 2, 10), -150.0)],
+                cashFlows=[(datetime.date(2020, 2, 10), -150.0)],
             ),
             NamedSeries(
                 name="CORP1 (CORP1)",
@@ -156,7 +156,7 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 2, 10), 0.25),
                     (datetime.date(2020, 3, 1), approx2(0.67)),
                 ],
-                cash_flows=None,
+                cashFlows=[],
             ),
             NamedSeries(
                 name="CORP2 (CORP2)",
@@ -164,6 +164,6 @@ class TestCompare(unittest.TestCase):
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 3, 10), 0.5),
                 ],
-                cash_flows=None,
+                cashFlows=[],
             ),
         ]

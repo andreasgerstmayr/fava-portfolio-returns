@@ -1,5 +1,8 @@
 # Changelog
 
+## next
+* add buy/sell points visualization to performance chart [#124](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/124) ([@val3344](https://github.com/val3344))
+
 ## v2.2.0 (2025-12-03)
 * update table design
 * fix TWR calculation [#101](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/101) ([@Evernight](https://github.com/Evernight))

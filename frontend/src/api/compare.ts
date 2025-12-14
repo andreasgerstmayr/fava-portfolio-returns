@@ -9,10 +9,11 @@ interface CompareRequest {
   compareWith: string[];
 }
 
-interface NamedSeries {
+export interface NamedSeries {
   name: string;
   data: Series;
-  cash_flows?: Series;
+  /** amount <0 for buy, >0 for sell */
+  cashFlows: Series;
 }
 
 export interface CompareResponse {
