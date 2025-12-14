@@ -42,6 +42,11 @@ export const fixedPercentFormatter = new Intl.NumberFormat(undefined, {
   maximumFractionDigits: 2,
 }).format;
 
+export function anyFormatter(formatter: (value: number) => string) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (value: any) => (typeof value === "number" ? formatter(value) : "");
+}
+
 export function timestampToDate(ts: number) {
   const pad = (n: number) => n.toString().padStart(2, "0");
   const date = new Date(ts);

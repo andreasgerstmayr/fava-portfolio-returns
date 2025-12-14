@@ -1,25 +1,27 @@
 import { Alert, Box, FormControlLabel, FormGroup, Switch, Theme, useTheme } from "@mui/material";
+import { EChartsOption } from "echarts";
 import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
-import { useCompare } from "../api/compare";
+import { NamedSeries, useCompare } from "../api/compare";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
 import { ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import { percentFormatter } from "../components/format";
+import { anyFormatter, percentFormatter } from "../components/format";
 import { CommaArrayParam } from "../components/query_params";
 
 const ReturnsMethodEnum = createEnumParam(["simple", "twr"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "simple" as const);
 const InvestmentsParam = withDefault(CommaArrayParam, []);
+const BuySellPoints = withDefault(BooleanParam, false);
 const SymbolScalingEnum = createEnumParam(["linear", "logarithmic"]);
 const SymbolScalingParam = withDefault(SymbolScalingEnum, "linear" as const);
 
 export function Performance() {
   const [method, setMethod] = useQueryParam("method", ReturnsMethodParam);
   const [_investments, setInvestments] = useQueryParam("compareWith", InvestmentsParam);
-  const [showBuySellPoints, setShowBuySellPoints] = useQueryParam("buySellPoints", BooleanParam);
+  const [showBuySellPoints, setShowBuySellPoints] = useQueryParam("buySellPoints", BuySellPoints);
   const [symbolScaling, setSymbolScaling] = useQueryParam("symbolScaling", SymbolScalingParam);
   const investments = _investments.filter((i) => i !== null) as string[];
 
@@ -34,7 +36,7 @@ export function Performance() {
           <PerformanceChart
             method={method}
             investments={investments}
-            showBuySellPoints={!!showBuySellPoints}
+            showBuySellPoints={showBuySellPoints}
             symbolScaling={symbolScaling}
           />
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
@@ -49,12 +51,10 @@ export function Performance() {
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3, gap: 4 }}>
             <FormGroup>
               <FormControlLabel
-                control={<Switch checked={!!showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
+                control={<Switch checked={showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
                 label="Show Buy/Sell Points"
               />
-            </FormGroup>
-            {showBuySellPoints && (
-              <FormGroup>
+              {showBuySellPoints && (
                 <FormControlLabel
                   control={
                     <Switch
@@ -64,8 +64,8 @@ export function Performance() {
                   }
                   label="Logarithmic Scaling"
                 />
-              </FormGroup>
-            )}
+              )}
+            </FormGroup>
           </Box>
         </Panel>
       </DashboardRow>
@@ -97,10 +97,10 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: percentFormatter,
+      valueFormatter: anyFormatter(percentFormatter),
     },
     legend: {
       top: 10,
@@ -130,82 +130,65 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
       showSymbol: false,
       name: serie.name,
       data: serie.data,
-      markPoint:
-        showBuySellPoints && serie.cash_flows
-          ? {
-              data: generateMarkPoints(serie.cash_flows, serie.data, symbolScaling, theme),
-              label: {
-                show: false,
-              },
-            }
-          : undefined,
+      markPoint: showBuySellPoints
+        ? {
+            data: generateMarkPoints(theme, serie, symbolScaling),
+            label: {
+              show: false,
+            },
+          }
+        : undefined,
     })),
   };
 
   return <EChart height="500px" option={option} />;
 }
 
+const [minSymbolSize, maxSymbolSize] = [8, 16];
+
+function safeLog(x: number) {
+  return x > 0 ? Math.log(x) : 0;
+}
+
 // Calculate dynamic symbol size based on relative transaction amount
 function calculateSymbolSize(
   amount: number,
-  portfolioValue: number,
   minAmount: number,
   maxAmount: number,
-  scalingMode: "linear" | "logarithmic" = "logarithmic",
+  scalingMode: "linear" | "logarithmic",
 ): number {
-  const absAmount = Math.abs(amount);
-
-  // Handle edge case where all amounts are the same
-  if (maxAmount === minAmount) {
-    return 8; // Default to medium size
+  // catch divison by zero
+  if (maxAmount - minAmount === 0) {
+    return minSymbolSize + (maxSymbolSize - minSymbolSize) / 2;
   }
 
-  let relativePosition: number;
-
-  if (scalingMode === "logarithmic") {
-    // Prevent taking log of zero or negative numbers
-    if (absAmount <= 0 || minAmount <= 0) {
-      return 4; // Minimum size for non-positive amounts
-    }
-
-    // Use logarithmic scaling to compress range while maintaining relative proportions
-    const logMin = Math.log(minAmount);
-    const logMax = Math.log(maxAmount);
-    const logAmount = Math.log(absAmount);
-
-    // Calculate relative position in logarithmic space
-    relativePosition = (logAmount - logMin) / (logMax - logMin);
-  } else {
-    // Original linear scaling logic
-    relativePosition = (absAmount - minAmount) / (maxAmount - minAmount);
+  // apply linear/log scale of absAmount from range [minAmount,maxAmount] to a value from range [minSymbolSize,maxSymbolSize]
+  let rel: number;
+  switch (scalingMode) {
+    case "linear":
+      rel = (amount - minAmount) / (maxAmount - minAmount);
+      break;
+    case "logarithmic":
+      rel = (safeLog(amount) - safeLog(minAmount)) / (safeLog(maxAmount) - safeLog(minAmount));
+      break;
   }
-
-  // Map to pixel size range: 4px (minimum) to 16px (maximum)
-  const size = 4 + relativePosition * 12;
-
-  // Ensure size is within bounds
-  return Math.min(Math.max(size, 4), 16);
+  return minSymbolSize + (maxSymbolSize - minSymbolSize) * rel;
 }
 
 // Generate mark point data
-function generateMarkPoints(
-  cashFlows: [string, number][],
-  seriesData: [string, number][],
-  scalingMode: "linear" | "logarithmic",
-  theme: Theme,
-) {
+function generateMarkPoints(theme: Theme, serie: NamedSeries, scalingMode: "linear" | "logarithmic") {
   // Find minimum and maximum absolute amounts for relative scaling
-  const absAmounts = cashFlows.map(([_, amount]) => Math.abs(amount));
+  const absAmounts = serie.cashFlows.map(([_, amount]) => Math.abs(amount));
   const minAmount = Math.min(...absAmounts);
   const maxAmount = Math.max(...absAmounts);
 
   // Create a map for fast date lookup
   const seriesDataMap = new Map<string, number>();
-  for (const [dateStr, value] of seriesData) {
+  for (const [dateStr, value] of serie.data) {
     seriesDataMap.set(dateStr, value);
   }
 
-  return cashFlows
+  return serie.cashFlows
     .map(([dateStr, amount]) => {
       // Find matching series data
       const yValue = seriesDataMap.get(dateStr);
@@ -216,21 +199,19 @@ function generateMarkPoints(
       }
 
       // Calculate relative size based on amount compared to min/max range
-      const portfolioValue = yValue;
-      const dynamicSize = calculateSymbolSize(amount, portfolioValue, minAmount, maxAmount, scalingMode);
+      const dynamicSize = calculateSymbolSize(Math.abs(amount), minAmount, maxAmount, scalingMode);
 
       return {
+        name: dateStr,
         coord: [dateStr, yValue],
         value: amount,
-        symbol: "circle",
+        symbol: "triangle",
         symbolSize: dynamicSize,
+        symbolRotate: amount <= 0 ? 0 : 180,
         itemStyle: {
-          color: amount < 0 ? theme.pnl.profit : theme.pnl.loss,
-        },
-        label: {
-          show: false,
+          color: amount <= 0 ? theme.pnl.profit : theme.pnl.loss,
         },
       };
     })
-    .filter((point): point is NonNullable<typeof point> => point !== null);
+    .filter((point) => point !== null);
 }
