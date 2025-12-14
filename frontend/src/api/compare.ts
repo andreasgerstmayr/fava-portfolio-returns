@@ -12,6 +12,7 @@ interface CompareRequest {
 interface NamedSeries {
   name: string;
   data: Series;
+  cash_flows?: Series;
 }
 
 export interface CompareResponse {
