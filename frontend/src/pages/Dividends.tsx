@@ -1,10 +1,11 @@
 import { Alert } from "@mui/material";
+import { EChartsOption } from "echarts";
 import { useDividends } from "../api/dividends";
 import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { getCurrencyFormatter } from "../components/format";
+import { anyFormatter, getCurrencyFormatter } from "../components/format";
 
 export function Dividends() {
   return (
@@ -49,9 +50,9 @@ function DividendsChart({ interval }: DividendsChartProps) {
   }
 
   const currencyFormatter = getCurrencyFormatter(targetCurrency);
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
-      valueFormatter: currencyFormatter,
+      valueFormatter: anyFormatter(currencyFormatter),
     },
     legend: {
       bottom: 0,

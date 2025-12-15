@@ -1,4 +1,14 @@
-import { Alert, Box, FormControlLabel, FormGroup, Switch, Theme, useTheme } from "@mui/material";
+import {
+  Alert,
+  Box,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+  Switch,
+  Theme,
+  useTheme,
+} from "@mui/material";
 import { EChartsOption } from "echarts";
 import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { NamedSeries, useCompare } from "../api/compare";
@@ -48,24 +58,26 @@ export function Performance() {
               setInvestments={setInvestments}
             />
           </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3, gap: 4 }}>
-            <FormGroup>
-              <FormControlLabel
-                control={<Switch checked={showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
-                label="Show Buy/Sell Points"
-              />
-              {showBuySellPoints && (
+          <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
+            <FormControl component="fieldset" variant="outlined">
+              <FormLabel component="legend">Buy/Sell points</FormLabel>
+              <FormGroup>
                 <FormControlLabel
+                  label="Show"
+                  control={<Switch checked={showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
+                />
+                <FormControlLabel
+                  label="Logarithmic Scaling"
                   control={
                     <Switch
                       checked={symbolScaling === "logarithmic"}
+                      disabled={!showBuySellPoints}
                       onChange={(e, value) => setSymbolScaling(value ? "logarithmic" : "linear")}
                     />
                   }
-                  label="Logarithmic Scaling"
                 />
-              )}
-            </FormGroup>
+              </FormGroup>
+            </FormControl>
           </Box>
         </Panel>
       </DashboardRow>

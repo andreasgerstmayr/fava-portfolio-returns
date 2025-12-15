@@ -4,7 +4,7 @@ import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashbo
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
+import { anyFormatter, getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
 
 export function Portfolio() {
   return (
@@ -131,7 +131,7 @@ function PortfolioValueChart() {
   const option = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: currencyFormatter,
+      valueFormatter: anyFormatter(currencyFormatter),
     },
     legend: {
       bottom: 0,
