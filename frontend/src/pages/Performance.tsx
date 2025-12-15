@@ -66,16 +66,16 @@ export function Performance() {
                   label="Show"
                   control={<Switch checked={showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
                 />
-                  <FormControlLabel
-                    label="Logarithmic Scaling"
-                    control={
-                      <Switch
-                        checked={symbolScaling === "logarithmic"}
-                        disabled={!showBuySellPoints}
-                        onChange={(e, value) => setSymbolScaling(value ? "logarithmic" : "linear")}
-                      />
-                    }
-                  />
+                <FormControlLabel
+                  label="Logarithmic Scaling"
+                  control={
+                    <Switch
+                      checked={symbolScaling === "logarithmic"}
+                      disabled={!showBuySellPoints}
+                      onChange={(e, value) => setSymbolScaling(value ? "logarithmic" : "linear")}
+                    />
+                  }
+                />
               </FormGroup>
             </FormControl>
           </Box>
