@@ -44,7 +44,7 @@ export const fixedPercentFormatter = new Intl.NumberFormat(undefined, {
 
 export function anyFormatter(formatter: (value: number) => string) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (value: any) => (typeof value === "number" ? formatter(value) : "");
+  return (value: any) => (typeof value === "number" ? formatter(value) : String(value));
 }
 
 export function timestampToDate(ts: number) {

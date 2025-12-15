@@ -111,5 +111,7 @@
   - button "GLD"
   - combobox "Compare with"
   - button "Open"
-  - switch "Show Buy/Sell Points"
-  - text: Show Buy/Sell Points
+  - group "Buy/Sell points":
+    - switch "Show"
+    - switch "Logarithmic Scaling" [disabled]
+    - text: Logarithmic Scaling

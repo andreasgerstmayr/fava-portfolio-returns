@@ -6,7 +6,7 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import { getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
+import { anyFormatter, getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
 
 const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
 const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
@@ -64,7 +64,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
   const option = {
     tooltip: {
       position: "top",
-      valueFormatter,
+      valueFormatter: anyFormatter(valueFormatter),
     },
     grid: {
       bottom: 100, // space for visualMap
@@ -86,7 +86,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
       inRange: {
         color: [theme.pnl.loss, "#fff", theme.pnl.profit],
       },
-      formatter: valueFormatter,
+      formatter: anyFormatter(valueFormatter),
     },
     series: [
       {
@@ -149,7 +149,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
   const option = {
     tooltip: {
       trigger: "axis",
-      valueFormatter,
+      valueFormatter: anyFormatter(valueFormatter),
     },
     xAxis: {
       type: "category",

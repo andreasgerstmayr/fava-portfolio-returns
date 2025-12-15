@@ -4,7 +4,13 @@ import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashbo
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { getCurrencyFormatter, numberFormatter, timestampToMonth, timestampToYear } from "../components/format";
+import {
+  anyFormatter,
+  getCurrencyFormatter,
+  numberFormatter,
+  timestampToMonth,
+  timestampToYear,
+} from "../components/format";
 
 export function CashFlows() {
   return (
@@ -56,7 +62,7 @@ function CashFlowsChart({ interval }: CashFlowsChartProps) {
   const option = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: currencyFormatter,
+      valueFormatter: anyFormatter(currencyFormatter),
     },
     legend: {
       bottom: 0,
