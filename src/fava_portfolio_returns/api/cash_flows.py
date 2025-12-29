@@ -6,7 +6,7 @@ from typing import Literal
 
 from beancount.core.number import ZERO
 
-from fava_portfolio_returns.core.intervals import interval_label
+from fava_portfolio_returns.core.intervals import truncate_date_fn
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
@@ -26,22 +26,19 @@ def cash_flows_chart(
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
     cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
 
-    labelfn = interval_label(interval)
+    truncate_date = truncate_date_fn(interval)
+    # ex. {"2025": {"date": "2025", "div": 5, "exdiv": 3}}
     chart: dict[str, CashFlowChartValue] = {}
     for flow in cash_flows:
-        label = labelfn(flow.date)
-        if label not in chart:
-            chart[label] = CashFlowChartValue(date=label, div=ZERO, exdiv=ZERO)
+        date = truncate_date(flow.date)
+        if date not in chart:
+            chart[date] = CashFlowChartValue(date=date, div=ZERO, exdiv=ZERO)
 
         if flow.is_dividend:
-            chart[label].div += flow.amount.number or ZERO
+            chart[date].div += flow.amount.number or ZERO
         else:
-            chart[label].exdiv += flow.amount.number or ZERO
+            chart[date].exdiv += flow.amount.number or ZERO
 
-    # only required if echarts axis is set to 'category' instead of 'time'
-    # for label in interval_labels(interval, start_date, end_date):
-    #    if label not in chart:
-    #        chart[label] = CashFlowChartValue(date=label, div=ZERO, exdiv=ZERO)
     return sorted(chart.values(), key=lambda x: x.date)
 
 
@@ -78,20 +75,17 @@ def dividends_chart(
     currency_by_account = {acc.assetAccount: acc.currency for acc in p.portfolio.investments_config.accounts}
     currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investments_config.currencies}
 
-    labelfn = interval_label(interval)
+    truncate_date = truncate_date_fn(interval)
+    # ex. {"2025": {"date": "2025", "Investment1": 5, "Investment2": 3}}
     chart: dict[str, dict[str, str | Decimal]] = {}
     for flow in cash_flows:
-        label = labelfn(flow.date)
+        date = truncate_date(flow.date)
         currency = currency_by_account[flow.account]
         currency_name = currency_name_by_currency[currency]
 
-        if label not in chart:
-            chart[label] = defaultdict(Decimal)
-            chart[label]["date"] = label
-        chart[label][currency_name] += flow.amount.number  # type: ignore[operator]
+        if date not in chart:
+            chart[date] = defaultdict(Decimal)
+            chart[date]["date"] = date
+        chart[date][currency_name] += flow.amount.number  # type: ignore[operator]
 
-    # only required if echarts axis is set to 'category' instead of 'time'
-    # for label in interval_labels(interval, start_date, end_date):
-    #    if label not in chart:
-    #        chart[label] = {"date": label}
     return sorted(chart.values(), key=lambda x: x["date"])

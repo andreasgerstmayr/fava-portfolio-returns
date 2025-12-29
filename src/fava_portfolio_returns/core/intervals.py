@@ -79,19 +79,11 @@ def iterate_years(start_date: datetime.date, end_date: datetime.date) -> list[in
     return list(range(year, last_year + 1))
 
 
-def interval_label(interval: Literal["monthly", "yearly"]):
+def truncate_date_fn(interval: Literal["monthly", "yearly"]):
+    """returns a function which truncates dates, for example 2025-01-01 to 2025-01 (monthly) or 2025 (yearly)"""
     if interval == "monthly":
         return lambda x: f"{x.year}-{x.month:02}"
     elif interval == "yearly":
         return lambda x: f"{x.year}"
-    else:
-        raise ValueError(f"Invalid interval {interval}")
-
-
-def interval_labels(interval: Literal["monthly", "yearly"], start_date: datetime.date, end_date: datetime.date):
-    if interval == "monthly":
-        return [f"{m.year}-{m.month:02}" for m in iterate_months(start_date, end_date)]
-    elif interval == "yearly":
-        return [f"{year}" for year in iterate_years(start_date, end_date)]
     else:
         raise ValueError(f"Invalid interval {interval}")
