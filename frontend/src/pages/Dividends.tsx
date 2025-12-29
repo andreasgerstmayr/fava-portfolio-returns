@@ -43,9 +43,9 @@ function DividendsChart({ interval }: DividendsChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const names = new Set(data.chart.flatMap((v) => Object.keys(v)));
-  names.delete("date");
-  if (names.size === 0) {
+  const investments = new Set(data.chart.flatMap((v) => Object.keys(v)));
+  investments.delete("date");
+  if (investments.size === 0) {
     return <Alert severity="info">No dividends in this time frame.</Alert>;
   }
 
@@ -55,6 +55,7 @@ function DividendsChart({ interval }: DividendsChartProps) {
       valueFormatter: anyFormatter(currencyFormatter),
     },
     legend: {
+      show: investments.size <= 10,
       bottom: 0,
     },
     xAxis: {
@@ -68,15 +69,19 @@ function DividendsChart({ interval }: DividendsChartProps) {
     },
     dataset: {
       source: data.chart,
+      // required because not every row contains all investment names
+      dimensions: ["date", ...investments],
     },
-    series: [...names].map((name) => ({
+    series: [...investments].map((investment) => ({
       type: "bar",
-      name: name,
-      encode: { x: "date", y: name },
-      dimensions: ["date", name], // required because not every row contains all investment names
+      name: investment,
+      encode: { x: "date", y: investment },
       barMinWidth: 4,
       barMaxWidth: 20,
       stack: "dividends",
+      emphasis: {
+        focus: "series",
+      },
     })),
   };
 
