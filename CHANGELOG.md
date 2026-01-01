@@ -1,7 +1,10 @@
 # Changelog
 
-## next
+## v2.3.0 (2026-01-01)
+* visual updates for Performance page [#100](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/100) ([@Evernight](https://github.com/Evernight))
 * add buy/sell points visualization to performance chart [#124](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/124) ([@val3344](https://github.com/val3344))
+* fix beangrow_debug_dir option [#126](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/126) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* dividends chart: hide legend if there are more than 10 investments [#131](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/131) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 
 ## v2.2.0 (2025-12-03)
 * update table design
