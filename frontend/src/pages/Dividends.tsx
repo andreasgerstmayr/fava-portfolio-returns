@@ -72,7 +72,7 @@ function DividendsChart({ interval }: DividendsChartProps) {
       // required because not every row contains all investment names
       dimensions: ["date", ...investments],
     },
-    series: [...investments].map((investment) => ({
+    series: [...investments].sort().map((investment) => ({
       type: "bar",
       name: investment,
       encode: { x: "date", y: investment },
