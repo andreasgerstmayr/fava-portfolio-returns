@@ -1,8 +1,7 @@
 import { Alert, Box, CircularProgress } from "@mui/material";
 import { createContext, useContext } from "react";
-import { StringParam, useQueryParam, withDefault } from "use-query-params";
 import { ConfigResponse, useConfig } from "../../api/config";
-import { CommaArrayParam } from "../query_params";
+import { useArrayQueryParam, useGlobalParam } from "../useSearchParam";
 import { DateRangeKey, DateRanges } from "./DateRangeSelection";
 
 export interface ToolbarContextType {
@@ -16,7 +15,6 @@ export interface ToolbarContextType {
 }
 
 const ToolbarContext = createContext<ToolbarContextType | undefined>(undefined);
-const InvestmentsFilterParam = withDefault(CommaArrayParam, []);
 
 interface ToolbarProviderProps {
   children?: React.ReactNode;
@@ -25,13 +23,15 @@ interface ToolbarProviderProps {
 export function ToolbarProvider({ children }: ToolbarProviderProps) {
   const { isPending, error, data: config } = useConfig();
 
-  const [_investmentFilter, _setInvestmentFilter] = useQueryParam("investments", InvestmentsFilterParam);
-  const investmentFilter = _investmentFilter.filter((i) => i !== null) as string[];
-  const setInvestmentFilter = (i: string[]) => _setInvestmentFilter(i.length > 0 ? i : undefined);
+  const [investmentFilter, setInvestmentFilter] = useArrayQueryParam(useGlobalParam("investments"));
 
-  const [_targetCurrency, _setTargetCurrency] = useQueryParam("currency", StringParam);
+  const [_targetCurrency, _setTargetCurrency] = useGlobalParam("currency");
   const targetCurrency = _targetCurrency ?? config?.operatingCurrencies[0] ?? "USD";
   const setTargetCurrency = (c: string) => _setTargetCurrency(c !== config?.operatingCurrencies[0] ? c : undefined);
+
+  const [_dateRange, _setDateRange] = useGlobalParam("time");
+  const dateRange = findDateRange(typeof _dateRange === "number" ? String(_dateRange) : _dateRange);
+  const setDateRange = (x: DateRangeKey) => _setDateRange(x === "MAX" ? undefined : DateRanges[x]);
 
   if (isPending) {
     return (
@@ -51,7 +51,7 @@ export function ToolbarProvider({ children }: ToolbarProviderProps) {
         setInvestmentFilter,
         targetCurrency,
         setTargetCurrency,
-        dateRange: getDateRange(),
+        dateRange,
         setDateRange,
         config,
       }}
@@ -69,11 +69,8 @@ export function useToolbarContext(): ToolbarContextType {
   return ctx;
 }
 
-function getDateRange(): DateRangeKey | undefined {
-  const params = new URLSearchParams(location.search);
-  const time = params.get("time");
-
-  if (time === null) {
+function findDateRange(time: string | undefined): DateRangeKey | undefined {
+  if (!time) {
     return "MAX";
   }
   for (const [key, val] of Object.entries(DateRanges)) {
@@ -82,14 +79,4 @@ function getDateRange(): DateRangeKey | undefined {
     }
   }
   return undefined;
-}
-
-function setDateRange(dateRange: DateRangeKey) {
-  const url = new URL(location.href);
-  if (dateRange === "MAX") {
-    url.searchParams.delete("time");
-  } else {
-    url.searchParams.set("time", DateRanges[dateRange]);
-  }
-  location.href = url.toString();
 }

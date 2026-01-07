@@ -1,17 +1,32 @@
 import { Alert } from "@mui/material";
+import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { EChartsOption } from "echarts";
-import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { z } from "zod";
 import { useDividends } from "../api/dividends";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { anyFormatter, getCurrencyFormatter } from "../components/format";
+import { useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-const IntervalParam = withDefault(createEnumParam(["month", "year"] as const), "month" as const);
+const searchSchema = z.object({
+  interval: z.enum(["month", "year"]).default("month").catch("month"),
+});
 
-export function Dividends() {
-  const [interval, setInterval] = useQueryParam("interval", IntervalParam);
+export const DividendsRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "dividends",
+  validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams({ interval: "month" })],
+  },
+  component: Dividends,
+});
+
+function Dividends() {
+  const [interval, setInterval] = useSearchParam(DividendsRoute, "interval");
 
   return (
     <Dashboard>

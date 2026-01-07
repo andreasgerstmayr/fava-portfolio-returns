@@ -1,45 +1,54 @@
 import { Box } from "@mui/material";
-import { NavLink } from "react-router";
-import { useToolbarContext } from "./ToolbarProvider";
+import { Link } from "@tanstack/react-router";
+import { retainSearchParams } from "../../routes/__root";
 
 export function NavBar() {
-  const { investmentFilter, targetCurrency, config } = useToolbarContext();
-  const toolbarParams = new URLSearchParams();
-  if (investmentFilter.length > 0) {
-    toolbarParams.set("investments", investmentFilter.join(","));
-  }
-  if (targetCurrency !== config.operatingCurrencies[0]) {
-    toolbarParams.set("currency", targetCurrency);
-  }
-
   return (
     <Box className="headerline" sx={{ ".active": { color: "light-dark(hsl(0deg 0% 25%), hsl(0deg 0% 80%))" } }}>
       <h3>
-        <NavLink to={`/portfolio?${toolbarParams}`}>Portfolio</NavLink>
+        <Link to="/portfolio" search={retainSearchParams}>
+          Portfolio
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/performance?${toolbarParams}`}>Performance</NavLink>
+        <Link to="/performance" search={retainSearchParams}>
+          Performance
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/returns?${toolbarParams}`}>Returns</NavLink>
+        <Link to="/returns" search={retainSearchParams}>
+          Returns
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/dividends?${toolbarParams}`}>Dividends</NavLink>
+        <Link to="/dividends" search={retainSearchParams}>
+          Dividends
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/cash_flows?${toolbarParams}`}>Cash Flows</NavLink>
+        <Link to="/cash_flows" search={retainSearchParams}>
+          Cash Flows
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/groups?${toolbarParams}`}>Groups</NavLink>
+        <Link to="/groups" search={retainSearchParams}>
+          Groups
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/investments`}>Investments</NavLink>
+        <Link to="/investments" search={retainSearchParams}>
+          Investments
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/missing_prices`}>Missing Prices</NavLink>
+        <Link to="/missing_prices" search={retainSearchParams}>
+          Missing Prices
+        </Link>
       </h3>
       <h3>
-        <NavLink to={`/help`}>Help</NavLink>
+        <Link to="/help" search={retainSearchParams}>
+          Help
+        </Link>
       </h3>
     </Box>
   );

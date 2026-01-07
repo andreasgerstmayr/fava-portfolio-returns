@@ -34,9 +34,9 @@ plugin "beancount.plugins.implicit_prices"
             BEANGROW_CONFIG_CORP,
         )
         assert p.portfolio.investments_config == InvestmentsConfig(
-            accounts=[InvestmentAccount(id="a:Assets:CORP", currency="CORP", assetAccount="Assets:CORP")],
-            groups=[InvestmentGroup(id="g:CORP", name="CORP", investments=["Assets:CORP"], currency="")],
-            currencies=[LedgerCurrency(id="c:CORP", currency="CORP", name="Example Stock", isInvestment=True)],
+            accounts=[InvestmentAccount(id="a_Assets:CORP", currency="CORP", assetAccount="Assets:CORP")],
+            groups=[InvestmentGroup(id="g_CORP", name="CORP", investments=["Assets:CORP"], currency="")],
+            currencies=[LedgerCurrency(id="c_CORP", currency="CORP", name="Example Stock", isInvestment=True)],
         )
 
     def test_balance_at(self):

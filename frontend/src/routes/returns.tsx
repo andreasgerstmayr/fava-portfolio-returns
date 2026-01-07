@@ -1,5 +1,6 @@
 import { Alert, useTheme } from "@mui/material";
-import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { z } from "zod";
 import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -7,12 +8,25 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { anyFormatter, getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
+import { useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-const ReturnsMethodEnum = createEnumParam(["irr", "mdm", "twr", "monetary"]);
-const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "irr" as const);
+const searchSchema = z.object({
+  method: z.enum(["irr", "mdm", "twr", "monetary"]).default("irr").catch("irr"),
+});
 
-export function Returns() {
-  const [method, setMethod] = useQueryParam("method", ReturnsMethodParam);
+export const ReturnsRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "returns",
+  validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams({ method: "irr" })],
+  },
+  component: Returns,
+});
+
+function Returns() {
+  const [method, setMethod] = useSearchParam(ReturnsRoute, "method");
 
   return (
     <Dashboard>

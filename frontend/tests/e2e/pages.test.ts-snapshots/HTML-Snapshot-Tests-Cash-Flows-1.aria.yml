@@ -64,31 +64,31 @@
 - article:
   - heading "Portfolio" [level=3]:
     - link "Portfolio":
-      - /url: "#/portfolio?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=portfolio
   - heading "Performance" [level=3]:
     - link "Performance":
-      - /url: "#/performance?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=performance
   - heading "Returns" [level=3]:
     - link "Returns":
-      - /url: "#/returns?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=returns
   - heading "Dividends" [level=3]:
     - link "Dividends":
-      - /url: "#/dividends?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&path=dividends
   - heading "Cash Flows" [level=3]:
     - link "Cash Flows":
-      - /url: "#/cash_flows?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&path=cash_flows
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/groups?investments=c%3AVHT"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=groups
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=investments
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
-      - /url: "#/missing_prices"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=missing_prices
   - heading "Help" [level=3]:
     - link "Help":
-      - /url: "#/help"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&interval=month&path=help
   - text: Investments Filter
   - button "VHT"
   - combobox "Investments Filter"

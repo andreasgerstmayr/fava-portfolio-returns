@@ -10,7 +10,7 @@ from fava_portfolio_returns.test.test import load_portfolio_file
 class TestCompare(unittest.TestCase):
     def test_savings_plan_simple(self):
         p = load_portfolio_file("savings_plan")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "simple", ["c:CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
         assert len(series) == 2
         assert series[0].name == "Returns"
         assert series[0].data == [
@@ -29,7 +29,7 @@ class TestCompare(unittest.TestCase):
 
     def test_savings_plan_twr(self):
         p = load_portfolio_file("savings_plan")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "twr", ["c:CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "twr", ["c_CORP"])
         assert len(series) == 2
         assert series[0].name == "Returns"
         assert series[0].data == [
@@ -49,7 +49,7 @@ class TestCompare(unittest.TestCase):
 
     def test_savings_plan_middle(self):
         p = load_portfolio_file("savings_plan")
-        series = compare_chart(p, datetime.date(2020, 3, 1), datetime.date(2020, 4, 1), "simple", ["c:CORP"])
+        series = compare_chart(p, datetime.date(2020, 3, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
         assert series == [
             NamedSeries(
                 name="Returns",
@@ -71,7 +71,7 @@ class TestCompare(unittest.TestCase):
 
     def test_linear_growth_stock_simple(self):
         p = load_portfolio_file("linear_growth_stock")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "simple", ["c:CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "simple", ["c_CORP"])
         assert series == [
             NamedSeries(
                 name="Returns",
@@ -101,7 +101,7 @@ class TestCompare(unittest.TestCase):
 
     def test_linear_growth_stock_twr(self):
         p = load_portfolio_file("linear_growth_stock")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "twr", ["c:CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "twr", ["c_CORP"])
         assert series == [
             NamedSeries(
                 name="Returns",
@@ -133,10 +133,10 @@ class TestCompare(unittest.TestCase):
     def test_portfolio_common_date_doesnt_change_twr(self):
         # test to prevent wrong TWR calculation if some dates in the beginning of the series have to be omitted
         # (if the common date is later than the first date)
-        p = load_portfolio_file("portfolio_vs_currency", investment_filter=["c:CORP1"])
+        p = load_portfolio_file("portfolio_vs_currency", investment_filter=["c_CORP1"])
         # common date is 2020-02-05 since CORP2 doesn't have earlier pricing or transactions
-        # presence of c:CORP2 in the filter changes the starting date from 2020-02-01 to 2020-02-05
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 3, 15), "twr", ["c:CORP1", "c:CORP2"])
+        # presence of c_CORP2 in the filter changes the starting date from 2020-02-01 to 2020-02-05
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 3, 15), "twr", ["c_CORP1", "c_CORP2"])
         # Note that TWR Returns of the portfolio and stock price should be identical because there were no fees or
         # any other cash flows that would create the difference
         assert series == [

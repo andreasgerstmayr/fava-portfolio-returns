@@ -1,20 +1,45 @@
 import { Alert, alpha, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { Link } from "react-router";
-import { BooleanParam, useQueryParam, withDefault } from "use-query-params";
+import { createRoute, Link, stripSearchParams } from "@tanstack/react-router";
+import { z } from "zod";
 import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { fixedPercentFormatter, numberFormatter } from "../components/format";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethods } from "../components/ReturnsMethodSelection";
+import { useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-export function Investments() {
+const searchSchema = z.object({
+  liquidated: z.boolean().default(false).catch(false),
+});
+
+export const InvestmentsRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "investments",
+  validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams({ liquidated: false })],
+  },
+  staticData: {
+    showInvestmentsSelection: false,
+  },
+  component: Investments,
+});
+
+function Investments() {
+  const [includeLiquidated, setIncludeLiquidated] = useSearchParam(InvestmentsRoute, "liquidated");
+
   return (
     <Dashboard>
       <DashboardRow>
         <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
-          <InvestmentsTable groupBy="currency" />
+          <InvestmentsTable
+            groupBy="currency"
+            includeLiquidated={includeLiquidated}
+            setIncludeLiquidated={setIncludeLiquidated}
+          />
         </Panel>
       </DashboardRow>
     </Dashboard>
@@ -23,13 +48,14 @@ export function Investments() {
 
 interface InvestmentsTableProps {
   groupBy: "group" | "currency";
+  includeLiquidated: boolean;
+  setIncludeLiquidated: (x: boolean) => void;
 }
 
-export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
+export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquidated }: InvestmentsTableProps) {
   const theme = useTheme();
   const { targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
-  const [includeLiquidated, setIncludeLiquidated] = useQueryParam("liquidated", withDefault(BooleanParam, false));
 
   if (isPending) {
     return <Loading />;
@@ -61,7 +87,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
       headerName: "Name",
       flex: 1, // expand to remaining space
       renderCell: ({ row }) => (
-        <Link to={`/portfolio?${new URLSearchParams({ investments: row.id, currency: row.currency })}`}>
+        <Link to="/portfolio" search={{ investments: row.id, currency: row.currency }}>
           {row.name}
         </Link>
       ),

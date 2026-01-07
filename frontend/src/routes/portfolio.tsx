@@ -1,16 +1,31 @@
 import { Alert, useTheme } from "@mui/material";
-import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { z } from "zod";
 import { usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { anyFormatter, getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
+import { useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-const ChartParam = withDefault(createEnumParam(["performance", "value"] as const), "performance" as const);
+const searchSchema = z.object({
+  chart: z.enum(["performance", "value"]).default("performance").catch("performance"),
+});
 
-export function Portfolio() {
-  const [chart, setChart] = useQueryParam("chart", ChartParam);
+export const PortfolioRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "portfolio",
+  validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams({ chart: "performance" })],
+  },
+  component: Portfolio,
+});
+
+function Portfolio() {
+  const [chart, setChart] = useSearchParam(PortfolioRoute, "chart");
 
   return (
     <Dashboard>
