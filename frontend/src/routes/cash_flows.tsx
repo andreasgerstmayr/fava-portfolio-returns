@@ -1,5 +1,7 @@
 import { Alert } from "@mui/material";
-import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { fallback } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import { useCashFlows } from "../api/cash_flows";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -12,11 +14,25 @@ import {
   timestampToMonth,
   timestampToYear,
 } from "../components/format";
+import { useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-const IntervalParam = withDefault(createEnumParam(["month", "year"] as const), "month" as const);
+const searchSchema = z.object({
+  interval: fallback(z.enum(["month", "year"]).default("month"), "month"),
+});
 
-export function CashFlows() {
-  const [interval, setInterval] = useQueryParam("interval", IntervalParam);
+export const CashFlowsRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "cash_flows",
+  validateSearch: searchSchema,
+  search: {
+    middlewares: [stripSearchParams({ interval: "month" })],
+  },
+  component: CashFlows,
+});
+
+function CashFlows() {
+  const [interval, setInterval] = useSearchParam(CashFlowsRoute, "interval");
 
   return (
     <Dashboard>

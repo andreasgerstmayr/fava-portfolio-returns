@@ -95,12 +95,12 @@ plugin "beancount.plugins.implicit_prices"
         p_single = load_portfolio_str(
             portfolio_str,
             BEANGROW_CONFIG_CORP_CASH_FLOWS,
-            investment_filter=["a:Assets:CORP:SingleCashFlow"],
+            investment_filter=["a_Assets:CORP:SingleCashFlow"],
         )
         p_multiple = load_portfolio_str(
             portfolio_str,
             BEANGROW_CONFIG_CORP_CASH_FLOWS,
-            investment_filter=["a:Assets:CORP:MultipleCashFlows"],
+            investment_filter=["a_Assets:CORP:MultipleCashFlows"],
         )
 
         p_single.target_currency = "CURRENCY_BASE"

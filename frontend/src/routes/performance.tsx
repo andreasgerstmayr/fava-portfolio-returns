@@ -9,8 +9,10 @@ import {
   Theme,
   useTheme,
 } from "@mui/material";
+import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { EChartsOption } from "echarts";
-import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { z } from "zod";
 import { NamedSeries, useCompare } from "../api/compare";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -19,21 +21,31 @@ import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
 import { ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { anyFormatter, percentFormatter } from "../components/format";
-import { CommaArrayParam } from "../components/query_params";
+import { useArrayQueryParam, useSearchParam } from "../components/useSearchParam";
+import { RootRoute } from "./__root";
 
-const ReturnsMethodEnum = createEnumParam(["simple", "twr"]);
-const ReturnsMethodParam = withDefault(ReturnsMethodEnum, "simple" as const);
-const InvestmentsParam = withDefault(CommaArrayParam, []);
-const BuySellPoints = withDefault(BooleanParam, false);
-const SymbolScalingEnum = createEnumParam(["linear", "logarithmic"]);
-const SymbolScalingParam = withDefault(SymbolScalingEnum, "linear" as const);
+const searchSchema = z.object({
+  method: fallback(z.enum(["simple", "twr"]), "simple").default("simple"),
+  compareWith: z.string().optional(),
+  buySellPoints: fallback(z.boolean(), false).default(false),
+  symbolScaling: fallback(z.enum(["linear", "logarithmic"]), "linear").default("linear"),
+});
 
-export function Performance() {
-  const [method, setMethod] = useQueryParam("method", ReturnsMethodParam);
-  const [_investments, setInvestments] = useQueryParam("compareWith", InvestmentsParam);
-  const [showBuySellPoints, setShowBuySellPoints] = useQueryParam("buySellPoints", BuySellPoints);
-  const [symbolScaling, setSymbolScaling] = useQueryParam("symbolScaling", SymbolScalingParam);
-  const investments = _investments.filter((i) => i !== null) as string[];
+export const PerformanceRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "performance",
+  validateSearch: zodValidator(searchSchema),
+  search: {
+    middlewares: [stripSearchParams({ method: "simple", buySellPoints: false, symbolScaling: "linear" })],
+  },
+  component: Performance,
+});
+
+function Performance() {
+  const [method, setMethod] = useSearchParam(PerformanceRoute, "method");
+  const [investments, setInvestments] = useArrayQueryParam(useSearchParam(PerformanceRoute, "compareWith"));
+  const [showBuySellPoints, setShowBuySellPoints] = useSearchParam(PerformanceRoute, "buySellPoints");
+  const [symbolScaling, setSymbolScaling] = useSearchParam(PerformanceRoute, "symbolScaling");
 
   return (
     <Dashboard>

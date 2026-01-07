@@ -64,31 +64,31 @@
 - article:
   - heading "Portfolio" [level=3]:
     - link "Portfolio":
-      - /url: "#/portfolio"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=portfolio
   - heading "Performance" [level=3]:
     - link "Performance":
-      - /url: "#/performance"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=performance
   - heading "Returns" [level=3]:
     - link "Returns":
-      - /url: "#/returns"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=returns
   - heading "Dividends" [level=3]:
     - link "Dividends":
-      - /url: "#/dividends"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends
   - heading "Cash Flows" [level=3]:
     - link "Cash Flows":
-      - /url: "#/cash_flows"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=cash_flows
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/groups"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=groups
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=investments
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
-      - /url: "#/missing_prices"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=missing_prices
   - heading "Help" [level=3]:
     - link "Help":
-      - /url: "#/help"
+      - /url: /beancount/extension/FavaPortfolioReturns/?interval=month&path=help
   - text: Investments Filter
   - combobox "Investments Filter"
   - button "Open"

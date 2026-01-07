@@ -64,31 +64,31 @@
 - article:
   - heading "Portfolio" [level=3]:
     - link "Portfolio":
-      - /url: "#/portfolio"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=portfolio
   - heading "Performance" [level=3]:
     - link "Performance":
-      - /url: "#/performance"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=performance
   - heading "Returns" [level=3]:
     - link "Returns":
-      - /url: "#/returns"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=returns
   - heading "Dividends" [level=3]:
     - link "Dividends":
-      - /url: "#/dividends"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends
   - heading "Cash Flows" [level=3]:
     - link "Cash Flows":
-      - /url: "#/cash_flows"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=cash_flows
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/groups"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=groups
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=investments
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
-      - /url: "#/missing_prices"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=missing_prices
   - heading "Help" [level=3]:
     - link "Help":
-      - /url: "#/help"
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=help
   - group:
     - button /[\d,.]+[bkmBKM]+/
     - button /[\d,.]+[bkmBKM]+/
@@ -119,7 +119,7 @@
       - row /American Funds The Growth Fund of America Class R-6 \d+\.\d+ RGAGX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - gridcell "American Funds The Growth Fund of America Class R-6":
           - link "American Funds The Growth Fund of America Class R-6":
-            - /url: "#/portfolio?investments=c%3ARGAGX&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_RGAGX&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ RGAGX/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
@@ -132,7 +132,7 @@
       - row /iShares Core S&P Total U\.S\. Stock Market ETF \d+\.\d+ ITOT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD \d+\.\d+ USD -\d+\.\d+ USD -\d+\.\d+% -\d+\.\d+% -\d+\.\d+%/:
         - gridcell "iShares Core S&P Total U.S. Stock Market ETF":
           - link "iShares Core S&P Total U.S. Stock Market ETF":
-            - /url: "#/portfolio?investments=c%3AITOT&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_ITOT&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ ITOT/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
@@ -145,7 +145,7 @@
       - row /SPDR Gold Trust \(ETF\) \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - gridcell "SPDR Gold Trust (ETF)":
           - link "SPDR Gold Trust (ETF)":
-            - /url: "#/portfolio?investments=c%3AGLD&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_GLD&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ GLD/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
@@ -158,7 +158,7 @@
       - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - gridcell "Vanguard FTSE Developed Markets ETF":
           - link "Vanguard FTSE Developed Markets ETF":
-            - /url: "#/portfolio?investments=c%3AVEA&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VEA&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ VEA/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
@@ -171,7 +171,7 @@
       - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - gridcell "Vanguard Health Care ETF":
           - link "Vanguard Health Care ETF":
-            - /url: "#/portfolio?investments=c%3AVHT&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ VHT/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
@@ -184,7 +184,7 @@
       - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
         - gridcell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
           - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
-            - /url: "#/portfolio?investments=c%3AVBMPX&currency=USD"
+            - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VBMPX&currency=USD&path=portfolio
         - gridcell /\d+\.\d+ VBMPX/
         - gridcell /\d+,\d+\.\d+ USD/
         - gridcell /\d+,\d+\.\d+ USD/
