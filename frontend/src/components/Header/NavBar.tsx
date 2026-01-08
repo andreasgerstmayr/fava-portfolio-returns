@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import { NavLink, useSearchParams } from "react-router";
+import { NavLink } from "react-router";
 import { useToolbarContext } from "./ToolbarProvider";
 
 export function NavBar() {
@@ -11,7 +11,6 @@ export function NavBar() {
   if (targetCurrency !== config.operatingCurrencies[0]) {
     toolbarParams.set("currency", targetCurrency);
   }
-  const [search] = useSearchParams();
 
   return (
     <Box className="headerline" sx={{ ".active": { color: "light-dark(hsl(0deg 0% 25%), hsl(0deg 0% 80%))" } }}>
@@ -31,20 +30,10 @@ export function NavBar() {
         <NavLink to={`/cash_flows?${toolbarParams}`}>Cash Flows</NavLink>
       </h3>
       <h3>
-        <NavLink
-          to={`/investments?groupBy=group`}
-          className={({ isActive }) => (isActive && search.get("groupBy") === "group" ? "active" : "")}
-        >
-          Groups
-        </NavLink>
+        <NavLink to={`/groups?${toolbarParams}`}>Groups</NavLink>
       </h3>
       <h3>
-        <NavLink
-          to={`/investments?groupBy=currency`}
-          className={({ isActive }) => (isActive && search.get("groupBy") === "currency" ? "active" : "")}
-        >
-          Investments
-        </NavLink>
+        <NavLink to={`/investments`}>Investments</NavLink>
       </h3>
       <h3>
         <NavLink to={`/missing_prices`}>Missing Prices</NavLink>
