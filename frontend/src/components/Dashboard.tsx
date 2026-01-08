@@ -52,31 +52,35 @@ export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
   );
 }
 
-interface Option<TKey> {
-  key: TKey;
-  label: string;
-}
-
 interface PanelGroupProps<TKey> {
-  options: Option<TKey>[];
-  selected: TKey;
-  setSelected: (x: TKey) => void;
-  children: React.ReactElement<PanelProps>[];
+  active: TKey;
+  setActive: (x: TKey) => void;
+  children: React.ReactElement<PanelGroupItemProps<TKey>>[];
 }
 
-export function PanelGroup<TKey extends string>({ options, selected, setSelected, children }: PanelGroupProps<TKey>) {
-  const activePanelIdx = options.findIndex((option) => option.key == selected);
-  const activePanel = children[Math.max(activePanelIdx, 0)];
+export function PanelGroup<TKey extends string>({ active, setActive, children: items }: PanelGroupProps<TKey>) {
+  const activePanelGroupItem = items.find((item) => item.props.id === active) ?? items[0];
+  const activePanel = activePanelGroupItem.props.children;
 
   const select = (
-    <Select value={selected} onChange={(e) => setSelected(e.target.value as TKey)} displayEmpty size="small">
-      {options.map((option) => (
-        <MenuItem key={option.key} value={option.key}>
-          {option.label}
+    <Select value={active} onChange={(e) => setActive(e.target.value as TKey)} displayEmpty size="small">
+      {items.map((item) => (
+        <MenuItem key={item.props.id} value={item.props.id}>
+          {item.props.label}
         </MenuItem>
       ))}
     </Select>
   );
 
   return <Panel {...activePanel.props} topRightElem={select} />;
+}
+
+interface PanelGroupItemProps<TKey> {
+  id: TKey;
+  label: string;
+  children: React.ReactElement<PanelProps>;
+}
+
+export function PanelGroupItem<TKey>(_props: PanelGroupItemProps<TKey>) {
+  return null;
 }

@@ -2,7 +2,7 @@ import { Alert } from "@mui/material";
 import { EChartsOption } from "echarts";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useDividends } from "../api/dividends";
-import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
+import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
@@ -16,20 +16,17 @@ export function Dividends() {
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup
-          options={[
-            { key: "month", label: "monthly" },
-            { key: "year", label: "yearly" },
-          ]}
-          selected={interval}
-          setSelected={setInterval}
-        >
-          <Panel title="Dividends">
-            <DividendsChart interval="monthly" />
-          </Panel>
-          <Panel title="Dividends">
-            <DividendsChart interval="yearly" />
-          </Panel>
+        <PanelGroup active={interval} setActive={setInterval}>
+          <PanelGroupItem id="month" label="monthly">
+            <Panel title="Dividends">
+              <DividendsChart interval="monthly" />
+            </Panel>
+          </PanelGroupItem>
+          <PanelGroupItem id="year" label="yearly">
+            <Panel title="Dividends">
+              <DividendsChart interval="yearly" />
+            </Panel>
+          </PanelGroupItem>
         </PanelGroup>
       </DashboardRow>
     </Dashboard>

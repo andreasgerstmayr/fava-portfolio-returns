@@ -1,7 +1,7 @@
 import { Alert, useTheme } from "@mui/material";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { usePortfolio } from "../api/portfolio";
-import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
+import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
@@ -15,28 +15,25 @@ export function Portfolio() {
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup
-          options={[
-            { key: "performance", label: "Performance" },
-            { key: "value", label: "Portfolio Value" },
-          ]}
-          selected={chart}
-          setSelected={setChart}
-        >
-          <Panel
-            title="Performance"
-            help="The performance chart shows the total profit and loss of the portfolio."
-            sx={{ flex: 2 }}
-          >
-            <PerformanceChart />
-          </Panel>
-          <Panel
-            title="Portfolio Value"
-            help="The portfolio value chart compares the market value with the cost value of the portfolio."
-            sx={{ flex: 2 }}
-          >
-            <PortfolioValueChart />
-          </Panel>
+        <PanelGroup active={chart} setActive={setChart}>
+          <PanelGroupItem id="performance" label="Performance">
+            <Panel
+              title="Performance"
+              help="The performance chart shows the total profit and loss of the portfolio."
+              sx={{ flex: 2 }}
+            >
+              <PerformanceChart />
+            </Panel>
+          </PanelGroupItem>
+          <PanelGroupItem id="value" label="Portfolio Value">
+            <Panel
+              title="Portfolio Value"
+              help="The portfolio value chart compares the market value with the cost value of the portfolio."
+              sx={{ flex: 2 }}
+            >
+              <PortfolioValueChart />
+            </Panel>
+          </PanelGroupItem>
         </PanelGroup>
         <Panel title="Allocation">
           <AllocationChart />
