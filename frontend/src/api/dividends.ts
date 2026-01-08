@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchJSON } from "./api";
+import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
 
 interface DividendsRequest {
   investmentFilter: string[];
@@ -13,7 +13,7 @@ export interface DividendsResponse {
 }
 
 export function useDividends(request: DividendsRequest): UseQueryResult<DividendsResponse> {
-  const params = new URLSearchParams(location.search);
+  const params = createURLSearchParamsWithFavaFilters();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   params.set("interval", request.interval);

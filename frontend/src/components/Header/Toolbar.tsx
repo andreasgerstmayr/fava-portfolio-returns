@@ -9,12 +9,13 @@ export function Toolbar() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handle = matches.pop()?.handle as Record<string, any> | undefined;
   const showInvestmentsSelection = handle?.showInvestmentsSelection !== false;
+  const showDateRangeSelection = handle?.showDateRangeSelection !== false;
   const showCurrencySelection = handle?.showCurrencySelection !== false;
 
   return (
     <Stack sx={{ flexDirection: "row", justifyContent: "flex-end", alignItems: "center", gap: 2, marginBottom: 2 }}>
       {showInvestmentsSelection && <GlobalInvestmentsSelection />}
-      <DateRangeSelection />
+      {showDateRangeSelection && <DateRangeSelection />}
       {showCurrencySelection && (
         <Box>
           <TargetCurrencySelection />

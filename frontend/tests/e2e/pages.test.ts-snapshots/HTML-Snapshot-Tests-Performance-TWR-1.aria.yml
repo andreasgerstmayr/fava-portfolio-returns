@@ -79,10 +79,10 @@
       - /url: "#/cash_flows?investments=g%3AGold"
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/groups"
+      - /url: "#/investments?groupBy=group"
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments"
+      - /url: "#/investments?groupBy=currency"
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
       - /url: "#/missing_prices"

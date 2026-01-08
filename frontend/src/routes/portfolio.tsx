@@ -1,4 +1,5 @@
 import { Alert, useTheme } from "@mui/material";
+import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -6,11 +7,22 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { anyFormatter, getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
 
+const ChartParam = withDefault(createEnumParam(["performance", "value"] as const), "performance" as const);
+
 export function Portfolio() {
+  const [chart, setChart] = useQueryParam("chart", ChartParam);
+
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup param="chart" labels={["Performance", "Portfolio Value"]}>
+        <PanelGroup
+          options={[
+            { key: "performance", label: "Performance" },
+            { key: "value", label: "Portfolio Value" },
+          ]}
+          selected={chart}
+          setSelected={setChart}
+        >
           <Panel
             title="Performance"
             help="The performance chart shows the total profit and loss of the portfolio."

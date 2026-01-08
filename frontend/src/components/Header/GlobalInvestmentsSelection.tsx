@@ -2,13 +2,13 @@ import { InvestmentsSelection } from "../InvestmentsSelection";
 import { useToolbarContext } from "./ToolbarProvider";
 
 export function GlobalInvestmentsSelection() {
-  const { investmentFilter: selectedInvestments, setInvestmentFilter: setSelectedInvestments } = useToolbarContext();
+  const { investmentFilter, setInvestmentFilter } = useToolbarContext();
   return (
     <InvestmentsSelection
       label="Investments Filter"
       types={["Group", "Account", "Currency"]}
-      investments={selectedInvestments}
-      setInvestments={setSelectedInvestments}
+      investments={investmentFilter}
+      setInvestments={setInvestmentFilter}
     />
   );
 }

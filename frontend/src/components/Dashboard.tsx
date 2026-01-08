@@ -1,6 +1,5 @@
 import { Card, MenuItem, Select, Stack, SxProps, Theme, useTheme } from "@mui/material";
 import React from "react";
-import { NumberParam, useQueryParam, withDefault } from "use-query-params";
 
 interface DashboardProps {
   children?: React.ReactNode;
@@ -53,32 +52,31 @@ export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
   );
 }
 
-interface PanelGroupProps {
-  param: string;
-  labels: string[];
+interface Option<TKey> {
+  key: TKey;
+  label: string;
+}
+
+interface PanelGroupProps<TKey> {
+  options: Option<TKey>[];
+  selected: TKey;
+  setSelected: (x: TKey) => void;
   children: React.ReactElement<PanelProps>[];
 }
 
-const ActivePanelParam = withDefault(NumberParam, 0);
-
-export function PanelGroup({ param, labels, children }: PanelGroupProps) {
-  const [activePanelIdx, setActivePanelIdx] = useQueryParam(param, ActivePanelParam);
-  const activePanel = children[activePanelIdx];
+export function PanelGroup<TKey extends string>({ options, selected, setSelected, children }: PanelGroupProps<TKey>) {
+  const activePanelIdx = options.findIndex((option) => option.key == selected);
+  const activePanel = children[Math.max(activePanelIdx, 0)];
 
   const select = (
-    <Select
-      value={activePanelIdx}
-      onChange={(e) => setActivePanelIdx(e.target.value as number)}
-      displayEmpty
-      size="small"
-    >
-      {labels.map((label, i) => (
-        <MenuItem key={i} value={i}>
-          {label}
+    <Select value={selected} onChange={(e) => setSelected(e.target.value as TKey)} displayEmpty size="small">
+      {options.map((option) => (
+        <MenuItem key={option.key} value={option.key}>
+          {option.label}
         </MenuItem>
       ))}
     </Select>
   );
 
-  return <Panel {...activePanel.props} topRightElem={select}></Panel>;
+  return <Panel {...activePanel.props} topRightElem={select} />;
 }
