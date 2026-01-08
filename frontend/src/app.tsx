@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import { router } from "./router";
@@ -15,10 +16,12 @@ const queryClient = new QueryClient({
 export function renderApp(container: Element) {
   const root = createRoot(container);
   root.render(
-    <QueryClientProvider client={queryClient}>
-      <CustomThemeProvider>
-        <RouterProvider router={router} />
-      </CustomThemeProvider>
-    </QueryClientProvider>,
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <CustomThemeProvider>
+          <RouterProvider router={router} />
+        </CustomThemeProvider>
+      </QueryClientProvider>
+    </StrictMode>,
   );
 }
