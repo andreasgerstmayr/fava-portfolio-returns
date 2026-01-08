@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchJSON } from "./api";
+import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
 import { Series } from "./returns";
 
 interface CompareRequest {
@@ -21,7 +21,7 @@ export interface CompareResponse {
 }
 
 export function useCompare(request: CompareRequest): UseQueryResult<CompareResponse> {
-  const params = new URLSearchParams(location.search); // keep Fava's filters like ?time=...
+  const params = createURLSearchParamsWithFavaFilters();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   params.set("method", request.method);

@@ -10,8 +10,8 @@ const pages = [
   { name: "Returns (TWR)", url: "#/returns?method=twr" },
   { name: "Dividends", url: "#/dividends" },
   { name: "Cash Flows", url: "#/cash_flows?investments=c:VHT" },
-  { name: "Groups", url: "#/groups" },
-  { name: "Investments", url: "#/investments" },
+  { name: "Groups", url: "#/investments?groupBy=group" },
+  { name: "Investments", url: "#/investments?groupBy=currency" },
 ];
 
 test.describe("PNG Snapshot Tests", () => {

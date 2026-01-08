@@ -1,4 +1,5 @@
 import { Alert } from "@mui/material";
+import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useCashFlows } from "../api/cash_flows";
 import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
@@ -12,11 +13,22 @@ import {
   timestampToYear,
 } from "../components/format";
 
+const IntervalParam = withDefault(createEnumParam(["month", "year"] as const), "month" as const);
+
 export function CashFlows() {
+  const [interval, setInterval] = useQueryParam("interval", IntervalParam);
+
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup param="interval" labels={["monthly", "yearly"]}>
+        <PanelGroup
+          options={[
+            { key: "month", label: "monthly" },
+            { key: "year", label: "yearly" },
+          ]}
+          selected={interval}
+          setSelected={setInterval}
+        >
           <Panel
             title="Cash Flows"
             help="The cash flow chart shows all incoming and outgoing cashflows of an investment."

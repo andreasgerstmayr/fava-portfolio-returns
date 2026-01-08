@@ -84,22 +84,9 @@ class Portfolio:
         self.account_data_map = extract(
             entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir or ""
         )
-        inv_accounts = [
-            InvestmentAccount(
-                id=f"a:{investment.asset_account}",
-                currency=investment.currency,
-                assetAccount=investment.asset_account,
-            )
-            for investment in self.beangrow_cfg.investments.investment
-        ]
-        groups = [
-            InvestmentGroup(
-                id=f"g:{group.name}", name=group.name, investments=list(group.investment), currency=group.currency
-            )
-            for group in self.beangrow_cfg.groups.group
-        ]
-        currencies = get_ledger_currencies(entries, self.account_data_map)
-        self.investments_config = InvestmentsConfig(accounts=inv_accounts, groups=groups, currencies=currencies)
+        self.investments_config = build_investments_config(
+            self.beangrow_cfg, self.account_data_map, [e for e in entries if isinstance(e, Commodity)]
+        )
 
     def filter(self, investment_filter: list[str], target_currency: Optional[str]):
         account_data_list = filter_investments(self.investments_config, self.account_data_map, investment_filter)
@@ -212,6 +199,37 @@ def get_target_currency(account_data_list: list[AccountData]) -> str:
     return cost_currencies.pop()
 
 
+def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, AccountData], commodities: list[Commodity]):
+    accounts = [
+        InvestmentAccount(
+            id=f"a:{investment.asset_account}",
+            currency=investment.currency,
+            assetAccount=investment.asset_account,
+        )
+        for investment in beangrow_cfg.investments.investment
+    ]
+
+    groups = [
+        InvestmentGroup(
+            id=f"g:{group.name}", name=group.name, investments=list(group.investment), currency=group.currency
+        )
+        for group in beangrow_cfg.groups.group
+    ]
+
+    investment_currencies = set([account.currency for account in account_data_map.values()])
+    currencies = [
+        LedgerCurrency(
+            id=f"c:{c.currency}",
+            name=c.meta.get("name", c.currency),
+            currency=c.currency,
+            isInvestment=c.currency in investment_currencies,
+        )
+        for c in commodities
+    ]
+
+    return InvestmentsConfig(accounts=accounts, groups=groups, currencies=currencies)
+
+
 def filter_investments(
     investment_groups: InvestmentsConfig,
     account_data_map: dict[str, AccountData],
@@ -237,20 +255,3 @@ def filter_investments(
         accounts.update(account_data_map.keys())
 
     return [account_data_map[account] for account in accounts]
-
-
-def get_ledger_currencies(entries: list[Directive], account_data_map: dict[str, AccountData]) -> list[LedgerCurrency]:
-    investment_currencies = set()
-    for account in account_data_map.values():
-        investment_currencies.add(account.currency)
-    currencies = [
-        LedgerCurrency(
-            id=f"c:{c.currency}",
-            name=c.meta.get("name", c.currency),
-            currency=c.currency,
-            isInvestment=c.currency in investment_currencies,
-        )
-        for c in entries
-        if isinstance(c, Commodity)
-    ]
-    return currencies

@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { fetchJSON } from "./api";
+import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
 
 interface CashFlowsRequest {
   investmentFilter: string[];
@@ -22,7 +22,7 @@ export interface CashFlowsResponse {
 }
 
 export function useCashFlows(request: CashFlowsRequest): UseQueryResult<CashFlowsResponse> {
-  const params = new URLSearchParams(location.search);
+  const params = createURLSearchParamsWithFavaFilters();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   params.set("interval", request.interval);

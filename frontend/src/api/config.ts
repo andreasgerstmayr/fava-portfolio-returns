@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { PNLColorSchemeVariant } from "../theme";
-import { fetchJSON } from "./api";
+import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
 
 interface Account {
   id: string;
@@ -33,7 +33,7 @@ export interface ConfigResponse {
 }
 
 export function useConfig() {
-  const params = new URLSearchParams(location.search);
+  const params = createURLSearchParamsWithFavaFilters();
   const url = `config?${params}`;
 
   return useQuery({

@@ -1,7 +1,7 @@
 import { Alert, alpha, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Link } from "react-router";
-import { BooleanParam, useQueryParam } from "use-query-params";
+import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { fixedPercentFormatter, numberFormatter } from "../components/format";
@@ -9,25 +9,23 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethods } from "../components/ReturnsMethodSelection";
 
-export function Groups() {
-  return (
-    <Dashboard>
-      <DashboardRow>
-        <Panel title="Groups" help="Lists the groups defined in the beangrow configuration file.">
-          <InvestmentsTable groupBy="group" />
-        </Panel>
-      </DashboardRow>
-    </Dashboard>
-  );
-}
+const GroupByParam = withDefault(createEnumParam(["group", "currency"] as const), "currency" as const);
 
 export function Investments() {
+  const [groupBy] = useQueryParam("groupBy", GroupByParam);
+
   return (
     <Dashboard>
       <DashboardRow>
-        <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
-          <InvestmentsTable groupBy="currency" />
-        </Panel>
+        {groupBy === "group" ? (
+          <Panel title="Groups" help="Lists the groups defined in the beangrow configuration file.">
+            <InvestmentsTable groupBy={groupBy} />
+          </Panel>
+        ) : (
+          <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
+            <InvestmentsTable groupBy={groupBy} />
+          </Panel>
+        )}
       </DashboardRow>
     </Dashboard>
   );
@@ -41,7 +39,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
   const theme = useTheme();
   const { targetCurrency } = useToolbarContext();
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
-  const [includeLiquidated, setIncludeLiquidated] = useQueryParam("liquidated", BooleanParam);
+  const [includeLiquidated, setIncludeLiquidated] = useQueryParam("liquidated", withDefault(BooleanParam, false));
 
   if (isPending) {
     return <Loading />;
@@ -216,7 +214,7 @@ export function InvestmentsTable({ groupBy }: InvestmentsTableProps) {
       />
       <FormGroup>
         <FormControlLabel
-          control={<Switch value={includeLiquidated} onChange={(_, value) => setIncludeLiquidated(value)} />}
+          control={<Switch checked={includeLiquidated} onChange={(_, value) => setIncludeLiquidated(value)} />}
           label="Include liquidated investments"
         />
       </FormGroup>
