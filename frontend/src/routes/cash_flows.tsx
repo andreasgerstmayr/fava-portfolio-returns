@@ -1,7 +1,7 @@
 import { Alert } from "@mui/material";
 import { createEnumParam, useQueryParam, withDefault } from "use-query-params";
 import { useCashFlows } from "../api/cash_flows";
-import { Dashboard, DashboardRow, Panel, PanelGroup } from "../components/Dashboard";
+import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
@@ -21,26 +21,23 @@ export function CashFlows() {
   return (
     <Dashboard>
       <DashboardRow>
-        <PanelGroup
-          options={[
-            { key: "month", label: "monthly" },
-            { key: "year", label: "yearly" },
-          ]}
-          selected={interval}
-          setSelected={setInterval}
-        >
-          <Panel
-            title="Cash Flows"
-            help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
-          >
-            <CashFlowsChart interval="monthly" />
-          </Panel>
-          <Panel
-            title="Cash Flows"
-            help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
-          >
-            <CashFlowsChart interval="yearly" />
-          </Panel>
+        <PanelGroup active={interval} setActive={setInterval}>
+          <PanelGroupItem id="month" label="monthly">
+            <Panel
+              title="Cash Flows"
+              help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
+            >
+              <CashFlowsChart interval="monthly" />
+            </Panel>
+          </PanelGroupItem>
+          <PanelGroupItem id="year" label="yearly">
+            <Panel
+              title="Cash Flows"
+              help="The cash flow chart shows all incoming and outgoing cashflows of an investment."
+            >
+              <CashFlowsChart interval="yearly" />
+            </Panel>
+          </PanelGroupItem>
         </PanelGroup>
       </DashboardRow>
       <DashboardRow>

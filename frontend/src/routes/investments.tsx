@@ -1,7 +1,7 @@
 import { Alert, alpha, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Link } from "react-router";
-import { BooleanParam, createEnumParam, useQueryParam, withDefault } from "use-query-params";
+import { BooleanParam, useQueryParam, withDefault } from "use-query-params";
 import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { fixedPercentFormatter, numberFormatter } from "../components/format";
@@ -9,23 +9,13 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethods } from "../components/ReturnsMethodSelection";
 
-const GroupByParam = withDefault(createEnumParam(["group", "currency"] as const), "currency" as const);
-
 export function Investments() {
-  const [groupBy] = useQueryParam("groupBy", GroupByParam);
-
   return (
     <Dashboard>
       <DashboardRow>
-        {groupBy === "group" ? (
-          <Panel title="Groups" help="Lists the groups defined in the beangrow configuration file.">
-            <InvestmentsTable groupBy={groupBy} />
-          </Panel>
-        ) : (
-          <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
-            <InvestmentsTable groupBy={groupBy} />
-          </Panel>
-        )}
+        <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
+          <InvestmentsTable groupBy="currency" />
+        </Panel>
       </DashboardRow>
     </Dashboard>
   );

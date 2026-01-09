@@ -4,10 +4,15 @@ import { DateRangeSelection } from "./DateRangeSelection";
 import { GlobalInvestmentsSelection } from "./GlobalInvestmentsSelection";
 import { TargetCurrencySelection } from "./TargetCurrencySelection";
 
+interface Handle {
+  showInvestmentsSelection: boolean;
+  showDateRangeSelection: boolean;
+  showCurrencySelection: boolean;
+}
+
 export function Toolbar() {
   const matches = useMatches();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handle = matches.pop()?.handle as Record<string, any> | undefined;
+  const handle = matches[matches.length - 1]?.handle as Handle | undefined;
   const showInvestmentsSelection = handle?.showInvestmentsSelection !== false;
   const showDateRangeSelection = handle?.showDateRangeSelection !== false;
   const showCurrencySelection = handle?.showCurrencySelection !== false;

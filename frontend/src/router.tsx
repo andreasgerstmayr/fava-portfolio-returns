@@ -1,6 +1,7 @@
 import { createHashRouter, Navigate } from "react-router";
 import { CashFlows } from "./routes/cash_flows";
 import { Dividends } from "./routes/dividends";
+import { Groups } from "./routes/groups";
 import { Help } from "./routes/help";
 import { Investments } from "./routes/investments";
 import { MissingPrices } from "./routes/missing_prices";
@@ -34,6 +35,11 @@ export const router = createHashRouter([
       {
         path: "cash_flows",
         element: <CashFlows />,
+      },
+      {
+        path: "groups",
+        element: <Groups />,
+        handle: { showInvestmentsSelection: false, showCurrencySelection: false },
       },
       {
         path: "investments",

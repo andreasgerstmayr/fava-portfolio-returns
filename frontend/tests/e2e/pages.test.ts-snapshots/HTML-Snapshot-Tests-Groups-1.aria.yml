@@ -79,10 +79,10 @@
       - /url: "#/cash_flows"
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/investments?groupBy=group"
+      - /url: "#/groups"
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments?groupBy=currency"
+      - /url: "#/investments"
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
       - /url: "#/missing_prices"
@@ -97,9 +97,6 @@
     - button "3Y"
     - button "5Y"
     - button "MAX" [pressed]
-  - group:
-    - button "USD" [pressed]
-    - button "EUR"
   - heading "Groups" [level=3]
   - paragraph: Lists the groups defined in the beangrow configuration file.
   - grid:
