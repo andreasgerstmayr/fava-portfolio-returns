@@ -3,15 +3,15 @@ import { expect, test } from "@playwright/test";
 const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
 const pages = [
   { name: "Portfolio", url: "" },
-  { name: "Performance", url: "#/performance?compareWith=c:VHT,c:GLD" },
-  { name: "Performance (TWR)", url: "#/performance?investments=g:Gold&method=twr&compareWith=c:GLD" },
-  { name: "Returns", url: "#/returns" },
-  { name: "Returns (MDM)", url: "#/returns?method=mdm" },
-  { name: "Returns (TWR)", url: "#/returns?method=twr" },
-  { name: "Dividends", url: "#/dividends" },
-  { name: "Cash Flows", url: "#/cash_flows?investments=c:VHT" },
-  { name: "Groups", url: "#/groups" },
-  { name: "Investments", url: "#/investments" },
+  { name: "Performance", url: "?path=performance&compareWith=c_VHT~c_GLD" },
+  { name: "Performance (TWR)", url: "?path=performance&investments=g_Gold&method=twr&compareWith=c_GLD" },
+  { name: "Returns", url: "?path=returns" },
+  { name: "Returns (MDM)", url: "?path=returns&method=mdm" },
+  { name: "Returns (TWR)", url: "?path=returns&method=twr" },
+  { name: "Dividends", url: "?path=dividends" },
+  { name: "Cash Flows", url: "?path=cash_flows&investments=c_VHT" },
+  { name: "Groups", url: "?path=groups" },
+  { name: "Investments", url: "?path=investments" },
 ];
 
 test.describe("PNG Snapshot Tests", () => {
