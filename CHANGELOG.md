@@ -1,5 +1,8 @@
 # Changelog
 
+## next
+* migrate to `@tanstack/router` and update URLs from `/beancount/extension/FavaPortfolioReturns/#/portfolio` to `/beancount/extension/FavaPortfolioReturns/?path=portfolio` [#134](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/134) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+
 ## v2.3.0 (2026-01-01)
 * visual updates for Performance page [#100](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/100) ([@Evernight](https://github.com/Evernight))
 * add buy/sell points visualization to performance chart [#124](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/124) ([@val3344](https://github.com/val3344))

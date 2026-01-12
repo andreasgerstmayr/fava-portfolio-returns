@@ -64,31 +64,31 @@
 - article:
   - heading "Portfolio" [level=3]:
     - link "Portfolio":
-      - /url: "#/portfolio?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=portfolio
   - heading "Performance" [level=3]:
     - link "Performance":
-      - /url: "#/performance?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=performance
   - heading "Returns" [level=3]:
     - link "Returns":
-      - /url: "#/returns?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=returns
   - heading "Dividends" [level=3]:
     - link "Dividends":
-      - /url: "#/dividends?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=dividends
   - heading "Cash Flows" [level=3]:
     - link "Cash Flows":
-      - /url: "#/cash_flows?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=cash_flows
   - heading "Groups" [level=3]:
     - link "Groups":
-      - /url: "#/groups?investments=g%3AGold"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=groups
   - heading "Investments" [level=3]:
     - link "Investments":
-      - /url: "#/investments"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=investments
   - heading "Missing Prices" [level=3]:
     - link "Missing Prices":
-      - /url: "#/missing_prices"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=missing_prices
   - heading "Help" [level=3]:
     - link "Help":
-      - /url: "#/help"
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=help
   - text: Investments Filter
   - button "Gold"
   - combobox "Investments Filter"

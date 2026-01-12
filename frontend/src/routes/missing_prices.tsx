@@ -1,10 +1,23 @@
 import { Alert } from "@mui/material";
+import { createRoute } from "@tanstack/react-router";
 import { MouseEvent } from "react";
 import { useMissingPrices } from "../api/missing_prices";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { Loading } from "../components/Loading";
+import { RootRoute } from "./__root";
 
-export function MissingPrices() {
+export const MissingPricesRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "missing_prices",
+  staticData: {
+    showInvestmentsSelection: false,
+    showDateRangeSelection: false,
+    showCurrencySelection: false,
+  },
+  component: MissingPrices,
+});
+
+function MissingPrices() {
   const { isPending, error, data } = useMissingPrices();
 
   if (isPending) {

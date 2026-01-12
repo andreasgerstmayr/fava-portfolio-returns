@@ -202,7 +202,7 @@ def get_target_currency(account_data_list: list[AccountData]) -> str:
 def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, AccountData], commodities: list[Commodity]):
     accounts = [
         InvestmentAccount(
-            id=f"a:{investment.asset_account}",
+            id=f"a_{investment.asset_account}",
             currency=investment.currency,
             assetAccount=investment.asset_account,
         )
@@ -211,7 +211,7 @@ def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, Acco
 
     groups = [
         InvestmentGroup(
-            id=f"g:{group.name}", name=group.name, investments=list(group.investment), currency=group.currency
+            id=f"g_{group.name}", name=group.name, investments=list(group.investment), currency=group.currency
         )
         for group in beangrow_cfg.groups.group
     ]
@@ -219,7 +219,7 @@ def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, Acco
     investment_currencies = set([account.currency for account in account_data_map.values()])
     currencies = [
         LedgerCurrency(
-            id=f"c:{c.currency}",
+            id=f"c_{c.currency}",
             name=c.meta.get("name", c.currency),
             currency=c.currency,
             isInvestment=c.currency in investment_currencies,

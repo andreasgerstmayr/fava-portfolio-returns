@@ -1,4 +1,18 @@
-export function Help() {
+import { createRoute } from "@tanstack/react-router";
+import { RootRoute } from "./__root";
+
+export const HelpRoute = createRoute({
+  getParentRoute: () => RootRoute,
+  path: "help",
+  staticData: {
+    showInvestmentsSelection: false,
+    showDateRangeSelection: false,
+    showCurrencySelection: false,
+  },
+  component: Help,
+});
+
+function Help() {
   return (
     <div className="help-text">
       <h2>Calculating Portfolio Returns</h2>
