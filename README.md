@@ -4,12 +4,42 @@
 
 fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/beancount/fava) web interface. It leverages [beangrow](https://github.com/beancount/beangrow) to categorize transactions and calculate the portfolio returns of a beancount ledger.
 
-[![Portfolio](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png)
-[![Performance](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png)
-[![Returns](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png)
-[![Dividends](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png)
-[![Cash Flows](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png)
-[![Groups](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png)](https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png)
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Portfolio-1-chromium-linux.png">
+    <img alt="Portfolio" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Portfolio-1-chromium-linux.png">
+  </picture>
+</a>
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Performance-1-chromium-linux.png">
+    <img alt="Performance" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Performance-1-chromium-linux.png">
+  </picture>
+</a>
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Returns-1-chromium-linux.png">
+    <img alt="Returns" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Returns-1-chromium-linux.png">
+  </picture>
+</a>
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Dividends-1-chromium-linux.png">
+    <img alt="Dividends" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Dividends-1-chromium-linux.png">
+  </picture>
+</a>
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Cash-Flows-1-chromium-linux.png">
+    <img alt="Cash Flows" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Cash-Flows-1-chromium-linux.png">
+  </picture>
+</a>
+<a href="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Dark-Theme-Groups-1-chromium-linux.png">
+    <img alt="Groups" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/pages.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png">
+  </picture>
+</a>
 
 ## Installation
 ```
