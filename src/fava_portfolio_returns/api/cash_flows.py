@@ -57,7 +57,7 @@ def cash_flows_table(p: FilteredPortfolio, start_date: datetime.date, end_date: 
             "source": flow.source,
             "account": flow.account,
             "transaction": f"{flow.transaction.payee or ''} {flow.transaction.narration or ''}".strip()
-            if flow.transaction
+            if hasattr(flow, 'transaction') and flow.transaction
             else "",
         }
         for flow in cash_flows
