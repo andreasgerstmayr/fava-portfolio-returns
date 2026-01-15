@@ -4,7 +4,7 @@ import { retainSearchParams } from "../../routes/__root";
 
 export function NavBar() {
   return (
-    <Box className="headerline" sx={{ ".active": { color: "light-dark(hsl(0deg 0% 25%), hsl(0deg 0% 80%))" } }}>
+    <Box className="headerline" sx={{ ".active": { color: "inherit" } }}>
       <h3>
         <Link to="/portfolio" search={retainSearchParams}>
           Portfolio

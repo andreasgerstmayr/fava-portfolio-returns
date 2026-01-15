@@ -1,7 +1,8 @@
 # Changelog
 
-## next
+## v2.4.0 (2026-01-15)
 * migrate to `@tanstack/router` and update URLs from `/beancount/extension/FavaPortfolioReturns/#/portfolio` to `/beancount/extension/FavaPortfolioReturns/?path=portfolio` [#134](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/134) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* fix: add zero guard in MDM calculation [#136](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/136) ([@jschuller](https://github.com/jschuller))
 
 ## v2.3.0 (2026-01-01)
 * visual updates for Performance page [#100](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/100) ([@Evernight](https://github.com/Evernight))
