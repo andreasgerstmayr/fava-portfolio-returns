@@ -1,6 +1,7 @@
 - banner:
   - img
   - heading "Beancount›Portfolio Returns" [level=1]:
+    - text: ""
     - strong: ›Portfolio Returns
   - combobox "Time"
   - combobox "Account"
@@ -97,10 +98,10 @@
   - table:
     - rowgroup:
       - row "Currency Required date Closest date in ledger Days late":
-        - cell "Currency"
-        - cell "Required date"
-        - cell "Closest date in ledger"
-        - cell "Days late"
+        - columnheader "Currency"
+        - columnheader "Required date"
+        - columnheader "Closest date in ledger"
+        - columnheader "Days late"
     - rowgroup:
       - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
         - cell "RGAGX"
