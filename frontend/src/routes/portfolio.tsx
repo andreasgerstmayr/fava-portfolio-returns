@@ -1,9 +1,10 @@
 import { Alert, useTheme } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { ECElementEvent, EChartsOption } from "echarts";
 import { z } from "zod";
 import { usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
-import { EChart } from "../components/EChart";
+import { EChart, EChartsSpec } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { anyFormatter, getCurrencyFormatter, getIntegerCurrencyFormatter, timestampToDate } from "../components/format";
@@ -78,10 +79,10 @@ function PerformanceChart() {
   const lastValue = series.length > 0 ? series[series.length - 1][1] : 0;
   const trendColor = lastValue >= firstValue ? theme.trend.positive : theme.trend.negative;
   const currencyFormatter = getCurrencyFormatter(targetCurrency);
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
-      valueFormatter: currencyFormatter,
+      valueFormatter: anyFormatter(currencyFormatter),
     },
     grid: {
       left: 100,
@@ -91,7 +92,7 @@ function PerformanceChart() {
       type: "time",
       axisPointer: {
         label: {
-          formatter: ({ value }: { value: number }) => timestampToDate(value),
+          formatter: (params) => timestampToDate(params.value as number),
         },
       },
     },
@@ -152,7 +153,7 @@ function PortfolioValueChart() {
   }
 
   const currencyFormatter = getCurrencyFormatter(targetCurrency);
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
       valueFormatter: anyFormatter(currencyFormatter),
@@ -168,7 +169,7 @@ function PortfolioValueChart() {
       type: "time",
       axisPointer: {
         label: {
-          formatter: ({ value }: { value: number }) => timestampToDate(value),
+          formatter: (params) => timestampToDate(params.value as number),
         },
       },
     },
@@ -216,7 +217,7 @@ function AllocationChart() {
   }
 
   const currencyFormatter = getIntegerCurrencyFormatter(targetCurrency);
-  const option = {
+  const option: EChartsSpec = {
     series: [
       {
         type: "pie",
@@ -229,8 +230,9 @@ function AllocationChart() {
         label: {
           show: false,
           position: "center",
-          formatter: (params: { data: { name: string; value: number } }) => {
-            return `{name|${params.data.name}}\n{value|${currencyFormatter(params.data.value)}}`;
+          formatter: (params) => {
+            const data = params.data as { name: string; value: number };
+            return `{name|${data.name}}\n{value|${currencyFormatter(data.value)}}`;
           },
 
           rich: {
@@ -254,8 +256,9 @@ function AllocationChart() {
         data: data.allocation.map((i) => ({ name: i.name, currency: i.currency, value: i.marketValue })),
       },
     ],
-    onClick: (params: { data: { currency: string } }) => {
-      setInvestmentFilter([`c:${params.data.currency}`]);
+    onClick: (params: ECElementEvent) => {
+      const data = params.data as { currency: string };
+      setInvestmentFilter([`c:${data.currency}`]);
     },
   };
 

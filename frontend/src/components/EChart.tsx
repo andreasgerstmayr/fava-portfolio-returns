@@ -3,7 +3,7 @@ import { dispose, ECElementEvent, ECharts, EChartsOption, init } from "echarts";
 import { CSSProperties, useEffect, useRef } from "react";
 import { useResizeObserver } from "./hooks";
 
-interface EChartsSpec extends EChartsOption {
+export interface EChartsSpec extends EChartsOption {
   onClick?: (params: ECElementEvent) => void;
 }
 

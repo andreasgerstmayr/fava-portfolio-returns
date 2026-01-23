@@ -1,5 +1,6 @@
 import { Alert } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { EChartsOption } from "echarts";
 import { z } from "zod";
 import { useCashFlows } from "../api/cash_flows";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
@@ -83,7 +84,7 @@ function CashFlowsChart({ interval }: CashFlowsChartProps) {
   }
 
   const currencyFormatter = getCurrencyFormatter(targetCurrency);
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
       valueFormatter: anyFormatter(currencyFormatter),
@@ -95,8 +96,8 @@ function CashFlowsChart({ interval }: CashFlowsChartProps) {
       type: "time",
       axisPointer: {
         label: {
-          formatter: ({ value }: { value: number }) =>
-            interval === "monthly" ? timestampToMonth(value) : timestampToYear(value),
+          formatter: (params) =>
+            interval === "monthly" ? timestampToMonth(params.value as number) : timestampToYear(params.value as number),
         },
       },
     },
