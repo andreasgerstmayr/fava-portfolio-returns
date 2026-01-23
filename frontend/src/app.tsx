@@ -3,7 +3,6 @@ import { RouterProvider } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { router } from "./router";
-import { CustomThemeProvider } from "./theme";
 
 // When navigating from this extension to another Fava page, Fava removes the node from the DOM.
 // However, React is still mounted in this (now detached) node.
@@ -34,9 +33,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CustomThemeProvider>
-        <RouterProvider router={router} />
-      </CustomThemeProvider>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 }

@@ -39,6 +39,9 @@ test-js:
 test-js-update:
 	cd frontend; LANG=en npm run test -- --update-snapshots
 
+test-js-ui:
+	cd frontend; LANG=en npm run test -- --ui
+
 test: test-py test-js
 
 ## Utils
@@ -85,5 +88,5 @@ container-test: container-run
 
 container-test-js-update: container-run
 	docker exec fava-portfolio-returns-test make test-js-update
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/pages.test.ts-snapshots ./frontend/tests/e2e
+	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/snapshots.test.ts-snapshots ./frontend/tests/e2e
 	make container-stop

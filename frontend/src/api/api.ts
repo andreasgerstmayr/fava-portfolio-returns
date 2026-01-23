@@ -12,18 +12,3 @@ export async function fetchJSON<T>(endpoint: string): Promise<T> {
   }
   return json.data;
 }
-
-/** add Fava time, account and custom ledger filters */
-export function createURLSearchParamsWithFavaFilters() {
-  const params = new URLSearchParams();
-  const currentParams = new URLSearchParams(location.search);
-
-  for (const key of ["time", "account", "filter"]) {
-    const value = currentParams.get(key);
-    if (value) {
-      params.set(key, value);
-    }
-  }
-
-  return params;
-}

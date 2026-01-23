@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
+import { useFavaFilterSearchParams } from "../routes/__root";
+import { fetchJSON } from "./api";
 import { Series } from "./returns";
 
 interface PortfolioRequest {
@@ -23,7 +24,7 @@ export interface PortfolioResponse {
 }
 
 export function usePortfolio(request: PortfolioRequest): UseQueryResult<PortfolioResponse> {
-  const params = createURLSearchParamsWithFavaFilters();
+  const params = useFavaFilterSearchParams();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   const url = `portfolio?${params}`;

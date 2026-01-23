@@ -1,6 +1,7 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { ReturnsMethod } from "../components/ReturnsMethodSelection";
-import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
+import { useFavaFilterSearchParams } from "../routes/__root";
+import { fetchJSON } from "./api";
 
 export type Series = [string, number][];
 
@@ -16,7 +17,7 @@ export interface ReturnsResponse {
 }
 
 export function useReturns(request: ReturnsRequest): UseQueryResult<ReturnsResponse> {
-  const params = createURLSearchParamsWithFavaFilters();
+  const params = useFavaFilterSearchParams();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
   params.set("method", request.method);
