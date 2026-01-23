@@ -258,7 +258,7 @@ function AllocationChart() {
     ],
     onClick: (params: ECElementEvent) => {
       const data = params.data as { currency: string };
-      setInvestmentFilter([`c:${data.currency}`]);
+      setInvestmentFilter([`c_${data.currency}`]);
     },
   };
 
