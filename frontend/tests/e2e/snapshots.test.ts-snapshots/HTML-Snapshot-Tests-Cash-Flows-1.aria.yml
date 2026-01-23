@@ -1,6 +1,7 @@
 - banner:
   - img
   - heading "Beancount›Portfolio Returns" [level=1]:
+    - text: ""
     - strong: ›Portfolio Returns
   - combobox "Time"
   - combobox "Account"
@@ -111,12 +112,12 @@
   - table:
     - rowgroup:
       - row "Date Amount Dividend Source Investment Transaction":
-        - cell "Date"
-        - cell "Amount"
-        - cell "Dividend"
-        - cell "Source"
-        - cell "Investment"
-        - cell "Transaction"
+        - columnheader "Date"
+        - columnheader "Amount"
+        - columnheader "Dividend"
+        - columnheader "Source"
+        - columnheader "Investment"
+        - columnheader "Transaction"
     - rowgroup:
       - row /\d+-\d+-\d+ -\d+\.\d+ USD no cash Assets:US:ETrade:VHT Buy shares of VHT/:
         - cell /\d+-\d+-\d+/
