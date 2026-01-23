@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+import { useFavaFilterSearchParams } from "../routes/__root";
 import { PNLColorSchemeVariant } from "../theme";
-import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
+import { fetchJSON } from "./api";
 
 interface Account {
   id: string;
@@ -33,7 +34,7 @@ export interface ConfigResponse {
 }
 
 export function useConfig() {
-  const params = createURLSearchParamsWithFavaFilters();
+  const params = useFavaFilterSearchParams();
   const url = `config?${params}`;
 
   return useQuery({

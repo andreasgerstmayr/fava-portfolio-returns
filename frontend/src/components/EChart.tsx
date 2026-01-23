@@ -1,47 +1,62 @@
 import { useTheme } from "@mui/material/styles";
-import * as echarts from "echarts";
+import { dispose, ECElementEvent, ECharts, EChartsOption, init } from "echarts";
 import { CSSProperties, useEffect, useRef } from "react";
-import { useComponentWidthOf } from "./hooks";
+import { useResizeObserver } from "./hooks";
+
+export interface EChartsSpec extends EChartsOption {
+  onClick?: (params: ECElementEvent) => void;
+}
 
 interface EChartProps {
   height: CSSProperties["height"];
-  option: echarts.EChartsCoreOption;
+  option: EChartsSpec;
 }
 
 export function EChart({ height, option }: EChartProps) {
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
-  const chartRef = useRef<echarts.ECharts>(null);
-  const width = useComponentWidthOf(ref);
+  const chartRef = useRef<ECharts>(null);
+  const rect = useResizeObserver(ref);
   const echartsTheme = theme.palette.mode === "dark" ? "dark" : undefined;
 
-  useEffect(() => {
+  function cleanup() {
     if (chartRef.current) {
-      echarts.dispose(chartRef.current);
+      dispose(chartRef.current);
+      chartRef.current = null;
+    }
+  }
+
+  useEffect(() => {
+    cleanup();
+    if (!rect) {
+      return;
     }
 
-    const chart = echarts.init(ref.current, echartsTheme);
+    const chart = init(ref.current, echartsTheme, {
+      width: rect.width,
+      height: rect.height,
+    });
+    const { onClick, ...optionCopy } = option;
 
-    if (option.onClick) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      chart.on("click", (option as any).onClick);
-      delete option.onClick;
+    if (onClick) {
+      chart.on("click", onClick);
     }
 
-    if (echartsTheme == "dark" && option.backgroundColor === undefined) {
-      option.backgroundColor = "transparent";
+    if (echartsTheme == "dark" && optionCopy.backgroundColor === undefined) {
+      optionCopy.backgroundColor = "transparent";
     }
 
-    chart.setOption(option);
+    chart.setOption(optionCopy);
     chartRef.current = chart;
-  }, [option, echartsTheme]);
 
-  // Resize dynamically
+    return cleanup;
+  }, [option, echartsTheme, rect]);
+
   useEffect(() => {
-    if (chartRef.current) {
-      chartRef.current.resize();
+    if (chartRef.current && rect) {
+      chartRef.current.resize({ width: rect.width, height: rect.height });
     }
-  }, [width, height]);
+  }, [rect]);
 
   return <div ref={ref} style={{ height }}></div>;
 }

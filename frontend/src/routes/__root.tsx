@@ -4,6 +4,7 @@ import { z } from "zod";
 import { NavBar } from "../components/Header/NavBar";
 import { Toolbar } from "../components/Header/Toolbar";
 import { ToolbarProvider } from "../components/Header/ToolbarProvider";
+import { CustomThemeProvider } from "../theme";
 
 // https://github.com/beancount/fava/blob/b12a90c7645e702b0d398292bdddd90645e31a88/frontend/src/stores/url.ts#L41-L48
 const retained_fava_search_params = ["account", "charts", "conversion", "filter", "interval", "time"];
@@ -19,6 +20,8 @@ export function retainSearchParams(prev: Record<string, unknown>) {
 const searchSchema = z.object({
   // 2020 is parsed as number, 2020-01 is parsed as string
   time: z.union([z.string(), z.number()]).optional(),
+  account: z.string().optional(),
+  filter: z.string().optional(),
 
   investments: z.string().optional(),
   currency: z.string().optional(),
@@ -31,11 +34,26 @@ export const RootRoute = createRootRoute({
 
 function Layout() {
   return (
-    <ToolbarProvider>
-      <NavBar />
-      <Toolbar />
-      <Outlet />
-      <TanStackRouterDevtools />
-    </ToolbarProvider>
+    <CustomThemeProvider>
+      <ToolbarProvider>
+        <NavBar />
+        <Toolbar />
+        <Outlet />
+        <TanStackRouterDevtools />
+      </ToolbarProvider>
+    </CustomThemeProvider>
   );
+}
+
+export function useFavaFilters() {
+  return RootRoute.useSearch({ select: (x) => ({ time: x.time, account: x.account, filter: x.filter }) });
+}
+
+export function useFavaFilterSearchParams() {
+  const filters = useFavaFilters();
+  return new URLSearchParams({
+    ...(filters.time ? { time: String(filters.time) } : {}),
+    ...(filters.account ? { account: filters.account } : {}),
+    ...(filters.filter ? { filter: filters.filter } : {}),
+  });
 }

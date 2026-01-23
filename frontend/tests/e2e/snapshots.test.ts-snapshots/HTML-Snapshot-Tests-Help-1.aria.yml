@@ -1,0 +1,117 @@
+- banner:
+  - img
+  - heading "Beancount›Portfolio Returns" [level=1]:
+    - strong: ›Portfolio Returns
+  - combobox "Time"
+  - combobox "Account"
+  - combobox "Filter by tag, payee, ..."
+- complementary:
+  - list:
+    - listitem:
+      - link "Income Statement":
+        - /url: /beancount/income_statement/
+    - listitem:
+      - link "Balance Sheet":
+        - /url: /beancount/balance_sheet/
+    - listitem:
+      - link "Trial Balance":
+        - /url: /beancount/trial_balance/
+    - listitem:
+      - link "Journal":
+        - /url: /beancount/journal/
+    - listitem:
+      - link "Query":
+        - /url: /beancount/query/
+    - listitem:
+      - combobox "Go to account"
+  - list:
+    - listitem:
+      - link "Holdings":
+        - /url: /beancount/holdings/
+    - listitem:
+      - link "Commodities":
+        - /url: /beancount/commodities/
+    - listitem:
+      - link "Documents":
+        - /url: /beancount/documents/
+    - listitem:
+      - link "Events":
+        - /url: /beancount/events/
+    - listitem:
+      - link "Statistics":
+        - /url: /beancount/statistics/
+  - list:
+    - listitem:
+      - link "Editor":
+        - /url: /beancount/editor/
+      - link "+":
+        - /url: "#add-transaction"
+    - listitem:
+      - link "Import":
+        - /url: /beancount/import/
+      - link "⬇":
+        - /url: "#export"
+    - listitem:
+      - link "Options":
+        - /url: /beancount/options/
+    - listitem:
+      - link "Help":
+        - /url: /beancount/help/
+  - list:
+    - listitem:
+      - link "Portfolio Returns":
+        - /url: /beancount/extension/FavaPortfolioReturns/
+- article:
+  - heading "Portfolio" [level=3]:
+    - link "Portfolio":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=portfolio
+  - heading "Performance" [level=3]:
+    - link "Performance":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=performance
+  - heading "Returns" [level=3]:
+    - link "Returns":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=returns
+  - heading "Dividends" [level=3]:
+    - link "Dividends":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends
+  - heading "Cash Flows" [level=3]:
+    - link "Cash Flows":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=cash_flows
+  - heading "Groups" [level=3]:
+    - link "Groups":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=groups
+  - heading "Investments" [level=3]:
+    - link "Investments":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=investments
+  - heading "Missing Prices" [level=3]:
+    - link "Missing Prices":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=missing_prices
+  - heading "Help" [level=3]:
+    - link "Help":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+  - heading "Calculating Portfolio Returns" [level=2]
+  - paragraph: fava-portfolio-returns supports multiple ways to calculate the portfolio performance.
+  - heading "Returns" [level=3]
+  - paragraph: Returns compares the market value with the cost value. In the Performance chart, the difference between the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable with the performance of other groups and commodities.
+  - heading "Monetary Returns" [level=3]
+  - paragraph: Monetary returns computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
+  - heading "Internal Rate of Return (IRR)" [level=3]
+  - paragraph: Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.
+  - paragraph:
+    - text: /For example, you invest \d+ USD on the first day of January, and additional \d+ USD on the first day of February\. At the end of February, the investment is worth \d+ USD\. In other words, you invested \d+ USD for two months \(\d+ days\), and \d+ USD for one month \(\d+ days\)\. IRR calculates/
+    - code: x
+    - text: "of the following formula:"
+    - code: /\d+\*\(1\+x\)\^\(\d+\/\d+\) \+ \d+\*\(1\+x\)\^\(\d+\/\d+\) = \d+/
+    - text: .
+  - paragraph: This method is recommended when you are in control of the cash flows.
+  - heading "Modified Dietz Method (MDM)" [level=3]
+  - paragraph: Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.
+  - heading "Time-Weighted Rate of Return (TWR)" [level=3]
+  - paragraph: Time-Weighted Return (TWR) eliminates the effects of cash flows.
+  - paragraph:
+    - text: /For example, you invest \d+ USD in January\. In June, your investment is worth \d+ USD\. The returns on this investment are \d+% \(/
+    - code: /\d+\/\d+-1/
+    - text: /\)\. Because of these returns, you decide to invest additional \d+ USD\. Now, the returns dropped to \d+% \(/
+    - code: /\d+\/\d+-1/
+    - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows.
+  - paragraph: This method is recommended for comparing two funds or portfolios.

@@ -1,5 +1,6 @@
 import { Alert, useTheme } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { EChartsOption } from "echarts";
 import { z } from "zod";
 import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -75,7 +76,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
   const maxRounded = Math.round(max * 100) / 100;
   const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       position: "top",
       valueFormatter: anyFormatter(valueFormatter),
@@ -119,7 +120,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
         }),
         label: {
           show: true,
-          formatter: (params: { data: [string, string, number] }) => valueFormatter(params.data[2]),
+          formatter: ({ data }) => valueFormatter((data as [string, string, number])[2]),
         },
         emphasis: {
           itemStyle: {
@@ -160,7 +161,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
   }
 
   const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
-  const option = {
+  const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
       valueFormatter: anyFormatter(valueFormatter),
@@ -180,7 +181,10 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
         name: "Returns",
         data: data.returns,
         itemStyle: {
-          color: (params: { data: [string, number] }) => (params.data[1] >= 0 ? theme.pnl.profit : theme.pnl.loss),
+          color: (params) => {
+            const data = params.data as [string, number];
+            return data[1] >= 0 ? theme.pnl.profit : theme.pnl.loss;
+          },
         },
       },
     ],

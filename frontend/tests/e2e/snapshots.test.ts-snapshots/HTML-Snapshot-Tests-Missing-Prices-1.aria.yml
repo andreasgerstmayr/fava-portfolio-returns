@@ -1,0 +1,1134 @@
+- banner:
+  - img
+  - heading "Beancount›Portfolio Returns" [level=1]:
+    - strong: ›Portfolio Returns
+  - combobox "Time"
+  - combobox "Account"
+  - combobox "Filter by tag, payee, ..."
+- complementary:
+  - list:
+    - listitem:
+      - link "Income Statement":
+        - /url: /beancount/income_statement/
+    - listitem:
+      - link "Balance Sheet":
+        - /url: /beancount/balance_sheet/
+    - listitem:
+      - link "Trial Balance":
+        - /url: /beancount/trial_balance/
+    - listitem:
+      - link "Journal":
+        - /url: /beancount/journal/
+    - listitem:
+      - link "Query":
+        - /url: /beancount/query/
+    - listitem:
+      - combobox "Go to account"
+  - list:
+    - listitem:
+      - link "Holdings":
+        - /url: /beancount/holdings/
+    - listitem:
+      - link "Commodities":
+        - /url: /beancount/commodities/
+    - listitem:
+      - link "Documents":
+        - /url: /beancount/documents/
+    - listitem:
+      - link "Events":
+        - /url: /beancount/events/
+    - listitem:
+      - link "Statistics":
+        - /url: /beancount/statistics/
+  - list:
+    - listitem:
+      - link "Editor":
+        - /url: /beancount/editor/
+      - link "+":
+        - /url: "#add-transaction"
+    - listitem:
+      - link "Import":
+        - /url: /beancount/import/
+      - link "⬇":
+        - /url: "#export"
+    - listitem:
+      - link "Options":
+        - /url: /beancount/options/
+    - listitem:
+      - link "Help":
+        - /url: /beancount/help/
+  - list:
+    - listitem:
+      - link "Portfolio Returns":
+        - /url: /beancount/extension/FavaPortfolioReturns/
+- article:
+  - heading "Portfolio" [level=3]:
+    - link "Portfolio":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=portfolio
+  - heading "Performance" [level=3]:
+    - link "Performance":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=performance
+  - heading "Returns" [level=3]:
+    - link "Returns":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=returns
+  - heading "Dividends" [level=3]:
+    - link "Dividends":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends
+  - heading "Cash Flows" [level=3]:
+    - link "Cash Flows":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=cash_flows
+  - heading "Groups" [level=3]:
+    - link "Groups":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=groups
+  - heading "Investments" [level=3]:
+    - link "Investments":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=investments
+  - heading "Missing Prices" [level=3]:
+    - link "Missing Prices":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=missing_prices
+  - heading "Help" [level=3]:
+    - link "Help":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+  - heading "Fetch Required Prices" [level=3]
+  - paragraph: "Run the following commands and append the output to your ledger:"
+  - text: /bean-price -d '\d+-\d+-\d+' -e 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT' bean-price -d '\d+-\d+-\d+' -e 'USD:google\/NYSEARCA:GLD' 'USD:google\/NYSEARCA:ITOT' 'USD:google\/MUTF:RGAGX' 'USD:google\/MUTF:VBMPX' 'USD:google\/NYSEARCA:VEA' 'USD:google\/NYSEARCA:VHT'/
+  - heading "Missing Prices" [level=3]
+  - paragraph: This table shows dates where no accurate price directive was found.
+  - table:
+    - rowgroup:
+      - row "Currency Required date Closest date in ledger Days late":
+        - cell "Currency"
+        - cell "Required date"
+        - cell "Closest date in ledger"
+        - cell "Days late"
+    - rowgroup:
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 6/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "6"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ 5/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell "5"
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /GLD \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "GLD"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /ITOT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "ITOT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /RGAGX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "RGAGX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VBMPX \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VBMPX"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VEA \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VEA"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/
+      - row /VHT \d+-\d+-\d+ \d+-\d+-\d+ \d+/:
+        - cell "VHT"
+        - cell /\d+-\d+-\d+/
+        - cell /\d+-\d+-\d+/
+        - cell /\d+/

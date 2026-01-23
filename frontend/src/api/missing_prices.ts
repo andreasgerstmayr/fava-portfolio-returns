@@ -1,5 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { createURLSearchParamsWithFavaFilters, fetchJSON } from "./api";
+import { useFavaFilterSearchParams } from "../routes/__root";
+import { fetchJSON } from "./api";
 
 export interface MissingPrice {
   currency: string;
@@ -14,7 +15,7 @@ export interface MissingPricesResponse {
 }
 
 export function useMissingPrices(): UseQueryResult<MissingPricesResponse> {
-  const params = createURLSearchParamsWithFavaFilters();
+  const params = useFavaFilterSearchParams();
   const url = `missing_prices?${params}`;
 
   return useQuery({

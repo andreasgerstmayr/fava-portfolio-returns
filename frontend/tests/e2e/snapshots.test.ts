@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, Page, test } from "@playwright/test";
 
 const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
 const pages = [
@@ -12,18 +12,29 @@ const pages = [
   { name: "Cash Flows", url: "?path=cash_flows&investments=c_VHT" },
   { name: "Groups", url: "?path=groups" },
   { name: "Investments", url: "?path=investments" },
+  { name: "Missing Prices", url: "?path=missing_prices" },
+  { name: "Help", url: "?path=help" },
 ];
 
+async function expectScreenshot(page: Page) {
+  await page.evaluate(() => {
+    // full page screenshot doesn't work due to sticky sidebar
+    document.body.style.height = "inherit";
+  });
+  await page.waitForLoadState("networkidle");
+  await expect(page.locator(".MuiCircularProgress-root")).toHaveCount(0);
+  await expect(page.locator(".MuiSkeleton-root")).toHaveCount(0);
+  await expect(page).toHaveScreenshot({ fullPage: true });
+}
+
 test.describe("PNG Snapshot Tests", () => {
+  test.skip(!process.env.CONTAINER, "snapshot tests must run in a container");
+
   test.describe("Light Theme", () => {
     pages.forEach(({ name, url }) => {
       test(name, async ({ page }) => {
         await page.goto(`${BASE_URL}${url}`);
-        await page.evaluate(() => {
-          // full page screenshot doesn't work due to sticky sidebar
-          document.body.style.height = "inherit";
-        });
-        await expect(page).toHaveScreenshot({ fullPage: true });
+        await expectScreenshot(page);
       });
     });
   });
@@ -33,17 +44,15 @@ test.describe("PNG Snapshot Tests", () => {
     pages.forEach(({ name, url }) => {
       test(name, async ({ page }) => {
         await page.goto(`${BASE_URL}${url}`);
-        await page.evaluate(() => {
-          // full page screenshot doesn't work due to sticky sidebar
-          document.body.style.height = "inherit";
-        });
-        await expect(page).toHaveScreenshot({ fullPage: true });
+        await expectScreenshot(page);
       });
     });
   });
 });
 
 test.describe("HTML Snapshot Tests", () => {
+  test.skip(!process.env.CONTAINER, "snapshot tests must run in a container");
+
   pages.forEach(({ name, url }) => {
     test(name, async ({ page }) => {
       await page.goto(`${BASE_URL}${url}`);
