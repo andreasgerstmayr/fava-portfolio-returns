@@ -40,6 +40,7 @@ fava-portfolio-returns shows portfolio returns in the [Fava](https://github.com/
     <img alt="Groups" src="https://github.com/andreasgerstmayr/fava-portfolio-returns/raw/main/frontend/tests/e2e/snapshots.test.ts-snapshots/PNG-Snapshot-Tests-Light-Theme-Groups-1-chromium-linux.png">
   </picture>
 </a>
+
 [More screenshots](https://github.com/andreasgerstmayr/fava-portfolio-returns/tree/main/frontend/tests/e2e/snapshots.test.ts-snapshots)
 
 ## Installation
