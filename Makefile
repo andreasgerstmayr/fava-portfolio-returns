@@ -64,6 +64,7 @@ beangrow:
 lint:
 	cd frontend; npm run type-check
 	cd frontend; npm run lint
+	uv run ty check
 	uv run mypy src/fava_portfolio_returns scripts
 	uv run pylint src/fava_portfolio_returns scripts
 

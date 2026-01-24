@@ -64,7 +64,7 @@ class Portfolio:
         entries: list[Directive],
         options_map: BeancountOptions,
         beangrow_config: Path | str,
-        beangrow_debug_dir: Optional[str] = None,
+        beangrow_debug_dir: Optional[Path] = None,
     ):
         dcontext = options_map["dcontext"]
         accounts = getters.get_accounts(entries)
@@ -82,7 +82,12 @@ class Portfolio:
             self.beangrow_cfg = read_config_from_string(beangrow_config, [], list(accounts))
 
         self.account_data_map = extract(
-            entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir or ""
+            entries,
+            dcontext,
+            self.beangrow_cfg,
+            entries[-1].date,
+            False,
+            str(beangrow_debug_dir) if beangrow_debug_dir else "",
         )
         self.investments_config = build_investments_config(
             self.beangrow_cfg, self.account_data_map, [e for e in entries if isinstance(e, Commodity)]

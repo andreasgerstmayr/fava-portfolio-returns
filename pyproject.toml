@@ -45,6 +45,7 @@ dev = [
     "pylint>=3.1.0",
     "pytest>=8.3.3",
     "ruff>=0.8.1",
+    "ty>=0.0.13",
     "types-protobuf>=5.29.1.20241207",
     "types-python-dateutil>=2.9.0.20241206",
     "types-PyYAML>=6",
@@ -80,6 +81,9 @@ disable = [
 
 [tool.mypy]
 exclude = "src/fava_portfolio_returns/_vendor"
+
+[tool.ty.src]
+exclude = ["src/fava_portfolio_returns/_vendor"]
 
 [tool.pytest.ini_options]
 filterwarnings = "ignore::DeprecationWarning"

@@ -6,9 +6,13 @@ import traceback
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
+from typing import Literal
 from typing import Optional
+from typing import Sequence
+from typing import cast
 
-from fava.beans.abc import Directive
+from beancount import Directive
+from fava.beans.abc import Directive as FavaDirective
 from fava.beans.abc import Price
 from fava.beans.abc import Transaction
 from fava.context import g
@@ -129,7 +133,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if not self.cached_portfolio:
             ext_config = self.read_ext_config()
             self.cached_portfolio = Portfolio(
-                self.ledger.all_entries,
+                cast(list[Directive], list(self.ledger.all_entries)),
                 self.ledger.options,
                 ext_config.beangrow_config_path,
                 beangrow_debug_dir=ext_config.beangrow_debug_dir,
@@ -218,7 +222,10 @@ class FavaPortfolioReturns(FavaExtensionBase):
     def api_dividends(self):
         toolbar_ctx = self.get_toolbar_ctx()
         p = self.get_filtered_portfolio(toolbar_ctx)
-        interval = request.args.get("interval", "monthly")
+        raw_interval = request.args.get("interval", "monthly")
+        if raw_interval not in ("monthly", "yearly"):
+            raise FavaAPIError(f"Invalid interval {raw_interval}")
+        interval = cast(Literal["monthly", "yearly"], raw_interval)
 
         chart = dividends_chart(p, toolbar_ctx.start_date, toolbar_ctx.end_date, interval)
         return {
@@ -230,7 +237,10 @@ class FavaPortfolioReturns(FavaExtensionBase):
     def api_cash_flows(self):
         toolbar_ctx = self.get_toolbar_ctx()
         p = self.get_filtered_portfolio(toolbar_ctx)
-        interval = request.args.get("interval", "monthly")
+        raw_interval = request.args.get("interval", "monthly")
+        if raw_interval not in ("monthly", "yearly"):
+            raise FavaAPIError(f"Invalid interval {raw_interval}")
+        interval = cast(Literal["monthly", "yearly"], raw_interval)
 
         chart = cash_flows_chart(p, toolbar_ctx.start_date, toolbar_ctx.end_date, interval)
         table = cash_flows_table(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
@@ -268,7 +278,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {"missingPrices": missing_prices, "commands": commands}
 
 
-def get_ledger_duration(entries: list[Directive]):
+def get_ledger_duration(entries: Sequence[FavaDirective]):
     date_first = None
     date_last = None
     for entry in entries:
