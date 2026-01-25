@@ -1,13 +1,14 @@
 import { Alert, alpha, FormControlLabel, FormGroup, Switch, useTheme } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { createRoute, Link, stripSearchParams } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { Investment, useInvestments } from "../api/investments";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
-import { fixedPercentFormatter, numberFormatter } from "../components/format";
+import { useNumberFormatter, usePercentFormatter } from "../components/format";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { ReturnsMethods } from "../components/ReturnsMethodSelection";
+import { useReturnsMethods } from "../components/ReturnsMethodSelection";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -29,12 +30,13 @@ export const InvestmentsRoute = createRoute({
 });
 
 function Investments() {
+  const { t } = useTranslation();
   const [includeLiquidated, setIncludeLiquidated] = useSearchParam(InvestmentsRoute, "liquidated");
 
   return (
     <Dashboard>
       <DashboardRow>
-        <Panel title="Investments" help="Lists the investments defined in the beangrow configuration file.">
+        <Panel title={t("Investments")} help={t("Lists the investments defined in the beangrow configuration file.")}>
           <InvestmentsTable
             groupBy="currency"
             includeLiquidated={includeLiquidated}
@@ -53,9 +55,13 @@ interface InvestmentsTableProps {
 }
 
 export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquidated }: InvestmentsTableProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { targetCurrency } = useToolbarContext();
+  const numberFormatter = useNumberFormatter();
+  const fixedPercentFormatter = usePercentFormatter({ fixed: true });
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
+  const returnsMethods = useReturnsMethods();
 
   if (isPending) {
     return <Loading />;
@@ -67,7 +73,9 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
   if (Object.keys(data.investments).length === 0) {
     return (
       <Alert severity="info">
-        No {groupBy === "group" ? "groups" : "investments"} defined in the beangrow configuration.
+        {groupBy === "group"
+          ? t("No groups defined in the beangrow configuration.")
+          : t("No investments defined in the beangrow configuration.")}
       </Alert>
     );
   }
@@ -84,7 +92,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
   const columns: GridColDef<Investment>[] = [
     {
       field: "name",
-      headerName: "Name",
+      headerName: t("Name"),
       flex: 1, // expand to remaining space
       renderCell: ({ row }) => (
         <Link to="/portfolio" search={{ investments: row.id, currency: row.currency }}>
@@ -94,7 +102,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "units",
-      headerName: "Units", // row.units
+      headerName: t("Units"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -111,7 +119,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "costValue",
-      headerName: "Cost Value",
+      headerName: t("Cost Value"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -120,7 +128,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "marketValue",
-      headerName: "Market Value",
+      headerName: t("Market Value"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -129,8 +137,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "realizedPnl",
-      headerName: "Realized P/L",
-      description: "Realized Profit and Loss: P&L from sold assets",
+      headerName: t("Realized P/L"),
+      description: t("Realized Profit and Loss: P&L from sold assets"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -140,8 +148,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "unrealizedPnl",
-      headerName: "Unrealized P/L",
-      description: "Unrealized Profit and Loss: P&L from open positions (excluding fees)",
+      headerName: t("Unrealized P/L"),
+      description: t("Unrealized Profit and Loss: P&L from open positions (excluding fees)"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -151,8 +159,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "totalPnl",
-      headerName: "Total P/L",
-      description: "Total Profit and Loss",
+      headerName: t("Total P/L"),
+      description: t("Total Profit and Loss"),
       headerAlign: "center",
       align: "right",
       minWidth: 130,
@@ -161,8 +169,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "irr",
-      headerName: "IRR",
-      description: ReturnsMethods.irr.label,
+      headerName: t("IRR"),
+      description: returnsMethods.irr.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,
@@ -171,8 +179,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "mdm",
-      headerName: "MDM",
-      description: ReturnsMethods.mdm.label,
+      headerName: t("MDM"),
+      description: returnsMethods.mdm.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,
@@ -181,8 +189,8 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     },
     {
       field: "twr",
-      headerName: "TWR",
-      description: ReturnsMethods.twr.label,
+      headerName: t("TWR"),
+      description: returnsMethods.twr.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,
@@ -231,7 +239,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
       <FormGroup>
         <FormControlLabel
           control={<Switch checked={includeLiquidated} onChange={(_, value) => setIncludeLiquidated(value)} />}
-          label="Include liquidated investments"
+          label={t("Include liquidated investments")}
         />
       </FormGroup>
     </>

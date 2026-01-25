@@ -1,6 +1,7 @@
 import { useTheme } from "@mui/material/styles";
 import { dispose, ECElementEvent, ECharts, EChartsOption, init } from "echarts";
 import { CSSProperties, useEffect, useRef } from "react";
+import { useConfigContext } from "./Header/ConfigProvider";
 import { useResizeObserver } from "./hooks";
 
 export interface EChartsSpec extends EChartsOption {
@@ -13,6 +14,7 @@ interface EChartProps {
 }
 
 export function EChart({ height, option }: EChartProps) {
+  const { config } = useConfigContext();
   const theme = useTheme();
   const ref = useRef<HTMLDivElement>(null);
   const chartRef = useRef<ECharts>(null);
@@ -35,6 +37,7 @@ export function EChart({ height, option }: EChartProps) {
     const chart = init(ref.current, echartsTheme, {
       width: rect.width,
       height: rect.height,
+      locale: config.language ?? undefined,
     });
     const { onClick, ...optionCopy } = option;
 
@@ -50,7 +53,7 @@ export function EChart({ height, option }: EChartProps) {
     chartRef.current = chart;
 
     return cleanup;
-  }, [option, echartsTheme, rect]);
+  }, [option, echartsTheme, rect, config.language]);
 
   useEffect(() => {
     if (chartRef.current && rect) {

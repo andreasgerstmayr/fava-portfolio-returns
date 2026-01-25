@@ -1,46 +1,45 @@
-export function getCurrencyFormatter(currency: string) {
-  try {
-    return new Intl.NumberFormat(undefined, {
-      style: "currency",
-      currency,
-    }).format;
-  } catch (_) {
-    // currency code not found
-    return (x: number | bigint) => `${x} ${currency}`;
-  }
+import { useConfigContext } from "./Header/ConfigProvider";
+
+function useFormatter(opts: Intl.NumberFormatOptions) {
+  const { config } = useConfigContext();
+  const locale = config.locale ?? undefined;
+  return new Intl.NumberFormat(locale, opts).format;
 }
 
-export function getIntegerCurrencyFormatter(currency: string) {
+export function useNumberFormatter() {
+  return useFormatter({
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+}
+
+export function usePercentFormatter(opts?: { fixed: boolean }) {
+  return useFormatter({
+    style: "percent",
+    minimumFractionDigits: opts?.fixed ? 2 : undefined,
+    maximumFractionDigits: 2,
+  });
+}
+
+export function useCurrencyFormatter(currency: string, opts?: { integer: boolean }) {
+  const { config } = useConfigContext();
+  const locale = config.locale ?? undefined;
+  const maximumFractionDigits = opts?.integer ? 0 : undefined;
+
   try {
-    return new Intl.NumberFormat(undefined, {
+    return new Intl.NumberFormat(locale, {
       style: "currency",
       currency,
-      maximumFractionDigits: 0,
+      maximumFractionDigits,
     }).format;
-  } catch (_) {
+  } catch {
     // currency code not found
-    const fmt = new Intl.NumberFormat(undefined, {
-      maximumFractionDigits: 0,
+    const fmt = new Intl.NumberFormat(locale, {
+      maximumFractionDigits,
     }).format;
     return (x: number | bigint) => `${fmt(x)} ${currency}`;
   }
 }
-
-export const numberFormatter = new Intl.NumberFormat(undefined, {
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-}).format;
-
-export const percentFormatter = new Intl.NumberFormat(undefined, {
-  style: "percent",
-  maximumFractionDigits: 2,
-}).format;
-
-export const fixedPercentFormatter = new Intl.NumberFormat(undefined, {
-  style: "percent",
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2,
-}).format;
 
 export function anyFormatter(formatter: (value: number) => string) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

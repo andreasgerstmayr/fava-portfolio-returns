@@ -1,6 +1,7 @@
 import { Alert, useTheme } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { EChartsOption } from "echarts";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useReturns } from "../api/returns";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -8,7 +9,7 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
 import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import { anyFormatter, getIntegerCurrencyFormatter, percentFormatter } from "../components/format";
+import { anyFormatter, useCurrencyFormatter, usePercentFormatter } from "../components/format";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -27,6 +28,7 @@ export const ReturnsRoute = createRoute({
 });
 
 function Returns() {
+  const { t } = useTranslation();
   const [method, setMethod] = useSearchParam(ReturnsRoute, "method");
 
   return (
@@ -35,15 +37,15 @@ function Returns() {
         <ReturnsMethodSelection options={["irr", "mdm", "twr", "monetary"]} method={method} setMethod={setMethod} />
       </DashboardRow>
       <DashboardRow>
-        <Panel title="Monthly Returns">
+        <Panel title={t("Monthly Returns")}>
           <ReturnsHeatmapChart method={method} />
         </Panel>
       </DashboardRow>
       <DashboardRow>
-        <Panel title="Yearly Returns">
+        <Panel title={t("Yearly Returns")}>
           <ReturnsBarChart method={method} interval="yearly" />
         </Panel>
-        <Panel title="Returns over Periods">
+        <Panel title={t("Returns over Periods")}>
           <ReturnsBarChart method={method} interval="periods" />
         </Panel>
       </DashboardRow>
@@ -56,8 +58,11 @@ interface ReturnsHeatmapChartProps {
 }
 
 function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
+  const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
+  const percentFormatter = usePercentFormatter();
   const { isPending, error, data } = useReturns({
     investmentFilter,
     targetCurrency,
@@ -74,7 +79,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
 
   const max = Math.max(...data.returns.map(([label, val]) => (label.includes("-") ? Math.abs(val) : 0)));
   const maxRounded = Math.round(max * 100) / 100;
-  const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
+  const valueFormatter = method === "monetary" ? currencyFormatter : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
   const option: EChartsOption = {
     tooltip: {
@@ -108,7 +113,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
         type: "heatmap",
         data: data.returns.map(([label, value]) => {
           if (!label.includes("-")) {
-            return ["Entire Year", label, value];
+            return [t("Entire Year"), label, value];
           }
 
           const [year, month] = label.split("-");
@@ -144,8 +149,11 @@ interface ReturnsBarChartProps {
 }
 
 function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
+  const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
+  const percentFormatter = usePercentFormatter();
   const { isPending, error, data } = useReturns({
     investmentFilter,
     targetCurrency,
@@ -160,7 +168,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const valueFormatter = method === "monetary" ? getIntegerCurrencyFormatter(targetCurrency) : percentFormatter;
+  const valueFormatter = method === "monetary" ? currencyFormatter : percentFormatter;
   const option: EChartsOption = {
     tooltip: {
       trigger: "axis",
@@ -178,7 +186,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     series: [
       {
         type: "bar",
-        name: "Returns",
+        name: t("Returns"),
         data: data.returns,
         itemStyle: {
           color: (params) => {

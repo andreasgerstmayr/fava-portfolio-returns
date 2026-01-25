@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider, useMediaQuery } from "@mui/material";
-import { useConfig } from "./api/config";
+import { useConfigContext } from "./components/Header/ConfigProvider";
 
 // extend Material-UI theme
 declare module "@mui/material/styles" {
@@ -70,13 +70,13 @@ interface CustomThemeProviderProps {
 }
 
 export function CustomThemeProvider({ children }: CustomThemeProviderProps) {
-  const { data: config } = useConfig();
+  const { config } = useConfigContext();
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
   const themeName = getFavaThemeSetting() ?? (prefersDark ? "dark" : "light");
 
   const defaultPnLColor = getDefaultPnlColorScheme();
   const pnlColorScheme =
-    config?.pnlColorScheme && config.pnlColorScheme in PNL_COLOR_SCHEMES
+    config.pnlColorScheme && config.pnlColorScheme in PNL_COLOR_SCHEMES
       ? PNL_COLOR_SCHEMES[config.pnlColorScheme]
       : PNL_COLOR_SCHEMES[defaultPnLColor];
 

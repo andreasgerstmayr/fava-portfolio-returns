@@ -1,6 +1,7 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { z } from "zod";
+import { ConfigProvider } from "../components/Header/ConfigProvider";
 import { NavBar } from "../components/Header/NavBar";
 import { Toolbar } from "../components/Header/Toolbar";
 import { ToolbarProvider } from "../components/Header/ToolbarProvider";
@@ -34,14 +35,16 @@ export const RootRoute = createRootRoute({
 
 function Layout() {
   return (
-    <CustomThemeProvider>
-      <ToolbarProvider>
-        <NavBar />
-        <Toolbar />
-        <Outlet />
-        <TanStackRouterDevtools />
-      </ToolbarProvider>
-    </CustomThemeProvider>
+    <ConfigProvider>
+      <CustomThemeProvider>
+        <ToolbarProvider>
+          <NavBar />
+          <Toolbar />
+          <Outlet />
+          <TanStackRouterDevtools />
+        </ToolbarProvider>
+      </CustomThemeProvider>
+    </ConfigProvider>
   );
 }
 

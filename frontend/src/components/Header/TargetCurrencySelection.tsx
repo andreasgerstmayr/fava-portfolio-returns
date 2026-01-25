@@ -1,8 +1,10 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { useConfigContext } from "./ConfigProvider";
 import { useToolbarContext } from "./ToolbarProvider";
 
 export function TargetCurrencySelection() {
-  const { targetCurrency, setTargetCurrency, config } = useToolbarContext();
+  const { config } = useConfigContext();
+  const { targetCurrency, setTargetCurrency } = useToolbarContext();
 
   return (
     <ToggleButtonGroup value={targetCurrency} onChange={(_e, value) => setTargetCurrency(value)} exclusive>

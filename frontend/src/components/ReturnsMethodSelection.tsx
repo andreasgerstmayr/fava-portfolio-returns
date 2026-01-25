@@ -1,20 +1,24 @@
 import { MenuItem, Select } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
-export const ReturnsMethods = {
-  simple: { label: "Returns" },
-  irr: {
-    label: "Internal Rate of Return",
-  },
-  mdm: {
-    label: "Modified Dietz Method",
-  },
-  twr: {
-    label: "Time-Weighted Rate of Return",
-  },
-  monetary: { label: "Monetary Returns" },
-};
+export function useReturnsMethods() {
+  const { t } = useTranslation();
+  return {
+    simple: { label: t("Returns") },
+    irr: {
+      label: t("Internal Rate of Return"),
+    },
+    mdm: {
+      label: t("Modified Dietz Method"),
+    },
+    twr: {
+      label: t("Time-Weighted Rate of Return"),
+    },
+    monetary: { label: t("Monetary Returns") },
+  };
+}
 
-export type ReturnsMethod = keyof typeof ReturnsMethods;
+export type ReturnsMethod = keyof ReturnType<typeof useReturnsMethods>;
 
 interface ReturnsMethodSelectionProps<T> {
   options: T[];
@@ -27,11 +31,13 @@ export function ReturnsMethodSelection<T extends ReturnsMethod>({
   method,
   setMethod,
 }: ReturnsMethodSelectionProps<T>) {
+  const returnsMethods = useReturnsMethods();
+
   return (
     <Select value={method} onChange={(e) => setMethod(e.target.value as T)} displayEmpty size="small">
       {options.map((option) => (
         <MenuItem key={option} value={option}>
-          {ReturnsMethods[option].label}
+          {returnsMethods[option].label}
         </MenuItem>
       ))}
     </Select>
