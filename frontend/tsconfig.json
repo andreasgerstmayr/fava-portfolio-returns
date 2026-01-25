@@ -5,6 +5,7 @@
         "jsx": "react-jsx",
         "strict": true,
         "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
         "skipLibCheck": true
     }
 }

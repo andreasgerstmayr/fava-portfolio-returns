@@ -3,7 +3,7 @@ import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import { Autocomplete, Checkbox, Chip, SxProps, TextField, useTheme } from "@mui/material";
 import { amber, blue, grey, teal } from "@mui/material/colors";
 import { SyntheticEvent } from "react";
-import { useToolbarContext } from "./Header/ToolbarProvider";
+import { useConfigContext } from "./Header/ConfigProvider";
 
 export interface InvestmentOption {
   type: "Account" | "Group" | "Currency";
@@ -28,7 +28,7 @@ export function InvestmentsSelection({
   investments,
   setInvestments,
 }: InvestmentsSelectionProps) {
-  const { config } = useToolbarContext();
+  const { config } = useConfigContext();
   const theme = useTheme();
 
   const options: InvestmentOption[] = [];

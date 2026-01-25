@@ -1,13 +1,14 @@
 import { Alert } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { EChartsOption } from "echarts";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useDividends } from "../api/dividends";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { anyFormatter, getCurrencyFormatter } from "../components/format";
+import { anyFormatter, useCurrencyFormatter } from "../components/format";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -26,19 +27,20 @@ export const DividendsRoute = createRoute({
 });
 
 function Dividends() {
+  const { t } = useTranslation();
   const [interval, setInterval] = useSearchParam(DividendsRoute, "interval");
 
   return (
     <Dashboard>
       <DashboardRow>
         <PanelGroup active={interval} setActive={setInterval}>
-          <PanelGroupItem id="month" label="monthly">
-            <Panel title="Dividends">
+          <PanelGroupItem id="month" label={t("monthly")}>
+            <Panel title={t("Dividends")}>
               <DividendsChart interval="monthly" />
             </Panel>
           </PanelGroupItem>
-          <PanelGroupItem id="year" label="yearly">
-            <Panel title="Dividends">
+          <PanelGroupItem id="year" label={t("yearly")}>
+            <Panel title={t("Dividends")}>
               <DividendsChart interval="yearly" />
             </Panel>
           </PanelGroupItem>
@@ -53,7 +55,9 @@ interface DividendsChartProps {
 }
 
 function DividendsChart({ interval }: DividendsChartProps) {
+  const { t } = useTranslation();
   const { investmentFilter, targetCurrency } = useToolbarContext();
+  const currencyFormatter = useCurrencyFormatter(targetCurrency);
   const { isPending, error, data } = useDividends({
     investmentFilter,
     targetCurrency,
@@ -70,10 +74,9 @@ function DividendsChart({ interval }: DividendsChartProps) {
   const investments = new Set(data.chart.flatMap((v) => Object.keys(v)));
   investments.delete("date");
   if (investments.size === 0) {
-    return <Alert severity="info">No dividends in this time frame.</Alert>;
+    return <Alert severity="info">{t("No dividends in this time frame.")}</Alert>;
   }
 
-  const currencyFormatter = getCurrencyFormatter(targetCurrency);
   const option: EChartsOption = {
     tooltip: {
       valueFormatter: anyFormatter(currencyFormatter),

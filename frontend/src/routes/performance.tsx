@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { EChartsOption } from "echarts";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { NamedSeries, useCompare } from "../api/compare";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
@@ -19,7 +20,7 @@ import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
 import { ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
-import { anyFormatter, percentFormatter } from "../components/format";
+import { anyFormatter, usePercentFormatter } from "../components/format";
 import { useArrayQueryParam, useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -41,6 +42,7 @@ export const PerformanceRoute = createRoute({
 });
 
 function Performance() {
+  const { t } = useTranslation();
   const [method, setMethod] = useSearchParam(PerformanceRoute, "method");
   const [investments, setInvestments] = useArrayQueryParam(useSearchParam(PerformanceRoute, "compareWith"));
   const [showBuySellPoints, setShowBuySellPoints] = useSearchParam(PerformanceRoute, "buySellPoints");
@@ -50,8 +52,10 @@ function Performance() {
     <Dashboard>
       <DashboardRow>
         <Panel
-          title="Performance"
-          help={`The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.`}
+          title={t("Performance")}
+          help={t(
+            'The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.',
+          )}
           topRightElem={<ReturnsMethodSelection options={["simple", "twr"]} method={method} setMethod={setMethod} />}
         >
           <PerformanceChart
@@ -62,7 +66,7 @@ function Performance() {
           />
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
             <InvestmentsSelection
-              label="Compare with"
+              label={t("Compare with")}
               types={["Group", "Account", "Currency"]}
               includeAllCurrencies
               investments={investments}
@@ -71,14 +75,14 @@ function Performance() {
           </Box>
           <Box sx={{ display: "flex", justifyContent: "center", marginTop: 3 }}>
             <FormControl component="fieldset" variant="outlined">
-              <FormLabel component="legend">Buy/Sell points</FormLabel>
+              <FormLabel component="legend">{t("Buy/Sell points")}</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  label="Show"
+                  label={t("Show")}
                   control={<Switch checked={showBuySellPoints} onChange={(_, value) => setShowBuySellPoints(value)} />}
                 />
                 <FormControlLabel
-                  label="Logarithmic Scaling"
+                  label={t("Logarithmic Scaling")}
                   control={
                     <Switch
                       checked={symbolScaling === "logarithmic"}
@@ -104,8 +108,10 @@ interface PerformanceChartProps {
 }
 
 function PerformanceChart({ method, investments, showBuySellPoints, symbolScaling }: PerformanceChartProps) {
+  const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
+  const percentFormatter = usePercentFormatter();
   const { isPending, error, data } = useCompare({
     investmentFilter,
     targetCurrency,
@@ -151,7 +157,7 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
     series: data.series.map((serie) => ({
       type: "line",
       showSymbol: false,
-      name: serie.name,
+      name: serie.name === "Returns" ? t("Returns") : serie.name,
       data: serie.data,
       markPoint: showBuySellPoints
         ? {

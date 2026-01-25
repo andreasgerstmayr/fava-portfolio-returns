@@ -24,13 +24,15 @@ interface Currency {
 }
 
 export interface ConfigResponse {
+  language: string | null;
+  locale: string | null;
+  pnlColorScheme: PNLColorSchemeVariant | null;
+  operatingCurrencies: string[];
   investmentsConfig: {
     accounts: Account[];
     groups: Group[];
     currencies: Currency[];
   };
-  operatingCurrencies: string[];
-  pnlColorScheme?: PNLColorSchemeVariant;
 }
 
 export function useConfig() {

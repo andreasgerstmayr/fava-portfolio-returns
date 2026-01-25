@@ -64,12 +64,14 @@ beangrow:
 lint:
 	cd frontend; npm run type-check
 	cd frontend; npm run lint
+	cd frontend; npm run lint:i18n
 	uv run ty check
 	uv run mypy src/fava_portfolio_returns scripts
 	uv run pylint src/fava_portfolio_returns scripts
 
 format:
 	-cd frontend; npm run lint:fix
+	cd frontend; npm run i18n
 	-uv run ruff check --fix
 	uv run ruff format .
 	find example src/fava_portfolio_returns/test/ledger -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;

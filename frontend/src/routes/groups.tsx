@@ -1,4 +1,5 @@
 import { createRoute, stripSearchParams } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { useSearchParam } from "../components/useSearchParam";
@@ -24,12 +25,13 @@ export const GroupsRoute = createRoute({
 });
 
 function Groups() {
+  const { t } = useTranslation();
   const [includeLiquidated, setIncludeLiquidated] = useSearchParam(GroupsRoute, "liquidated");
 
   return (
     <Dashboard>
       <DashboardRow>
-        <Panel title="Groups" help="Lists the groups defined in the beangrow configuration file.">
+        <Panel title={t("Groups")} help={t("Lists the groups defined in the beangrow configuration file.")}>
           <InvestmentsTable
             groupBy="group"
             includeLiquidated={includeLiquidated}

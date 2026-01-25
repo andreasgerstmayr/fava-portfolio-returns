@@ -1,6 +1,7 @@
 import { Alert } from "@mui/material";
 import { createRoute } from "@tanstack/react-router";
 import { MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
 import { useMissingPrices } from "../api/missing_prices";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { Loading } from "../components/Loading";
@@ -18,6 +19,7 @@ export const MissingPricesRoute = createRoute({
 });
 
 function MissingPrices() {
+  const { t } = useTranslation();
   const { isPending, error, data } = useMissingPrices();
 
   if (isPending) {
@@ -28,7 +30,7 @@ function MissingPrices() {
   }
 
   if (data.missingPrices.length === 0) {
-    return <Alert severity="info">All required prices are available in the ledger.</Alert>;
+    return <Alert severity="info">{t("All required prices are available in the ledger.")}</Alert>;
   }
 
   const handleCommandsDblClick = (e: MouseEvent<HTMLPreElement>) => {
@@ -43,19 +45,25 @@ function MissingPrices() {
   return (
     <Dashboard>
       <DashboardRow>
-        <Panel title="Fetch Required Prices" help="Run the following commands and append the output to your ledger:">
+        <Panel
+          title={t("Fetch Required Prices")}
+          help={t("Run the following commands and append the output to your ledger:")}
+        >
           <pre onDoubleClick={handleCommandsDblClick}>{data.commands.join("\n")}</pre>
         </Panel>
       </DashboardRow>
       <DashboardRow>
-        <Panel title="Missing Prices" help="This table shows dates where no accurate price directive was found.">
+        <Panel
+          title={t("Missing Prices")}
+          help={t("This table shows dates where no accurate price directive was found.")}
+        >
           <table>
             <thead>
               <tr>
-                <th>Currency</th>
-                <th>Required date</th>
-                <th>Closest date in ledger</th>
-                <th>Days late</th>
+                <th>{t("Currency")}</th>
+                <th>{t("Required date")}</th>
+                <th>{t("Closest date in ledger")}</th>
+                <th>{t("Days late")}</th>
               </tr>
             </thead>
             <tbody>
