@@ -31,6 +31,7 @@ export function ConfigProvider({ children }: ConfigProviderProps) {
       </Box>
     );
   }
+
   if (error) {
     return <Alert severity="error">{error.message}</Alert>;
   }

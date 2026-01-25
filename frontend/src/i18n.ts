@@ -12,5 +12,3 @@ i18n.use(initReactI18next).init({
     escapeValue: false, // React already escapes values to protect against XSS
   },
 });
-
-export { i18n };
