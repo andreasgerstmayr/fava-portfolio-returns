@@ -44,6 +44,13 @@ class TestInvestments(unittest.TestCase):
             "twr": 1.0,
         }
 
+    def test_group_stats_unrealized_partial_timeframe(self):
+        p = load_portfolio_file("linear_growth_stock")
+        stats = group_stats(p, datetime.date(2020, 3, 1), datetime.date(2020, 6, 1))
+        assert stats["totalPnl"] == D("30")
+        assert stats["unrealizedPnl"] == D("30")
+        assert stats["realizedPnl"] == D("0")
+
     def test_group_stats_target_currency(self):
         # in USD
         p = load_portfolio_file("target_currency", target_currency="USD")

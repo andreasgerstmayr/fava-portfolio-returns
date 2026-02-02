@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from beancount.core import convert
 
+from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
@@ -17,20 +18,31 @@ logger = logging.getLogger(__name__)
 
 
 def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
+    # compute unrealized P/L at start_date
+    balance_start = p.balance_at(start_date - ONE_DAY)
+    cost_value_start = cost_value_of_inv(p.pricer, p.target_currency, balance_start)
+    market_value_start = market_value_of_inv(p.pricer, p.target_currency, balance_start, start_date - ONE_DAY)
+    unrealized_pnl_start = market_value_start - cost_value_start
+
+    # compute portfolio stats at end_date
     balance = p.balance_at(end_date)
     cost_value = cost_value_of_inv(p.pricer, p.target_currency, balance)
+    # calculate market value with positions held at cost
+    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency)
     market_value = market_value_of_inv(p.pricer, p.target_currency, balance, end_date)
-    # reduce to units (i.e. removing cost attribute) after calculating market value, because convert.get_value() only works with positions held at cost
-    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency), instead of CORP -> EUR.
+    # reduce to units (i.e. removing cost attribute) after calculating market value
     # see https://github.com/andreasgerstmayr/fava-portfolio-returns/issues/53
-    units = balance.reduce(convert.get_units)  # sums 1 CORP {} + 2 CORP {} => 3 CORP
+    # sums 1 CORP {} + 2 CORP {} => 3 CORP
+    units = balance.reduce(convert.get_units)
+    unrealized_pnl_end = market_value - cost_value
 
     total_pnl = Decimal(MonetaryReturns().single(p, start_date, end_date))
-    unrealized_pnl = market_value - cost_value
+    unrealized_pnl = unrealized_pnl_end - unrealized_pnl_start
     realized_pnl = total_pnl - unrealized_pnl
     irr = IRR().single(p, start_date, end_date)
     mdm = ModifiedDietzMethod().single(p, start_date, end_date)
     twr = TWR().single(p, start_date, end_date)
+
     return {
         "units": [pos.units for pos in units],
         "costValue": cost_value,
