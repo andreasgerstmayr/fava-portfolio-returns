@@ -1,11 +1,10 @@
 import datetime
 import logging
-import math
 from decimal import Decimal
 
-import numpy as np
 from beancount.core import convert
 
+from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
@@ -18,37 +17,32 @@ from fava_portfolio_returns.returns.twr import TWR
 logger = logging.getLogger(__name__)
 
 
-def _sanitize_float(value):
-    """Replace inf/nan with None so the value is JSON-serializable."""
-    if isinstance(value, (float, np.floating)):
-        if math.isinf(value) or math.isnan(value):
-            return None
-    return value
-
-
 def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
+    # compute unrealized P/L at start_date
+    balance_start = p.balance_at(start_date - ONE_DAY)
+    cost_value_start = cost_value_of_inv(p.pricer, p.target_currency, balance_start)
+    market_value_start = market_value_of_inv(p.pricer, p.target_currency, balance_start, start_date - ONE_DAY)
+    unrealized_pnl_start = market_value_start - cost_value_start
+
+    # compute portfolio stats at end_date
     balance = p.balance_at(end_date)
     cost_value = cost_value_of_inv(p.pricer, p.target_currency, balance)
+    # calculate market value with positions held at cost
+    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency)
     market_value = market_value_of_inv(p.pricer, p.target_currency, balance, end_date)
-    # reduce to units (i.e. removing cost attribute) after calculating market value, because convert.get_value() only works with positions held at cost
-    # this will convert for example CORP -> USD (cost currency) -> EUR (target currency), instead of CORP -> EUR.
+    # reduce to units (i.e. removing cost attribute) after calculating market value
     # see https://github.com/andreasgerstmayr/fava-portfolio-returns/issues/53
-    units = balance.reduce(convert.get_units)  # sums 1 CORP {} + 2 CORP {} => 3 CORP
+    # sums 1 CORP {} + 2 CORP {} => 3 CORP
+    units = balance.reduce(convert.get_units)
+    unrealized_pnl_end = market_value - cost_value
 
     total_pnl = Decimal(MonetaryReturns().single(p, start_date, end_date))
-    # Period-bounded unrealized P&L: change in unrealized gains during the period
-    # Use start_date - 1 day to align with MonetaryReturns' convention
-    one_day = datetime.timedelta(days=1)
-    unrealized_pnl_end = market_value - cost_value
-    start_balance = p.balance_at(start_date - one_day)
-    start_cost_value = cost_value_of_inv(p.pricer, p.target_currency, start_balance)
-    start_market_value = market_value_of_inv(p.pricer, p.target_currency, start_balance, start_date - one_day)
-    unrealized_pnl_start = start_market_value - start_cost_value
     unrealized_pnl = unrealized_pnl_end - unrealized_pnl_start
     realized_pnl = total_pnl - unrealized_pnl
-    irr = _sanitize_float(IRR().single(p, start_date, end_date))
-    mdm = _sanitize_float(ModifiedDietzMethod().single(p, start_date, end_date))
-    twr = _sanitize_float(TWR().single(p, start_date, end_date))
+    irr = IRR().single(p, start_date, end_date)
+    mdm = ModifiedDietzMethod().single(p, start_date, end_date)
+    twr = TWR().single(p, start_date, end_date)
+
     return {
         "units": [pos.units for pos in units],
         "costValue": cost_value,
