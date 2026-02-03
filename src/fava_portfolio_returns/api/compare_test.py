@@ -12,7 +12,7 @@ class TestCompare(unittest.TestCase):
         p = load_portfolio_file("savings_plan")
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
         assert len(series) == 2
-        assert series[0].name == "Returns"
+        assert series[0].name == "portfolio"
         assert series[0].data == [
             (datetime.date(2020, 1, 1), 0.0),
             (datetime.date(2020, 2, 1), 0.2),
@@ -31,7 +31,7 @@ class TestCompare(unittest.TestCase):
         p = load_portfolio_file("savings_plan")
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "twr", ["c_CORP"])
         assert len(series) == 2
-        assert series[0].name == "Returns"
+        assert series[0].name == "portfolio"
         assert series[0].data == [
             # TWR is identical to price series, because effects of cash flows are eliminated
             (datetime.date(2020, 1, 1), 0.0),
@@ -52,7 +52,7 @@ class TestCompare(unittest.TestCase):
         series = compare_chart(p, datetime.date(2020, 3, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
         assert series == [
             NamedSeries(
-                name="Returns",
+                name="portfolio",
                 data=[
                     (datetime.date(2020, 3, 1), 0.0),
                     (datetime.date(2020, 4, 1), approx2(0.09)),
@@ -74,7 +74,7 @@ class TestCompare(unittest.TestCase):
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "simple", ["c_CORP"])
         assert series == [
             NamedSeries(
-                name="Returns",
+                name="portfolio",
                 data=[
                     (datetime.date(2020, 1, 1), 0.0),
                     (datetime.date(2020, 2, 1), 0.5),
@@ -104,7 +104,7 @@ class TestCompare(unittest.TestCase):
         series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "twr", ["c_CORP"])
         assert series == [
             NamedSeries(
-                name="Returns",
+                name="portfolio",
                 data=[
                     # TWR is identical to price series, because effects of cash flows are eliminated
                     (datetime.date(2020, 1, 1), 0.0),
@@ -141,7 +141,7 @@ class TestCompare(unittest.TestCase):
         # any other cash flows that would create the difference
         assert series == [
             NamedSeries(
-                name="Returns",
+                name="portfolio",
                 data=[
                     (datetime.date(2020, 2, 5), 0.0),
                     (datetime.date(2020, 2, 10), 0.25),
