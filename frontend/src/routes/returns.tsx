@@ -13,8 +13,9 @@ import { anyFormatter, useCurrencyFormatter, usePercentFormatter } from "../comp
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
+const supportedMethods: ReturnsMethod[] = ["irr", "mdm", "twr", "pnl"];
 const searchSchema = z.object({
-  method: z.enum(["irr", "mdm", "twr", "monetary"]).default("irr").catch("irr"),
+  method: z.enum(supportedMethods).default("irr").catch("irr"),
 });
 
 export const ReturnsRoute = createRoute({
@@ -34,7 +35,7 @@ function Returns() {
   return (
     <Dashboard>
       <DashboardRow sx={{ justifyContent: "flex-end" }}>
-        <ReturnsMethodSelection options={["irr", "mdm", "twr", "monetary"]} method={method} setMethod={setMethod} />
+        <ReturnsMethodSelection options={supportedMethods} method={method} setMethod={setMethod} />
       </DashboardRow>
       <DashboardRow>
         <Panel title={t("Monthly Returns")}>
@@ -79,7 +80,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
 
   const max = Math.max(...data.returns.map(([label, val]) => (label.includes("-") ? Math.abs(val) : 0)));
   const maxRounded = Math.round(max * 100) / 100;
-  const valueFormatter = method === "monetary" ? currencyFormatter : percentFormatter;
+  const valueFormatter = method === "pnl" ? currencyFormatter : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
   const option: EChartsOption = {
     tooltip: {
@@ -168,7 +169,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const valueFormatter = method === "monetary" ? currencyFormatter : percentFormatter;
+  const valueFormatter = method === "pnl" ? currencyFormatter : percentFormatter;
   const option: EChartsOption = {
     tooltip: {
       trigger: "axis",

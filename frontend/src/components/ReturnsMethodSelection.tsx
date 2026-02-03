@@ -14,7 +14,7 @@ export function useReturnsMethods() {
     twr: {
       label: t("Time-Weighted Rate of Return"),
     },
-    monetary: { label: t("Monetary Returns") },
+    pnl: { label: t("Total Profit and Loss") },
   };
 }
 

@@ -19,13 +19,14 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
-import { ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
+import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
 import { anyFormatter, usePercentFormatter } from "../components/format";
 import { useArrayQueryParam, useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
+const supportedMethods: ReturnsMethod[] = ["simple", "twr"];
 const searchSchema = z.object({
-  method: z.enum(["simple", "twr"]).default("simple").catch("simple"),
+  method: z.enum(supportedMethods).default("simple").catch("simple"),
   compareWith: z.string().optional(),
   buySellPoints: z.boolean().default(false).catch(false),
   symbolScaling: z.enum(["linear", "logarithmic"]).default("linear").catch("linear"),
@@ -56,7 +57,7 @@ function Performance() {
           help={t(
             'The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.',
           )}
-          topRightElem={<ReturnsMethodSelection options={["simple", "twr"]} method={method} setMethod={setMethod} />}
+          topRightElem={<ReturnsMethodSelection options={supportedMethods} method={method} setMethod={setMethod} />}
         >
           <PerformanceChart
             method={method}

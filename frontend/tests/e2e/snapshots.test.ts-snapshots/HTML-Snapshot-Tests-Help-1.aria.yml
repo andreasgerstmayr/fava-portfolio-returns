@@ -1,6 +1,7 @@
 - banner:
   - img
   - heading "Beancount›Portfolio Returns" [level=1]:
+    - text: ""
     - strong: ›Portfolio Returns
   - combobox "Time"
   - combobox "Account"
@@ -93,8 +94,8 @@
   - paragraph: fava-portfolio-returns supports multiple ways to calculate the portfolio performance.
   - heading "Returns" [level=3]
   - paragraph: Returns compares the market value with the cost value. In the Performance chart, the difference between the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable with the performance of other groups and commodities.
-  - heading "Monetary Returns" [level=3]
-  - paragraph: Monetary returns computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
+  - heading "Total Profit and Loss" [level=3]
+  - paragraph: Total Profit and Loss computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
   - heading "Internal Rate of Return (IRR)" [level=3]
   - paragraph: Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.
   - paragraph:

@@ -11,8 +11,8 @@ from fava_portfolio_returns.returns.base import Series
 logger = logging.getLogger(__name__)
 
 
-class MonetaryReturns(ReturnsBase):
-    """Return compares the market value with the invested capital"""
+class TotalPNL(ReturnsBase):
+    """Total Profit and Loss compares the market value with the invested capital"""
 
     def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:
         """calculates the difference between the gains before and after the time frame"""
