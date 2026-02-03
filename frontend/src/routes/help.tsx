@@ -31,10 +31,10 @@ function Help() {
       </Trans>
 
       <Trans>
-        <h3>Monetary Returns</h3>
+        <h3>Total Profit and Loss</h3>
         <p>
-          Monetary returns computes the difference between the market value and the invested capital (sum of incoming
-          and outgoing cash flows, including dividends and fees).
+          Total Profit and Loss computes the difference between the market value and the invested capital (sum of
+          incoming and outgoing cash flows, including dividends and fees).
         </p>
       </Trans>
 

@@ -11,7 +11,7 @@ from fava_portfolio_returns.core.utils import cost_value_of_inv
 from fava_portfolio_returns.core.utils import market_value_of_inv
 from fava_portfolio_returns.returns.irr import IRR
 from fava_portfolio_returns.returns.mdm import ModifiedDietzMethod
-from fava_portfolio_returns.returns.monetary import MonetaryReturns
+from fava_portfolio_returns.returns.pnl import TotalPNL
 from fava_portfolio_returns.returns.twr import TWR
 
 logger = logging.getLogger(__name__)
@@ -36,7 +36,7 @@ def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datet
     units = balance.reduce(convert.get_units)
     unrealized_pnl_end = market_value - cost_value
 
-    total_pnl = Decimal(MonetaryReturns().single(p, start_date, end_date))
+    total_pnl = Decimal(TotalPNL().single(p, start_date, end_date))
     unrealized_pnl = unrealized_pnl_end - unrealized_pnl_start
     realized_pnl = total_pnl - unrealized_pnl
     irr = IRR().single(p, start_date, end_date)

@@ -34,7 +34,7 @@ from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.returns.factory import RETURN_METHODS
-from fava_portfolio_returns.returns.monetary import MonetaryReturns
+from fava_portfolio_returns.returns.pnl import TotalPNL
 
 logger = logging.getLogger(__name__)
 if loglevel := os.environ.get("LOGLEVEL"):
@@ -168,7 +168,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         p = self.get_filtered_portfolio(toolbar_ctx)
 
         value_chart = portfolio_values(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
-        performance_chart = MonetaryReturns().series(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
+        performance_chart = TotalPNL().series(p, toolbar_ctx.start_date, toolbar_ctx.end_date)
         allocation = portfolio_allocation(p, toolbar_ctx.end_date)
 
         return {
