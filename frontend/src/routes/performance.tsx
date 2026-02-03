@@ -157,7 +157,7 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
     series: data.series.map((serie) => ({
       type: "line",
       showSymbol: false,
-      name: serie.name === "Returns" ? t("Returns") : serie.name,
+      name: serie.name === "portfolio" ? t("Portfolio") : serie.name,
       data: serie.data,
       markPoint: showBuySellPoints
         ? {
