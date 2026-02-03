@@ -13,9 +13,9 @@ import { anyFormatter, useCurrencyFormatter, usePercentFormatter } from "../comp
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
-const supportedMetrics: MetricName[] = ["irr", "mdm", "twr", "pnl"];
+const supportedMetrics: MetricName[] = ["mdd"];
 const searchSchema = z.object({
-  metric: z.enum(supportedMetrics).default("irr").catch("irr"),
+  metric: z.enum(supportedMetrics).default("mdd").catch("mdd"),
 });
 
 export const MetricsRoute = createRoute({
@@ -23,7 +23,7 @@ export const MetricsRoute = createRoute({
   path: "metrics",
   validateSearch: searchSchema,
   search: {
-    middlewares: [stripSearchParams({ metric: "irr" })],
+    middlewares: [stripSearchParams({ metric: "mdd" })],
   },
   component: Metrics,
 });
@@ -72,7 +72,7 @@ export function MetricLineChart({ metric }: MetricLineChartProps) {
   const metricDef = useMetric(metric);
   const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
   const percentFormatter = usePercentFormatter();
-  const valueFormatter = metricDef.format === "currency" ? currencyFormatter : percentFormatter;
+  const valueFormatter = metricDef.unit === "currency" ? currencyFormatter : percentFormatter;
   const { isPending, error, data } = useMetricValues({
     investmentFilter,
     targetCurrency,
@@ -127,7 +127,7 @@ export function MetricHeatmapChart({ metric }: MetricHeatmapChartProps) {
   const metricDef = useMetric(metric);
   const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
   const percentFormatter = usePercentFormatter();
-  const valueFormatter = metricDef.format === "currency" ? currencyFormatter : percentFormatter;
+  const valueFormatter = metricDef.unit === "currency" ? currencyFormatter : percentFormatter;
   const { isPending, error, data } = useMetricValues({
     investmentFilter,
     targetCurrency,
@@ -219,7 +219,7 @@ export function MetricBarChart({ metric, interval }: MetricBarChartProps) {
   const metricDef = useMetric(metric);
   const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
   const percentFormatter = usePercentFormatter();
-  const valueFormatter = metricDef.format === "currency" ? currencyFormatter : percentFormatter;
+  const valueFormatter = metricDef.unit === "currency" ? currencyFormatter : percentFormatter;
   const { isPending, error, data } = useMetricValues({
     investmentFilter,
     targetCurrency,

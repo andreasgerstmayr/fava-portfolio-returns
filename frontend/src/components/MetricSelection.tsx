@@ -8,27 +8,32 @@ export function useMetrics() {
   return {
     returns: {
       label: t("Returns"),
-      format: "percent",
+      unit: "percent",
       supportSeries: true,
     },
     irr: {
       label: t("Internal Rate of Return"),
-      format: "percent",
+      unit: "percent",
       supportSeries: false,
     },
     mdm: {
       label: t("Modified Dietz Method"),
-      format: "percent",
+      unit: "percent",
       supportSeries: false,
     },
     twr: {
       label: t("Time-Weighted Rate of Return"),
-      format: "percent",
+      unit: "percent",
       supportSeries: true,
     },
     pnl: {
       label: t("Total Profit and Loss"),
-      format: "currency",
+      unit: "currency",
+      supportSeries: true,
+    },
+    mdd: {
+      label: t("Maximum Drawdown"),
+      unit: "percent",
       supportSeries: true,
     },
   };

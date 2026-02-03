@@ -1,5 +1,6 @@
 from fava_portfolio_returns.metrics.base import MetricBase
 from fava_portfolio_returns.metrics.irr import IRR
+from fava_portfolio_returns.metrics.mdd import MDD
 from fava_portfolio_returns.metrics.mdm import ModifiedDietzMethod
 from fava_portfolio_returns.metrics.pnl import TotalPNL
 from fava_portfolio_returns.metrics.returns import Returns
@@ -11,6 +12,7 @@ ALL_METRICS: dict[str, MetricBase] = {
     "mdm": ModifiedDietzMethod(),
     "twr": TWR(),
     "pnl": TotalPNL(),
+    "mdd": MDD(),
 }
 
 

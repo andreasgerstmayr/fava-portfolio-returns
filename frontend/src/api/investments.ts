@@ -20,6 +20,7 @@ export interface Investment {
   irr: number;
   mdm: number;
   twr: number;
+  mdd: number;
 }
 
 export interface InvestmentsResponse {
