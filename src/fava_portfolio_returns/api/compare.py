@@ -46,7 +46,7 @@ def compare_chart(
 
     returns = returns_method.series(p, start_date, end_date)
     cash_flows = get_series_cash_flows(p, start_date, end_date)
-    returns_series: list[NamedSeries] = [NamedSeries(name="Returns", data=returns, cashFlows=cash_flows)]
+    returns_series: list[NamedSeries] = [NamedSeries(name="portfolio", data=returns, cashFlows=cash_flows)]
 
     for group in p.portfolio.investments_config.groups:
         if group.id in compare_with:
