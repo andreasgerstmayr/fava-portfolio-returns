@@ -40,6 +40,7 @@ class TWR(ReturnsBase):
         # TWR compounds returns
         return [(date, (value + 1.0) / (base + 1.0) - 1.0) for date, value in series]
 
+
 # cashflow-adjusted portfolio growth factor, i.e. how does 1 USD grow over time, ignoring effects of cashflows
 def _subperiods(values: list[PortfolioValue]):
     if values:
