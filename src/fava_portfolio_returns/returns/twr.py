@@ -1,5 +1,6 @@
 import datetime
 import logging
+import math
 
 from beancount.core.number import ZERO
 
@@ -22,23 +23,29 @@ class TWR(ReturnsBase):
 
     def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:
         values = portfolio_values(p, start_date, end_date)
-        return _twr(values)
+        return math.prod(returns for _date, returns in _subperiods(values)) - 1.0
 
     def series(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> Series:
         values = portfolio_values(p, start_date, end_date)
-        return _twr(values, save_intermediate=True)
+        twrs: Series = []
+
+        twr = 1.0
+        for date, returns in _subperiods(values):
+            twr *= returns
+            twrs.append((date, twr - 1.0))
+
+        return twrs
 
     def rebase(self, base: float, series: Series) -> Series:
         # TWR compounds returns
         return [(date, (value + 1.0) / (base + 1.0) - 1.0) for date, value in series]
 
 
-def _twr(values: list[PortfolioValue], save_intermediate=False):
-    twrs: Series = []
-    if save_intermediate and values:
-        twrs.append((values[0].date, 0.0))
+# cashflow-adjusted portfolio growth factor, i.e. how does 1 USD grow over time, ignoring effects of cashflows
+def _subperiods(values: list[PortfolioValue]):
+    if values:
+        yield values[0].date, 1.0
 
-    twr = 1.0
     for i in range(len(values) - 1):
         # https://en.wikipedia.org/wiki/Time-weighted_return#Time-weighted_return_compensating_for_external_flows
         # portfolio is valued immediately after each external flow
@@ -48,11 +55,6 @@ def _twr(values: list[PortfolioValue], save_intermediate=False):
         end = values[i + 1].market - (values[i + 1].cash - values[i].cash)  # next period, before cash flow
 
         returns = float(end) / float(begin)
-        twr *= returns
-
-        if save_intermediate:
-            twrs.append((values[i + 1].date, twr - 1))
-
         logger.debug(
             "Subperiod %d from %s to %s: begin=%.2f end=%.2f returns=%.2f%%",
             i,
@@ -62,5 +64,4 @@ def _twr(values: list[PortfolioValue], save_intermediate=False):
             end,
             returns - 1,
         )
-
-    return twrs if save_intermediate else (twr - 1)
+        yield (values[i + 1].date, returns)
