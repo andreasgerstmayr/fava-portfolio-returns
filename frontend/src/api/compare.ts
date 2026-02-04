@@ -1,12 +1,13 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { MetricName } from "../components/MetricSelection";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
-import { Series } from "./returns";
+import { Series } from "./metric_values";
 
 interface CompareRequest {
   investmentFilter: string[];
   targetCurrency: string;
-  method: string;
+  metric: MetricName;
   compareWith: string[];
 }
 
@@ -25,7 +26,7 @@ export function useCompare(request: CompareRequest): UseQueryResult<CompareRespo
   const params = useFavaFilterSearchParams();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
-  params.set("method", request.method);
+  params.set("metric", request.metric);
   params.set("compareWith", request.compareWith.join(","));
   const url = `compare?${params}`;
 

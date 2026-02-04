@@ -131,7 +131,7 @@
         - text: "of the following formula:"
         - code: /\d+\*\(1\+x\)\^\(\d+\/\d+\) \+ \d+\*\(1\+x\)\^\(\d+\/\d+\) = \d+/
         - text: .
-      - paragraph: This method is recommended when you are in control of the cash flows.
+      - paragraph: This metric is recommended when you are in control of the cash flows.
     - region "Modified Dietz Method (MDM)":
       - heading "Modified Dietz Method (MDM)" [level=3]
       - paragraph: Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.
@@ -144,4 +144,4 @@
         - text: /\)\. Because of these returns, you decide to invest additional \d+ USD\. Now, the returns dropped to \d+% \(/
         - code: /\d+\/\d+-1/
         - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows.
-      - paragraph: This method is recommended for comparing two funds or portfolios.
+      - paragraph: This metric is recommended for comparing two funds or portfolios.

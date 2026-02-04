@@ -9,8 +9,8 @@ from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
 from fava_portfolio_returns.core.utils import get_prices
-from fava_portfolio_returns.returns.base import Series
-from fava_portfolio_returns.returns.factory import RETURN_METHODS
+from fava_portfolio_returns.metrics.base import Series
+from fava_portfolio_returns.metrics.factory import METRICS
 
 logger = logging.getLogger(__name__)
 
@@ -38,13 +38,13 @@ def get_series_cash_flows(fp: FilteredPortfolio, start_date: datetime.date, end_
 
 
 def compare_chart(
-    p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, method: str, compare_with: list[str]
+    p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, metric_name: str, compare_with: list[str]
 ):
-    returns_method = RETURN_METHODS.get(method)
-    if not returns_method:
-        raise ValueError(f"Invalid method '{method}'")
+    metric = METRICS.get(metric_name)
+    if not metric:
+        raise ValueError(f"Invalid metric name '{metric_name}'")
 
-    returns = returns_method.series(p, start_date, end_date)
+    returns = metric.series(p, start_date, end_date)
     cash_flows = get_series_cash_flows(p, start_date, end_date)
     returns_series: list[NamedSeries] = [NamedSeries(name="portfolio", data=returns, cashFlows=cash_flows)]
 
@@ -54,7 +54,7 @@ def compare_chart(
             returns_series.append(
                 NamedSeries(
                     name=f"(GRP) {group.name}",
-                    data=returns_method.series(fp, start_date, end_date),
+                    data=metric.series(fp, start_date, end_date),
                     cashFlows=get_series_cash_flows(fp, start_date, end_date),
                 )
             )
@@ -65,7 +65,7 @@ def compare_chart(
             returns_series.append(
                 NamedSeries(
                     name=f"(ACC) {account.assetAccount}",
-                    data=returns_method.series(fp, start_date, end_date),
+                    data=metric.series(fp, start_date, end_date),
                     cashFlows=get_series_cash_flows(fp, start_date, end_date),
                 )
             )
@@ -93,7 +93,7 @@ def compare_chart(
     for serie in returns_series:
         truncated_series = truncate_series(serie.data, common_date)
         first_value = truncated_series[0][1]
-        rebased_series = returns_method.rebase(first_value, truncated_series)
+        rebased_series = metric.rebase(first_value, truncated_series)
         truncated_cash_flows = truncate_cash_flows(serie.cashFlows, common_date)
         series.append(NamedSeries(name=serie.name, data=rebased_series, cashFlows=truncated_cash_flows))
     for serie in price_series:

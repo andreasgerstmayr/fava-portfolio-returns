@@ -33,8 +33,8 @@ from fava_portfolio_returns.core.intervals import intervals_heatmap
 from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.core.portfolio import Portfolio
-from fava_portfolio_returns.returns.factory import RETURN_METHODS
-from fava_portfolio_returns.returns.pnl import TotalPNL
+from fava_portfolio_returns.metrics.factory import METRICS
+from fava_portfolio_returns.metrics.pnl import TotalPNL
 
 logger = logging.getLogger(__name__)
 if loglevel := os.environ.get("LOGLEVEL"):
@@ -182,24 +182,24 @@ class FavaPortfolioReturns(FavaExtensionBase):
     def api_compare(self):
         toolbar_ctx = self.get_toolbar_ctx()
         p = self.get_filtered_portfolio(toolbar_ctx)
-        method = request.args.get("method", "")
+        metric_name = request.args.get("metric", "")
         compare_with = list(filter(None, request.args.get("compareWith", "").split(",")))
 
-        series = compare_chart(p, toolbar_ctx.start_date, toolbar_ctx.end_date, method, compare_with)
+        series = compare_chart(p, toolbar_ctx.start_date, toolbar_ctx.end_date, metric_name, compare_with)
 
         return {"series": series}
 
-    @extension_endpoint("returns")
+    @extension_endpoint("metric_values")
     @api_response
-    def api_returns(self):
+    def api_metric_values(self):
         toolbar_ctx = self.get_toolbar_ctx()
         p = self.get_filtered_portfolio(toolbar_ctx)
-        method = request.args.get("method", "")
+        metric_name = request.args.get("metric", "")
         interval = request.args.get("interval", "")
 
-        returns_method = RETURN_METHODS.get(method)
-        if not returns_method:
-            raise FavaAPIError(f"Invalid method {method}")
+        metric = METRICS.get(metric_name)
+        if not metric:
+            raise FavaAPIError(f"Invalid metric name '{metric_name}'")
 
         cash_flows = p.cash_flows()
         if cash_flows and toolbar_ctx.start_date <= cash_flows[0].date <= toolbar_ctx.end_date:
@@ -217,7 +217,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         else:
             raise FavaAPIError(f"Invalid interval {interval}")
 
-        return {"returns": returns_method.intervals(p, intervals)}
+        return {"returns": metric.intervals(p, intervals)}
 
     @extension_endpoint("dividends")
     @api_response

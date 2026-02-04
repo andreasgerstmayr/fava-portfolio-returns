@@ -7,15 +7,15 @@ from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 Series = list[tuple[datetime.date, float]]
 
 
-class ReturnsBase(abc.ABC):
+class MetricBase(abc.ABC):
     def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:
-        raise NotImplementedError("single() is not implemented for this method of calculating portfolio returns")
+        raise NotImplementedError("single() is not implemented for this metric")
 
     def series(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> Series:
-        raise NotImplementedError("series() is not implemented for this method of calculating portfolio returns")
+        raise NotImplementedError("series() is not implemented for this metric")
 
     def rebase(self, base: float, series: Series) -> Series:
-        raise NotImplementedError("rebase() is not implemented for this method of calculating portfolio returns")
+        raise NotImplementedError("rebase() is not implemented for this metric")
 
     def intervals(self, p: FilteredPortfolio, intervals: list[Interval]) -> list[tuple[str, float]]:
         ret = []

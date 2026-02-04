@@ -4,10 +4,10 @@ const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns
 const pages = [
   { name: "Portfolio", url: "" },
   { name: "Performance", url: "?path=performance&compareWith=c_VHT~c_GLD" },
-  { name: "Performance (TWR)", url: "?path=performance&investments=g_Gold&method=twr&compareWith=c_GLD" },
+  { name: "Performance (TWR)", url: "?path=performance&investments=g_Gold&metric=twr&compareWith=c_GLD" },
   { name: "Returns", url: "?path=returns" },
-  { name: "Returns (MDM)", url: "?path=returns&method=mdm" },
-  { name: "Returns (TWR)", url: "?path=returns&method=twr" },
+  { name: "Returns (MDM)", url: "?path=returns&metric=mdm" },
+  { name: "Returns (TWR)", url: "?path=returns&metric=twr" },
   { name: "Dividends", url: "?path=dividends" },
   { name: "Cash Flows", url: "?path=cash_flows&investments=c_VHT" },
   { name: "Groups", url: "?path=groups" },

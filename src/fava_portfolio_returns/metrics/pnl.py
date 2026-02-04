@@ -5,13 +5,13 @@ from fava_portfolio_returns.api.portfolio import portfolio_values
 from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import market_value_of_inv
-from fava_portfolio_returns.returns.base import ReturnsBase
-from fava_portfolio_returns.returns.base import Series
+from fava_portfolio_returns.metrics.base import MetricBase
+from fava_portfolio_returns.metrics.base import Series
 
 logger = logging.getLogger(__name__)
 
 
-class TotalPNL(ReturnsBase):
+class TotalPNL(MetricBase):
     """Total Profit and Loss compares the market value with the invested capital"""
 
     def single(self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date) -> float:

@@ -71,7 +71,7 @@ function Help() {
                 for two months (59 days), and 20 USD for one month (28 days). IRR calculates <code>x</code> of the
                 following formula: <code>100*(1+x)^(59/365) + 20*(1+x)^(28/365) = 200</code>.
               </p>
-              <p>This method is recommended when you are in control of the cash flows.</p>
+              <p>This metric is recommended when you are in control of the cash flows.</p>
             </Trans>
           ),
         },
@@ -100,7 +100,7 @@ function Help() {
                 the commodity did not change. The TWR eliminates this effect, which allows us to compare different
                 portfolios without the effects of cash flows.
               </p>
-              <p>This method is recommended for comparing two funds or portfolios.</p>
+              <p>This metric is recommended for comparing two funds or portfolios.</p>
             </Trans>
           ),
         },
