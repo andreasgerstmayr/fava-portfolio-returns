@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from fava_portfolio_returns.returns.twr import TWR
+from fava_portfolio_returns.metrics.twr import TWR
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP_CASH_FLOWS
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORPAB
 from fava_portfolio_returns.test.test import approx2

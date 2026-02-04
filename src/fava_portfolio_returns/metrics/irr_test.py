@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 from fava_portfolio_returns.core.intervals import intervals_yearly
-from fava_portfolio_returns.returns.irr import IRR
+from fava_portfolio_returns.metrics.irr import IRR
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP
 from fava_portfolio_returns.test.test import approx3
 from fava_portfolio_returns.test.test import load_portfolio_file

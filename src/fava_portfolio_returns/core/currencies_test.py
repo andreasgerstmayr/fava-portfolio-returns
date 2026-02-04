@@ -1,7 +1,7 @@
 import datetime
 import unittest
 
-from fava_portfolio_returns.returns.simple import SimpleReturns
+from fava_portfolio_returns.metrics.returns import Returns
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP
 from fava_portfolio_returns.test.test import load_portfolio_str
 
@@ -40,7 +40,7 @@ plugin "beancount.plugins.implicit_prices"
         assert p.cash_at(datetime.date(2020, 2, 1)) == 100
         assert p.cash_at(datetime.date(2020, 3, 3)) == 100
 
-        returns_base = SimpleReturns().series(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1))
+        returns_base = Returns().series(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1))
         assert returns_base == [
             (datetime.date(2020, 1, 1), 0.0),
             # investment has grown
@@ -58,7 +58,7 @@ plugin "beancount.plugins.implicit_prices"
         # Cost basis of 100 CURRENCY_BASE = 500 CURRENCY_TARGET
         assert p.cash_at(datetime.date(2020, 3, 3)) == 500
 
-        returns_target = SimpleReturns().series(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1))
+        returns_target = Returns().series(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1))
         # Note more data points since the currency rates are now affecting how the portfolio evaluations are done
         assert returns_target == [
             # 200 CURRENCY_TARGET = 100 CURRENCY_BASE invested

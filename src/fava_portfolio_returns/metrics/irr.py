@@ -6,12 +6,12 @@ from fava_portfolio_returns._vendor.beangrow.returns import truncate_and_merge_c
 from fava_portfolio_returns.api.cash_flows import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.intervals import ONE_DAY
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
-from fava_portfolio_returns.returns.base import ReturnsBase
+from fava_portfolio_returns.metrics.base import MetricBase
 
 logger = logging.getLogger(__name__)
 
 
-class IRR(ReturnsBase):
+class IRR(MetricBase):
     """
     Internal Rate of Return
 

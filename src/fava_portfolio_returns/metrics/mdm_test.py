@@ -3,7 +3,7 @@ import unittest
 from pathlib import Path
 
 from fava_portfolio_returns.core.intervals import intervals_yearly
-from fava_portfolio_returns.returns.mdm import ModifiedDietzMethod
+from fava_portfolio_returns.metrics.mdm import ModifiedDietzMethod
 from fava_portfolio_returns.test.test import approx3
 from fava_portfolio_returns.test.test import load_portfolio_file
 

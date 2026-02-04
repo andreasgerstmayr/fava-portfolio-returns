@@ -7,13 +7,13 @@ from beancount.core.number import ZERO
 from fava_portfolio_returns.api.portfolio import PortfolioValue
 from fava_portfolio_returns.api.portfolio import portfolio_values
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
-from fava_portfolio_returns.returns.base import ReturnsBase
-from fava_portfolio_returns.returns.base import Series
+from fava_portfolio_returns.metrics.base import MetricBase
+from fava_portfolio_returns.metrics.base import Series
 
 logger = logging.getLogger(__name__)
 
 
-class TWR(ReturnsBase):
+class TWR(MetricBase):
     """
     Time-Weighted Rate of Return
 

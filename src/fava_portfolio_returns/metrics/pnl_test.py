@@ -2,7 +2,7 @@ import datetime
 import unittest
 
 from fava_portfolio_returns.core.intervals import intervals_heatmap
-from fava_portfolio_returns.returns.pnl import TotalPNL
+from fava_portfolio_returns.metrics.pnl import TotalPNL
 from fava_portfolio_returns.test.test import load_portfolio_file
 
 

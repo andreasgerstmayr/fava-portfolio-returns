@@ -9,10 +9,10 @@ from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
 from fava_portfolio_returns.core.utils import market_value_of_inv
-from fava_portfolio_returns.returns.irr import IRR
-from fava_portfolio_returns.returns.mdm import ModifiedDietzMethod
-from fava_portfolio_returns.returns.pnl import TotalPNL
-from fava_portfolio_returns.returns.twr import TWR
+from fava_portfolio_returns.metrics.irr import IRR
+from fava_portfolio_returns.metrics.mdm import ModifiedDietzMethod
+from fava_portfolio_returns.metrics.pnl import TotalPNL
+from fava_portfolio_returns.metrics.twr import TWR
 
 logger = logging.getLogger(__name__)
 

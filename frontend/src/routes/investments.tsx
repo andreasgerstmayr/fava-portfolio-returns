@@ -8,7 +8,7 @@ import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { useNumberFormatter, usePercentFormatter } from "../components/format";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { useReturnsMethods } from "../components/ReturnsMethodSelection";
+import { useMetricNames } from "../components/MetricSelection";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -61,7 +61,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
   const numberFormatter = useNumberFormatter();
   const fixedPercentFormatter = usePercentFormatter({ fixed: true });
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
-  const returnsMethods = useReturnsMethods();
+  const metricNames = useMetricNames();
 
   if (isPending) {
     return <Loading />;
@@ -170,7 +170,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     {
       field: "irr",
       headerName: t("IRR"),
-      description: returnsMethods.irr.label,
+      description: metricNames.irr.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,
@@ -180,7 +180,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     {
       field: "mdm",
       headerName: t("MDM"),
-      description: returnsMethods.mdm.label,
+      description: metricNames.mdm.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,
@@ -190,7 +190,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
     {
       field: "twr",
       headerName: t("TWR"),
-      description: returnsMethods.twr.label,
+      description: metricNames.twr.label,
       headerAlign: "center",
       align: "right",
       minWidth: 80,

@@ -8,9 +8,9 @@ from fava_portfolio_returns.test.test import load_portfolio_file
 
 
 class TestCompare(unittest.TestCase):
-    def test_savings_plan_simple(self):
+    def test_savings_plan_returns(self):
         p = load_portfolio_file("savings_plan")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 4, 1), "returns", ["c_CORP"])
         assert len(series) == 2
         assert series[0].name == "portfolio"
         assert series[0].data == [
@@ -49,7 +49,7 @@ class TestCompare(unittest.TestCase):
 
     def test_savings_plan_middle(self):
         p = load_portfolio_file("savings_plan")
-        series = compare_chart(p, datetime.date(2020, 3, 1), datetime.date(2020, 4, 1), "simple", ["c_CORP"])
+        series = compare_chart(p, datetime.date(2020, 3, 1), datetime.date(2020, 4, 1), "returns", ["c_CORP"])
         assert series == [
             NamedSeries(
                 name="portfolio",
@@ -69,9 +69,9 @@ class TestCompare(unittest.TestCase):
             ),
         ]
 
-    def test_linear_growth_stock_simple(self):
+    def test_linear_growth_stock_returns(self):
         p = load_portfolio_file("linear_growth_stock")
-        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "simple", ["c_CORP"])
+        series = compare_chart(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1), "returns", ["c_CORP"])
         assert series == [
             NamedSeries(
                 name="portfolio",

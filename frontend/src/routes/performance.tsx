@@ -19,14 +19,14 @@ import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { InvestmentsSelection } from "../components/InvestmentsSelection";
 import { Loading } from "../components/Loading";
-import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
+import { MetricName, MetricSelection } from "../components/MetricSelection";
 import { anyFormatter, usePercentFormatter } from "../components/format";
 import { useArrayQueryParam, useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
-const supportedMethods: ReturnsMethod[] = ["simple", "twr"];
+const supportedMetrics: MetricName[] = ["returns", "twr"];
 const searchSchema = z.object({
-  method: z.enum(supportedMethods).default("simple").catch("simple"),
+  metric: z.enum(supportedMetrics).default("returns").catch("returns"),
   compareWith: z.string().optional(),
   buySellPoints: z.boolean().default(false).catch(false),
   symbolScaling: z.enum(["linear", "logarithmic"]).default("linear").catch("linear"),
@@ -37,14 +37,14 @@ export const PerformanceRoute = createRoute({
   path: "performance",
   validateSearch: searchSchema,
   search: {
-    middlewares: [stripSearchParams({ method: "simple", buySellPoints: false, symbolScaling: "linear" })],
+    middlewares: [stripSearchParams({ metric: "returns", buySellPoints: false, symbolScaling: "linear" })],
   },
   component: Performance,
 });
 
 function Performance() {
   const { t } = useTranslation();
-  const [method, setMethod] = useSearchParam(PerformanceRoute, "method");
+  const [metric, setMetric] = useSearchParam(PerformanceRoute, "metric");
   const [investments, setInvestments] = useArrayQueryParam(useSearchParam(PerformanceRoute, "compareWith"));
   const [showBuySellPoints, setShowBuySellPoints] = useSearchParam(PerformanceRoute, "buySellPoints");
   const [symbolScaling, setSymbolScaling] = useSearchParam(PerformanceRoute, "symbolScaling");
@@ -57,10 +57,10 @@ function Performance() {
           help={t(
             'The performance chart compares the relative performance of the currently selected investments (comprising a part of your portfolio filtered using the "Investments Filter") against single groups, accounts or commodities selected in the "Compare with" box below.',
           )}
-          topRightElem={<ReturnsMethodSelection options={supportedMethods} method={method} setMethod={setMethod} />}
+          topRightElem={<MetricSelection options={supportedMetrics} value={metric} setValue={setMetric} />}
         >
           <PerformanceChart
-            method={method}
+            metric={metric}
             investments={investments}
             showBuySellPoints={showBuySellPoints}
             symbolScaling={symbolScaling}
@@ -102,13 +102,13 @@ function Performance() {
 }
 
 interface PerformanceChartProps {
-  method: string;
+  metric: MetricName;
   investments: string[];
   showBuySellPoints: boolean;
   symbolScaling: "linear" | "logarithmic";
 }
 
-function PerformanceChart({ method, investments, showBuySellPoints, symbolScaling }: PerformanceChartProps) {
+function PerformanceChart({ metric, investments, showBuySellPoints, symbolScaling }: PerformanceChartProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
@@ -116,7 +116,7 @@ function PerformanceChart({ method, investments, showBuySellPoints, symbolScalin
   const { isPending, error, data } = useCompare({
     investmentFilter,
     targetCurrency,
-    method,
+    metric,
     compareWith: investments,
   });
 

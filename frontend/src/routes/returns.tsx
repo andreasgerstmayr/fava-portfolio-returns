@@ -3,19 +3,19 @@ import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { EChartsOption } from "echarts";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { useReturns } from "../api/returns";
+import { useMetricValues } from "../api/metric_values";
 import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { EChart } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { ReturnsMethod, ReturnsMethodSelection } from "../components/ReturnsMethodSelection";
+import { MetricName, MetricSelection } from "../components/MetricSelection";
 import { anyFormatter, useCurrencyFormatter, usePercentFormatter } from "../components/format";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
-const supportedMethods: ReturnsMethod[] = ["irr", "mdm", "twr", "pnl"];
+const supportedMetrics: MetricName[] = ["irr", "mdm", "twr", "pnl"];
 const searchSchema = z.object({
-  method: z.enum(supportedMethods).default("irr").catch("irr"),
+  metric: z.enum(supportedMetrics).default("irr").catch("irr"),
 });
 
 export const ReturnsRoute = createRoute({
@@ -23,31 +23,31 @@ export const ReturnsRoute = createRoute({
   path: "returns",
   validateSearch: searchSchema,
   search: {
-    middlewares: [stripSearchParams({ method: "irr" })],
+    middlewares: [stripSearchParams({ metric: "irr" })],
   },
   component: Returns,
 });
 
 function Returns() {
   const { t } = useTranslation();
-  const [method, setMethod] = useSearchParam(ReturnsRoute, "method");
+  const [metric, setMetric] = useSearchParam(ReturnsRoute, "metric");
 
   return (
     <Dashboard>
       <DashboardRow sx={{ justifyContent: "flex-end" }}>
-        <ReturnsMethodSelection options={supportedMethods} method={method} setMethod={setMethod} />
+        <MetricSelection options={supportedMetrics} value={metric} setValue={setMetric} />
       </DashboardRow>
       <DashboardRow>
         <Panel title={t("Monthly Returns")}>
-          <ReturnsHeatmapChart method={method} />
+          <ReturnsHeatmapChart metric={metric} />
         </Panel>
       </DashboardRow>
       <DashboardRow>
         <Panel title={t("Yearly Returns")}>
-          <ReturnsBarChart method={method} interval="yearly" />
+          <ReturnsBarChart metric={metric} interval="yearly" />
         </Panel>
         <Panel title={t("Returns over Periods")}>
-          <ReturnsBarChart method={method} interval="periods" />
+          <ReturnsBarChart metric={metric} interval="periods" />
         </Panel>
       </DashboardRow>
     </Dashboard>
@@ -55,19 +55,19 @@ function Returns() {
 }
 
 interface ReturnsHeatmapChartProps {
-  method: ReturnsMethod;
+  metric: MetricName;
 }
 
-function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
+function ReturnsHeatmapChart({ metric }: ReturnsHeatmapChartProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
   const percentFormatter = usePercentFormatter();
-  const { isPending, error, data } = useReturns({
+  const { isPending, error, data } = useMetricValues({
     investmentFilter,
     targetCurrency,
-    method,
+    metric,
     interval: "heatmap",
   });
 
@@ -80,7 +80,7 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
 
   const max = Math.max(...data.returns.map(([label, val]) => (label.includes("-") ? Math.abs(val) : 0)));
   const maxRounded = Math.round(max * 100) / 100;
-  const valueFormatter = method === "pnl" ? currencyFormatter : percentFormatter;
+  const valueFormatter = metric === "pnl" ? currencyFormatter : percentFormatter;
   const monthFormatter = new Intl.DateTimeFormat(undefined, { month: "short" }).format;
   const option: EChartsOption = {
     tooltip: {
@@ -145,20 +145,20 @@ function ReturnsHeatmapChart({ method }: ReturnsHeatmapChartProps) {
 }
 
 interface ReturnsBarChartProps {
-  method: ReturnsMethod;
+  metric: MetricName;
   interval: "yearly" | "periods";
 }
 
-function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
+function ReturnsBarChart({ metric, interval }: ReturnsBarChartProps) {
   const { t } = useTranslation();
   const theme = useTheme();
   const { investmentFilter, targetCurrency } = useToolbarContext();
   const currencyFormatter = useCurrencyFormatter(targetCurrency, { integer: true });
   const percentFormatter = usePercentFormatter();
-  const { isPending, error, data } = useReturns({
+  const { isPending, error, data } = useMetricValues({
     investmentFilter,
     targetCurrency,
-    method,
+    metric,
     interval,
   });
 
@@ -169,7 +169,7 @@ function ReturnsBarChart({ method, interval }: ReturnsBarChartProps) {
     return <Alert severity="error">{error.message}</Alert>;
   }
 
-  const valueFormatter = method === "pnl" ? currencyFormatter : percentFormatter;
+  const valueFormatter = metric === "pnl" ? currencyFormatter : percentFormatter;
   const option: EChartsOption = {
     tooltip: {
       trigger: "axis",

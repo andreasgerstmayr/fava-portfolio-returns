@@ -1,14 +1,14 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
-import { ReturnsMethod } from "../components/ReturnsMethodSelection";
+import { MetricName } from "../components/MetricSelection";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
 
 export type Series = [string, number][];
 
-interface ReturnsRequest {
+interface MetricValuesRequest {
   investmentFilter: string[];
   targetCurrency: string;
-  method: ReturnsMethod;
+  metric: MetricName;
   interval: "heatmap" | "yearly" | "periods";
 }
 
@@ -16,13 +16,13 @@ export interface ReturnsResponse {
   returns: Series;
 }
 
-export function useReturns(request: ReturnsRequest): UseQueryResult<ReturnsResponse> {
+export function useMetricValues(request: MetricValuesRequest): UseQueryResult<ReturnsResponse> {
   const params = useFavaFilterSearchParams();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
-  params.set("method", request.method);
+  params.set("metric", request.metric);
   params.set("interval", request.interval);
-  const url = `returns?${params}`;
+  const url = `metric_values?${params}`;
 
   return useQuery({
     queryKey: [url],
