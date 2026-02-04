@@ -5,10 +5,17 @@ from fava_portfolio_returns.metrics.pnl import TotalPNL
 from fava_portfolio_returns.metrics.returns import Returns
 from fava_portfolio_returns.metrics.twr import TWR
 
-METRICS: dict[str, MetricBase] = {
+ALL_METRICS: dict[str, MetricBase] = {
     "returns": Returns(),
     "irr": IRR(),
     "mdm": ModifiedDietzMethod(),
     "twr": TWR(),
     "pnl": TotalPNL(),
 }
+
+
+def get_metric(name: str):
+    metric = ALL_METRICS.get(name)
+    if not metric:
+        raise ValueError(f"Invalid metric '{name}'")
+    return metric

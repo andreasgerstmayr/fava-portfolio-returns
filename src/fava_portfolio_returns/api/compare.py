@@ -10,7 +10,7 @@ from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
 from fava_portfolio_returns.core.utils import get_prices
 from fava_portfolio_returns.metrics.base import Series
-from fava_portfolio_returns.metrics.factory import METRICS
+from fava_portfolio_returns.metrics.factory import get_metric
 
 logger = logging.getLogger(__name__)
 
@@ -40,10 +40,7 @@ def get_series_cash_flows(fp: FilteredPortfolio, start_date: datetime.date, end_
 def compare_chart(
     p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, metric_name: str, compare_with: list[str]
 ):
-    metric = METRICS.get(metric_name)
-    if not metric:
-        raise ValueError(f"Invalid metric name '{metric_name}'")
-
+    metric = get_metric(metric_name)
     returns = metric.series(p, start_date, end_date)
     cash_flows = get_series_cash_flows(p, start_date, end_date)
     returns_series: list[NamedSeries] = [NamedSeries(name="portfolio", data=returns, cashFlows=cash_flows)]

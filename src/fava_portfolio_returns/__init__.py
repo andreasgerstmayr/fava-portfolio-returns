@@ -33,7 +33,7 @@ from fava_portfolio_returns.core.intervals import intervals_heatmap
 from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.core.portfolio import Portfolio
-from fava_portfolio_returns.metrics.factory import METRICS
+from fava_portfolio_returns.metrics.factory import get_metric
 from fava_portfolio_returns.metrics.pnl import TotalPNL
 
 logger = logging.getLogger(__name__)
@@ -197,10 +197,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         metric_name = request.args.get("metric", "")
         interval = request.args.get("interval", "")
 
-        metric = METRICS.get(metric_name)
-        if not metric:
-            raise FavaAPIError(f"Invalid metric name '{metric_name}'")
-
+        metric = get_metric(metric_name)
         cash_flows = p.cash_flows()
         if cash_flows and toolbar_ctx.start_date <= cash_flows[0].date <= toolbar_ctx.end_date:
             # skip time before first cash flow
