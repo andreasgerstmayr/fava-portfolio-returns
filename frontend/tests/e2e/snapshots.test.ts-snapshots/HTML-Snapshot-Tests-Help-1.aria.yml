@@ -90,29 +90,58 @@
   - heading "Help" [level=3]:
     - link "Help":
       - /url: /beancount/extension/FavaPortfolioReturns/?path=help
-  - heading "Calculating Portfolio Returns" [level=2]
-  - paragraph: fava-portfolio-returns supports multiple ways to calculate the portfolio performance.
-  - heading "Returns" [level=3]
-  - paragraph: Returns compares the market value with the cost value. In the Performance chart, the difference between the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable with the performance of other groups and commodities.
-  - heading "Total Profit and Loss" [level=3]
-  - paragraph: Total Profit and Loss computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
-  - heading "Internal Rate of Return (IRR)" [level=3]
-  - paragraph: Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.
-  - paragraph:
-    - text: /For example, you invest \d+ USD on the first day of January, and additional \d+ USD on the first day of February\. At the end of February, the investment is worth \d+ USD\. In other words, you invested \d+ USD for two months \(\d+ days\), and \d+ USD for one month \(\d+ days\)\. IRR calculates/
-    - code: x
-    - text: "of the following formula:"
-    - code: /\d+\*\(1\+x\)\^\(\d+\/\d+\) \+ \d+\*\(1\+x\)\^\(\d+\/\d+\) = \d+/
-    - text: .
-  - paragraph: This method is recommended when you are in control of the cash flows.
-  - heading "Modified Dietz Method (MDM)" [level=3]
-  - paragraph: Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.
-  - heading "Time-Weighted Rate of Return (TWR)" [level=3]
-  - paragraph: Time-Weighted Return (TWR) eliminates the effects of cash flows.
-  - paragraph:
-    - text: /For example, you invest \d+ USD in January\. In June, your investment is worth \d+ USD\. The returns on this investment are \d+% \(/
-    - code: /\d+\/\d+-1/
-    - text: /\)\. Because of these returns, you decide to invest additional \d+ USD\. Now, the returns dropped to \d+% \(/
-    - code: /\d+\/\d+-1/
-    - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows.
-  - paragraph: This method is recommended for comparing two funds or portfolios.
+  - navigation "Table of contents":
+    - heading "Table of contents" [level=2]
+    - list:
+      - listitem:
+        - link "Calculating Portfolio Returns":
+          - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - strong: Calculating Portfolio Returns
+        - list:
+          - listitem:
+            - link "Returns":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - listitem:
+            - link "Total Profit and Loss":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - listitem:
+            - link "Internal Rate of Return (IRR)":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - listitem:
+            - link "Modified Dietz Method (MDM)":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - listitem:
+            - link "Time-Weighted Rate of Return (TWR)":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+  - region "Calculating Portfolio Returns":
+    - heading "Calculating Portfolio Returns" [level=2]
+    - paragraph: fava-portfolio-returns supports multiple ways to calculate the portfolio performance.
+    - region "Returns":
+      - heading "Returns" [level=3]
+      - paragraph: Returns compares the market value with the cost value. In the Performance chart, the difference between the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable with the performance of other groups and commodities.
+    - region "Total Profit and Loss":
+      - heading "Total Profit and Loss" [level=3]
+      - paragraph: Total Profit and Loss computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
+    - region "Internal Rate of Return (IRR)":
+      - heading "Internal Rate of Return (IRR)" [level=3]
+      - paragraph: Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.
+      - paragraph:
+        - text: /For example, you invest \d+ USD on the first day of January, and additional \d+ USD on the first day of February\. At the end of February, the investment is worth \d+ USD\. In other words, you invested \d+ USD for two months \(\d+ days\), and \d+ USD for one month \(\d+ days\)\. IRR calculates/
+        - code: x
+        - text: "of the following formula:"
+        - code: /\d+\*\(1\+x\)\^\(\d+\/\d+\) \+ \d+\*\(1\+x\)\^\(\d+\/\d+\) = \d+/
+        - text: .
+      - paragraph: This method is recommended when you are in control of the cash flows.
+    - region "Modified Dietz Method (MDM)":
+      - heading "Modified Dietz Method (MDM)" [level=3]
+      - paragraph: Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.
+    - region "Time-Weighted Rate of Return (TWR)":
+      - heading "Time-Weighted Rate of Return (TWR)" [level=3]
+      - paragraph: Time-Weighted Return (TWR) eliminates the effects of cash flows.
+      - paragraph:
+        - text: /For example, you invest \d+ USD in January\. In June, your investment is worth \d+ USD\. The returns on this investment are \d+% \(/
+        - code: /\d+\/\d+-1/
+        - text: /\)\. Because of these returns, you decide to invest additional \d+ USD\. Now, the returns dropped to \d+% \(/
+        - code: /\d+\/\d+-1/
+        - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows.
+      - paragraph: This method is recommended for comparing two funds or portfolios.
