@@ -8,7 +8,7 @@ import { Dashboard, DashboardRow, Panel } from "../components/Dashboard";
 import { useNumberFormatter, usePercentFormatter } from "../components/format";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
 import { Loading } from "../components/Loading";
-import { useMetricNames } from "../components/MetricSelection";
+import { useMetrics } from "../components/MetricSelection";
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
@@ -61,7 +61,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
   const numberFormatter = useNumberFormatter();
   const fixedPercentFormatter = usePercentFormatter({ fixed: true });
   const { isPending, error, data } = useInvestments({ targetCurrency, groupBy });
-  const metricNames = useMetricNames();
+  const metricNames = useMetrics();
 
   if (isPending) {
     return <Loading />;

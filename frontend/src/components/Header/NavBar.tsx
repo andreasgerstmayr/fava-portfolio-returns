@@ -24,6 +24,11 @@ export function NavBar() {
         </Link>
       </h3>
       <h3>
+        <Link to="/metrics" search={retainSearchParams}>
+          {t("Metrics")}
+        </Link>
+      </h3>
+      <h3>
         <Link to="/dividends" search={retainSearchParams}>
           {t("Dividends")}
         </Link>

@@ -1,6 +1,7 @@
 - banner:
   - img
   - heading "Beancount›Portfolio Returns" [level=1]:
+    - text: ""
     - strong: ›Portfolio Returns
   - combobox "Time"
   - combobox "Account"
@@ -71,6 +72,9 @@
   - heading "Returns" [level=3]:
     - link "Returns":
       - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=returns
+  - heading "Metrics" [level=3]:
+    - link "Metrics":
+      - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=metrics
   - heading "Dividends" [level=3]:
     - link "Dividends":
       - /url: /beancount/extension/FavaPortfolioReturns/?investments=g_Gold&path=dividends
@@ -112,6 +116,8 @@
   - combobox "Compare with"
   - button "Open"
   - group "Buy/Sell points":
+    - text: ""
     - switch "Show"
+    - text: ""
     - switch "Logarithmic Scaling" [disabled]
     - text: Logarithmic Scaling

@@ -1,4 +1,5 @@
 {
+  "{{metricName}} (rolling 1y)": "{{metricName}} (rolling 1y)",
   "<p>fava-portfolio-returns supports multiple ways to calculate the portfolio performance.</p>": "<p>fava-portfolio-returns supports multiple ways to calculate the portfolio performance.</p>",
   "<p>Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.</p><1>For example, you invest 100 USD on the first day of January, and additional 20 USD on the first day of February. At the end of February, the investment is worth 200 USD. In other words, you invested 100 USD for two months (59 days), and 20 USD for one month (28 days). IRR calculates <1>x</1> of the following formula: <3>100*(1+x)^(59/365) + 20*(1+x)^(28/365) = 200</3>.</1><p>This metric is recommended when you are in control of the cash flows.</p>": "<p>Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.</p><1>For example, you invest 100 USD on the first day of January, and additional 20 USD on the first day of February. At the end of February, the investment is worth 200 USD. In other words, you invested 100 USD for two months (59 days), and 20 USD for one month (28 days). IRR calculates <1>x</1> of the following formula: <3>100*(1+x)^(59/365) + 20*(1+x)^(28/365) = 200</3>.</1><p>This metric is recommended when you are in control of the cash flows.</p>",
   "<p>Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.</p>": "<p>Modified Dietz Method (MDM) accounts for the timing and magnitude of cash flows. It approximates the Internal Rate of Return.</p>",
@@ -37,10 +38,12 @@
   "Logarithmic Scaling": "Logarithmic Scaling",
   "Market Value": "Market Value",
   "MDM": "MDM",
+  "Metrics": "Metrics",
   "Missing Prices": "Missing Prices",
   "Modified Dietz Method": "Modified Dietz Method",
   "Modified Dietz Method (MDM)": "Modified Dietz Method (MDM)",
   "monthly": "monthly",
+  "Monthly Heatmap": "Monthly Heatmap",
   "Monthly Returns": "Monthly Returns",
   "Name": "Name",
   "no": "no",
@@ -49,6 +52,7 @@
   "No groups defined in the beangrow configuration.": "No groups defined in the beangrow configuration.",
   "No investments defined in the beangrow configuration.": "No investments defined in the beangrow configuration.",
   "Performance": "Performance",
+  "Periods": "Periods",
   "Portfolio": "Portfolio",
   "Portfolio Value": "Portfolio Value",
   "Realized P/L": "Realized P/L",
@@ -76,5 +80,6 @@
   "Unrealized Profit and Loss: P&L from open positions (excluding fees)": "Unrealized Profit and Loss: P&L from open positions (excluding fees)",
   "yearly": "yearly",
   "Yearly Returns": "Yearly Returns",
+  "Years": "Years",
   "yes": "yes"
 }

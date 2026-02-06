@@ -39,9 +39,11 @@ interface Resources {
     "Logarithmic Scaling": "Logarithmic Scaling";
     MDM: "MDM";
     "Market Value": "Market Value";
+    Metrics: "Metrics";
     "Missing Prices": "Missing Prices";
     "Modified Dietz Method": "Modified Dietz Method";
     "Modified Dietz Method (MDM)": "Modified Dietz Method (MDM)";
+    "Monthly Heatmap": "Monthly Heatmap";
     "Monthly Returns": "Monthly Returns";
     Name: "Name";
     "No cash flows in this time frame.": "No cash flows in this time frame.";
@@ -49,6 +51,7 @@ interface Resources {
     "No groups defined in the beangrow configuration.": "No groups defined in the beangrow configuration.";
     "No investments defined in the beangrow configuration.": "No investments defined in the beangrow configuration.";
     Performance: "Performance";
+    Periods: "Periods";
     Portfolio: "Portfolio";
     "Portfolio Value": "Portfolio Value";
     "Realized P/L": "Realized P/L";
@@ -75,10 +78,12 @@ interface Resources {
     "Unrealized P/L": "Unrealized P/L";
     "Unrealized Profit and Loss: P&L from open positions (excluding fees)": "Unrealized Profit and Loss: P&L from open positions (excluding fees)";
     "Yearly Returns": "Yearly Returns";
+    Years: "Years";
     monthly: "monthly";
     no: "no";
     yearly: "yearly";
     yes: "yes";
+    "{{metricName}} (rolling 1y)": "{{metricName}} (rolling 1y)";
   };
 }
 

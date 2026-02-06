@@ -136,7 +136,8 @@ function PerformanceChart({ metric, investments, showBuySellPoints, symbolScalin
       top: 10,
     },
     grid: {
-      left: 100,
+      left: 80,
+      right: 80,
     },
     xAxis: {
       type: "time",
@@ -157,8 +158,8 @@ function PerformanceChart({ metric, investments, showBuySellPoints, symbolScalin
     ],
     series: data.series.map((serie) => ({
       type: "line",
-      showSymbol: false,
       name: serie.name === "portfolio" ? t("Portfolio") : serie.name,
+      showSymbol: false,
       data: serie.data,
       markPoint: showBuySellPoints
         ? {

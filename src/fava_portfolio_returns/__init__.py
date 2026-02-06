@@ -204,17 +204,20 @@ class FavaPortfolioReturns(FavaExtensionBase):
             start_date = cash_flows[0].date
         else:
             start_date = toolbar_ctx.start_date
+        end_date = toolbar_ctx.end_date
 
-        if interval == "heatmap":
-            intervals = intervals_heatmap(start_date, toolbar_ctx.end_date)
+        if interval == "series":
+            return {"series": metric.series(p, start_date, end_date)}
+        elif interval == "rolling_1y":
+            return {"series": metric.rolling_window(p, start_date, end_date, window_days=365)}
+        elif interval == "heatmap":
+            return {"series": metric.intervals(p, intervals_heatmap(start_date, end_date))}
         elif interval == "yearly":
-            intervals = intervals_yearly(start_date, toolbar_ctx.end_date)
+            return {"series": metric.intervals(p, intervals_yearly(start_date, end_date))}
         elif interval == "periods":
-            intervals = intervals_periods(start_date, toolbar_ctx.end_date)
+            return {"series": metric.intervals(p, intervals_periods(start_date, end_date))}
         else:
             raise FavaAPIError(f"Invalid interval {interval}")
-
-        return {"returns": metric.intervals(p, intervals)}
 
     @extension_endpoint("dividends")
     @api_response
