@@ -20,6 +20,7 @@ export default defineConfig(
     },
     rules: {
       curly: "error",
+      "no-console": "error",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-vars": [
         "error",

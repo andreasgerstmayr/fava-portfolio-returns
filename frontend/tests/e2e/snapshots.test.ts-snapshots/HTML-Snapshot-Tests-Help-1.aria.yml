@@ -72,6 +72,9 @@
   - heading "Returns" [level=3]:
     - link "Returns":
       - /url: /beancount/extension/FavaPortfolioReturns/?path=returns
+  - heading "Metrics" [level=3]:
+    - link "Metrics":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=metrics
   - heading "Dividends" [level=3]:
     - link "Dividends":
       - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends

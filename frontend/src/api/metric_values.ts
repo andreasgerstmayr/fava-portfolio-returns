@@ -9,14 +9,14 @@ interface MetricValuesRequest {
   investmentFilter: string[];
   targetCurrency: string;
   metric: MetricName;
-  interval: "heatmap" | "yearly" | "periods";
+  interval: "series" | "rolling_1y" | "heatmap" | "yearly" | "periods";
 }
 
-export interface ReturnsResponse {
-  returns: Series;
+export interface MetricValuesResponse {
+  series: Series;
 }
 
-export function useMetricValues(request: MetricValuesRequest): UseQueryResult<ReturnsResponse> {
+export function useMetricValues(request: MetricValuesRequest): UseQueryResult<MetricValuesResponse> {
   const params = useFavaFilterSearchParams();
   params.set("investments", request.investmentFilter.join(","));
   params.set("currency", request.targetCurrency);
@@ -26,6 +26,6 @@ export function useMetricValues(request: MetricValuesRequest): UseQueryResult<Re
 
   return useQuery({
     queryKey: [url],
-    queryFn: () => fetchJSON<ReturnsResponse>(url),
+    queryFn: () => fetchJSON<MetricValuesResponse>(url),
   });
 }

@@ -7,6 +7,7 @@ import { DividendsRoute } from "./routes/dividends";
 import { GroupsRoute } from "./routes/groups";
 import { HelpRoute } from "./routes/help";
 import { InvestmentsRoute } from "./routes/investments";
+import { MetricsRoute } from "./routes/metrics";
 import { MissingPricesRoute } from "./routes/missing_prices";
 import { PerformanceRoute } from "./routes/performance";
 import { PortfolioRoute } from "./routes/portfolio";
@@ -31,6 +32,7 @@ const routeTree = RootRoute.addChildren([
   PortfolioRoute,
   PerformanceRoute,
   ReturnsRoute,
+  MetricsRoute,
   DividendsRoute,
   CashFlowsRoute,
   GroupsRoute,
