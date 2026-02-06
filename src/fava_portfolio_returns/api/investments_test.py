@@ -25,6 +25,7 @@ class TestInvestments(unittest.TestCase):
             "irr": approx2(13.46),
             "mdm": approx2(1.71),
             "twr": 2.5,
+            "mdd": D("0"),
         }
 
     def test_group_stats_partial_timeframe(self):
@@ -42,6 +43,7 @@ class TestInvestments(unittest.TestCase):
             "irr": approx2(62.27),
             "mdm": approx2(0.98),
             "twr": 1.0,
+            "mdd": D("0"),
         }
 
     def test_group_stats_unrealized_partial_timeframe(self):
@@ -67,6 +69,7 @@ class TestInvestments(unittest.TestCase):
             "irr": approx2(1.12),
             "mdm": approx2(0.99),
             "twr": 1.0,
+            "mdd": D("0"),
         }
 
         # converted to EUR
@@ -84,6 +87,7 @@ class TestInvestments(unittest.TestCase):
             "irr": approx2(1.12),
             "mdm": approx2(0.99),
             "twr": 1.0,
+            "mdd": D("0"),
         }
 
     def test_group_stats_realized(self):
@@ -101,4 +105,5 @@ class TestInvestments(unittest.TestCase):
             "irr": approx2(2.12),
             "mdm": approx2(0.60),
             "twr": approx2(1.82),
+            "mdd": approx2(-0.34),
         }

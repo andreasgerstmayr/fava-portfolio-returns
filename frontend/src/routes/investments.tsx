@@ -197,6 +197,15 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
       valueFormatter: (_value, row) => fixedPercentFormatter(row.twr),
       cellClassName: ({ row }) => (row.twr >= 0 ? "positive" : "negative"),
     },
+    {
+      field: "mdd",
+      headerName: t("MDD"),
+      description: t("Maximum Drawdown"),
+      headerAlign: "center",
+      align: "right",
+      minWidth: 80,
+      valueFormatter: (_value, row) => fixedPercentFormatter(row.mdd),
+    },
   ];
 
   return (

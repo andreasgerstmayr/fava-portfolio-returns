@@ -107,7 +107,7 @@
   - heading "Investments" [level=3]
   - paragraph: Lists the investments defined in the beangrow configuration file.
   - grid:
-    - row "Name Sort Units Cost Value Market Value Realized P/L Unrealized P/L Total P/L IRR MDM TWR":
+    - row "Name Sort Units Cost Value Market Value Realized P/L Unrealized P/L Total P/L IRR MDM TWR MDD":
       - columnheader "Name Sort":
         - text: ""
         - button "Sort"
@@ -120,8 +120,9 @@
       - columnheader "IRR"
       - columnheader "MDM"
       - columnheader "TWR"
+      - columnheader "MDD"
     - rowgroup:
-      - row /American Funds The Growth Fund of America Class R-6 \d+\.\d+ RGAGX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+      - row /American Funds The Growth Fund of America Class R-6 \d+\.\d+ RGAGX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+% -\d+\.\d+%/:
         - gridcell "American Funds The Growth Fund of America Class R-6":
           - link "American Funds The Growth Fund of America Class R-6":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_RGAGX&currency=USD&path=portfolio
@@ -134,7 +135,8 @@
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
-      - row /iShares Core S&P Total U\.S\. Stock Market ETF \d+\.\d+ ITOT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD \d+\.\d+ USD -\d+\.\d+ USD -\d+\.\d+% -\d+\.\d+% -\d+\.\d+%/:
+        - gridcell /-\d+\.\d+%/
+      - row /iShares Core S&P Total U\.S\. Stock Market ETF \d+\.\d+ ITOT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD -\d+\.\d+ USD \d+\.\d+ USD -\d+\.\d+ USD -\d+\.\d+% -\d+\.\d+% -\d+\.\d+% -\d+\.\d+%/:
         - gridcell "iShares Core S&P Total U.S. Stock Market ETF":
           - link "iShares Core S&P Total U.S. Stock Market ETF":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_ITOT&currency=USD&path=portfolio
@@ -147,7 +149,8 @@
         - gridcell /-\d+\.\d+%/
         - gridcell /-\d+\.\d+%/
         - gridcell /-\d+\.\d+%/
-      - row /SPDR Gold Trust \(ETF\) \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell /-\d+\.\d+%/
+      - row /SPDR Gold Trust \(ETF\) \d+\.\d+ GLD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+% -\d+\.\d+%/:
         - gridcell "SPDR Gold Trust (ETF)":
           - link "SPDR Gold Trust (ETF)":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_GLD&currency=USD&path=portfolio
@@ -160,7 +163,8 @@
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
-      - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell /-\d+\.\d+%/
+      - row /Vanguard FTSE Developed Markets ETF \d+\.\d+ VEA \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+% -\d+\.\d+%/:
         - gridcell "Vanguard FTSE Developed Markets ETF":
           - link "Vanguard FTSE Developed Markets ETF":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VEA&currency=USD&path=portfolio
@@ -173,7 +177,8 @@
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
-      - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell /-\d+\.\d+%/
+      - row /Vanguard Health Care ETF \d+\.\d+ VHT \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+% -\d+\.\d+%/:
         - gridcell "Vanguard Health Care ETF":
           - link "Vanguard Health Care ETF":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VHT&currency=USD&path=portfolio
@@ -186,7 +191,8 @@
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
-      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+%/:
+        - gridcell /-\d+\.\d+%/
+      - row /Vanguard Total Bond Market Index Fund Institutional Plus Shares \d+\.\d+ VBMPX \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+,\d+\.\d+ USD \d+\.\d+% \d+\.\d+% \d+\.\d+% -\d+\.\d+%/:
         - gridcell "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
           - link "Vanguard Total Bond Market Index Fund Institutional Plus Shares":
             - /url: /beancount/extension/FavaPortfolioReturns/?investments=c_VBMPX&currency=USD&path=portfolio
@@ -199,6 +205,7 @@
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
         - gridcell /\d+\.\d+%/
+        - gridcell /-\d+\.\d+%/
   - paragraph: "Rows per page:"
   - 'combobox /Rows per page: \d+/'
   - paragraph: 1–6 of 6

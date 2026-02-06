@@ -17,7 +17,7 @@ export const HelpRoute = createRoute({
 interface Section {
   id: string;
   title: string;
-  body: ReactNode;
+  body?: ReactNode;
   children?: Section[];
 }
 
@@ -101,6 +101,25 @@ function Help() {
                 portfolios without the effects of cash flows.
               </p>
               <p>This metric is recommended for comparing two funds or portfolios.</p>
+            </Trans>
+          ),
+        },
+      ],
+    },
+    {
+      id: "metrics",
+      title: t("Risk Metrics"),
+      children: [
+        {
+          id: "mdd",
+          title: t("Maximum Drawdown (MDD)"),
+          body: (
+            <Trans>
+              <p>
+                Maximum Drawdown computes the maximum decline from a historical peak. It is based on the TWR (i.e.
+                effects of cash flows are eliminated) by tracking the running peak of the TWR and comparing the current
+                value to the peak.
+              </p>
             </Trans>
           ),
         },

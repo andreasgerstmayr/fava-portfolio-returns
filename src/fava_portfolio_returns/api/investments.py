@@ -10,6 +10,7 @@ from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
 from fava_portfolio_returns.core.utils import market_value_of_inv
 from fava_portfolio_returns.metrics.irr import IRR
+from fava_portfolio_returns.metrics.mdd import MDD
 from fava_portfolio_returns.metrics.mdm import ModifiedDietzMethod
 from fava_portfolio_returns.metrics.pnl import TotalPNL
 from fava_portfolio_returns.metrics.twr import TWR
@@ -42,6 +43,7 @@ def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datet
     irr = IRR().single(p, start_date, end_date)
     mdm = ModifiedDietzMethod().single(p, start_date, end_date)
     twr = TWR().single(p, start_date, end_date)
+    mdd = MDD().single(p, start_date, end_date)
 
     return {
         "units": [pos.units for pos in units],
@@ -53,6 +55,7 @@ def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datet
         "irr": irr,
         "mdm": mdm,
         "twr": twr,
+        "mdd": mdd,
     }
 
 
