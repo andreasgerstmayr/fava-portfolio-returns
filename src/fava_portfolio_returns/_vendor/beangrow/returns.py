@@ -163,7 +163,10 @@ def compute_dietz(
     #   start of the period.
     pnl = end_value + start_value - np.sum(cash_flows)
     average_capital = -start_value + weight_sum
-    dietz = pnl / average_capital
+    if average_capital == 0:
+        dietz = 0.0
+    else:
+        dietz = pnl / average_capital
     logging.debug("Start date: %s", start_date)
     logging.debug("End date: %s", end_date)
 
