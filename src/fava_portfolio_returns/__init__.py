@@ -33,8 +33,8 @@ from fava_portfolio_returns.core.intervals import intervals_heatmap
 from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.core.portfolio import Portfolio
-from fava_portfolio_returns.metrics.factory import get_metric
 from fava_portfolio_returns.metrics.pnl import TotalPNL
+from fava_portfolio_returns.metrics.registry import get_metric
 
 logger = logging.getLogger(__name__)
 if loglevel := os.environ.get("LOGLEVEL"):

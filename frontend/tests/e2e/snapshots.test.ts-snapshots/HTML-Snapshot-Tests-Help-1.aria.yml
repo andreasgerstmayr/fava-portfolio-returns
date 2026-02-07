@@ -116,12 +116,23 @@
           - listitem:
             - link "Time-Weighted Rate of Return (TWR)":
               - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+      - listitem:
+        - link "Risk Metrics":
+          - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - strong: Risk Metrics
+        - list:
+          - listitem:
+            - link "Volatility":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+          - listitem:
+            - link "Maximum Drawdown (MDD)":
+              - /url: /beancount/extension/FavaPortfolioReturns/?path=help
   - region "Calculating Portfolio Returns":
     - heading "Calculating Portfolio Returns" [level=2]
     - paragraph: fava-portfolio-returns supports multiple ways to calculate the portfolio performance.
     - region "Returns":
       - heading "Returns" [level=3]
-      - paragraph: Returns compares the market value with the cost value. In the Performance chart, the difference between the market value and the cost value is calculated per day. The values are aligned at 0%, to make them comparable with the performance of other groups and commodities.
+      - paragraph: Returns compares market value to cost value. In the Performance chart, the percentage difference between market value and cost value is calculated at each price or volume change. The values are aligned at 0% to make them comparable with the performance of other groups and commodities.
     - region "Total Profit and Loss":
       - heading "Total Profit and Loss" [level=3]
       - paragraph: Total Profit and Loss computes the difference between the market value and the invested capital (sum of incoming and outgoing cash flows, including dividends and fees).
@@ -129,7 +140,7 @@
       - heading "Internal Rate of Return (IRR)" [level=3]
       - paragraph: Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.
       - paragraph:
-        - text: /For example, you invest \d+ USD on the first day of January, and additional \d+ USD on the first day of February\. At the end of February, the investment is worth \d+ USD\. In other words, you invested \d+ USD for two months \(\d+ days\), and \d+ USD for one month \(\d+ days\)\. IRR calculates/
+        - text: /For example, you invest \d+ USD on the first day of January, and an additional \d+ USD on the first day of February\. At the end of February, the investment is worth \d+ USD\. In other words, you invested \d+ USD for two months \(\d+ days\), and \d+ USD for one month \(\d+ days\)\. IRR calculates/
         - code: x
         - text: "of the following formula:"
         - code: /\d+\*\(1\+x\)\^\(\d+\/\d+\) \+ \d+\*\(1\+x\)\^\(\d+\/\d+\) = \d+/
@@ -144,7 +155,15 @@
       - paragraph:
         - text: /For example, you invest \d+ USD in January\. In June, your investment is worth \d+ USD\. The returns on this investment are \d+% \(/
         - code: /\d+\/\d+-1/
-        - text: /\)\. Because of these returns, you decide to invest additional \d+ USD\. Now, the returns dropped to \d+% \(/
+        - text: /\)\. Because of these returns, you decide to invest an additional \d+ USD\. Now, the returns dropped to \d+% \(/
         - code: /\d+\/\d+-1/
-        - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows.
+        - text: ), even though the price of the commodity did not change. The TWR eliminates this effect, which allows us to compare different portfolios without the effects of cash flows. TWR includes dividends and fees.
       - paragraph: This metric is recommended for comparing two funds or portfolios.
+  - region "Risk Metrics":
+    - heading "Risk Metrics" [level=2]
+    - region "Volatility":
+      - heading "Volatility" [level=3]
+      - paragraph: "Volatility measures how strongly returns vary over time. It is based on period returns from the Time-Weighted Rate of Return (TWR), so the effects of cash flows are eliminated. The value shown is annualized: higher volatility means larger return swings (more risk), lower volatility means more stable returns."
+    - region "Maximum Drawdown (MDD)":
+      - heading "Maximum Drawdown (MDD)" [level=3]
+      - paragraph: Maximum Drawdown computes the maximum decline from a historical peak. It is based on the TWR (i.e. effects of cash flows are eliminated) by tracking the running peak of the TWR and comparing the current value to the peak.

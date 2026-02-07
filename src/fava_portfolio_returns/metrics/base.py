@@ -24,7 +24,7 @@ class MetricBase(abc.ABC):
         ]
 
     def rolling_window(
-        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, window_days=365, max_points=50
+        self, p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, window_days=365, max_points=20
     ) -> Series:
         window_delta = datetime.timedelta(days=window_days)
 

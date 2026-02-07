@@ -8,6 +8,7 @@ const pages = [
   { name: "Returns", url: "?path=returns" },
   { name: "Returns (MDM)", url: "?path=returns&metric=mdm" },
   { name: "Returns (TWR)", url: "?path=returns&metric=twr" },
+  { name: "Metrics", url: "?path=metrics" },
   { name: "Dividends", url: "?path=dividends" },
   { name: "Cash Flows", url: "?path=cash_flows&investments=c_VHT" },
   { name: "Groups", url: "?path=groups" },

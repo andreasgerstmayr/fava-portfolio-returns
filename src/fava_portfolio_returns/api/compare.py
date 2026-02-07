@@ -10,7 +10,7 @@ from fava_portfolio_returns.core.utils import convert_cash_flows_to_currency
 from fava_portfolio_returns.core.utils import filter_cash_flows_by_date
 from fava_portfolio_returns.core.utils import get_prices
 from fava_portfolio_returns.metrics.base import Series
-from fava_portfolio_returns.metrics.factory import get_metric
+from fava_portfolio_returns.metrics.registry import get_metric
 
 logger = logging.getLogger(__name__)
 

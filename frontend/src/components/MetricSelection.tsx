@@ -31,6 +31,11 @@ export function useMetrics() {
       unit: "currency",
       supportSeries: true,
     },
+    volatility: {
+      label: t("Volatility"),
+      unit: "percent",
+      supportSeries: false,
+    },
     mdd: {
       label: t("Maximum Drawdown"),
       unit: "percent",

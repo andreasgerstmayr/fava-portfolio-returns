@@ -40,9 +40,9 @@ function Help() {
           body: (
             <Trans>
               <p>
-                Returns compares the market value with the cost value. In the Performance chart, the difference between
-                the market value and the cost value is calculated per day. The values are aligned at 0%, to make them
-                comparable with the performance of other groups and commodities.
+                Returns compares market value to cost value. In the Performance chart, the percentage difference between
+                market value and cost value is calculated at each price or volume change. The values are aligned at 0%
+                to make them comparable with the performance of other groups and commodities.
               </p>
             </Trans>
           ),
@@ -66,9 +66,9 @@ function Help() {
             <Trans>
               <p>Internal Rate of Return (IRR) accounts for the timing and magnitude of cash flows.</p>
               <p>
-                For example, you invest 100 USD on the first day of January, and additional 20 USD on the first day of
-                February. At the end of February, the investment is worth 200 USD. In other words, you invested 100 USD
-                for two months (59 days), and 20 USD for one month (28 days). IRR calculates <code>x</code> of the
+                For example, you invest 100 USD on the first day of January, and an additional 20 USD on the first day
+                of February. At the end of February, the investment is worth 200 USD. In other words, you invested 100
+                USD for two months (59 days), and 20 USD for one month (28 days). IRR calculates <code>x</code> of the
                 following formula: <code>100*(1+x)^(59/365) + 20*(1+x)^(28/365) = 200</code>.
               </p>
               <p>This metric is recommended when you are in control of the cash flows.</p>
@@ -92,13 +92,13 @@ function Help() {
           title: t("Time-Weighted Rate of Return (TWR)"),
           body: (
             <Trans>
-              <p>Time-Weighted Return (TWR) eliminates the effects of cash flows. </p>
+              <p>Time-Weighted Return (TWR) eliminates the effects of cash flows.</p>
               <p>
                 For example, you invest 100 USD in January. In June, your investment is worth 150 USD. The returns on
-                this investment are 50% (<code>150/100-1</code>). Because of these returns, you decide to invest
+                this investment are 50% (<code>150/100-1</code>). Because of these returns, you decide to invest an
                 additional 100 USD. Now, the returns dropped to 25% (<code>250/200-1</code>), even though the price of
                 the commodity did not change. The TWR eliminates this effect, which allows us to compare different
-                portfolios without the effects of cash flows.
+                portfolios without the effects of cash flows. TWR includes dividends and fees.
               </p>
               <p>This metric is recommended for comparing two funds or portfolios.</p>
             </Trans>
@@ -107,9 +107,23 @@ function Help() {
       ],
     },
     {
-      id: "metrics",
+      id: "risk-metrics",
       title: t("Risk Metrics"),
       children: [
+        {
+          id: "volatility",
+          title: t("Volatility"),
+          body: (
+            <Trans>
+              <p>
+                Volatility measures how strongly returns vary over time. It is based on period returns from the
+                Time-Weighted Rate of Return (TWR), so the effects of cash flows are eliminated. The value shown is
+                annualized: higher volatility means larger return swings (more risk), lower volatility means more stable
+                returns.
+              </p>
+            </Trans>
+          ),
+        },
         {
           id: "mdd",
           title: t("Maximum Drawdown (MDD)"),

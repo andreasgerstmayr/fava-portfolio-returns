@@ -13,9 +13,9 @@ import { anyFormatter, useCurrencyFormatter, usePercentFormatter } from "../comp
 import { useSearchParam } from "../components/useSearchParam";
 import { RootRoute } from "./__root";
 
-const supportedMetrics: MetricName[] = ["mdd"];
+const supportedMetrics: MetricName[] = ["volatility", "mdd"];
 const searchSchema = z.object({
-  metric: z.enum(supportedMetrics).default("mdd").catch("mdd"),
+  metric: z.enum(supportedMetrics).default("volatility").catch("volatility"),
 });
 
 export const MetricsRoute = createRoute({
@@ -23,7 +23,7 @@ export const MetricsRoute = createRoute({
   path: "metrics",
   validateSearch: searchSchema,
   search: {
-    middlewares: [stripSearchParams({ metric: "mdd" })],
+    middlewares: [stripSearchParams({ metric: "volatility" })],
   },
   component: Metrics,
 });

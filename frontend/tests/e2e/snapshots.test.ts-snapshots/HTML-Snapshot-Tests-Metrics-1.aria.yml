@@ -1,0 +1,114 @@
+- banner:
+  - img
+  - heading "Beancount›Portfolio Returns" [level=1]:
+    - text: ""
+    - strong: ›Portfolio Returns
+  - combobox "Time"
+  - combobox "Account"
+  - combobox "Filter by tag, payee, ..."
+- complementary:
+  - list:
+    - listitem:
+      - link "Income Statement":
+        - /url: /beancount/income_statement/
+    - listitem:
+      - link "Balance Sheet":
+        - /url: /beancount/balance_sheet/
+    - listitem:
+      - link "Trial Balance":
+        - /url: /beancount/trial_balance/
+    - listitem:
+      - link "Journal":
+        - /url: /beancount/journal/
+    - listitem:
+      - link "Query":
+        - /url: /beancount/query/
+    - listitem:
+      - combobox "Go to account"
+  - list:
+    - listitem:
+      - link "Holdings":
+        - /url: /beancount/holdings/
+    - listitem:
+      - link "Commodities":
+        - /url: /beancount/commodities/
+    - listitem:
+      - link "Documents":
+        - /url: /beancount/documents/
+    - listitem:
+      - link "Events":
+        - /url: /beancount/events/
+    - listitem:
+      - link "Statistics":
+        - /url: /beancount/statistics/
+  - list:
+    - listitem:
+      - link "Editor":
+        - /url: /beancount/editor/
+      - link "+":
+        - /url: "#add-transaction"
+    - listitem:
+      - link "Import":
+        - /url: /beancount/import/
+      - link "⬇":
+        - /url: "#export"
+    - listitem:
+      - link "Options":
+        - /url: /beancount/options/
+    - listitem:
+      - link "Help":
+        - /url: /beancount/help/
+  - list:
+    - listitem:
+      - link "Portfolio Returns":
+        - /url: /beancount/extension/FavaPortfolioReturns/
+- article:
+  - heading "Portfolio" [level=3]:
+    - link "Portfolio":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=portfolio
+  - heading "Performance" [level=3]:
+    - link "Performance":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=performance
+  - heading "Returns" [level=3]:
+    - link "Returns":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=returns
+  - heading "Metrics" [level=3]:
+    - link "Metrics":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=metrics
+  - heading "Dividends" [level=3]:
+    - link "Dividends":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=dividends
+  - heading "Cash Flows" [level=3]:
+    - link "Cash Flows":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=cash_flows
+  - heading "Groups" [level=3]:
+    - link "Groups":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=groups
+  - heading "Investments" [level=3]:
+    - link "Investments":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=investments
+  - heading "Missing Prices" [level=3]:
+    - link "Missing Prices":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=missing_prices
+  - heading "Help" [level=3]:
+    - link "Help":
+      - /url: /beancount/extension/FavaPortfolioReturns/?path=help
+  - text: Investments Filter
+  - combobox "Investments Filter"
+  - button "Open"
+  - group:
+    - button /[\d,.]+[bkmBKM]+/
+    - button /[\d,.]+[bkmBKM]+/
+    - button "YTD"
+    - button "1Y"
+    - button "3Y"
+    - button "5Y"
+    - button "MAX" [pressed]
+  - group:
+    - button "USD" [pressed]
+    - button "EUR"
+  - combobox: Volatility
+  - heading "Volatility (rolling 1y)" [level=3]
+  - heading "Monthly Heatmap" [level=3]
+  - heading "Years" [level=3]
+  - heading "Periods" [level=3]
