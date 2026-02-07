@@ -1,12 +1,13 @@
 diff --git a/src/fava_portfolio_returns/_vendor/beangrow/returns.py b/src/fava_portfolio_returns/_vendor/beangrow/returns.py
+index 2764d7a..85766ee 100644
 --- a/src/fava_portfolio_returns/_vendor/beangrow/returns.py
 +++ b/src/fava_portfolio_returns/_vendor/beangrow/returns.py
-@@ -163,6 +163,8 @@ def compute_dietz_return(
+@@ -163,6 +163,8 @@ def compute_dietz(
      #   start of the period.
-          pnl = end_value + start_value - np.sum(cash_flows)
-               average_capital = -start_value + weight_sum
-               +    if average_capital == 0:
-               +        return 0.0
-                    dietz = pnl / average_capital
-                         logging.debug("Start date: %s", start_date)
-                              logging.debug("End date: %s", end_date)
+     pnl = end_value + start_value - np.sum(cash_flows)
+     average_capital = -start_value + weight_sum
++    if average_capital == 0:
++        return 0.0
+     dietz = pnl / average_capital
+     logging.debug("Start date: %s", start_date)
+     logging.debug("End date: %s", end_date)

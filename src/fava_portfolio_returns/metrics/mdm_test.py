@@ -4,8 +4,10 @@ from pathlib import Path
 
 from fava_portfolio_returns.core.intervals import intervals_yearly
 from fava_portfolio_returns.metrics.mdm import ModifiedDietzMethod
+from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP
 from fava_portfolio_returns.test.test import approx3
 from fava_portfolio_returns.test.test import load_portfolio_file
+from fava_portfolio_returns.test.test import load_portfolio_str
 
 
 class TestMDM(unittest.TestCase):
@@ -32,3 +34,22 @@ class TestMDM(unittest.TestCase):
             ("2022", approx3(0.072)),
             ("2023", 0.0),
         ]
+
+    def test_no_cash_flows(self):
+        p = load_portfolio_str(
+            """
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Transfer in"
+  Assets:CORP                                10 CORP {10 USD}
+  Equity:Opening-Balances
+
+2020-06-01 price CORP 15 USD
+            """,
+            BEANGROW_CONFIG_CORP,
+        )
+        result = ModifiedDietzMethod().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1))
+        assert result == 0
