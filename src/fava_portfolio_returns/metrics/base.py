@@ -1,10 +1,15 @@
 import abc
 import datetime
+import math
 
 from fava_portfolio_returns._vendor.beangrow.reports import Interval
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 
 Series = list[tuple[datetime.date, float]]
+
+
+def sanitize_metric(val: float) -> float:
+    return val if math.isfinite(val) else 0.0
 
 
 class MetricBase(abc.ABC):
@@ -20,7 +25,8 @@ class MetricBase(abc.ABC):
 
     def intervals(self, p: FilteredPortfolio, intervals: list[Interval]) -> list[tuple[str, float]]:
         return [
-            (interval_name, self.single(p, start_date, end_date)) for interval_name, start_date, end_date in intervals
+            (interval_name, sanitize_metric(self.single(p, start_date, end_date)))
+            for interval_name, start_date, end_date in intervals
         ]
 
     def rolling_window(
@@ -36,4 +42,4 @@ class MetricBase(abc.ABC):
         num_days = (end_date - start_date).days
         step = max(num_days // max_points, 1)
         dates = (start_date + datetime.timedelta(n) for n in range(0, num_days, step))
-        return [(date, self.single(p, date - window_delta, date)) for date in dates]
+        return [(date, sanitize_metric(self.single(p, date - window_delta, date))) for date in dates]

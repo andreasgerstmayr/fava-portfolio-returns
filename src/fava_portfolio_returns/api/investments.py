@@ -1,5 +1,6 @@
 import datetime
 import logging
+import math
 from decimal import Decimal
 
 from beancount.core import convert
@@ -45,17 +46,26 @@ def group_stats(p: FilteredPortfolio, start_date: datetime.date, end_date: datet
     twr = TWR().single(p, start_date, end_date)
     mdd = MDD().single(p, start_date, end_date)
 
+    def sanitize(val):
+        if val is None:
+            return 0.0
+        try:
+            f_val = float(val)
+            return val if math.isfinite(f_val) else 0.0
+        except (ValueError, TypeError):
+            return 0.0
+
     return {
         "units": [pos.units for pos in units],
         "costValue": cost_value,
         "marketValue": market_value,
-        "totalPnl": total_pnl,
-        "realizedPnl": realized_pnl,
-        "unrealizedPnl": unrealized_pnl,
-        "irr": irr,
-        "mdm": mdm,
-        "twr": twr,
-        "mdd": mdd,
+        "totalPnl": sanitize(total_pnl),
+        "realizedPnl": sanitize(realized_pnl),
+        "unrealizedPnl": sanitize(unrealized_pnl),
+        "irr": sanitize(irr),
+        "mdm": sanitize(mdm),
+        "twr": sanitize(twr),
+        "mdd": sanitize(mdd),
     }
 
 
