@@ -188,6 +188,10 @@ def compute_irr(
 ) -> float:
     """Compute the irregularly spaced IRR."""
 
+    # Require at least two cash flows (incoming + outgoing) to compute IRR.
+    if len(dated_flows) < 2:
+        return 0.0
+
     # Array of cash flows, converted to target currency.
     usd_flows = []
     for flow in dated_flows:
