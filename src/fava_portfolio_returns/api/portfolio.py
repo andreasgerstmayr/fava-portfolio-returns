@@ -1,12 +1,15 @@
 import datetime
 import itertools
+from collections import defaultdict
 from dataclasses import dataclass
 from decimal import Decimal
 
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
 
+from fava_portfolio_returns._vendor.beangrow.investments import AccountData
 from fava_portfolio_returns._vendor.beangrow.investments import Cat
+from fava_portfolio_returns._vendor.beangrow.investments import Currency
 from fava_portfolio_returns._vendor.beangrow.investments import produce_cash_flows_general
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
@@ -15,14 +18,20 @@ from fava_portfolio_returns.core.utils import market_value_of_inv
 
 
 def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
+    currency_by_code = {c.currency: c for c in p.portfolio.investments_config.currencies}
+    account_data_by_currency: dict[Currency, list[AccountData]] = defaultdict(list)
+    for account_data in p.account_data_list:
+        account_data_by_currency[account_data.currency].append(account_data)
+
     allocations = []
-    for currency in p.portfolio.investments_config.currencies:
-        fp = p.portfolio.filter([currency.id], p.target_currency)
+    for currency_code, account_data_list in account_data_by_currency.items():
+        fp = FilteredPortfolio(p.portfolio, account_data_list, p.target_currency)
         balance = fp.balance_at(end_date)
         market_value = market_value_of_inv(fp.pricer, fp.target_currency, balance, end_date)
         if market_value == ZERO:
             continue
 
+        currency = currency_by_code[currency_code]
         allocations.append(
             {
                 "id": currency.id,
