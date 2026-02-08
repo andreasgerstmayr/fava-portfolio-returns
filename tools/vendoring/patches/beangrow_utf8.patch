@@ -1,0 +1,94 @@
+# https://github.com/beancount/beangrow/pull/48
+
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/compute_returns.py b/src/fava_portfolio_returns/_vendor/beangrow/compute_returns.py
+index 3464eb4..60222d8 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/compute_returns.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/compute_returns.py
+@@ -73,7 +73,7 @@ def main():
+     # Load, filter and expand the configuration.
+     config = configlib.read_config(args.config, args.filter_reports, accounts)
+     os.makedirs(args.output, exist_ok=True)
+-    with open(path.join(args.output, "config.pbtxt"), "w") as efile:
++    with open(path.join(args.output, "config.pbtxt"), "w", encoding="utf8") as efile:
+         print(config, file=efile)
+ 
+     # Extract data from the ledger.
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/compute_returns_beam.py b/src/fava_portfolio_returns/_vendor/beangrow/compute_returns_beam.py
+index cc77f7b..3cdbbe8 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/compute_returns_beam.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/compute_returns_beam.py
+@@ -84,7 +84,7 @@ def main():
+     # Load, filter and expand the configuration.
+     config = configlib.read_config(args.config, args.filter_reports, accounts)
+     os.makedirs(args.output, exist_ok=True)
+-    with open(path.join(args.output, "config.pbtxt"), "w") as efile:
++    with open(path.join(args.output, "config.pbtxt"), "w", encoding="utf8") as efile:
+         print(config, file=efile)
+ 
+     # Extract data from the ledger.
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/config.py b/src/fava_portfolio_returns/_vendor/beangrow/config.py
+index 105f995..e709ace 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/config.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/config.py
+@@ -83,7 +83,7 @@ def read_config(config_filename: str,
+                 filter_reports: List[str],
+                 accounts: List[Account]) -> Config:
+     # Read the file.
+-    with open(config_filename, "r") as infile:
++    with open(config_filename, "r", encoding="utf8") as infile:
+         config_string = infile.read()
+ 
+     return read_config_from_string(config_string, filter_reports, accounts)
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/investments.py b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+index e47bd63..f279b9a 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/investments.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/investments.py
+@@ -486,7 +486,7 @@ def write_account_file(dcontext: display_context.DisplayContext,
+     logging.info("Writing details file: %s", filename)
+     epr = printer.EntryPrinter(dcontext=dcontext, stringify_invalid_types=True)
+     os.makedirs(path.dirname(filename), exist_ok=True)
+-    with open(filename, "w") as outfile:
++    with open(filename, "w", encoding="utf8") as outfile:
+         fprint = partial(print, file=outfile)
+         fprint(";; -*- mode: beancount; coding: utf-8; fill-column: 400 -*-")
+ 
+@@ -553,7 +553,7 @@ def write_transactions_by_type(output_signatures: str,
+         sigentries = data.sorted(sigentries)
+ 
+         filename = "{}.org".format(sig)
+-        with open(path.join(output_signatures, filename), "w") as catfile:
++        with open(path.join(output_signatures, filename), "w", encoding="utf8") as catfile:
+             fprint = partial(print, file=catfile)
+             fprint(";; -*- mode: beancount; coding: utf-8; fill-column: 400 -*-")
+ 
+diff --git a/src/fava_portfolio_returns/_vendor/beangrow/reports.py b/src/fava_portfolio_returns/_vendor/beangrow/reports.py
+index 641d2d6..80d42ba 100644
+--- a/src/fava_portfolio_returns/_vendor/beangrow/reports.py
++++ b/src/fava_portfolio_returns/_vendor/beangrow/reports.py
+@@ -194,7 +194,7 @@ def write_returns_html(  # noqa: PLR0913
+ 
+     logging.info("Writing returns dir for %s: %s", title, dirname)
+     Path(dirname).mkdir(parents=True, exist_ok=True)
+-    with Path(Path(dirname) / "index.html").open("w") as indexfile:
++    with Path(Path(dirname) / "index.html").open("w", encoding="utf8") as indexfile:
+         fprint = partial(print, file=indexfile)
+         fprint(RETURNS_TEMPLATE_PRE.format(style=STYLE, title=title))
+ 
+@@ -338,7 +338,7 @@ def write_returns_debugfile(
+     logging.info("Writing returns dir for %s: %s", title, filename)
+     Path(filename).parent.mkdir(parents=True, exist_ok=True)
+ 
+-    with Path(filename).open("w") as indexfile:
++    with Path(filename).open("w", encoding="utf8") as indexfile:
+         fprint = partial(print, file=indexfile)
+         fprint(f"* {title}")
+         fprint("** Cash Flows")
+@@ -540,7 +540,7 @@ def write_price_directives(
+         price_entries.append(price)
+ 
+     Path(filename).parent.mkdir(parents=True, exist_ok=True)
+-    with Path(filename).open("w") as prfile:
++    with Path(filename).open("w", encoding="utf8") as prfile:
+         printer.print_entries(price_entries, file=prfile)
+ 
+ 

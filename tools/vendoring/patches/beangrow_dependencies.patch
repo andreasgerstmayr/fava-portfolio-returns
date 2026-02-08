@@ -1,3 +1,5 @@
+# Do not remove pandas, it is required if beangrow_debug_dir is enabled
+
 diff --git a/src/fava_portfolio_returns/_vendor/beangrow/reports.py b/src/fava_portfolio_returns/_vendor/beangrow/reports.py
 index c33b8c6..79cb5f9 100644
 --- a/src/fava_portfolio_returns/_vendor/beangrow/reports.py
