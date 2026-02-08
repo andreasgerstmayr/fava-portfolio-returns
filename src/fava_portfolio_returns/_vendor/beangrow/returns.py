@@ -163,6 +163,8 @@ def compute_dietz(
     #   start of the period.
     pnl = end_value + start_value - np.sum(cash_flows)
     average_capital = -start_value + weight_sum
+    if average_capital == 0:
+        return 0.0
     dietz = pnl / average_capital
     logging.debug("Start date: %s", start_date)
     logging.debug("End date: %s", end_date)
@@ -185,6 +187,10 @@ def compute_irr(
     end_date: Date,
 ) -> float:
     """Compute the irregularly spaced IRR."""
+
+    # Require at least two cash flows (incoming + outgoing) to compute IRR.
+    if len(dated_flows) < 2:
+        return 0.0
 
     # Array of cash flows, converted to target currency.
     usd_flows = []

@@ -1,6 +1,7 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 
 interface InvestmentsRequest {
   targetCurrency: string;
@@ -8,7 +9,7 @@ interface InvestmentsRequest {
 }
 
 export interface Investment {
-  id: string;
+  id: InvestmentId;
   name: string;
   currency: string;
   units: { number: number; currency: string }[];

@@ -2,13 +2,14 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { MetricName } from "../components/MetricSelection";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 import { Series } from "./metric_values";
 
 interface CompareRequest {
-  investmentFilter: string[];
+  investmentFilter: InvestmentId[];
   targetCurrency: string;
   metric: MetricName;
-  compareWith: string[];
+  compareWith: InvestmentId[];
 }
 
 export interface NamedSeries {

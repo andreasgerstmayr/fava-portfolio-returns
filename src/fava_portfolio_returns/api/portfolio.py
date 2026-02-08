@@ -1,13 +1,15 @@
 import datetime
 import itertools
 from collections import defaultdict
+from dataclasses import dataclass
 from decimal import Decimal
-from typing import NamedTuple
 
 from beancount.core.inventory import Inventory
 from beancount.core.number import ZERO
 
+from fava_portfolio_returns._vendor.beangrow.investments import AccountData
 from fava_portfolio_returns._vendor.beangrow.investments import Cat
+from fava_portfolio_returns._vendor.beangrow.investments import Currency
 from fava_portfolio_returns._vendor.beangrow.investments import produce_cash_flows_general
 from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.utils import cost_value_of_inv
@@ -16,26 +18,33 @@ from fava_portfolio_returns.core.utils import market_value_of_inv
 
 
 def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
-    market_value_by_currency: dict[str, Decimal] = defaultdict(Decimal)
+    currency_by_code = {c.currency: c for c in p.portfolio.investments_config.currencies}
+    account_data_by_currency: dict[Currency, list[AccountData]] = defaultdict(list)
     for account_data in p.account_data_list:
-        fp = FilteredPortfolio(p.portfolio, [account_data], p.target_currency)
+        account_data_by_currency[account_data.currency].append(account_data)
+
+    allocations = []
+    for currency_code, account_data_list in account_data_by_currency.items():
+        fp = FilteredPortfolio(p.portfolio, account_data_list, p.target_currency)
         balance = fp.balance_at(end_date)
         market_value = market_value_of_inv(fp.pricer, fp.target_currency, balance, end_date)
-        market_value_by_currency[account_data.currency] += market_value
+        if market_value == ZERO:
+            continue
 
-    currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investments_config.currencies}
-    return [
-        {
-            "name": currency_name_by_currency[currency],
-            "currency": currency,
-            "marketValue": market_value,
-        }
-        for currency, market_value in sorted(market_value_by_currency.items(), key=lambda x: x[1], reverse=True)
-        if market_value > ZERO
-    ]
+        currency = currency_by_code[currency_code]
+        allocations.append(
+            {
+                "currency_id": currency.id,
+                "name": currency.name,
+                "marketValue": market_value,
+            }
+        )
+
+    return sorted(allocations, key=lambda x: x["marketValue"], reverse=True)
 
 
-class PortfolioValue(NamedTuple):
+@dataclass(frozen=True, slots=True)
+class PortfolioValue:
     date: datetime.date
     # market value
     market: Decimal

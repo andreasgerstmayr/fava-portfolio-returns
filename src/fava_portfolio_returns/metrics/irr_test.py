@@ -80,3 +80,22 @@ plugin "beancount.plugins.implicit_prices"
         # IRR: 107.50 USD invested for 1 year = 150 USD
         # 107.5*(1+x)^(365/365) = 150
         assert IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 12, 31)) == approx3(0.395)
+
+    def test_no_cash_flows(self):
+        p = load_portfolio_str(
+            """
+plugin "beancount.plugins.auto_accounts"
+plugin "beancount.plugins.implicit_prices"
+
+2020-01-01 commodity CORP
+
+2020-01-01 * "Transfer in"
+  Assets:CORP                                10 CORP {10 USD}
+  Equity:Opening-Balances
+
+2020-06-01 price CORP 15 USD
+            """,
+            BEANGROW_CONFIG_CORP,
+        )
+        result = IRR().single(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1))
+        assert result == 0
