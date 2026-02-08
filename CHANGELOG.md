@@ -1,6 +1,6 @@
 # Changelog
 
-## v2.5.0 (2026-02-07)
+## v2.5.0 (2026-02-08)
 * feat: internationalization support [#146](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/146) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 * feat: add annualized volatility metric [#156](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/156) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 * feat: add maximum drawdown (MDD) metric [#151](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/151) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
@@ -10,6 +10,8 @@
 * enhancement: perf chart: update series name [#149](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/149) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 * fix: compute unrealized P&L for time period [#148](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/148) ([@theaprilhare](https://github.com/theaprilhare))
 * fix: add dependency on Beancount 3 [#141](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/141) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* fix: fix whitespace and apply beangrow_mdm_zero_division.patch [#159](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/159) ([@jschuller](https://github.com/jschuller), [@theaprilhare](https://github.com/theaprilhare), [@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* fix: require two cashflows for IRR calculation [#160](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/160) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 
 ## v2.4.0 (2026-01-15)
 * migrate to `@tanstack/router` and update URLs from `/beancount/extension/FavaPortfolioReturns/#/portfolio` to `/beancount/extension/FavaPortfolioReturns/?path=portfolio` [#134](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/134) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
