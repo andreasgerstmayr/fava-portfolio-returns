@@ -3,7 +3,7 @@ import { createRoute, stripSearchParams } from "@tanstack/react-router";
 import { ECElementEvent, EChartsOption } from "echarts";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { usePortfolio } from "../api/portfolio";
+import { PortfolioAllocation, usePortfolio } from "../api/portfolio";
 import { Dashboard, DashboardRow, Panel, PanelGroup, PanelGroupItem } from "../components/Dashboard";
 import { EChart, EChartsSpec } from "../components/EChart";
 import { useToolbarContext } from "../components/Header/ToolbarProvider";
@@ -222,6 +222,9 @@ function AllocationChart() {
   }
 
   const option: EChartsSpec = {
+    dataset: {
+      source: data.allocation,
+    },
     series: [
       {
         type: "pie",
@@ -234,11 +237,10 @@ function AllocationChart() {
         label: {
           show: false,
           position: "center",
-          formatter: (params) => {
-            const data = params.data as { name: string; value: number };
-            return `{name|${data.name}}\n{value|${currencyFormatter(data.value)}}`;
+          formatter: ({ data }) => {
+            const allocation = data as PortfolioAllocation;
+            return `{name|${allocation.name}}\n{value|${currencyFormatter(allocation.marketValue)}}`;
           },
-
           rich: {
             name: {
               fontSize: 16,
@@ -257,12 +259,12 @@ function AllocationChart() {
         labelLine: {
           show: false,
         },
-        data: data.allocation.map((i) => ({ name: i.name, currency: i.currency, value: i.marketValue })),
+        encode: { name: "name", value: "marketValue" },
       },
     ],
-    onClick: (params: ECElementEvent) => {
-      const data = params.data as { currency: string };
-      setInvestmentFilter([`c_${data.currency}`]);
+    onClick: ({ data }: ECElementEvent) => {
+      const allocation = data as PortfolioAllocation;
+      setInvestmentFilter([allocation.currency_id]);
     },
   };
 

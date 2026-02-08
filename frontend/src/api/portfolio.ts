@@ -9,6 +9,12 @@ interface PortfolioRequest {
   targetCurrency: string;
 }
 
+export interface PortfolioAllocation {
+  name: string;
+  currency_id: InvestmentId;
+  marketValue: number;
+}
+
 export interface PortfolioResponse {
   valueChart: {
     date: string;
@@ -17,11 +23,7 @@ export interface PortfolioResponse {
     cash: number;
   }[];
   performanceChart: Series;
-  allocation: {
-    name: string;
-    currency: string;
-    marketValue: number;
-  }[];
+  allocation: PortfolioAllocation[];
 }
 
 export function usePortfolio(request: PortfolioRequest): UseQueryResult<PortfolioResponse> {

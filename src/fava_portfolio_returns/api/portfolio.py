@@ -34,9 +34,8 @@ def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
         currency = currency_by_code[currency_code]
         allocations.append(
             {
-                "id": currency.id,
+                "currency_id": currency.id,
                 "name": currency.name,
-                "currency": currency.currency,
                 "marketValue": market_value,
             }
         )
