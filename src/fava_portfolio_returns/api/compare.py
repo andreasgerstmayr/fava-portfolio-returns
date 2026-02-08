@@ -15,7 +15,7 @@ from fava_portfolio_returns.metrics.registry import get_metric
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(frozen=True)
 class NamedSeries:
     name: str
     data: Series

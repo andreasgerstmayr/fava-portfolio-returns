@@ -3,21 +3,23 @@ import { useFavaFilterSearchParams } from "../routes/__root";
 import { PNLColorSchemeVariant } from "../theme";
 import { fetchJSON } from "./api";
 
+export type InvestmentId = string;
+
 interface Account {
-  id: string;
+  id: InvestmentId;
   currency: string;
   assetAccount: string;
 }
 
 interface Group {
-  id: string;
+  id: InvestmentId;
   name: string;
   /** list of asset accounts */
   investments: string[];
 }
 
 interface Currency {
-  id: string;
+  id: InvestmentId;
   currency: string;
   name: string;
   isInvestment: boolean;

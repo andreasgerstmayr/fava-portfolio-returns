@@ -18,31 +18,37 @@ class TestPortfolio(unittest.TestCase):
         allocation = portfolio_allocation(p, datetime.date(2023, 1, 1))
         assert allocation == [
             {
+                "id": "c_RGAGX",
                 "name": "American Funds The Growth Fund of America Class R-6",
                 "currency": "RGAGX",
                 "marketValue": D("45877.18693"),
             },
             {
+                "id": "c_VBMPX",
                 "name": "Vanguard Total Bond Market Index Fund Institutional Plus Shares",
                 "currency": "VBMPX",
                 "marketValue": D("28014.42410"),
             },
             {
+                "id": "c_GLD",
                 "name": "SPDR Gold Trust (ETF)",
                 "currency": "GLD",
                 "marketValue": D("7517.64"),
             },
             {
+                "id": "c_ITOT",
                 "name": "iShares Core S&P Total U.S. Stock Market ETF",
                 "currency": "ITOT",
                 "marketValue": D("4975.95"),
             },
             {
+                "id": "c_VEA",
                 "name": "Vanguard FTSE Developed Markets ETF",
                 "currency": "VEA",
                 "marketValue": D("4457.40"),
             },
             {
+                "id": "c_VHT",
                 "name": "Vanguard Health Care ETF",
                 "currency": "VHT",
                 "marketValue": D("3850.56"),

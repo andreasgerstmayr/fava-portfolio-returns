@@ -1,6 +1,6 @@
 import datetime
+from dataclasses import dataclass
 from typing import Literal
-from typing import NamedTuple
 
 from dateutil.relativedelta import relativedelta
 
@@ -49,7 +49,8 @@ def intervals_periods(start_date: datetime.date, end_date: datetime.date) -> lis
     return [(label, start, end) for (label, start, end) in periods if start >= start_date]
 
 
-class MonthInterval(NamedTuple):
+@dataclass(frozen=True)
+class MonthInterval:
     year: int
     month: int
 

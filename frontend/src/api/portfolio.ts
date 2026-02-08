@@ -1,10 +1,11 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 import { Series } from "./metric_values";
 
 interface PortfolioRequest {
-  investmentFilter: string[];
+  investmentFilter: InvestmentId[];
   targetCurrency: string;
 }
 
