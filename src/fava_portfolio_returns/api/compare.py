@@ -15,18 +15,18 @@ from fava_portfolio_returns.metrics.registry import get_metric
 logger = logging.getLogger(__name__)
 
 
-@dataclass
+@dataclass(frozen=True)
 class NamedSeries:
     name: str
     data: Series
     cashFlows: Series  # pylint: disable=invalid-name
 
 
-def get_series_cash_flows(fp: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
+def get_series_cash_flows(p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date):
     """Get filtered cash flows (excluding dividends)"""
-    cash_flows = fp.cash_flows()
+    cash_flows = p.cash_flows()
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
-    cash_flows = convert_cash_flows_to_currency(fp.pricer, fp.target_currency, cash_flows)
+    cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
 
     # Aggregate by date, excluding dividends
     daily_flows: dict[datetime.date, Decimal] = defaultdict(Decimal)

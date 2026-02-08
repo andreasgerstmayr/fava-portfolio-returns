@@ -2,11 +2,12 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { MetricName } from "../components/MetricSelection";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 
 export type Series = [string, number][];
 
 interface MetricValuesRequest {
-  investmentFilter: string[];
+  investmentFilter: InvestmentId[];
   targetCurrency: string;
   metric: MetricName;
   interval: "series" | "rolling_1y" | "heatmap" | "yearly" | "periods";

@@ -1,9 +1,10 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 
 interface CashFlowsRequest {
-  investmentFilter: string[];
+  investmentFilter: InvestmentId[];
   targetCurrency: string;
   interval: "monthly" | "yearly";
 }

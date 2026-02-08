@@ -1,11 +1,18 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { useFavaFilterSearchParams } from "../routes/__root";
 import { fetchJSON } from "./api";
+import { InvestmentId } from "./config";
 import { Series } from "./metric_values";
 
 interface PortfolioRequest {
-  investmentFilter: string[];
+  investmentFilter: InvestmentId[];
   targetCurrency: string;
+}
+
+export interface PortfolioAllocation {
+  name: string;
+  currency_id: InvestmentId;
+  marketValue: number;
 }
 
 export interface PortfolioResponse {
@@ -16,11 +23,7 @@ export interface PortfolioResponse {
     cash: number;
   }[];
   performanceChart: Series;
-  allocation: {
-    name: string;
-    currency: string;
-    marketValue: number;
-  }[];
+  allocation: PortfolioAllocation[];
 }
 
 export function usePortfolio(request: PortfolioRequest): UseQueryResult<PortfolioResponse> {
