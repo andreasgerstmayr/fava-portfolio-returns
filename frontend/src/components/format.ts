@@ -1,8 +1,13 @@
 import { useConfigContext } from "./Header/ConfigProvider";
 
+// convert locale from Fava/gettext (e.g. de_AT) to BCP 47 syntax (e.g. de-AT)
+function toBcp47Locale(locale: string | null) {
+  return locale ? locale.replace("_", "-") : undefined;
+}
+
 function useFormatter(opts: Intl.NumberFormatOptions) {
   const { config } = useConfigContext();
-  const locale = config.locale ?? undefined;
+  const locale = toBcp47Locale(config.locale);
   return new Intl.NumberFormat(locale, opts).format;
 }
 
@@ -23,7 +28,7 @@ export function usePercentFormatter(opts?: { fixed: boolean }) {
 
 export function useCurrencyFormatter(currency: string, opts?: { integer: boolean }) {
   const { config } = useConfigContext();
-  const locale = config.locale ?? undefined;
+  const locale = toBcp47Locale(config.locale);
   const maximumFractionDigits = opts?.integer ? 0 : undefined;
 
   try {

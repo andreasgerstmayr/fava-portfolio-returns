@@ -26,7 +26,9 @@ interface Currency {
 }
 
 export interface ConfigResponse {
+  /** language in the format de_AT */
   language: string | null;
+  /** locale in the format de_AT */
   locale: string | null;
   pnlColorScheme: PNLColorSchemeVariant | null;
   operatingCurrencies: string[];

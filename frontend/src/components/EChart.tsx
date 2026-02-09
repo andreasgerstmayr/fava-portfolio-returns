@@ -34,10 +34,11 @@ export function EChart({ height, option }: EChartProps) {
       return;
     }
 
+    const locale = config.language ? config.language.split("_")[0] : undefined;
     const chart = init(ref.current, echartsTheme, {
       width: rect.width,
       height: rect.height,
-      locale: config.locale ?? undefined,
+      locale,
     });
     const { onClick, ...optionCopy } = option;
 
@@ -53,7 +54,7 @@ export function EChart({ height, option }: EChartProps) {
     chartRef.current = chart;
 
     return cleanup;
-  }, [option, echartsTheme, rect, config.locale]);
+  }, [option, echartsTheme, rect, config.language]);
 
   useEffect(() => {
     if (chartRef.current && rect) {
