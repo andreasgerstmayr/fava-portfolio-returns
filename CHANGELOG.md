@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.5.1 (2026-02-09)
+* fix language code parsing [#164](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/164) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+
 ## v2.5.0 (2026-02-08)
 * feat: internationalization support [#146](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/146) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 * feat: add annualized volatility metric [#156](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/156) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
