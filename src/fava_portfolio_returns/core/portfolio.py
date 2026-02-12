@@ -89,17 +89,13 @@ class Portfolio:
         else:
             self.beangrow_cfg = read_config_from_string(beangrow_config, [], list(accounts))
 
+        beangrow_debug_dir_str = str(beangrow_debug_dir) if beangrow_debug_dir else ""
         self.account_data_map = extract(
-            entries,
-            dcontext,
-            self.beangrow_cfg,
-            entries[-1].date,
-            False,
-            str(beangrow_debug_dir) if beangrow_debug_dir else "",
+            entries, dcontext, self.beangrow_cfg, entries[-1].date, False, beangrow_debug_dir_str
         )
-        self.investments_config = build_investments_config(
-            self.beangrow_cfg, self.account_data_map, [e for e in entries if isinstance(e, Commodity)]
-        )
+
+        commodities = [e for e in entries if isinstance(e, Commodity)]
+        self.investments_config = build_investments_config(self.beangrow_cfg, self.account_data_map, commodities)
 
     def filter(self, investment_filter: list[InvestmentId], target_currency: Optional[Currency]):
         account_data_list = filter_investments(self.investments_config, self.account_data_map, investment_filter)
