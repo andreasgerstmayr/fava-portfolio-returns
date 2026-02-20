@@ -63,8 +63,10 @@ The plugin supports the following configuration options:
 ```
 2010-01-01 custom "fava-extension" "fava_portfolio_returns" "{
   'beangrow_config': 'beangrow.pbtxt',
+  'beangrow_debug_dir': 'path/to/debug/directory',
   'pnl_color_scheme': 'green-red',
-  'beangrow_debug_dir': 'path/to/debug/directory'
+  'language': 'en',
+  'locale': 'en',
 }"
 ```
 
