@@ -46,6 +46,8 @@ class ExtConfig:
     beangrow_config_path: Path
     beangrow_debug_dir: Optional[Path]
     pnl_color_scheme: Optional[str]
+    language: Optional[str]
+    locale: Optional[str]
 
 
 @dataclass(frozen=True)
@@ -92,12 +94,12 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
-        pnl_color_scheme_value = cfg.get("pnl_color_scheme", None)
-
         return ExtConfig(
             beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
             beangrow_debug_dir=beangrow_debug_dir,
-            pnl_color_scheme=pnl_color_scheme_value,
+            pnl_color_scheme=cfg.get("pnl_color_scheme"),
+            language=cfg.get("language", self.ledger.fava_options.language),
+            locale=cfg.get("locale", self.ledger.fava_options.locale),
         )
 
     def get_toolbar_ctx(self):
@@ -154,8 +156,8 @@ class FavaPortfolioReturns(FavaExtensionBase):
             raise FavaAPIError("no operating currency specified in the ledger")
 
         return {
-            "language": self.ledger.fava_options.language,
-            "locale": self.ledger.fava_options.locale,
+            "language": ext_config.language,
+            "locale": ext_config.locale,
             "pnlColorScheme": ext_config.pnl_color_scheme,
             "operatingCurrencies": operating_currencies,
             "investmentsConfig": portfolio.investments_config,
