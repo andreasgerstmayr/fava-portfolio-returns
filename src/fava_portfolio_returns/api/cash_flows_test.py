@@ -48,27 +48,27 @@ class TestCashFlows(unittest.TestCase):
         chart = dividends_chart(p, datetime.date(2020, 1, 1), datetime.date(2023, 1, 1), "monthly")
         assert chart == [
             {
-                "date": "2020-09",
+                "_date": "2020-09",
                 "iShares Core S&P Total U.S. Stock Market ETF": D("0.00"),
             },
             {
-                "date": "2020-12",
+                "_date": "2020-12",
                 "Vanguard FTSE Developed Markets ETF": D("29.60"),
             },
             {
-                "date": "2021-03",
+                "_date": "2021-03",
                 "iShares Core S&P Total U.S. Stock Market ETF": D("29.60"),
             },
             {
-                "date": "2021-06",
+                "_date": "2021-06",
                 "SPDR Gold Trust (ETF)": D("45.37"),
             },
             {
-                "date": "2021-09",
+                "_date": "2021-09",
                 "Vanguard Health Care ETF": D("64.97"),
             },
             {
-                "date": "2021-12",
+                "_date": "2021-12",
                 "SPDR Gold Trust (ETF)": D("90.18"),
             },
         ]

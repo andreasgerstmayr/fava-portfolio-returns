@@ -72,7 +72,7 @@ function DividendsChart({ interval }: DividendsChartProps) {
   }
 
   const investments = new Set(data.chart.flatMap((v) => Object.keys(v)));
-  investments.delete("date");
+  investments.delete("_date");
   if (investments.size === 0) {
     return <Alert severity="info">{t("No dividends in this time frame.")}</Alert>;
   }
@@ -97,15 +97,15 @@ function DividendsChart({ interval }: DividendsChartProps) {
     dataset: {
       source: data.chart,
       // required because not every row contains all investment names
-      dimensions: ["date", ...investments],
+      dimensions: ["_date", ...investments],
     },
     series: [...investments].sort().map((investment) => ({
       type: "bar",
       name: investment,
-      encode: { x: "date", y: investment },
+      encode: { x: "_date", y: investment },
       barMinWidth: 4,
-      barMaxWidth: 20,
-      stack: "dividends",
+      barMaxWidth: 50,
+      stack: "total",
       emphasis: {
         focus: "series",
       },
