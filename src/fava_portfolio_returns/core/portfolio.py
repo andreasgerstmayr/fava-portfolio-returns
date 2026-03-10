@@ -110,6 +110,8 @@ class Portfolio:
             if commodity.currency not in commodity_sources:
                 commodity_sources[commodity.currency] = commodity.meta.get("price")
 
+        # required_prices: [((source_currency, required_date), {(cost_currency, actual_date, rate), ...}), ...]
+        # actual_date/rate is None when no price is available.
         # sort by date and currency
         required_prices = sorted(self.pricer.required_prices.items(), key=lambda x: (x[0][1], x[0][0]))
 
@@ -122,14 +124,15 @@ class Portfolio:
                 if len(found_dates) != 1:
                     raise ValueError(f"Found multiple prices for {currency} on {required_date}: {found_dates}")
 
+                if required_date > today:
+                    continue
+
                 _cost_currency, actual_date, _rate = list(found_dates)[0]
                 if actual_date is None:
-                    if required_date > today:
-                        continue
                     days_late = None
                 else:
                     days_late = (required_date - actual_date).days
-                    if days_late < 5 or required_date > today:
+                    if days_late < 5:
                         continue
 
                 missing_prices.append(
