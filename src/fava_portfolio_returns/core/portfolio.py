@@ -123,9 +123,14 @@ class Portfolio:
                     raise ValueError(f"Found multiple prices for {currency} on {required_date}: {found_dates}")
 
                 _cost_currency, actual_date, _rate = list(found_dates)[0]
-                days_late = (required_date - actual_date).days
-                if days_late < 5 or required_date > today:
-                    continue
+                if actual_date is None:
+                    if required_date > today:
+                        continue
+                    days_late = None
+                else:
+                    days_late = (required_date - actual_date).days
+                    if days_late < 5 or required_date > today:
+                        continue
 
                 missing_prices.append(
                     {
