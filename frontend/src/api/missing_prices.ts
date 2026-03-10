@@ -5,8 +5,8 @@ import { fetchJSON } from "./api";
 export interface MissingPrice {
   currency: string;
   requiredDate: string;
-  actualDate: string;
-  daysLate: number;
+  actualDate: string | null;
+  daysLate: number | null;
 }
 
 export interface MissingPricesResponse {

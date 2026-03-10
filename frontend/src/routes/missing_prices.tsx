@@ -71,8 +71,8 @@ function MissingPrices() {
                 <tr key={i}>
                   <td> {price.currency} </td>
                   <td>{price.requiredDate}</td>
-                  <td>{price.actualDate}</td>
-                  <td>{price.daysLate}</td>
+                  <td>{price.actualDate ?? ""}</td>
+                  <td>{price.daysLate ?? ""}</td>
                 </tr>
               ))}
             </tbody>
