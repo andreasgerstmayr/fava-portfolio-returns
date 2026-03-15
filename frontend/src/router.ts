@@ -74,7 +74,8 @@ export const router = createRouter({
 });
 
 function getExtensionPath() {
-  const path = location.pathname;
-  const file = path.split("/")[1];
-  return `/${file}/extension/FavaPortfolioReturns`;
+  // Grab the base url from the ledger data embedded in the page
+  const baseUrl = JSON.parse(document.getElementById("ledger-data")?.textContent ?? "{}").base_url ?? "";
+  const extension = "extension/FavaPortfolioReturns";
+  return `${baseUrl}${extension}`;
 }
