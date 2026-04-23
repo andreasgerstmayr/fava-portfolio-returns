@@ -239,10 +239,9 @@ def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, Acco
             id=f"c_{c.currency}",
             name=c.meta.get("name", c.currency),
             currency=c.currency,
-            isInvestment=True,
+            isInvestment=c.currency in investment_currencies,
         )
         for c in commodities
-        if c.currency in investment_currencies
     ]
 
     return InvestmentsConfig(accounts=accounts, groups=groups, currencies=currencies)
