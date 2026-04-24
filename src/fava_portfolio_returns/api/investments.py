@@ -75,6 +75,8 @@ def investments_group_by_currency(
     p: Portfolio, target_currency: str, start_date: datetime.date, end_date: datetime.date
 ):
     for currency in p.investments_config.currencies:
+        if not currency.isInvestment:
+            continue
         logger.debug("calculating stats for %s", currency.name)
         fp = p.filter([currency.id], target_currency)
         yield {
