@@ -1,5 +1,13 @@
 # Changelog
 
+## v2.6 (2026-06-07)
+* fix: filter non-investment commodities from investments tab [#176](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/176) ([@armonge](https://github.com/armonge))
+* feat: support FAVA_PREFIX [#174](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/174) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* handle case where actual_date in get_missing_prices is None [#172](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/172) ([@theaprilhare](https://github.com/theaprilhare))
+* chore: refactor dividends: update date attr name [#168](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/168) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* add language and locale configuration settings [#167](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/167) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
+* i18n: add Turkish translation [#166](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/166) ([@hahayidu](https://github.com/hahayidu))
+
 ## v2.5.1 (2026-02-09)
 * fix language code parsing [#164](https://github.com/andreasgerstmayr/fava-portfolio-returns/pull/164) ([@andreasgerstmayr](https://github.com/andreasgerstmayr))
 
