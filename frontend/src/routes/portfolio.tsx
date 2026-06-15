@@ -222,49 +222,49 @@ function AllocationChart() {
   }
 
   const option: EChartsSpec = {
-    dataset: {
-      source: data.allocation,
+    tooltip: {
+      confine: true,
+      valueFormatter: anyFormatter(currencyFormatter),
     },
     series: [
       {
-        type: "pie",
-        radius: ["60%", "90%"],
-        avoidLabelOverlap: false,
-        padAngle: 1,
+        type: "treemap",
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        breadcrumb: {
+          show: false,
+        },
         itemStyle: {
           borderRadius: 3,
+          gapWidth: 2,
         },
         label: {
-          show: false,
-          position: "center",
           formatter: ({ data }) => {
             const allocation = data as PortfolioAllocation;
-            return `{name|${allocation.name}}\n{value|${currencyFormatter(allocation.marketValue)}}`;
+            return `{currency|${allocation.currency}}\n${currencyFormatter(allocation.marketValue)}`;
           },
           rich: {
-            name: {
-              fontSize: 16,
-            },
-            value: {
-              fontSize: 20,
+            currency: {
               fontWeight: "bold",
             },
           },
         },
-        emphasis: {
-          label: {
-            show: true,
-          },
-        },
-        labelLine: {
-          show: false,
-        },
-        encode: { name: "name", value: "marketValue" },
+        labelLayout: (params) => ({
+          y: params.labelRect.y,
+          align: "center",
+        }),
+        data: data.allocation.map((allocation) => ({
+          ...allocation,
+          name: allocation.name,
+          value: allocation.marketValue,
+        })),
       },
     ],
     onClick: ({ data }: ECElementEvent) => {
       const allocation = data as PortfolioAllocation;
-      setInvestmentFilter([allocation.currency_id]);
+      setInvestmentFilter([allocation.id]);
     },
   };
 
