@@ -35,8 +35,8 @@ def portfolio_allocation(p: FilteredPortfolio, end_date: datetime.date):
         allocations.append(
             {
                 "id": currency.id,
-                "currency": currency.currency,
                 "name": currency.name,
+                "currency": currency.currency,
                 "marketValue": market_value,
             }
         )

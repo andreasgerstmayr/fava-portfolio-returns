@@ -10,8 +10,8 @@ interface PortfolioRequest {
 }
 
 export interface PortfolioAllocation {
-  name: string;
   id: InvestmentId;
+  name: string;
   currency: string;
   marketValue: number;
 }
