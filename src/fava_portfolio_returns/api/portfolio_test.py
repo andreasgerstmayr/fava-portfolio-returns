@@ -19,38 +19,38 @@ class TestPortfolio(unittest.TestCase):
         assert allocation == [
             {
                 "id": "c_RGAGX",
-                "currency": "RGAGX",
                 "name": "American Funds The Growth Fund of America Class R-6",
+                "currency": "RGAGX",
                 "marketValue": D("45877.18693"),
             },
             {
                 "id": "c_VBMPX",
-                "currency": "VBMPX",
                 "name": "Vanguard Total Bond Market Index Fund Institutional Plus Shares",
+                "currency": "VBMPX",
                 "marketValue": D("28014.42410"),
             },
             {
                 "id": "c_GLD",
-                "currency": "GLD",
                 "name": "SPDR Gold Trust (ETF)",
+                "currency": "GLD",
                 "marketValue": D("7517.64"),
             },
             {
                 "id": "c_ITOT",
-                "currency": "ITOT",
                 "name": "iShares Core S&P Total U.S. Stock Market ETF",
+                "currency": "ITOT",
                 "marketValue": D("4975.95"),
             },
             {
                 "id": "c_VEA",
-                "currency": "VEA",
                 "name": "Vanguard FTSE Developed Markets ETF",
+                "currency": "VEA",
                 "marketValue": D("4457.40"),
             },
             {
                 "id": "c_VHT",
-                "currency": "VHT",
                 "name": "Vanguard Health Care ETF",
+                "currency": "VHT",
                 "marketValue": D("3850.56"),
             },
         ]
