@@ -26,6 +26,7 @@ dependencies = [
     "numpy>=1.26.4",
     "scipy>=1.13.1",
     "pandas>=2.2.2",
+    "python-dateutil>=2.9.0",
 ]
 
 [project.urls]
@@ -41,14 +42,11 @@ build-backend = "hatchling.build"
 dev = [
     "coverage>=7.6.10",
     "mypy>=1.9.0",
-    "pip>=25.2",
     "pylint>=3.1.0",
     "pytest>=8.3.3",
     "ruff>=0.8.1",
     "ty>=0.0.13",
-    "types-protobuf>=5.29.1.20241207",
     "types-python-dateutil>=2.9.0.20241206",
-    "types-PyYAML>=6",
     "vendoring>=1.2.0",
 ]
 
