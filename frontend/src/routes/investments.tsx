@@ -216,6 +216,7 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
         density="compact"
         getRowHeight={() => "auto"}
         getRowClassName={(params) => (params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd")}
+        rowSelection={false}
         initialState={{
           sorting: {
             sortModel: [{ field: "name", sort: "asc" }],
@@ -223,13 +224,11 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
         }}
         sx={{
           ".MuiDataGrid-cell": {
-            display: "flex",
-            alignItems: "center",
             px: 1,
             py: 0.5,
           },
           ".MuiDataGrid-cell:not([data-field='name'])": {
-            fontFamily: '"Fira Mono", monospace',
+            fontFamily: "var(--font-family-monospaced)",
           },
           ".even": {
             backgroundColor: theme.palette.action.hover,
