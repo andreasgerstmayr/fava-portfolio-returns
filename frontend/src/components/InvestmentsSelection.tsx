@@ -88,6 +88,7 @@ export function InvestmentsSelection({
       value={option}
       onChange={handleChange}
       options={options}
+      getOptionKey={(option) => option.id}
       renderOption={(props, option, { selected }) => {
         // eslint-disable-next-line react/prop-types
         const { key, ...optionProps } = props;
