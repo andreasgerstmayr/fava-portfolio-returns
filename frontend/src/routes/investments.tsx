@@ -223,19 +223,27 @@ export function InvestmentsTable({ groupBy, includeLiquidated, setIncludeLiquida
           },
         }}
         sx={{
+          "& p": {
+            // Override Fava's global <p> style to fix footer alignment
+            margin: 0,
+          },
           ".MuiDataGrid-cell": {
+            // apply padding, because getRowHeight: auto removes all padding
             px: 1,
             py: 0.5,
           },
           ".MuiDataGrid-cell:not([data-field='name'])": {
+            // format all columns except name column in Fava's monospace font
             fontFamily: "var(--font-family-monospaced)",
           },
+
           ".even": {
             backgroundColor: theme.palette.action.hover,
           },
           ".MuiDataGrid-row:hover": {
             backgroundColor: alpha(theme.palette.action.hover, 0.1),
           },
+
           ".positive": {
             color: theme.pnl.profit,
           },
