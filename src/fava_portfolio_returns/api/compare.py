@@ -39,7 +39,7 @@ def get_series_cash_flows(p: FilteredPortfolio, start_date: datetime.date, end_d
 
 def compare_chart(
     p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, metric_name: str, compare_with: list[str]
-):
+) -> list[NamedSeries]:
     metric = get_metric(metric_name)
     returns = metric.series(p, start_date, end_date)
     cash_flows = get_series_cash_flows(p, start_date, end_date)
@@ -110,7 +110,7 @@ def truncate_cash_flows(cash_flows: Series, start_date: datetime.date):
     return result
 
 
-def truncate_series(series: Series, start_date: datetime.date):
+def truncate_series(series: Series, start_date: datetime.date) -> Series:
     for i, (date, _) in enumerate(series):
         if date == start_date:
             return series[i:]

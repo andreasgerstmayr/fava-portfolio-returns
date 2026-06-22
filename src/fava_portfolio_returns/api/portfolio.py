@@ -132,7 +132,7 @@ def portfolio_values(
             for flow in produce_cash_flows_general(entry, ""):
                 # Convert flow amount to the target_currency at the date of the flow
                 cash_amount_converted = p.pricer.convert_amount(flow.amount, p.target_currency, date)
-                cf_balance_converted += cash_amount_converted.number
+                cf_balance_converted += cash_amount_converted.number or Decimal(0.0)
 
         if date >= first_date:
             # Clamp start_date in case we cut off data at the beginning.

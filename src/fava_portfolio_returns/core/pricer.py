@@ -27,7 +27,9 @@ class Pricer(BeangrowPricer):
             raise CurrencyConversionException(target_amt.currency, target_currency, date)
         return target_amt
 
-    def convert_position(self, pos: Position, target_currency: Currency, date: Optional[datetime.date] = None):
+    def convert_position(
+        self, pos: Position, target_currency: Currency, date: Optional[datetime.date] = None
+    ) -> Position:
         target_pos = convert.convert_position(pos, target_currency, self.price_map, date)
         if target_pos.currency != target_currency:
             raise CurrencyConversionException(target_pos.currency, target_currency, date)

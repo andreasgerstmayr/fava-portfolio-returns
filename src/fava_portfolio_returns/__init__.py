@@ -32,6 +32,7 @@ from fava_portfolio_returns.api.portfolio import portfolio_values
 from fava_portfolio_returns.core.intervals import intervals_heatmap
 from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
+from fava_portfolio_returns.core.portfolio import FilteredPortfolio
 from fava_portfolio_returns.core.portfolio import Portfolio
 from fava_portfolio_returns.metrics.pnl import TotalPNL
 from fava_portfolio_returns.metrics.registry import get_metric
@@ -102,7 +103,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             locale=cfg.get("locale", self.ledger.fava_options.locale),
         )
 
-    def get_toolbar_ctx(self):
+    def get_toolbar_ctx(self) -> ToolbarContext:
         sel_investments = list(filter(None, request.args.get("investments", "").split(",")))
 
         operating_currencies = self.ledger.options["operating_currency"]
@@ -131,7 +132,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             end_date=date_last,
         )
 
-    def get_portfolio(self):
+    def get_portfolio(self) -> Portfolio:
         if not self.cached_portfolio:
             ext_config = self.read_ext_config()
             self.cached_portfolio = Portfolio(
@@ -142,7 +143,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
             )
         return self.cached_portfolio
 
-    def get_filtered_portfolio(self, toolbar_ctx: ToolbarContext):
+    def get_filtered_portfolio(self, toolbar_ctx: ToolbarContext) -> FilteredPortfolio:
         return self.get_portfolio().filter(toolbar_ctx.investment_filter, toolbar_ctx.target_currency)
 
     @extension_endpoint("config")
@@ -282,7 +283,7 @@ class FavaPortfolioReturns(FavaExtensionBase):
         return {"missingPrices": missing_prices, "commands": commands}
 
 
-def get_ledger_duration(entries: Sequence[FavaDirective]):
+def get_ledger_duration(entries: Sequence[FavaDirective]) -> tuple[date, date]:
     date_first = None
     date_last = None
     for entry in entries:
@@ -298,7 +299,9 @@ def get_ledger_duration(entries: Sequence[FavaDirective]):
     return (date_first, date_last)
 
 
-def clamp_to_ledger_range(filter_first: date, filter_last: date, ledger_first: date, ledger_last: date):
+def clamp_to_ledger_range(
+    filter_first: date, filter_last: date, ledger_first: date, ledger_last: date
+) -> tuple[date, date]:
     # Adjust the dates in case the date filter is set to e.g. 2023-2024, however the ledger only contains data up to summer 2024.
     # Without this, all averages in the dashboard are off, because a wrong number of days between dateFirst and dateLast is calculated.
     clamped_first = max(filter_first, ledger_first)
