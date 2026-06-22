@@ -8,7 +8,7 @@ from fava_portfolio_returns.metrics.twr import TWR
 from fava_portfolio_returns.metrics.volatility import Volatility
 
 
-def get_metric(name: str):
+def get_metric(name: str) -> MetricBase:
     metric = _registry.get(name)
     if not metric:
         raise ValueError(f"Invalid metric '{name}'")

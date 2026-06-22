@@ -21,7 +21,7 @@ class CashFlowChartValue:
 
 def cash_flows_chart(
     p: FilteredPortfolio, start_date: datetime.date, end_date: datetime.date, interval: Literal["monthly", "yearly"]
-):
+) -> list[CashFlowChartValue]:
     cash_flows = p.cash_flows()
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
     cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
@@ -66,7 +66,7 @@ def dividends_chart(
     start_date: datetime.date,
     end_date: datetime.date,
     interval: Literal["monthly", "yearly"],
-):
+) -> list[dict[str, str | Decimal]]:
     cash_flows = p.cash_flows()
     cash_flows = filter_cash_flows_by_date(cash_flows, start_date, end_date)
     cash_flows = [flow for flow in cash_flows if flow.is_dividend]

@@ -171,7 +171,7 @@ class FilteredPortfolio:
         self.target_currency = target_currency
 
     @property
-    def pricer(self):
+    def pricer(self) -> Pricer:
         return self.portfolio.pricer
 
     def cash_flows(self) -> list[CashFlow]:
@@ -182,7 +182,7 @@ class FilteredPortfolio:
         cash_flows.sort(key=lambda flow: flow.date)
         return cash_flows
 
-    def balance_at(self, date: datetime.date):
+    def balance_at(self, date: datetime.date) -> Inventory:
         """returns the inventory at the given date"""
         balance = Inventory()
         for account_data in self.account_data_list:
@@ -217,7 +217,9 @@ def get_target_currency(account_data_list: list[AccountData]) -> str:
     return cost_currencies.pop()
 
 
-def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, AccountData], commodities: list[Commodity]):
+def build_investments_config(
+    beangrow_cfg: Any, account_data_map: dict[str, AccountData], commodities: list[Commodity]
+) -> InvestmentsConfig:
     currencies_by_account: dict[str, list[Currency]] = defaultdict(list)
     for investment in beangrow_cfg.investments.investment:
         currencies_by_account[investment.asset_account].append(investment.currency)
