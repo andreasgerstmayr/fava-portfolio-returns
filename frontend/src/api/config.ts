@@ -7,7 +7,7 @@ export type InvestmentId = string;
 
 interface Account {
   id: InvestmentId;
-  currency: string;
+  currencies: string[];
   assetAccount: string;
 }
 

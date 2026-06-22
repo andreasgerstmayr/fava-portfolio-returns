@@ -72,20 +72,25 @@ def dividends_chart(
     cash_flows = [flow for flow in cash_flows if flow.is_dividend]
     cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
 
-    currency_by_account = {acc.assetAccount: acc.currency for acc in p.portfolio.investments_config.accounts}
     currency_name_by_currency = {cur.currency: cur.name for cur in p.portfolio.investments_config.currencies}
+    # use currency name if account has a single currency, otherwise use account name
+    label_by_account = {
+        account.assetAccount: (
+            account.assetAccount if len(account.currencies) > 1 else currency_name_by_currency[account.currencies[0]]
+        )
+        for account in p.portfolio.investments_config.accounts
+    }
 
     truncate_date = truncate_date_fn(interval)
     # ex. {"2025": {"_date": "2025", "Investment1": 5, "Investment2": 3}}
     chart: dict[str, dict[str, str | Decimal]] = {}
     for flow in cash_flows:
         date = truncate_date(flow.date)
-        currency = currency_by_account[flow.account]
-        currency_name = currency_name_by_currency[currency]
+        label = label_by_account[flow.account]
 
         if date not in chart:
             chart[date] = defaultdict(Decimal)
             chart[date]["_date"] = date
-        chart[date][currency_name] += flow.amount.number  # type: ignore[operator]
+        chart[date][label] += flow.amount.number  # type: ignore[operator]
 
     return sorted(chart.values(), key=lambda x: x["_date"])

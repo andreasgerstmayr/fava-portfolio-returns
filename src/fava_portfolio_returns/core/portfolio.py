@@ -1,5 +1,6 @@
 import datetime
 import itertools
+from collections import defaultdict
 from dataclasses import dataclass
 from decimal import Decimal
 from pathlib import Path
@@ -32,7 +33,7 @@ InvestmentId: TypeAlias = str
 @dataclass(frozen=True)
 class InvestmentAccount:
     id: InvestmentId
-    currency: Currency
+    currencies: list[Currency]
     assetAccount: str
 
 
@@ -217,13 +218,17 @@ def get_target_currency(account_data_list: list[AccountData]) -> str:
 
 
 def build_investments_config(beangrow_cfg: Any, account_data_map: dict[str, AccountData], commodities: list[Commodity]):
+    currencies_by_account: dict[str, list[Currency]] = defaultdict(list)
+    for investment in beangrow_cfg.investments.investment:
+        currencies_by_account[investment.asset_account].append(investment.currency)
+
     accounts = [
         InvestmentAccount(
-            id=f"a_{investment.asset_account}",
-            currency=investment.currency,
-            assetAccount=investment.asset_account,
+            id=f"a_{asset_account}",
+            currencies=currencies,
+            assetAccount=asset_account,
         )
-        for investment in beangrow_cfg.investments.investment
+        for asset_account, currencies in currencies_by_account.items()
     ]
 
     groups = [
@@ -253,6 +258,7 @@ def filter_investments(
     investment_filter: list[InvestmentId],
 ) -> list[AccountData]:
     accounts = set()
+    currencies = set()
 
     if investment_filter:
         for account in investment_groups.accounts:
@@ -265,10 +271,12 @@ def filter_investments(
 
         for currency in investment_groups.currencies:
             if currency.id in investment_filter:
-                for account_data in account_data_map.values():
-                    if account_data.currency == currency.currency:
-                        accounts.add(account_data.account)
+                currencies.add(currency.currency)
     else:
-        accounts.update(account_data_map.keys())
+        return list(account_data_map.values())
 
-    return [account_data_map[account] for account in accounts]
+    return [
+        account_data
+        for account_data in account_data_map.values()
+        if account_data.account in accounts or account_data.currency in currencies
+    ]
