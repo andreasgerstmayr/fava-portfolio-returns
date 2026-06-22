@@ -3,10 +3,12 @@ import unittest
 
 from beancount.core.inventory import Inventory
 
+from fava_portfolio_returns._vendor.beangrow.config import read_config_from_string
 from fava_portfolio_returns.core.portfolio import InvestmentAccount
 from fava_portfolio_returns.core.portfolio import InvestmentGroup
 from fava_portfolio_returns.core.portfolio import InvestmentsConfig
 from fava_portfolio_returns.core.portfolio import LedgerCurrency
+from fava_portfolio_returns.core.portfolio import build_investments_config
 from fava_portfolio_returns.test.test import BEANGROW_CONFIG_CORP
 from fava_portfolio_returns.test.test import load_portfolio_str
 
@@ -48,10 +50,43 @@ plugin "beancount.plugins.implicit_prices"
             BEANGROW_CONFIG_CORP,
         )
         assert p.portfolio.investments_config == InvestmentsConfig(
-            accounts=[InvestmentAccount(id="a_Assets:CORP", currency="CORP", assetAccount="Assets:CORP")],
+            accounts=[InvestmentAccount(id="a_Assets:CORP", currencies=["CORP"], assetAccount="Assets:CORP")],
             groups=[InvestmentGroup(id="g_CORP", name="CORP", investments=["Assets:CORP"], currency="")],
             currencies=[LedgerCurrency(id="c_CORP", currency="CORP", name="Example Stock", isInvestment=True)],
         )
+
+    def test_multiple_currencies_per_account(self):
+        config = read_config_from_string(
+            """
+investments {
+  investment {
+    currency: "CORPA"
+    asset_account: "Assets:Combined"
+  }
+  investment {
+    currency: "CORPB"
+    asset_account: "Assets:Combined"
+  }
+}
+groups {
+  group {
+    name: "Combined"
+    investment: "Assets:Combined"
+  }
+}
+            """,
+            [],
+            ["Assets:Combined"],
+        )
+
+        investments_config = build_investments_config(config, {}, [])
+        assert investments_config.accounts == [
+            InvestmentAccount(
+                id="a_Assets:Combined",
+                currencies=["CORPA", "CORPB"],
+                assetAccount="Assets:Combined",
+            )
+        ]
 
     def test_balance_at(self):
         p = load_portfolio_str(
