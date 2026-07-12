@@ -7,7 +7,16 @@ export function TargetCurrencySelection() {
   const { targetCurrency, setTargetCurrency } = useToolbarContext();
 
   return (
-    <ToggleButtonGroup value={targetCurrency} onChange={(_e, value) => setTargetCurrency(value)} exclusive>
+    <ToggleButtonGroup
+      value={targetCurrency}
+      onChange={(_e, value) => {
+        // MUI returns null when the active toggle is clicked again; ignore it to avoid writing ?currency=null
+        if (value !== null) {
+          setTargetCurrency(value);
+        }
+      }}
+      exclusive
+    >
       {config.operatingCurrencies.map((currency) => (
         <ToggleButton key={currency} value={currency}>
           {currency}
