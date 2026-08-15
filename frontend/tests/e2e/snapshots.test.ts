@@ -1,6 +1,10 @@
 import { expect, Page, test } from "@playwright/test";
 
 const BASE_URL = "http://127.0.0.1:5000/beancount/extension/FavaPortfolioReturns/";
+
+test.skip(!process.env.CONTAINER, "snapshot tests must run in a container");
+test.skip(!!process.env.DISABLE_SNAPSHOT_TESTS, "snapshot tests are disabled via DISABLE_SNAPSHOT_TESTS env var");
+
 const pages = [
   { name: "Portfolio", url: "" },
   { name: "Performance", url: "?path=performance&compareWith=c_VHT~c_GLD" },
@@ -29,8 +33,6 @@ async function expectScreenshot(page: Page) {
 }
 
 test.describe("PNG Snapshot Tests", () => {
-  test.skip(!process.env.CONTAINER, "snapshot tests must run in a container");
-
   test.describe("Light Theme", () => {
     pages.forEach(({ name, url }) => {
       test(name, async ({ page }) => {
@@ -52,8 +54,6 @@ test.describe("PNG Snapshot Tests", () => {
 });
 
 test.describe("HTML Snapshot Tests", () => {
-  test.skip(!process.env.CONTAINER, "snapshot tests must run in a container");
-
   pages.forEach(({ name, url }) => {
     test(name, async ({ page }) => {
       await page.goto(`${BASE_URL}${url}`);

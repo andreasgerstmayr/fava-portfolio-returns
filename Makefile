@@ -32,24 +32,27 @@ test-py-coverage:
 	uv run coverage run -m pytest
 	uv run coverage html
 
-test-js:
-	cd frontend; LANG=en npm run test
+test-e2e:
+	docker build -t fava-portfolio-returns-test -f Dockerfile.e2e .
+	-docker rm -f fava-portfolio-returns-test
+	docker run --name fava-portfolio-returns-test -e DISABLE_SNAPSHOT_TESTS fava-portfolio-returns-test || (rm -rf ./frontend/test-results && docker cp fava-portfolio-returns-test:/usr/src/app/frontend/test-results ./frontend && exit 1)
 
-test-js-update:
-	cd frontend; LANG=en npm run test -- --update-snapshots
+test-e2e-update:
+	docker build -t fava-portfolio-returns-test -f Dockerfile.e2e .
+	-docker rm -f fava-portfolio-returns-test
+	-docker run --name fava-portfolio-returns-test fava-portfolio-returns-test --update-snapshots
+	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/snapshots.test.ts-snapshots ./frontend/tests/e2e
 
-test-js-ui:
-	cd frontend; LANG=en npm run test -- --ui
-
-test: test-py test-js
+test: test-py
 
 ## Utils
+LEDGER_FILE ?= $(wildcard example/example.beancount src/fava_portfolio_returns/test/ledger/*.beancount)
+
 run:
-	cd example; uv run fava example.beancount
+	uv run fava $(LEDGER_FILE)
 
 # Development with live reload (parametrizable beancount file path)
 # Usage: make dev LEDGER_FILE=path/to/file.beancount
-LEDGER_FILE ?= example/example.beancount src/fava_portfolio_returns/test/ledger/*.beancount
 dev:
 	npx concurrently --names fava,esbuild \
 	  "PYTHONUNBUFFERED=1 uv run fava --debug $(LEDGER_FILE)" \
@@ -72,21 +75,3 @@ format:
 	-uv run ruff check --fix
 	uv run ruff format .
 	find example src/fava_portfolio_returns/test/ledger -name '*.beancount' -exec uv run bean-format -c 59 -o "{}" "{}" \;
-
-## Container
-container-run: container-stop
-	docker build -t fava-portfolio-returns-test -f Dockerfile.test .
-	docker run -d --name fava-portfolio-returns-test fava-portfolio-returns-test
-	docker exec fava-portfolio-returns-test curl --retry 10 --retry-connrefused --silent --output /dev/null http://127.0.0.1:5000
-
-container-stop:
-	docker rm -f fava-portfolio-returns-test
-
-container-test: container-run
-	docker exec fava-portfolio-returns-test make test || (rm -rf ./frontend/test-results && docker cp fava-portfolio-returns-test:/usr/src/app/frontend/test-results ./frontend && exit 1)
-	make container-stop
-
-container-test-js-update: container-run
-	docker exec fava-portfolio-returns-test make test-js-update
-	docker cp fava-portfolio-returns-test:/usr/src/app/frontend/tests/e2e/snapshots.test.ts-snapshots ./frontend/tests/e2e
-	make container-stop

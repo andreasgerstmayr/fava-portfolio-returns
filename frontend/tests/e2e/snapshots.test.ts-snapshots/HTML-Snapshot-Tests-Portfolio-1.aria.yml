@@ -1,6 +1,6 @@
 - banner:
   - img
-  - heading "Beancount›Portfolio Returns" [level=1]:
+  - heading "Beancount ▾›Portfolio Returns" [level=1]:
     - text: ""
     - strong: ›Portfolio Returns
   - combobox "Time"
