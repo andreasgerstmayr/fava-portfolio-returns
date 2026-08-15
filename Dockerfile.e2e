@@ -21,4 +21,6 @@ RUN --mount=type=bind,source=frontend/package.json,target=frontend/package.json 
 
 COPY . .
 RUN make build
-CMD ["make", "run"]
+
+WORKDIR /usr/src/app/frontend
+ENTRYPOINT ["npm", "run", "test:e2e", "--"]
