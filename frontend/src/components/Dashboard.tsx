@@ -1,5 +1,8 @@
-import { Card, MenuItem, Select, Stack, SxProps, Theme, useTheme } from "@mui/material";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { Card, Collapse, IconButton, MenuItem, Select, Stack, SxProps, Theme, useTheme } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface DashboardProps {
   children?: React.ReactNode;
@@ -36,18 +39,44 @@ interface PanelProps {
   help?: string;
   topRightElem?: React.ReactNode;
   sx?: SxProps<Theme>;
+  /** when set, show an expand/collapse toggle that folds away the panel body */
+  collapsible?: boolean;
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
   children: React.ReactNode;
 }
 
-export function Panel({ title, help, topRightElem, sx, children }: PanelProps) {
+export function Panel({
+  title,
+  help,
+  topRightElem,
+  sx,
+  collapsible,
+  collapsed,
+  onToggleCollapsed,
+  children,
+}: PanelProps) {
+  const { t } = useTranslation();
   return (
     <Card variant="outlined" sx={{ flex: 1, padding: 2, overflow: "auto", ...sx }}>
-      <Stack sx={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <h3>{title}</h3>
+      <Stack sx={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+        <Stack sx={{ flexDirection: "row", alignItems: "center", gap: 0.5 }}>
+          {collapsible && (
+            <IconButton
+              size="small"
+              onClick={onToggleCollapsed}
+              aria-expanded={!collapsed}
+              aria-label={collapsed ? t("Expand {{title}}", { title }) : t("Collapse {{title}}", { title })}
+            >
+              {collapsed ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+            </IconButton>
+          )}
+          <h3>{title}</h3>
+        </Stack>
         {topRightElem}
       </Stack>
       {help && <p style={{ whiteSpace: "pre-line", maxWidth: "80%" }}>{help}</p>}
-      {children}
+      {collapsible ? <Collapse in={!collapsed}>{children}</Collapse> : children}
     </Card>
   );
 }

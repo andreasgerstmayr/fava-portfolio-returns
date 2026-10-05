@@ -6,6 +6,9 @@ import { useResizeObserver } from "./hooks";
 
 export interface EChartsSpec extends EChartsOption {
   onClick?: (params: ECElementEvent) => void;
+  /** hover handlers; e.g. to show a tooltip programmatically */
+  onMouseOver?: (params: ECElementEvent, chart: ECharts) => void;
+  onMouseOut?: (params: ECElementEvent, chart: ECharts) => void;
 }
 
 interface EChartProps {
@@ -40,10 +43,20 @@ export function EChart({ height, option }: EChartProps) {
       height: rect.height,
       locale,
     });
-    const { onClick, ...optionCopy } = option;
+    const { onClick, onMouseOver, onMouseOut, ...optionCopy } = option;
 
     if (onClick) {
       chart.on("click", onClick);
+    }
+    if (onMouseOver) {
+      chart.on("mouseover", (params) => {
+        onMouseOver(params, chart);
+      });
+    }
+    if (onMouseOut) {
+      chart.on("mouseout", (params) => {
+        onMouseOut(params, chart);
+      });
     }
 
     if (echartsTheme == "dark" && optionCopy.backgroundColor === undefined) {
