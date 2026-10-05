@@ -27,6 +27,7 @@ dependencies = [
     "scipy>=1.13.1",
     "pandas>=2.2.2",
     "python-dateutil>=2.9.0",
+    "pyyaml>=6",
 ]
 
 [project.urls]
