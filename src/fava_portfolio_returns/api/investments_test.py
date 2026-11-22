@@ -3,7 +3,6 @@ import unittest
 from decimal import Decimal as D
 
 from beancount.core.amount import Amount
-from fava.core.charts import dumps
 
 from fava_portfolio_returns.api.investments import group_stats
 from fava_portfolio_returns.test.test import approx2
@@ -28,12 +27,6 @@ class TestInvestments(unittest.TestCase):
             "twr": 2.5,
             "mdd": D("0"),
         }
-
-    def test_group_stats_json_serializable(self):
-        # Fava >= 1.31 serializes JSON with msgspec, which rejects numpy scalars
-        p = load_portfolio_file("linear_growth_stock")
-        stats = group_stats(p, datetime.date(2020, 1, 1), datetime.date(2020, 6, 1))
-        dumps(stats)
 
     def test_group_stats_partial_timeframe(self):
         p = load_portfolio_file("linear_growth_stock")

@@ -1,8 +1,6 @@
 import datetime
-import functools
 import logging
 import os
-import traceback
 from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
@@ -29,6 +27,7 @@ from fava_portfolio_returns.api.investments import investments_group_by_currency
 from fava_portfolio_returns.api.investments import investments_group_by_group
 from fava_portfolio_returns.api.portfolio import portfolio_allocation
 from fava_portfolio_returns.api.portfolio import portfolio_values
+from fava_portfolio_returns.api.response import api_response
 from fava_portfolio_returns.core.intervals import intervals_heatmap
 from fava_portfolio_returns.core.intervals import intervals_periods
 from fava_portfolio_returns.core.intervals import intervals_yearly
@@ -60,23 +59,6 @@ class ToolbarContext:
     start_date: date
     """end date of the current date filter, or last transaction date of the ledger (inclusive)"""
     end_date: date
-
-
-def api_response(func):
-    """return {success: true, data: ...} or {success: false, error: ...}"""
-
-    @functools.wraps(func)
-    def decorator(*args, **kwargs):
-        try:
-            data = func(*args, **kwargs)
-            return {"success": True, "data": data}
-        except FavaAPIError as e:
-            return {"success": False, "error": e.message}, 500
-        except Exception as e:  # pylint: disable=broad-exception-caught
-            traceback.print_exception(e)
-            return {"success": False, "error": str(e)}, 500
-
-    return decorator
 
 
 class FavaPortfolioReturns(FavaExtensionBase):
