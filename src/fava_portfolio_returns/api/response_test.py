@@ -8,14 +8,13 @@ from fava_portfolio_returns.api.response import api_response
 
 
 def test_api_response_serializes_portfolio_data():
-    @api_response
     def endpoint():
         return {
             "valueChart": [PortfolioValue(date(2020, 6, 1), Decimal("70.25"), Decimal("35.50"), Decimal("36.75"))],
             "units": (Amount(Decimal("2.5"), "CORP"),),
         }
 
-    response = endpoint()
+    response = api_response(endpoint)()
 
     assert response.status_code == 200
     assert response.mimetype == "application/json"
