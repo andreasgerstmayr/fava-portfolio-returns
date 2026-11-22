@@ -20,10 +20,14 @@ classifiers = [
 ]
 requires-python = ">= 3.11"
 dependencies = [
+    "beancount>=3",
     "fava>=1.31",
-    "protobuf>=5.29.3",
-    "scipy>=1.13.1",
+    "flask>=3.1",
+    "numpy>=1.26.4",
     "pandas>=2.2.2",
+    "protobuf>=5.29.3",
+    "python-dateutil>=2.9.0",
+    "scipy>=1.13.1",
 ]
 
 [project.urls]

@@ -389,9 +389,13 @@ wheels = [
 name = "fava-portfolio-returns"
 source = { editable = "." }
 dependencies = [
+    { name = "beancount" },
     { name = "fava" },
+    { name = "flask" },
+    { name = "numpy" },
     { name = "pandas" },
     { name = "protobuf" },
+    { name = "python-dateutil" },
     { name = "scipy" },
 ]
 
@@ -409,9 +413,13 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "beancount", specifier = ">=3" },
     { name = "fava", specifier = ">=1.31" },
+    { name = "flask", specifier = ">=3.1" },
+    { name = "numpy", specifier = ">=1.26.4" },
     { name = "pandas", specifier = ">=2.2.2" },
     { name = "protobuf", specifier = ">=5.29.3" },
+    { name = "python-dateutil", specifier = ">=2.9.0" },
     { name = "scipy", specifier = ">=1.13.1" },
 ]
 
