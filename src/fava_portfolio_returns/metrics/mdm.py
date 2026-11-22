@@ -19,4 +19,4 @@ class ModifiedDietzMethod(MetricBase):
         # in beangrow the end date is exclusive, therefore add one day
         cash_flows = truncate_and_merge_cash_flows(p.pricer, p.account_data_list, start_date, end_date + ONE_DAY)
         cash_flows = convert_cash_flows_to_currency(p.pricer, p.target_currency, cash_flows)
-        return compute_dietz(cash_flows, p.pricer, p.target_currency, end_date + ONE_DAY)
+        return float(compute_dietz(cash_flows, p.pricer, p.target_currency, end_date + ONE_DAY))

@@ -30,4 +30,4 @@ class IRR(MetricBase):
                 parts.append(f"{-(flow.amount.number or 0):.2f}*(1+x)^{years:.2f}")
             logger.debug("Calculating IRR from %s to %s: %s = 0", start_date, end_date, " + ".join(parts))
 
-        return compute_irr(cash_flows, p.pricer, p.target_currency, end_date + ONE_DAY)
+        return float(compute_irr(cash_flows, p.pricer, p.target_currency, end_date + ONE_DAY))
