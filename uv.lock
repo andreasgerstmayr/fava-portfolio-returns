@@ -14,10 +14,6 @@ resolution-markers = [
     "python_version < '0'",
 ]
 
-[options]
-exclude-newer = "0001-01-01T00:00:00Z" # This has no effect and is included for backwards compatibility when using relative exclude-newer values.
-exclude-newer-span = "P7D"
-
 [[package]]
 name = "anyio"
 version = "4.12.1"

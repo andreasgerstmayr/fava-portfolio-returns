@@ -1,29 +1,32 @@
+import dataclasses
 import functools
 import json
 import traceback
-from dataclasses import fields
-from dataclasses import is_dataclass
 from datetime import date
 from decimal import Decimal
 
-from beancount import Amount
+from beancount.core.inventory import Inventory
+from fava.core.conversion import UNITS
 from fava.helpers import FavaAPIError
 from flask import Response
 
 
-def _json_data(value: object) -> object:
+def _json_data(value) -> object:
+    if isinstance(value, Inventory):
+        return _json_data(UNITS.apply_inventory(value))
+    if isinstance(value, tuple) and hasattr(value, "_asdict"):  # namedtuples like Amount, Position, Cost
+        return _json_data(value._asdict())
+    if dataclasses.is_dataclass(value) and not isinstance(value, type):
+        return _json_data(dataclasses.asdict(value))
+    if isinstance(value, dict):
+        return {key: _json_data(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple, set, frozenset)):
+        return [_json_data(item) for item in value]
+
     if isinstance(value, Decimal):
         return float(value)
     if isinstance(value, date):
         return value.isoformat()
-    if isinstance(value, Amount):
-        return {"number": _json_data(value.number), "currency": value.currency}
-    if is_dataclass(value):
-        return {field.name: _json_data(getattr(value, field.name)) for field in fields(value)}
-    if isinstance(value, dict):
-        return {key: _json_data(item) for key, item in value.items()}
-    if isinstance(value, (list, tuple)):
-        return [_json_data(item) for item in value]
     return value
 
 
