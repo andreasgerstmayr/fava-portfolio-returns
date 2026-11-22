@@ -18,10 +18,10 @@ classifiers = [
     "Topic :: Office/Business :: Financial :: Accounting",
     "Topic :: Office/Business :: Financial :: Investment",
 ]
-requires-python = ">= 3.10"
+requires-python = ">= 3.11"
 dependencies = [
     "beancount>=3",
-    "fava>=1.30.6",
+    "fava>=1.31",
     "protobuf>=5.29.3",
     "numpy>=1.26.4",
     "scipy>=1.13.1",
