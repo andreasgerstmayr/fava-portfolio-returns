@@ -17,6 +17,7 @@ const pages = [
   { name: "Cash Flows", url: "?path=cash_flows&investments=c_VHT" },
   { name: "Groups", url: "?path=groups" },
   { name: "Investments", url: "?path=investments" },
+  { name: "Asset Allocation", url: "?path=asset_allocation" },
   { name: "Missing Prices", url: "?path=missing_prices" },
   { name: "Help", url: "?path=help" },
 ];

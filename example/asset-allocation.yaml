@@ -1,0 +1,58 @@
+# Target asset allocation.
+#
+# Account patterns are regexes (matched like Beanquery's `~` operator); quote
+# them if they end with a colon, otherwise YAML parses them as a mapping.
+#
+# A portfolio's `allocation` may define per-commodity targets (`commodities`),
+# per-asset-class targets (`classes`), or both. Asset classes are read from each
+# commodity's `asset-class` metadata (hierarchical, ':'-separated). Each block
+# should sum to 100%.
+
+# asset-class-key: asset-class  # commodity metadata key (default: asset-class)
+#
+# The default divergence band, i.e. how far a target may drift before it is
+# flagged, capped from two sides combined with min(): `of-portfolio` in
+# percentage points of the portfolio, `of-target` as a fraction of the target
+# itself. Defaults to Larry Swedroe's 5/25 rule below:
+# divergence-threshold:
+#   of-portfolio: 5%
+#   of-target: 25%
+
+portfolios:
+  - name: ETrade
+    accounts:
+      - "^Assets:US:ETrade:"
+    # divergence-threshold:     # overrides the file-level one, for this
+    #   of-portfolio: 3%        # portfolio only; unset sides keep inheriting
+    allocation:
+      commodities:
+        - commodity: ITOT
+          target: 40%
+          # divergence-threshold:   # overrides the portfolio's, for this
+          #   of-target: 10%        # target only
+        - commodity: VEA
+          target: 25%
+        - commodity: VHT
+          target: 20%
+        - commodity: GLD
+          target: 15%
+      classes:
+        - asset-class: stocks
+          target: 85%
+        - asset-class: gold
+          target: 15%
+
+  - name: Vanguard
+    accounts:
+      - "^Assets:US:Vanguard:"
+    allocation:
+      commodities:
+        - commodity: RGAGX
+          target: 60%
+        - commodity: VBMPX
+          target: 40%
+      classes:
+        - asset-class: stocks
+          target: 60%
+        - asset-class: bonds
+          target: 40%

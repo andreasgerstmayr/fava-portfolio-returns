@@ -12,6 +12,7 @@ from typing import Sequence
 from typing import cast
 
 from beancount import Directive
+from beancount.core.data import Commodity
 from fava.beans.abc import Directive as FavaDirective
 from fava.beans.abc import Price
 from fava.beans.abc import Transaction
@@ -21,6 +22,11 @@ from fava.ext import extension_endpoint
 from fava.helpers import FavaAPIError
 from flask import request
 
+from fava_portfolio_returns.api.asset_allocation import asset_allocation_report
+from fava_portfolio_returns.api.asset_allocation import load_asset_allocation_config
+from fava_portfolio_returns.api.asset_allocation_core import DEFAULT_ASSET_CLASS_KEY
+from fava_portfolio_returns.api.asset_allocation_core import Band
+from fava_portfolio_returns.api.asset_allocation_core import commodity_asset_classes
 from fava_portfolio_returns.api.cash_flows import cash_flows_chart
 from fava_portfolio_returns.api.cash_flows import cash_flows_table
 from fava_portfolio_returns.api.cash_flows import dividends_chart
@@ -49,6 +55,7 @@ class ExtConfig:
     pnl_color_scheme: Optional[str]
     language: Optional[str]
     locale: Optional[str]
+    asset_allocation_config: Optional[Path]
 
 
 @dataclass(frozen=True)
@@ -95,12 +102,17 @@ class FavaPortfolioReturns(FavaExtensionBase):
         if beangrow_debug_dir:
             beangrow_debug_dir = self.ledger.join_path(beangrow_debug_dir)
 
+        asset_allocation_config = cfg.get("asset_allocation_config")
+        if asset_allocation_config:
+            asset_allocation_config = self.ledger.join_path(asset_allocation_config)
+
         return ExtConfig(
             beangrow_config_path=self.ledger.join_path(cfg.get("beangrow_config", "beangrow.pbtxt")),
             beangrow_debug_dir=beangrow_debug_dir,
             pnl_color_scheme=cfg.get("pnl_color_scheme"),
             language=cfg.get("language", self.ledger.fava_options.language),
             locale=cfg.get("locale", self.ledger.fava_options.locale),
+            asset_allocation_config=asset_allocation_config,
         )
 
     def get_toolbar_ctx(self) -> ToolbarContext:
@@ -281,6 +293,49 @@ class FavaPortfolioReturns(FavaExtensionBase):
 
         missing_prices, commands = p.get_missing_prices()
         return {"missingPrices": missing_prices, "commands": commands}
+
+    @extension_endpoint("asset_allocation")
+    @api_response
+    def api_asset_allocation(self):
+        ext_config = self.read_ext_config()
+        toolbar_ctx = self.get_toolbar_ctx()
+        portfolio = self.get_portfolio()
+        entries = cast(list[Directive], list(self.ledger.all_entries))
+
+        names = {
+            entry.currency: entry.meta["name"]
+            for entry in entries
+            if isinstance(entry, Commodity) and entry.meta.get("name")
+        }
+        minimize = request.args.get("minimize") in ("1", "true")
+
+        config_file = (
+            load_asset_allocation_config(ext_config.asset_allocation_config)
+            if ext_config.asset_allocation_config
+            else None
+        )
+        portfolios_config = config_file.portfolios if config_file else []
+
+        asset_class_key = config_file.asset_class_key if config_file else DEFAULT_ASSET_CLASS_KEY
+        asset_classes = commodity_asset_classes(entries, asset_class_key)
+
+        # band precedence, resolved side by side by asset_allocation_report:
+        # built-in 5/25 default < config file < per-portfolio < per-target
+        portfolios = asset_allocation_report(
+            entries,
+            portfolio.pricer,
+            portfolios_config,
+            toolbar_ctx.target_currency,
+            toolbar_ctx.end_date,
+            config_file.default_band if config_file else Band(),
+            asset_classes=asset_classes,
+            names=names,
+            minimize=minimize,
+            # all operating currencies are cash, whichever one the toolbar
+            # values the report in: the allocation must not depend on it
+            cash_currencies=self.ledger.options["operating_currency"],
+        )
+        return {"portfolios": portfolios}
 
 
 def get_ledger_duration(entries: Sequence[FavaDirective]) -> tuple[date, date]:

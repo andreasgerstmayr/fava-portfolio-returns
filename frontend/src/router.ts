@@ -2,6 +2,7 @@ import { createBrowserHistory, parseHref } from "@tanstack/history";
 import { createRouter } from "@tanstack/react-router";
 import { IndexRoute } from "./routes";
 import { RootRoute } from "./routes/__root";
+import { AssetAllocationRoute } from "./routes/asset_allocation";
 import { CashFlowsRoute } from "./routes/cash_flows";
 import { DividendsRoute } from "./routes/dividends";
 import { GroupsRoute } from "./routes/groups";
@@ -37,6 +38,7 @@ const routeTree = RootRoute.addChildren([
   CashFlowsRoute,
   GroupsRoute,
   InvestmentsRoute,
+  AssetAllocationRoute,
   MissingPricesRoute,
   HelpRoute,
 ]);
